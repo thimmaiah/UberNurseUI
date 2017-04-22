@@ -6,6 +6,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { Users } from '../pages/users/users';
+import { UserDetails } from '../pages/user-details/user-details';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -17,7 +18,8 @@ import {UserApi} from '../providers/user-api'
     MyApp,
     HomePage,
     ListPage,
-    Users
+    Users,
+    UserDetails
   ],
   imports: [
     BrowserModule,
@@ -29,7 +31,8 @@ import {UserApi} from '../providers/user-api'
     MyApp,
     HomePage,
     ListPage,
-    Users
+    Users,
+    UserDetails
   ],
   providers: [
     UserApi,

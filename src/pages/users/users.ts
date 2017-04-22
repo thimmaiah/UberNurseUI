@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {UserApi} from '../../providers/user-api';
-
+import {UserDetails} from '../user-details/user-details'
 /**
  * Generated class for the Users page.
  *
@@ -16,6 +16,8 @@ import {UserApi} from '../../providers/user-api';
 export class Users {
 
   users: any;
+  user: any;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public userApi: UserApi) {
   }
 
@@ -27,4 +29,11 @@ export class Users {
     })
   }
 
+  getUserDetails(user) {
+    this.userApi.getUserDetails(user.id).subscribe(user=> {
+      this.user = user;
+      console.log("got user " + user);
+      this.navCtrl.push(UserDetails, user);
+    })
+  }
 }
