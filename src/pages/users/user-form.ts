@@ -10,7 +10,7 @@ import { ResponseUtility } from '../../providers/response-utility';
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
-@IonicPage()
+//@IonicPage()
 @Component({
   selector: 'page-user-form',
   templateUrl: 'user-form.html',

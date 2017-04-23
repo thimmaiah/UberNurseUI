@@ -4,10 +4,9 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
 import { Users } from '../pages/users/users';
-import { UserForm } from '../pages/user-form/user-form';
-import { UserDetails } from '../pages/user-details/user-details';
+import { UserForm } from '../pages/users/user-form';
+import { UserDetails } from '../pages/users/user-details';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -19,8 +18,7 @@ import {ResponseUtility} from '../providers/response-utility'
   declarations: [
     MyApp,
     HomePage,
-    ListPage,
-    Users,
+   Users,
     UserForm,
     UserDetails
   ],
@@ -33,7 +31,6 @@ import {ResponseUtility} from '../providers/response-utility'
   entryComponents: [
     MyApp,
     HomePage,
-    ListPage,
     Users,
     UserForm,
     UserDetails

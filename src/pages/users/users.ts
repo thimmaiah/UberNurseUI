@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { UserApi } from '../../providers/user-api';
 import { ResponseUtility } from '../../providers/response-utility';
-import { UserDetails } from '../user-details/user-details'
+import { UserDetails } from '../users/user-details'
 
 /**
  * Generated class for the Users page.

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
-import { UserForm } from '../user-form/user-form';
+import { UserForm } from '../users/user-form';
 import { UserApi } from '../../providers/user-api';
 import { ResponseUtility } from '../../providers/response-utility';
 /**
@@ -9,7 +9,7 @@ import { ResponseUtility } from '../../providers/response-utility';
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
-@IonicPage()
+//@IonicPage()
 @Component({
   selector: 'page-user-details',
   templateUrl: 'user-details.html',
