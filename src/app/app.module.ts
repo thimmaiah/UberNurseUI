@@ -6,6 +6,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
 import { Users } from '../pages/users/users';
+import { UserForm } from '../pages/user-form/user-form';
 import { UserDetails } from '../pages/user-details/user-details';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -19,6 +20,7 @@ import {UserApi} from '../providers/user-api'
     HomePage,
     ListPage,
     Users,
+    UserForm,
     UserDetails
   ],
   imports: [
@@ -32,6 +34,7 @@ import {UserApi} from '../providers/user-api'
     HomePage,
     ListPage,
     Users,
+    UserForm,
     UserDetails
   ],
   providers: [

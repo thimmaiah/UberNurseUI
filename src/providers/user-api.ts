@@ -43,6 +43,8 @@ export class UserApi {
   }
 
   updateUser(user) {
+    console.log(`UserApi: Updating user`)
+    console.log(user);
     return this.http.put(`${this.base_url}/${user.id}.json`, user).map(response=>{
       this.user = response.json();
       return this.user;

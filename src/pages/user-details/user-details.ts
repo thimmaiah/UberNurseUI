@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {UserForm} from '../user-form/user-form'
 /**
  * Generated class for the UserDetails page.
  *
@@ -23,4 +24,7 @@ export class UserDetails {
     console.log('ionViewDidLoad UserDetails');
   }
 
+  editUser(user) {
+    this.navCtrl.push(UserForm, user);
+  }
 }

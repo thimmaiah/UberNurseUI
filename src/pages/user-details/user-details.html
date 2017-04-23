@@ -14,7 +14,7 @@
 
 
 <ion-content padding>
-    <button ion-item>
+    <button ion-item (click)="editUser(user)">
       {{user.first_name}} {{user.last_name}} 
       <p>
         {{user.phone}}

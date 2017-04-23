@@ -1,0 +1,180 @@
+<!--
+  Generated template for the UserForm pemail.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pemails and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>UserForm</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-slides #signupSlider pager>
+
+    <ion-slide>
+
+      <p *ngIf="submitAttempt" style="color: #ea6153;">Please fill out all details accurately.</p>
+
+      <ion-list no-lines>
+
+        <form [formGroup]="slideOneForm">
+
+          <ion-item>
+            <ion-label floating>First Name</ion-label>
+            <ion-input formControlName="first_name" type="text" 
+            [(ngModel)]="user.first_name"
+            [class.invalid]="!slideOneForm.controls.first_name.valid && (slideOneForm.controls.first_name.dirty || submitAttempt)"></ion-input>
+          </ion-item>
+
+          <ion-item *ngIf="!slideOneForm.controls.first_name.valid  && (slideOneForm.controls.first_name.dirty || submitAttempt)">
+            <p>Please enter a valid name.</p>
+          </ion-item>
+
+          <ion-item>
+            <ion-label floating>Last Name</ion-label>
+            <ion-input formControlName="last_name" type="text" 
+            [(ngModel)]="user.last_name"
+            [class.invalid]="!slideOneForm.controls.last_name.valid && (slideOneForm.controls.email.dirty || submitAttempt)"></ion-input>
+          </ion-item>
+
+          <ion-item *ngIf="!slideOneForm.controls.last_name.valid  && (slideOneForm.controls.last_name.dirty || submitAttempt)">
+            <p>Please enter a valid name.</p>
+          </ion-item>
+
+          <ion-item>
+            <ion-label floating>Email</ion-label>
+            <ion-input formControlName="email" type="email" 
+            [(ngModel)]="user.email"
+            [class.invalid]="!slideOneForm.controls.email.valid && (slideOneForm.controls.email.dirty || submitAttempt)"></ion-input>
+          </ion-item>
+
+          <ion-item *ngIf="!slideOneForm.controls.email.valid  && (slideOneForm.controls.email.dirty || submitAttempt)">
+            <p>Please enter a valid email.</p>
+          </ion-item>
+
+          <ion-item>
+            <ion-label floating>Phone</ion-label>
+            <ion-input formControlName="phone" type="text" 
+            [(ngModel)]="user.phone"
+            [class.invalid]="!slideOneForm.controls.phone.valid && (slideOneForm.controls.email.dirty || submitAttempt)"></ion-input>
+          </ion-item>
+
+          <ion-item *ngIf="!slideOneForm.controls.phone.valid  && (slideOneForm.controls.phone.dirty || submitAttempt)">
+            <p>Please enter a valid name.</p>
+          </ion-item>
+
+          <ion-item>
+            <ion-label floating>Role</ion-label>
+            <ion-select [(ngModel)]="user.role"
+              [class.invalid]="!slideOneForm.controls.role.valid && (slideOneForm.controls.role.dirty || submitAttempt)"
+              formControlName="role">
+              <ion-option value="Care Giver" checked="true">Care Giver</ion-option>
+              <ion-option value="Admin">Admin</ion-option>
+              <ion-option value="Employee">Employee</ion-option>
+            </ion-select>
+          </ion-item>
+
+          <ion-item>
+            <ion-label floating>Sex</ion-label>
+            <ion-select [(ngModel)]="user.sex"
+              [class.invalid]="!slideOneForm.controls.sex.valid && (slideOneForm.controls.sex.dirty || submitAttempt)"
+              formControlName="sex">
+              <ion-option value="M" checked="true">Male</ion-option>
+              <ion-option value="F">Female</ion-option>
+            </ion-select>
+          </ion-item>
+
+        </form>
+
+      </ion-list>
+
+    </ion-slide>
+
+    <ion-slide>
+
+      <ion-list no-lines>
+
+        <form [formGroup]="slideTwoForm">
+
+          <ion-item>
+            <ion-label floating>Address</ion-label>
+            <ion-input [(ngModel)]="user.address" 
+              [class.invalid]="!slideTwoForm.controls.address.valid && (slideTwoForm.controls.address.dirty || submitAttempt)"
+              formControlName="address" type="text"></ion-input>
+          </ion-item>
+
+          <ion-item *ngIf="!slideTwoForm.controls.address.valid && !slideTwoForm.controls.address.pending && (slideTwoForm.controls.address.dirty || submitAttempt)">
+            <p>Sorry, that address can not be used!</p>
+          </ion-item>
+
+          <ion-item>
+            <ion-label floating>Languages</ion-label>
+            <ion-input formControlName="languages" type="languages" 
+            [(ngModel)]="user.languages"
+            [class.invalid]="!slideTwoForm.controls.languages.valid && (slideTwoForm.controls.languages.dirty || submitAttempt)"></ion-input>
+          </ion-item>
+
+          <ion-item *ngIf="!slideTwoForm.controls.languages.valid  && (slideTwoForm.controls.languages.dirty || submitAttempt)">
+            <p>Please enter a valid languages.</p>
+          </ion-item>
+
+          <ion-item>
+            <ion-label floating>Pref Commute Distance</ion-label>
+            <ion-input formControlName="pref_commute_distance" type="pref_commute_distance" 
+            [(ngModel)]="user.pref_commute_distance"
+            [class.invalid]="!slideTwoForm.controls.pref_commute_distance.valid && (slideTwoForm.controls.pref_commute_distance.dirty || submitAttempt)"></ion-input>
+          </ion-item>
+
+          <ion-item *ngIf="!slideTwoForm.controls.pref_commute_distance.valid  && (slideTwoForm.controls.pref_commute_distance.dirty || submitAttempt)">
+            <p>Please enter a valid pref_commute_distance.</p>
+          </ion-item>
+
+          <ion-item>
+            <ion-label floating>Occupation</ion-label>
+            <ion-input formControlName="occupation" type="occupation" 
+            [(ngModel)]="user.occupation"
+            [class.invalid]="!slideTwoForm.controls.occupation.valid && (slideTwoForm.controls.occupation.dirty || submitAttempt)"></ion-input>
+          </ion-item>
+
+          <ion-item *ngIf="!slideTwoForm.controls.occupation.valid  && (slideTwoForm.controls.occupation.dirty || submitAttempt)">
+            <p>Please enter a valid occupation.</p>
+          </ion-item>
+
+          <ion-item>
+            <ion-label floating>Speciality</ion-label>
+            <ion-input formControlName="speciality" type="speciality" 
+            [(ngModel)]="user.speciality"
+            [class.invalid]="!slideTwoForm.controls.speciality.valid && (slideTwoForm.controls.speciality.dirty || submitAttempt)"></ion-input>
+          </ion-item>
+
+          <ion-item *ngIf="!slideTwoForm.controls.speciality.valid  && (slideTwoForm.controls.speciality.dirty || submitAttempt)">
+            <p>Please enter a valid speciality.</p>
+          </ion-item>
+
+          <ion-item>
+            <ion-label floating>Experience</ion-label>
+            <ion-input formControlName="experience" type="experience" 
+            [(ngModel)]="user.experience"
+            [class.invalid]="!slideTwoForm.controls.experience.valid && (slideTwoForm.controls.experience.dirty || submitAttempt)"></ion-input>
+          </ion-item>
+
+          <ion-item *ngIf="!slideTwoForm.controls.experience.valid  && (slideTwoForm.controls.experience.dirty || submitAttempt)">
+            <p>Please enter a valid experience.</p>
+          </ion-item>
+
+        </form>
+
+      </ion-list>
+
+      <button ion-button full color="primary" (click)="save()">Save</button>
+
+    </ion-slide>
+
+  </ion-slides>
+
+</ion-content>
