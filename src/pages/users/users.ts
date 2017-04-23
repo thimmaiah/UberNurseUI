@@ -25,8 +25,10 @@ export class Users {
     public userApi: UserApi, public respUtility: ResponseUtility) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad Users');
+  
+
+  ionViewWillEnter() {
+    console.log('ionViewWillEnter Users');
 
     let loader = this.loadingController.create({
       content: 'Loading Users...'

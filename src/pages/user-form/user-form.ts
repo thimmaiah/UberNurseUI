@@ -25,8 +25,10 @@ export class UserForm {
 
   submitAttempt: boolean = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
-    public formBuilder: FormBuilder, public userApi: UserApi,
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    public formBuilder: FormBuilder,
+    public userApi: UserApi,
     public respUtility: ResponseUtility) {
 
     this.user = this.navParams.data;

@@ -15,7 +15,7 @@ export class ResponseUtility {
   constructor(public http: Http,
     public alertController: AlertController,
     public toastController: ToastController) {
-    console.log('Hello ResponseUtility Provider');
+    console.log('ResponseUtility Provider Created');
   }
 
   showSuccess(msg) {
@@ -46,4 +46,19 @@ export class ResponseUtility {
     console.log(msg)
   }
 
+  confirmDelete(deleteEntityFn, entity) {
+    let confirm = this.alertController.create({
+      title: 'Delete',
+      cssClass: 'delete-alert',
+      message: 'Are you sure you want to delete ?',
+      buttons: [
+        {
+          text: 'Yes',
+          handler: () => { deleteEntityFn(entity); }          
+        },
+        { text: 'No' }
+      ]
+    });
+    confirm.present();
+  }
 }

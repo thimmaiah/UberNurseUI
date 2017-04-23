@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
-import {UserForm} from '../user-form/user-form'
-import {UserApi} from '../../providers/user-api'
+import { UserForm } from '../user-form/user-form';
+import { UserApi } from '../../providers/user-api';
+import { ResponseUtility } from '../../providers/response-utility';
 /**
  * Generated class for the UserDetails page.
  *
@@ -16,10 +17,12 @@ import {UserApi} from '../../providers/user-api'
 export class UserDetails {
 
   user: any;
-  
-  constructor(public navCtrl: NavController, public navParams: NavParams, 
-  public userApi: UserApi, public alertController: AlertController, 
-  public toastController: ToastController) {
+
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+    public userApi: UserApi,
+    public alertController: AlertController,
+    public toastController: ToastController,
+    public respUtility: ResponseUtility) {
     this.user = this.navParams.data;
   }
 
@@ -31,8 +34,19 @@ export class UserDetails {
     this.navCtrl.push(UserForm, user);
   }
 
-  delteUser(user) {
-
+  deleteUser(user) {
+    this.userApi.deleteUser(user).subscribe(
+      response => {
+        this.respUtility.showSuccess("Deleted User");
+        this.navCtrl.pop();
+      },
+      error => {
+        this.respUtility.showFailure(error);
+      }
+    );
   }
 
+  confirmDelete(user) {
+    this.respUtility.confirmDelete(this.deleteUser.bind(this), user);      
+  }
 }

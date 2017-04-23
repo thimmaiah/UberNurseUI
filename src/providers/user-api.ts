@@ -17,7 +17,7 @@ export class UserApi {
   user = {};
 
   constructor(public http: Http) {
-    console.log('Hello UserApi Provider');
+    console.log('UserApi Provider Created');
   }
 
   getUsers() {
