@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>UserDetails</ion-title>
   </ion-navbar>
 
@@ -14,7 +14,7 @@
 
 
 <ion-content padding>
-    <button ion-item (click)="editUser(user)">
+  <button ion-item (click)="editUser(user)">
       {{user.first_name}} {{user.last_name}} 
       <p>
         {{user.phone}}
@@ -29,4 +29,17 @@
         {{user.speciality}}
       </p>
     </button>
+
+  <ion-row>
+
+    <ion-col>
+      <button ion-button full color="secondary" (click)="editUser(user)">Edit</button>
+    </ion-col>
+    <ion-col>
+      <button ion-button full color="danger" (click)="delteUser(user)">Delete</button>
+    </ion-col>
+
+  </ion-row>
+
+
 </ion-content>

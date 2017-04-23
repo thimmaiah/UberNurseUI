@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
 import {UserForm} from '../user-form/user-form'
+import {UserApi} from '../../providers/user-api'
 /**
  * Generated class for the UserDetails page.
  *
@@ -16,7 +17,9 @@ export class UserDetails {
 
   user: any;
   
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, 
+  public userApi: UserApi, public alertController: AlertController, 
+  public toastController: ToastController) {
     this.user = this.navParams.data;
   }
 
@@ -27,4 +30,9 @@ export class UserDetails {
   editUser(user) {
     this.navCtrl.push(UserForm, user);
   }
+
+  delteUser(user) {
+
+  }
+
 }

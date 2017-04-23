@@ -1,7 +1,8 @@
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, ViewChild } from '@angular/core';
-import {UserApi} from '../../providers/user-api'
+import { UserApi } from '../../providers/user-api';
+import { ResponseUtility } from '../../providers/response-utility';
 
 /**
  * Generated class for the UserForm page.
@@ -24,8 +25,9 @@ export class UserForm {
 
   submitAttempt: boolean = false;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, 
-  public formBuilder: FormBuilder, public userApi: UserApi) {
+  constructor(public navCtrl: NavController, public navParams: NavParams,
+    public formBuilder: FormBuilder, public userApi: UserApi,
+    public respUtility: ResponseUtility) {
 
     this.user = this.navParams.data;
 
@@ -35,7 +37,7 @@ export class UserForm {
       email: ['', Validators.compose([Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$'), Validators.required])],
       role: [''],
       sex: [''],
-      phone: ['', Validators.pattern('^\\d+$'),]      
+      phone: ['', Validators.pattern('^\\d+$'),]
     });
 
     this.slideTwoForm = formBuilder.group({
@@ -65,7 +67,7 @@ export class UserForm {
   save() {
     this.submitAttempt = true;
     //console.log(this.user);
-    
+
 
     if (!this.slideOneForm.valid) {
       this.signupSlider.slideTo(0);
@@ -74,14 +76,24 @@ export class UserForm {
       this.signupSlider.slideTo(1);
     }
     else {
-      if(this.user["id"]) {
-        this.userApi.updateUser(this.user).subscribe(user=>{
-          console.log("Updated user")
-        });
+      if (this.user["id"]) {
+        this.userApi.updateUser(this.user).subscribe(
+          user => {
+            this.respUtility.showSuccess('User saved successfully.');
+          },
+          error => {
+            this.respUtility.showFailure('The operations you were trying failed. Please contact the administrator. ', error);
+          }
+        );
       } else {
-        this.userApi.createUser(this.user).subscribe(user=>{
-          console.log("Created user")
-        });
+        this.userApi.createUser(this.user).subscribe(
+          user => {
+            this.respUtility.showSuccess('User saved successfully.');
+          },
+          error => {
+            this.respUtility.showFailure('The operations you were trying failed. Please contact the administrator. ', error);
+          }
+        );
       }
     }
   }

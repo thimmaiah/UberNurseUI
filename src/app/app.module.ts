@@ -13,6 +13,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpModule } from '@angular/http';
 import {UserApi} from '../providers/user-api'
+import {ResponseUtility} from '../providers/response-utility'
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import {UserApi} from '../providers/user-api'
   ],
   providers: [
     UserApi,
+    ResponseUtility,
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
