@@ -28,11 +28,16 @@ export class ResponseUtility {
     console.log(msg)
   }
 
-  showFailure(msg, error) {
+  showFailure(error, msg=null) {
+
+    if(!msg) {
+      msg = 'The operations you were trying failed. Please contact the administrator. ';
+    }
+    
     let confirm = this.alertController.create({
       title: 'Error',
       cssClass: 'error-alert',
-      message: msg + ` </br> ${error}`,      
+      message: msg + ` </br> ${error}`,
       buttons: [
         { text: 'OK' }
       ]

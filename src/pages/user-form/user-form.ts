@@ -82,7 +82,7 @@ export class UserForm {
             this.respUtility.showSuccess('User saved successfully.');
           },
           error => {
-            this.respUtility.showFailure('The operations you were trying failed. Please contact the administrator. ', error);
+            this.respUtility.showFailure(error);
           }
         );
       } else {
@@ -91,7 +91,7 @@ export class UserForm {
             this.respUtility.showSuccess('User saved successfully.');
           },
           error => {
-            this.respUtility.showFailure('The operations you were trying failed. Please contact the administrator. ', error);
+            this.respUtility.showFailure(error);
           }
         );
       }
