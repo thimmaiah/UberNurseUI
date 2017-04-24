@@ -8,8 +8,12 @@ import { Angular2TokenService } from 'angular2-token';
 })
 export class HomePage {
 
-  constructor(public navCtrl: NavController, private _tokenService: Angular2TokenService) {
-    this._tokenService.init();
+  constructor(public navCtrl: NavController, private tokenService: Angular2TokenService) {
+    
+    this.tokenService.init({
+      apiBase: "http://localhost:3000"
+    });
+    
   }
 
 }

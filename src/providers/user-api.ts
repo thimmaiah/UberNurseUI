@@ -31,14 +31,14 @@ export class UserApi {
   }
 
   getUserDetails(user_id) {
-    return this.http.get(`${this.base_url}/${user_id}.json`).map(response=>{
+    return this.tokenService.get(`${this.base_url}/${user_id}.json`).map(response=>{
       this.user = response.json();
       return this.user;
     })
   }
 
   createUser(user) {
-    return this.http.post(`${this.base_url}.json`, user).map(response=>{
+    return this.tokenService.post(`${this.base_url}.json`, user).map(response=>{
       this.user = response.json();
       return this.user;
       //return response.status;
@@ -48,14 +48,14 @@ export class UserApi {
   updateUser(user) {
     console.log(`UserApi: Updating user`)
     console.log(user);
-    return this.http.put(`${this.base_url}/${user.id}.json`, user).map(response=>{
+    return this.tokenService.put(`${this.base_url}/${user.id}.json`, user).map(response=>{
       this.user = response.json();
       return this.user;
     })
   }
 
   deleteUser(user) {
-    return this.http.delete(`${this.base_url}/${user.id}.json`).map(response=>{
+    return this.tokenService.delete(`${this.base_url}/${user.id}.json`).map(response=>{
       return response.status;
     })
   }

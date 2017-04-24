@@ -21,10 +21,6 @@ export class Login {
     private tokenService: Angular2TokenService) {
 
 
-    this.tokenService.init({
-      apiBase: "http://localhost:3000"
-    });
-    
     this.slideOneForm = formBuilder.group({
       password: ['', Validators.compose([Validators.minLength(6), Validators.required])],
       email: ['', Validators.compose([Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$'), Validators.required])]
