@@ -26,7 +26,7 @@
 
           <ion-item>
             <ion-label floating>Start Date</ion-label>
-            <ion-input formControlName="start_date" type="text" [(ngModel)]="staffingRequest.start_date" [class.invalid]="!slideOneForm.controls.start_date.valid && (slideOneForm.controls.start_date.dirty || submitAttempt)"></ion-input>
+            <ion-datetime formControlName="start_date" displayFormat="MMM DD, YYYY HH:mm" [(ngModel)]="staffingRequest.start_date" [class.invalid]="!slideOneForm.controls.start_date.valid && (slideOneForm.controls.start_date.dirty || submitAttempt)"></ion-datetime>
           </ion-item>
 
           <ion-item *ngIf="!slideOneForm.controls.start_date.valid  && (slideOneForm.controls.start_date.dirty || submitAttempt)">
@@ -37,7 +37,7 @@
 
           <ion-item>
             <ion-label floating>End Date</ion-label>
-            <ion-input formControlName="end_date" type="text" [(ngModel)]="staffingRequest.end_date" [class.invalid]="!slideOneForm.controls.end_date.valid && (slideOneForm.controls.end_date.dirty || submitAttempt)"></ion-input>
+            <ion-datetime formControlName="end_date" displayFormat="MMM DD, YYYY HH:mm" [(ngModel)]="staffingRequest.end_date" [class.invalid]="!slideOneForm.controls.end_date.valid && (slideOneForm.controls.end_date.dirty || submitAttempt)"></ion-datetime>
           </ion-item>
 
           <ion-item *ngIf="!slideOneForm.controls.end_date.valid  && (slideOneForm.controls.end_date.dirty || submitAttempt)">
@@ -87,18 +87,6 @@
           <ion-item *ngIf="!slideTwoForm.controls.auto_deny_in.valid  && (slideTwoForm.controls.auto_deny_in.dirty || submitAttempt)">
             <p>Please enter a valid Auto Deny In.</p>
           </ion-item>
-
-
-
-          <ion-item>
-            <ion-label floating>Response Count</ion-label>
-            <ion-input formControlName="response_count" type="text" [(ngModel)]="staffingRequest.response_count" [class.invalid]="!slideTwoForm.controls.response_count.valid && (slideTwoForm.controls.response_count.dirty || submitAttempt)"></ion-input>
-          </ion-item>
-
-          <ion-item *ngIf="!slideTwoForm.controls.response_count.valid  && (slideTwoForm.controls.response_count.dirty || submitAttempt)">
-            <p>Please enter a valid Response Count.</p>
-          </ion-item>
-
 
 
           <ion-item>
