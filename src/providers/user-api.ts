@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
+import { Angular2TokenService } from 'angular2-token';
 
 
 /*
@@ -12,18 +13,20 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class UserApi {
 
-  private base_url = "http://localhost:3000/users";
+  private base_url = "users";
+  private remoteEndpoint;
   users = [];
   user = {};
 
-  constructor(public http: Http) {
+  constructor(public http: Http, private tokenService: Angular2TokenService) {
     console.log('UserApi Provider Created');
   }
 
   getUsers() {
-    return this.http.get(`${this.base_url}.json`).map(response=>{
+    
+    return this.tokenService.get(`${this.base_url}.json`).map(response=>{
       this.users = response.json();
-      return this.users;
+      return this.users;      
     })
   }
 
