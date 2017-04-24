@@ -1,0 +1,68 @@
+<!--
+  Generated template for the StaffingRequestss page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>StaffingRequests</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <button ion-item *ngFor="let staffingRequest of staffingRequests" (click)=getStaffingRequestDetails(staffingRequest)>
+       
+      <p>
+        Hospital: {{staffingRequest.hospital.name}}
+      </p>
+       
+      <p>
+        User: {{staffingRequest.user.first_name}}
+      </p>
+       
+      <p>
+        Start Date: {{staffingRequest.start_date}}
+      </p>
+       
+      <p>
+        End Date: {{staffingRequest.end_date}}
+      </p>
+       
+      <p>
+        Rate Per Hour: {{staffingRequest.rate_per_hour}}
+      </p>
+       
+      <p>
+        Request Status: {{staffingRequest.request_status}}
+      </p>
+       
+      <p>
+        Auto Deny In: {{staffingRequest.auto_deny_in}}
+      </p>
+       
+      <p>
+        Response Count: {{staffingRequest.response_count}}
+      </p>
+       
+      <p>
+        Payment Status: {{staffingRequest.payment_status}}
+      </p>
+       
+      <p>
+        Start Code: {{staffingRequest.start_code}}
+      </p>
+       
+      <p>
+        End Code: {{staffingRequest.end_code}}
+      </p>
+      
+    </button>
+  </ion-list>
+
+</ion-content>

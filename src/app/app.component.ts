@@ -7,6 +7,7 @@ import { HomePage } from '../pages/home/home';
 import { Users } from '../pages/users/users';
 import { Hospitals } from '../pages/hospitals/hospitals';
 import { Login } from '../pages/login/login';
+import { StaffingRequest } from '../pages/staffing-request/staffing-request';
 
 @Component({
   templateUrl: 'app.html'
@@ -26,6 +27,7 @@ export class MyApp {
       { title: 'Home', component: HomePage },
       { title: 'Users', component: Users },
       { title: 'Hospitals', component: Hospitals },
+      { title: 'StaffingRequest', component: StaffingRequest },
       { title: 'Login', component: Login }
     ];
 

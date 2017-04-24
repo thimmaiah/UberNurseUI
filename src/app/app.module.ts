@@ -13,6 +13,10 @@ import { Users } from '../pages/users/users';
 import { UserForm } from '../pages/users/user-form';
 import { UserDetails } from '../pages/users/user-details';
 
+import { StaffingRequest } from '../pages/staffing-request/staffing-request';
+import { StaffingRequestForm } from '../pages/staffing-request/staffing-request-form';
+import { StaffingRequestDetails } from '../pages/staffing-request/staffing-request-details';
+
 import { Hospitals } from '../pages/hospitals/hospitals';
 import { HospitalForm } from '../pages/hospitals/hospital-form';
 import { HospitalDetails } from '../pages/hospitals/hospital-details';
@@ -23,6 +27,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpModule } from '@angular/http';
 import {UserApi} from '../providers/user-api'
 import {HospitalApi} from '../providers/hospital-api'
+import {StaffingRequestApi} from '../providers/staffing-request-api'
 
 import {TokenService} from '../providers/token-service'
 import {ResponseUtility} from '../providers/response-utility'
@@ -35,6 +40,9 @@ import {ResponseUtility} from '../providers/response-utility'
     Users,    
     UserForm,
     UserDetails,
+    StaffingRequest,
+    StaffingRequestForm,
+    StaffingRequestDetails,
     Hospitals,
     HospitalForm,
     HospitalDetails
@@ -53,6 +61,9 @@ import {ResponseUtility} from '../providers/response-utility'
     Users,
     UserForm,
     UserDetails,
+    StaffingRequest,
+    StaffingRequestForm,
+    StaffingRequestDetails,
     Hospitals,
     HospitalForm,
     HospitalDetails
@@ -60,6 +71,7 @@ import {ResponseUtility} from '../providers/response-utility'
   providers: [
     UserApi,
     HospitalApi,
+    StaffingRequestApi,
     TokenService,
     ResponseUtility,
     StatusBar,
