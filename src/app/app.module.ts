@@ -13,10 +13,17 @@ import { Users } from '../pages/users/users';
 import { UserForm } from '../pages/users/user-form';
 import { UserDetails } from '../pages/users/user-details';
 
+import { Hospitals } from '../pages/hospitals/hospitals';
+import { HospitalForm } from '../pages/hospitals/hospital-form';
+import { HospitalDetails } from '../pages/hospitals/hospital-details';
+
+
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpModule } from '@angular/http';
 import {UserApi} from '../providers/user-api'
+import {HospitalApi} from '../providers/hospital-api'
+
 import {TokenService} from '../providers/token-service'
 import {ResponseUtility} from '../providers/response-utility'
 
@@ -27,7 +34,10 @@ import {ResponseUtility} from '../providers/response-utility'
     Login,
     Users,    
     UserForm,
-    UserDetails
+    UserDetails,
+    Hospitals,
+    HospitalForm,
+    HospitalDetails
   ],
   imports: [
     BrowserModule,
@@ -42,10 +52,14 @@ import {ResponseUtility} from '../providers/response-utility'
     Login,
     Users,
     UserForm,
-    UserDetails
+    UserDetails,
+    Hospitals,
+    HospitalForm,
+    HospitalDetails
   ],
   providers: [
     UserApi,
+    HospitalApi,
     TokenService,
     ResponseUtility,
     StatusBar,

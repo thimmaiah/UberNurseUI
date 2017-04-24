@@ -1,0 +1,137 @@
+<!--
+  Generated template for the HospitalsForm pemail.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pemails and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Hospitals</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-slides #signupSlider pager>
+
+    <ion-slide>
+
+      <p *ngIf="submitAttempt" style="color: #ea6153;">Please fill out all details accurately.</p>
+
+      <ion-list no-lines>
+
+        <form [formGroup]="slideOneForm">
+
+          <ion-item>
+            <ion-label floating>Name</ion-label>
+            <ion-input formControlName="name" type="text" 
+            [(ngModel)]="hospital.name"
+            [class.invalid]="!slideOneForm.controls.name.valid && (slideOneForm.controls.name.dirty || submitAttempt)"></ion-input>
+          </ion-item>
+
+          <ion-item *ngIf="!slideOneForm.controls.name.valid  && (slideOneForm.controls.name.dirty || submitAttempt)">
+            <p>Please enter a valid name.</p>
+          </ion-item>
+
+           
+
+          <ion-item>
+            <ion-label floating>Address</ion-label>
+            <ion-input formControlName="address" type="text" 
+            [(ngModel)]="hospital.address"
+            [class.invalid]="!slideOneForm.controls.address.valid && (slideOneForm.controls.address.dirty || submitAttempt)"></ion-input>
+          </ion-item>
+
+          <ion-item *ngIf="!slideOneForm.controls.address.valid  && (slideOneForm.controls.address.dirty || submitAttempt)">
+            <p>Please enter a valid address.</p>
+          </ion-item>
+
+           
+
+          <ion-item>
+            <ion-label floating>Street</ion-label>
+            <ion-input formControlName="street" type="text" 
+            [(ngModel)]="hospital.street"
+            [class.invalid]="!slideOneForm.controls.street.valid && (slideOneForm.controls.street.dirty || submitAttempt)"></ion-input>
+          </ion-item>
+
+          <ion-item *ngIf="!slideOneForm.controls.street.valid  && (slideOneForm.controls.street.dirty || submitAttempt)">
+            <p>Please enter a valid street.</p>
+          </ion-item>
+
+           
+
+          <ion-item>
+            <ion-label floating>Locality</ion-label>
+            <ion-input formControlName="locality" type="text" 
+            [(ngModel)]="hospital.locality"
+            [class.invalid]="!slideOneForm.controls.locality.valid && (slideOneForm.controls.locality.dirty || submitAttempt)"></ion-input>
+          </ion-item>
+
+          <ion-item *ngIf="!slideOneForm.controls.locality.valid  && (slideOneForm.controls.locality.dirty || submitAttempt)">
+            <p>Please enter a valid locality.</p>
+          </ion-item>
+
+         
+        </form>
+
+      </ion-list>
+
+    </ion-slide>
+
+    <ion-slide>
+
+      <ion-list no-lines>
+
+        <form [formGroup]="slideTwoForm">
+
+          <ion-item>
+            <ion-label floating>Town</ion-label>
+            <ion-input formControlName="town" type="text" 
+            [(ngModel)]="hospital.town"
+            [class.invalid]="!slideTwoForm.controls.town.valid && (slideTwoForm.controls.town.dirty || submitAttempt)"></ion-input>
+          </ion-item>
+
+          <ion-item *ngIf="!slideTwoForm.controls.town.valid  && (slideTwoForm.controls.town.dirty || submitAttempt)">
+            <p>Please enter a valid town.</p>
+          </ion-item>
+
+           
+
+          <ion-item>
+            <ion-label floating>Postcode</ion-label>
+            <ion-input formControlName="postcode" type="text" 
+            [(ngModel)]="hospital.postcode"
+            [class.invalid]="!slideTwoForm.controls.postcode.valid && (slideTwoForm.controls.postcode.dirty || submitAttempt)"></ion-input>
+          </ion-item>
+
+          <ion-item *ngIf="!slideTwoForm.controls.postcode.valid  && (slideTwoForm.controls.postcode.dirty || submitAttempt)">
+            <p>Please enter a valid postcode.</p>
+          </ion-item>
+
+           
+
+          <ion-item>
+            <ion-label floating>Base_rate</ion-label>
+            <ion-input formControlName="base_rate" type="text" 
+            [(ngModel)]="hospital.base_rate"
+            [class.invalid]="!slideTwoForm.controls.base_rate.valid && (slideTwoForm.controls.base_rate.dirty || submitAttempt)"></ion-input>
+          </ion-item>
+
+          <ion-item *ngIf="!slideTwoForm.controls.base_rate.valid  && (slideTwoForm.controls.base_rate.dirty || submitAttempt)">
+            <p>Please enter a valid base_rate.</p>
+          </ion-item>
+
+        </form>
+
+      </ion-list>
+
+      <button ion-button full color="primary" (click)="save()">Save</button>
+
+    </ion-slide>
+
+  </ion-slides>
+
+</ion-content>

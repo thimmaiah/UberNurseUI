@@ -1,0 +1,51 @@
+<!--
+  Generated template for the Hospitalss page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Hospitals</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <button ion-item *ngFor="let hospital of hospitals" (click)=getHospitalDetails(hospital)>
+       
+      <p>
+        {{hospital.name}}
+      </p>
+       
+      <p>
+        {{hospital.address}}
+      </p>
+       
+      <p>
+        {{hospital.street}}
+      </p>
+       
+      <p>
+        {{hospital.locality}}
+      </p>
+       
+      <p>
+        {{hospital.town}}
+      </p>
+       
+      <p>
+        {{hospital.postcode}}
+      </p>
+       
+      <p>
+        {{hospital.base_rate}}
+      </p>
+      
+    </button>
+  </ion-list>
+
+</ion-content>
