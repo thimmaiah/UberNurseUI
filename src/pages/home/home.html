@@ -3,16 +3,72 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Home</ion-title>
+    <ion-title>Uber Nurse</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h3>Ionic Menu Starter</h3>
+<ion-content>
+  <ion-card *ngIf="!currentUser">
+    <img src="http://pprtravelnursing.com/wp-content/uploads/sites/4/2016/04/travel-nurse-jobs-2016.jpg" />
+    <ion-card-content>
+      <ion-card-title class="center">
+        Please Login or Register
+      </ion-card-title>
+      <p>
+        The most popular way to hire temporary Care Givers across the UK
+      </p>
+    </ion-card-content>
 
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
+    <ion-row no-padding>
+      <ion-col>
+        <button ion-button clear small color="primary" icon-left (click)="login()">
+          <ion-icon name='key'></ion-icon>
+          Login
+        </button>
+      </ion-col>
+      <ion-col text-center>
+        <button ion-button clear small color="secondary" icon-left (click)="register()">
+          <ion-icon name='create'></ion-icon>
+          Register
+        </button>
+      </ion-col>
+      <ion-col text-right>
+        <button ion-button clear small color="danger" icon-left (click)="contact()">
+          <ion-icon name='call'></ion-icon>
+          Contact
+        </button>
+      </ion-col>
+    </ion-row>
+  </ion-card>
 
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+
+  <ion-card *ngIf="currentUser">
+
+    <ion-card-content>
+      <ion-card-title>
+        Welcome {{currentUser.first_name}}
+      </ion-card-title>
+     
+
+      <ion-list>
+        <button ion-item>
+          <ion-icon name="list" item-left></ion-icon>
+          Staffing Requests
+        </button>
+
+        <button ion-item>
+          <ion-icon name="contact" item-left></ion-icon>
+          Profile
+        </button>
+
+        <button ion-item>
+          <ion-icon name="call" item-left></ion-icon>
+          Contact
+        </button>
+      </ion-list>
+
+    </ion-card-content>
+
+
+  </ion-card>
 </ion-content>

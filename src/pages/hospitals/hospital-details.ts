@@ -30,11 +30,11 @@ export class HospitalDetails {
     console.log('ionViewDidLoad HospitalsDetails');
   }
 
-  editHospitals(hospital) {
+  editHospital(hospital) {
     this.navCtrl.push(HospitalForm, hospital);
   }
 
-  deleteHospitals(hospital) {
+  deleteHospital(hospital) {
     this.hospitalApi.deleteHospital(hospital).subscribe(
       response => {
         this.respUtility.showSuccess("Deleted Hospitals");
@@ -47,6 +47,6 @@ export class HospitalDetails {
   }
 
   confirmDelete(hospital) {
-    this.respUtility.confirmDelete(this.deleteHospitals.bind(this), hospital);      
+    this.respUtility.confirmDelete(this.deleteHospital.bind(this), hospital);      
   }
 }

@@ -59,7 +59,7 @@
 
           <ion-item>
             <ion-label floating>Request Status</ion-label>
-            <ion-input formControlName="request_status" type="text" [(ngModel)]="staffingRequest.request_status" [class.invalid]="!slideOneForm.controls.request_status.valid && (slideOneForm.controls.request_status.dirty || submitAttempt)"></ion-input>
+            <ion-input [readonly]="true" formControlName="request_status" type="text" [(ngModel)]="staffingRequest.request_status" [class.invalid]="!slideOneForm.controls.request_status.valid && (slideOneForm.controls.request_status.dirty || submitAttempt)"></ion-input>
           </ion-item>
 
           <ion-item *ngIf="!slideOneForm.controls.request_status.valid  && (slideOneForm.controls.request_status.dirty || submitAttempt)">
@@ -91,7 +91,7 @@
 
           <ion-item>
             <ion-label floating>Payment Status</ion-label>
-            <ion-input formControlName="payment_status" type="text" [(ngModel)]="staffingRequest.payment_status" [class.invalid]="!slideTwoForm.controls.payment_status.valid && (slideTwoForm.controls.payment_status.dirty || submitAttempt)"></ion-input>
+            <ion-input [readonly]="true" formControlName="payment_status" type="text" [(ngModel)]="staffingRequest.payment_status" [class.invalid]="!slideTwoForm.controls.payment_status.valid && (slideTwoForm.controls.payment_status.dirty || submitAttempt)"></ion-input>
           </ion-item>
 
           <ion-item *ngIf="!slideTwoForm.controls.payment_status.valid  && (slideTwoForm.controls.payment_status.dirty || submitAttempt)">

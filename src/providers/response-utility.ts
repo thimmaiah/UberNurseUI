@@ -28,6 +28,16 @@ export class ResponseUtility {
     console.log(msg)
   }
 
+  showWarning(msg) {
+    let toast = this.toastController.create({
+      message: msg,
+      duration: 4000, cssClass: "toast-warning",
+      position: 'bottom'
+    });
+    toast.present();
+    console.log(msg)
+  }
+
   showFailure(error, msg=null) {
 
     if(!msg) {

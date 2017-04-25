@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TokenService } from '../../providers/token-service';
 import { Angular2TokenService } from 'angular2-token';
+import { ResponseUtility } from '../../providers/response-utility';
 
 @IonicPage()
 @Component({
@@ -18,6 +19,7 @@ export class Login {
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public formBuilder: FormBuilder,
+    public respUtility: ResponseUtility,
     private tokenService: Angular2TokenService) {
 
 
@@ -42,7 +44,15 @@ export class Login {
 
         this.navCtrl.popToRoot();
       },
-      error => console.log(error)
+      error => {
+        console.log(error);
+        if(error.status == 401) {
+          let body = JSON.parse(error._body);
+          this.respUtility.showWarning(body.errors);
+        } else {
+          this.respUtility.showFailure(error);
+        }
+      }
     );
   }
 

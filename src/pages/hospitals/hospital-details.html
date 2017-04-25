@@ -14,45 +14,92 @@
 
 
 <ion-content padding>
-  <button ion-item (click)="editHospitals(hospital)">
 
+      <ion-list>
        
-      <p>
-        {{hospital.name}}
-      </p>
+      <ion-item>
+        <ion-row>
+          <ion-col>
+            Name: 
+          </ion-col>
+          <ion-col>
+            {{hospital.name}}
+          </ion-col>
+        </ion-row>
+      </ion-item>
        
-      <p>
-        {{hospital.address}}
-      </p>
+      <ion-item>
+        <ion-row>
+          <ion-col>
+            Address: 
+          </ion-col>
+          <ion-col>
+            {{hospital.address}}
+          </ion-col>
+        </ion-row>
+      </ion-item>
        
-      <p>
-        {{hospital.street}}
-      </p>
+      <ion-item>
+        <ion-row>
+          <ion-col>
+            Street: 
+          </ion-col>
+          <ion-col>
+            {{hospital.street}}
+          </ion-col>
+        </ion-row>
+      </ion-item>
        
-      <p>
-        {{hospital.locality}}
-      </p>
+      <ion-item>
+        <ion-row>
+          <ion-col>
+            Locality: 
+          </ion-col>
+          <ion-col>
+            {{hospital.locality}}
+          </ion-col>
+        </ion-row>
+      </ion-item>
        
-      <p>
-        {{hospital.town}}
-      </p>
+      <ion-item>
+        <ion-row>
+          <ion-col>
+            Town: 
+          </ion-col>
+          <ion-col>
+            {{hospital.town}}
+          </ion-col>
+        </ion-row>
+      </ion-item>
        
-      <p>
-        {{hospital.postcode}}
-      </p>
+      <ion-item>
+        <ion-row>
+          <ion-col>
+            Postcode: 
+          </ion-col>
+          <ion-col>
+            {{hospital.postcode}}
+          </ion-col>
+        </ion-row>
+      </ion-item>
        
-      <p>
-        {{hospital.base_rate}}
-      </p>
+      <ion-item>
+        <ion-row>
+          <ion-col>
+            Base Rate: 
+          </ion-col>
+          <ion-col>
+            {{hospital.base_rate}}
+          </ion-col>
+        </ion-row>
+      </ion-item>
       
-
+      </ion-list>
       
-    </button>
-
   <ion-row>
 
     <ion-col>
-      <button ion-button full color="secondary" (click)="editHospitals(hospital)">Edit</button>
+      <button ion-button full color="secondary" (click)="editHospital(hospital)">Edit</button>
     </ion-col>
     <ion-col>
       <button ion-button full color="danger" (click)="confirmDelete(hospital)">Delete</button>

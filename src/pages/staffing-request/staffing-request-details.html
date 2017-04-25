@@ -14,56 +14,134 @@
 
 
 <ion-content padding>
-  <button ion-item (click)="editStaffingRequests(staffingRequest)">
 
-       
-     <p>
-        Hospital: {{staffingRequest.hospital.name}}
-      </p>
-       
-      <p>
-        User: {{staffingRequest.user.first_name}}
-      </p>
-      
-      <p>
-        Start Date: {{staffingRequest.start_date}}
-      </p>
-       
-      <p>
-        End Date: {{staffingRequest.end_date}}
-      </p>
-       
-      <p>
-        Rate Per Hour: {{staffingRequest.rate_per_hour}}
-      </p>
-       
-      <p>
-        Request Status: {{staffingRequest.request_status}}
-      </p>
-       
-      <p>
-        Auto Deny In: {{staffingRequest.auto_deny_in}}
-      </p>
-       
-      <p>
-        Response Count: {{staffingRequest.response_count}}
-      </p>
-       
-      <p>
-        Payment Status: {{staffingRequest.payment_status}}
-      </p>
-       
-      <p>
-        Start Code: {{staffingRequest.start_code}}
-      </p>
-       
-      <p>
-        End Code: {{staffingRequest.end_code}}
-      </p>
-      
 
-      
-    </button>
+  <ion-list>
+
+    <ion-item>
+      <ion-row>
+        <ion-col>
+          Hospital Id:
+        </ion-col>
+        <ion-col>
+          {{staffingRequest.hospital_id}}
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+    <ion-item>
+      <ion-row>
+        <ion-col>
+          User Id:
+        </ion-col>
+        <ion-col>
+          {{staffingRequest.user_id}}
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+    <ion-item>
+      <ion-row>
+        <ion-col>
+          Start Date:
+        </ion-col>
+        <ion-col>
+          {{staffingRequest.start_date | date: 'dd/MM/yyyy H:mm'}}
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+    <ion-item>
+      <ion-row>
+        <ion-col>
+          End Date:
+        </ion-col>
+        <ion-col>
+          {{staffingRequest.end_date | date: 'dd/MM/yyyy H:mm'}}
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+    <ion-item>
+      <ion-row>
+        <ion-col>
+          Rate Per Hour:
+        </ion-col>
+        <ion-col>
+          {{staffingRequest.rate_per_hour}}
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+    <ion-item>
+      <ion-row>
+        <ion-col>
+          Request Status:
+        </ion-col>
+        <ion-col>
+          {{staffingRequest.request_status}}
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+    <ion-item>
+      <ion-row>
+        <ion-col>
+          Auto Deny In:
+        </ion-col>
+        <ion-col>
+          {{staffingRequest.auto_deny_in}}
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+    <ion-item>
+      <ion-row>
+        <ion-col>
+          Response Count:
+        </ion-col>
+        <ion-col>
+          {{staffingRequest.response_count}}
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+    <ion-item>
+      <ion-row>
+        <ion-col>
+          Payment Status:
+        </ion-col>
+        <ion-col>
+          {{staffingRequest.payment_status}}
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+    <ion-item>
+      <ion-row>
+        <ion-col>
+          Start Code:
+        </ion-col>
+        <ion-col>
+          {{staffingRequest.start_code}}
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+    <ion-item>
+      <ion-row>
+        <ion-col>
+          End Code:
+        </ion-col>
+        <ion-col>
+          {{staffingRequest.end_code}}
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+  </ion-list>
+
+
 
   <ion-row>
 

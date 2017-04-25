@@ -21,6 +21,16 @@
    }
 }
 
+.toast-warning {
+    > div{
+       background-color:red !important;
+   }
+}
+
+.center {
+    text-align: center;
+}
+
 .error-alert {
     background-color: white;
     color: red;
