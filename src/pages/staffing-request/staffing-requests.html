@@ -21,46 +21,19 @@
       <p>
         Hospital: {{staffingRequest.hospital.name}}
       </p>
-       
+
       <p>
-        User: {{staffingRequest.user.first_name}}
+        Start Date: {{staffingRequest.start_date | date: 'dd/MM/yyyy H:mm'}}
       </p>
        
       <p>
-        Start Date: {{staffingRequest.start_date}}
-      </p>
-       
-      <p>
-        End Date: {{staffingRequest.end_date}}
+        End Date: {{staffingRequest.end_date | date: 'dd/MM/yyyy H:mm'}}
       </p>
        
       <p>
         Rate Per Hour: {{staffingRequest.rate_per_hour}}
       </p>
        
-      <p>
-        Request Status: {{staffingRequest.request_status}}
-      </p>
-       
-      <p>
-        Auto Deny In: {{staffingRequest.auto_deny_in}}
-      </p>
-       
-      <p>
-        Response Count: {{staffingRequest.response_count}}
-      </p>
-       
-      <p>
-        Payment Status: {{staffingRequest.payment_status}}
-      </p>
-       
-      <p>
-        Start Code: {{staffingRequest.start_code}}
-      </p>
-       
-      <p>
-        End Code: {{staffingRequest.end_code}}
-      </p>
       
     </button>
   </ion-list>

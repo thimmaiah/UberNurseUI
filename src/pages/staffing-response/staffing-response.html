@@ -1,0 +1,49 @@
+<!--
+  Generated template for the StaffingResponsess page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>StaffingResponses</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <button ion-item *ngFor="let staffingResponse of staffingResponses" (click)=getStaffingResponseDetails(staffingResponse)>
+
+      <p>
+        Name: {{staffingResponse.user.first_name}}, {{staffingResponse.user.last_name}}
+      </p>
+
+      <p>
+        {{staffingResponse.user.phone}}
+      </p>
+      <p>
+        {{staffingResponse.user.email}}
+      </p>
+       <p> 
+        {{staffingResponse.user.occupation}}
+      </p>
+      <p>
+        {{staffingResponse.user.speciality}}
+      </p>
+       
+      <p>
+        Response Status: {{staffingResponse.response_status}}
+      </p>
+       
+      <p>
+        Accepted: {{staffingResponse.accepted}}
+      </p>
+      
+    </button>
+  </ion-list>
+
+</ion-content>

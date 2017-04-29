@@ -1,0 +1,104 @@
+<!--
+  Generated template for the StaffingResponsesForm pemail.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pemails and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>StaffingResponses</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-slides #signupSlider pager>
+
+    <ion-slide>
+
+      <p *ngIf="submitAttempt" style="color: #ea6153;">Please fill out all details accurately.</p>
+
+      <ion-list no-lines>
+
+        <form [formGroup]="slideOneForm">
+
+            
+
+          <ion-item>
+            <ion-label floating>Start Code</ion-label>
+            <ion-input formControlName="start_code" type="text" 
+            [(ngModel)]="staffingResponse.start_code"
+            [class.invalid]="!slideOneForm.controls.start_code.valid && (slideOneForm.controls.start_code.dirty || submitAttempt)"></ion-input>
+          </ion-item>
+
+          <ion-item *ngIf="!slideOneForm.controls.start_code.valid  && (slideOneForm.controls.start_code.dirty || submitAttempt)">
+            <p>Please enter a valid Start Code.</p>
+          </ion-item>
+
+           
+
+          <ion-item>
+            <ion-label floating>End Code</ion-label>
+            <ion-input formControlName="end_code" type="text" 
+            [(ngModel)]="staffingResponse.end_code"
+            [class.invalid]="!slideOneForm.controls.end_code.valid && (slideOneForm.controls.end_code.dirty || submitAttempt)"></ion-input>
+          </ion-item>
+
+          <ion-item *ngIf="!slideOneForm.controls.end_code.valid  && (slideOneForm.controls.end_code.dirty || submitAttempt)">
+            <p>Please enter a valid End Code.</p>
+          </ion-item>
+
+           
+
+          <ion-item>
+            <ion-label floating>Response Status</ion-label>
+            <ion-input formControlName="response_status" type="text" 
+            [(ngModel)]="staffingResponse.response_status"
+            [class.invalid]="!slideOneForm.controls.response_status.valid && (slideOneForm.controls.response_status.dirty || submitAttempt)"></ion-input>
+          </ion-item>
+
+          <ion-item *ngIf="!slideOneForm.controls.response_status.valid  && (slideOneForm.controls.response_status.dirty || submitAttempt)">
+            <p>Please enter a valid Response Status.</p>
+          </ion-item>
+
+           
+
+          <ion-item>
+            <ion-label floating>Accepted</ion-label>
+            <ion-input formControlName="accepted" type="text" 
+            [(ngModel)]="staffingResponse.accepted"
+            [class.invalid]="!slideOneForm.controls.accepted.valid && (slideOneForm.controls.accepted.dirty || submitAttempt)"></ion-input>
+          </ion-item>
+
+          <ion-item *ngIf="!slideOneForm.controls.accepted.valid  && (slideOneForm.controls.accepted.dirty || submitAttempt)">
+            <p>Please enter a valid Accepted.</p>
+          </ion-item>
+
+           
+
+        </form>
+
+      </ion-list>
+
+    </ion-slide>
+
+    <ion-slide>
+
+      <ion-list no-lines>
+
+        <form [formGroup]="slideTwoForm">
+
+          
+        </form>
+
+      </ion-list>
+
+      <button ion-button full color="primary" (click)="save()">Save</button>
+
+    </ion-slide>
+
+  </ion-slides>
+
+</ion-content>

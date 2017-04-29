@@ -8,6 +8,8 @@ import { Users } from '../pages/users/users';
 import { Hospitals } from '../pages/hospitals/hospitals';
 import { Login } from '../pages/login/login';
 import { StaffingRequest } from '../pages/staffing-request/staffing-request';
+import { StaffingResponse } from '../pages/staffing-response/staffing-response';
+
 
 @Component({
   templateUrl: 'app.html'
@@ -28,6 +30,7 @@ export class MyApp {
       { title: 'Users', component: Users },
       { title: 'Hospitals', component: Hospitals },
       { title: 'StaffingRequest', component: StaffingRequest },
+      { title: 'StaffingResponse', component: StaffingResponse },
       { title: 'Login', component: Login }
     ];
 

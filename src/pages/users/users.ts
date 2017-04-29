@@ -58,7 +58,7 @@ export class Users {
         console.log("got user " + user);
         this.navCtrl.push(UserDetails, user);
       },
-      error => { this.respUtility.showFailure(error); },
+      error => { this.respUtility.showFailure(error); loader.dismiss();},
       () => { loader.dismiss(); }
     );
 

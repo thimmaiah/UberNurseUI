@@ -17,6 +17,10 @@ import { StaffingRequest } from '../pages/staffing-request/staffing-request';
 import { StaffingRequestForm } from '../pages/staffing-request/staffing-request-form';
 import { StaffingRequestDetails } from '../pages/staffing-request/staffing-request-details';
 
+import { StaffingResponse } from '../pages/staffing-response/staffing-response';
+import { StaffingResponseDetails } from '../pages/staffing-response/staffing-response-details';
+import { StaffingResponseForm } from '../pages/staffing-response/staffing-response-form';
+
 import { Hospitals } from '../pages/hospitals/hospitals';
 import { HospitalForm } from '../pages/hospitals/hospital-form';
 import { HospitalDetails } from '../pages/hospitals/hospital-details';
@@ -28,6 +32,7 @@ import { HttpModule } from '@angular/http';
 import {UserApi} from '../providers/user-api'
 import {HospitalApi} from '../providers/hospital-api'
 import {StaffingRequestApi} from '../providers/staffing-request-api'
+import {StaffingResponseApi} from '../providers/staffing-response-api'
 
 import {TokenService} from '../providers/token-service'
 import {ResponseUtility} from '../providers/response-utility'
@@ -40,6 +45,9 @@ import {ResponseUtility} from '../providers/response-utility'
     Users,    
     UserForm,
     UserDetails,
+    StaffingResponse,
+    StaffingResponseForm,
+    StaffingResponseDetails,
     StaffingRequest,
     StaffingRequestForm,
     StaffingRequestDetails,
@@ -61,6 +69,9 @@ import {ResponseUtility} from '../providers/response-utility'
     Users,
     UserForm,
     UserDetails,
+    StaffingResponse,
+    StaffingResponseForm,
+    StaffingResponseDetails,
     StaffingRequest,
     StaffingRequestForm,
     StaffingRequestDetails,
@@ -72,6 +83,7 @@ import {ResponseUtility} from '../providers/response-utility'
     UserApi,
     HospitalApi,
     StaffingRequestApi,
+    StaffingResponseApi,
     TokenService,
     ResponseUtility,
     StatusBar,
@@ -81,3 +93,4 @@ import {ResponseUtility} from '../providers/response-utility'
   ]
 })
 export class AppModule {}
+

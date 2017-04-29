@@ -21,10 +21,10 @@
     <ion-item>
       <ion-row>
         <ion-col>
-          Hospital Id:
+          Hospital:
         </ion-col>
         <ion-col>
-          {{staffingRequest.hospital_id}}
+          {{staffingRequest.hospital.name}}
         </ion-col>
       </ion-row>
     </ion-item>
@@ -32,10 +32,10 @@
     <ion-item>
       <ion-row>
         <ion-col>
-          User Id:
+          Entered By:
         </ion-col>
         <ion-col>
-          {{staffingRequest.user_id}}
+          {{staffingRequest.user.first_name}} {{staffingRequest.user.last_name}}
         </ion-col>
       </ion-row>
     </ion-item>
