@@ -32,7 +32,7 @@
           </ion-item>
 
           <ion-item *ngIf="!slideOneForm.controls.first_name.valid  && (slideOneForm.controls.first_name.dirty || submitAttempt)">
-            <p>Please enter a valid name.</p>
+            <p class="error-text">Please enter a valid name.</p>
           </ion-item>
 
           <ion-item>
@@ -43,7 +43,7 @@
           </ion-item>
 
           <ion-item *ngIf="!slideOneForm.controls.last_name.valid  && (slideOneForm.controls.last_name.dirty || submitAttempt)">
-            <p>Please enter a valid name.</p>
+            <p class="error-text">Please enter a valid name.</p>
           </ion-item>
 
           <ion-item>
@@ -54,7 +54,7 @@
           </ion-item>
 
           <ion-item *ngIf="!slideOneForm.controls.email.valid  && (slideOneForm.controls.email.dirty || submitAttempt)">
-            <p>Please enter a valid email.</p>
+            <p class="error-text">Please enter a valid email.</p>
           </ion-item>
 
           <ion-item>
@@ -65,7 +65,7 @@
           </ion-item>
 
           <ion-item *ngIf="!slideOneForm.controls.phone.valid  && (slideOneForm.controls.phone.dirty || submitAttempt)">
-            <p>Please enter a valid name.</p>
+            <p class="error-text">Please enter a valid phone.</p>
           </ion-item>
 
           <ion-item>
@@ -120,7 +120,7 @@
           </ion-item>
 
           <ion-item *ngIf="!slideTwoForm.controls.languages.valid  && (slideTwoForm.controls.languages.dirty || submitAttempt)">
-            <p>Please enter a valid languages.</p>
+            <p class="error-text">Please enter a valid languages.</p>
           </ion-item>
 
           <ion-item>
@@ -131,7 +131,7 @@
           </ion-item>
 
           <ion-item *ngIf="!slideTwoForm.controls.pref_commute_distance.valid  && (slideTwoForm.controls.pref_commute_distance.dirty || submitAttempt)">
-            <p>Please enter a valid pref_commute_distance.</p>
+            <p class="error-text">Please enter a valid commute distance in KMs.</p>
           </ion-item>
 
           <ion-item>
@@ -142,7 +142,7 @@
           </ion-item>
 
           <ion-item *ngIf="!slideTwoForm.controls.occupation.valid  && (slideTwoForm.controls.occupation.dirty || submitAttempt)">
-            <p>Please enter a valid occupation.</p>
+            <p class="error-text">Please enter a valid occupation.</p>
           </ion-item>
 
           <ion-item>
@@ -153,7 +153,7 @@
           </ion-item>
 
           <ion-item *ngIf="!slideTwoForm.controls.speciality.valid  && (slideTwoForm.controls.speciality.dirty || submitAttempt)">
-            <p>Please enter a valid speciality.</p>
+            <p class="error-text">Please enter a valid speciality.</p>
           </ion-item>
 
           <ion-item>
@@ -164,7 +164,7 @@
           </ion-item>
 
           <ion-item *ngIf="!slideTwoForm.controls.experience.valid  && (slideTwoForm.controls.experience.dirty || submitAttempt)">
-            <p>Please enter a valid experience.</p>
+            <p class="error-text">Please enter experience in years.</p>
           </ion-item>
 
         </form>

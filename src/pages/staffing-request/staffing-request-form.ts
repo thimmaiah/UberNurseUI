@@ -88,6 +88,7 @@ export class StaffingRequestForm {
         this.staffingRequestApi.updateStaffingRequest(this.staffingRequest).subscribe(
           staffingRequest => {
             this.respUtility.showSuccess('StaffingRequests saved successfully.');
+            this.navCtrl.pop();
           },
           error => {
             this.respUtility.showFailure(error);
@@ -97,6 +98,7 @@ export class StaffingRequestForm {
         this.staffingRequestApi.createStaffingRequest(this.staffingRequest).subscribe(
           staffingRequest => {
             this.respUtility.showSuccess('StaffingRequests saved successfully.');
+            this.navCtrl.pop();
           },
           error => {
             this.respUtility.showFailure(error);

@@ -46,8 +46,7 @@ export class StaffingRequestDetails {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad StaffingRequestsDetails');
-    
+    console.log('ionViewDidLoad StaffingRequestsDetails');    
   }
 
   editStaffingRequest(staffingRequest) {

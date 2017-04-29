@@ -18,7 +18,7 @@
 
     <ion-slide>
 
-      <p *ngIf="submitAttempt" style="color: #ea6153;">Please fill out all details accurately.</p>
+      <p *ngIf="submitAttempt" class="error-text">Please fill out all details accurately.</p>
 
       <ion-list no-lines>
 
@@ -30,7 +30,7 @@
           </ion-item>
 
           <ion-item *ngIf="!slideOneForm.controls.start_date.valid  && (slideOneForm.controls.start_date.dirty || submitAttempt)">
-            <p>Please enter a valid Start Date.</p>
+            <p class="error-text">Please enter a valid Start Date.</p>
           </ion-item>
 
 
@@ -41,7 +41,7 @@
           </ion-item>
 
           <ion-item *ngIf="!slideOneForm.controls.end_date.valid  && (slideOneForm.controls.end_date.dirty || submitAttempt)">
-            <p>Please enter a valid End Date.</p>
+            <p class="error-text">Please enter a valid End Date.</p>
           </ion-item>
 
 
@@ -52,12 +52,12 @@
           </ion-item>
 
           <ion-item *ngIf="!slideOneForm.controls.rate_per_hour.valid  && (slideOneForm.controls.rate_per_hour.dirty || submitAttempt)">
-            <p>Please enter a valid Rate Per Hour.</p>
+            <p class="error-text">Please enter a valid Rate Per Hour.</p>
           </ion-item>
 
 
           <ion-item *ngIf="!slideOneForm.controls.request_status.valid  && (slideOneForm.controls.request_status.dirty || submitAttempt)">
-            <p>Please enter a valid Request Status.</p>
+            <p class="error-text">Please enter a valid Request Status.</p>
           </ion-item>
 
 
@@ -79,14 +79,8 @@
           </ion-item>
 
           <ion-item *ngIf="!slideTwoForm.controls.auto_deny_in.valid  && (slideTwoForm.controls.auto_deny_in.dirty || submitAttempt)">
-            <p>Please enter a valid Auto Deny In.</p>
+            <p class="error-text">Please enter a valid Auto Deny in hours.</p>
           </ion-item>
-
-          <ion-item *ngIf="!slideTwoForm.controls.payment_status.valid  && (slideTwoForm.controls.payment_status.dirty || submitAttempt)">
-            <p>Please enter a valid Payment Status.</p>
-          </ion-item>
-
-
 
           <ion-item>
             <ion-label floating>Start Code</ion-label>

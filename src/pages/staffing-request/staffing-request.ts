@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-an
 import { StaffingRequestApi } from '../../providers/staffing-request-api';
 import { ResponseUtility } from '../../providers/response-utility';
 import { StaffingRequestDetails } from '../staffing-request/staffing-request-details'
+import { StaffingRequestForm } from '../staffing-request/staffing-request-form'
 
 /**
  * Generated class for the StaffingRequestss page.
@@ -62,5 +63,9 @@ export class StaffingRequest {
       () => { loader.dismiss(); }
     );
 
+  }
+
+  newRequest() {
+    this.navCtrl.push(StaffingRequestForm);
   }
 }
