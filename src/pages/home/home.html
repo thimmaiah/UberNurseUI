@@ -41,46 +41,52 @@
     </ion-row>
   </ion-card>
 
+  <div class="home-page">
+    <ion-card *ngIf="currentUser">
+      <img src="http://pprtravelnursing.com/wp-content/uploads/sites/4/2016/04/travel-nurse-jobs-2016.jpg" />
+      <div class="card-title">Welcome</div>
+      <div class="card-subtitle">{{currentUser.first_name}} {{currentUser.last_name}}</div>
+    </ion-card>
 
-  <ion-card *ngIf="currentUser">
+    <ion-card *ngIf="currentUser">
 
-    <ion-card-content>
-      <ion-card-title>
-        Welcome {{currentUser.first_name}}
-      </ion-card-title>
-     
 
-      <ion-list>
-        <button ion-item (click)="show_staffing_requests()">
+      <ion-card-content>
+
+        <ion-list>
+
+          <button ion-item (click)="show_staffing_requests()">
           <ion-icon name="construct" item-left color="primary"></ion-icon>
           Staffing Requests
         </button>
 
-        <button ion-item (click)="show_staffing_responses()">
+          <button ion-item (click)="show_staffing_responses()">
           <ion-icon name="list" item-left item-left color="primary"></ion-icon>
           My Responses
         </button>
 
-        <button ion-item (click)="show_profile()" >
+          <button ion-item (click)="show_profile()">
           <ion-icon name="contact" item-left color="secondary"></ion-icon>
           Profile
         </button>
 
-        <button ion-item>
+          <button ion-item>
           <ion-icon name="call" item-left item-left color="secondary"></ion-icon>
           Contact
         </button>
 
-        <button ion-item (click)="logout()">
+          <button ion-item (click)="logout()">
           <ion-icon name="lock" item-left item-left color="danger"></ion-icon>
           Log Out
         </button>
 
-        
-      </ion-list>
 
-    </ion-card-content>
+        </ion-list>
 
+      </ion-card-content>
 
-  </ion-card>
+    </ion-card>
+
+  </div>
+
 </ion-content>
