@@ -15,12 +15,18 @@ export class StaffingResponseApi {
     console.log('StaffingResponseApi Provider Created');
   }
 
-  getStaffingResponses() {
-    return this.tokenService.get(`${this.base_url}.json`).map(response=>{
+  getStaffingResponses(staffing_request_id) {
+    let url = `${this.base_url}.json`;
+    if(staffing_request_id) {
+      url = `${this.base_url}.json?staffing_request_id=${staffing_request_id}`;
+    }
+    return this.tokenService.get(url).map(response=>{
       this.staffingResponses = response.json();
       return this.staffingResponses;
     })
   }
+
+  
 
   getStaffingResponseDetails(staffingResponse_id) {
     return this.tokenService.get(`${this.base_url}/${staffingResponse_id}.json`).map(response=>{

@@ -13,6 +13,17 @@ export class ResponseUtility {
     console.log('ResponseUtility Provider Created');
   }
 
+  showMsg(msg) {
+    let toast = this.toastController.create({
+      message: msg,
+      duration: 4000, 
+      position: 'bottom'
+    });
+    toast.present();
+    console.log(msg)
+  }
+
+
   showSuccess(msg) {
     let toast = this.toastController.create({
       message: msg,

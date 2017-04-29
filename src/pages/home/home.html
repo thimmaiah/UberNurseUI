@@ -51,12 +51,12 @@
      
 
       <ion-list>
-        <button ion-item>
+        <button ion-item (click)="show_staffing_requests()">
           <ion-icon name="folder" item-left></ion-icon>
           Staffing Requests
         </button>
 
-        <button ion-item>
+        <button ion-item (click)="show_profile()" >
           <ion-icon name="contact" item-left></ion-icon>
           Profile
         </button>
@@ -66,12 +66,12 @@
           Contact
         </button>
 
-        <button ion-item>
+        <button ion-item (click)="logout()">
           <ion-icon name="lock" item-left></ion-icon>
           Log Out
         </button>
 
-        <button ion-item>
+        <button ion-item (click)="show_staffing_responses()">
           <ion-icon name="folder" item-left></ion-icon>
           My Responses
         </button>

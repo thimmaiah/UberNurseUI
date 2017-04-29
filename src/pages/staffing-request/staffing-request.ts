@@ -31,14 +31,14 @@ export class StaffingRequest {
     console.log('ionViewWillEnter StaffingRequestss');
 
     let loader = this.loadingController.create({
-      content: 'Loading StaffingRequestss...'
+      content: 'Loading StaffingRequests...'
     });
 
 
     this.staffingRequestApi.getStaffingRequests().subscribe(
       staffingRequests => {
         this.staffingRequests = staffingRequests;
-        console.log("Loaded staffingRequests");
+        console.log("Loaded StaffingRequests");
       },
       error => { this.respUtility.showFailure(error); },
       () => { loader.dismiss(); }
@@ -48,7 +48,7 @@ export class StaffingRequest {
 
   getStaffingRequestDetails(staffingRequest) {
     let loader = this.loadingController.create({
-      content: 'Loading StaffingRequestss...'
+      content: 'Loading Staffing Requests...'
     });
 
     loader.present()
@@ -58,7 +58,7 @@ export class StaffingRequest {
         console.log("got staffingRequest " + staffingRequest);
         this.navCtrl.push(StaffingRequestDetails, staffingRequest);
       },
-      error => { this.respUtility.showFailure(error); },
+      error => { this.respUtility.showFailure(error); loader.dismiss();  },
       () => { loader.dismiss(); }
     );
 

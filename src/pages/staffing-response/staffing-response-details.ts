@@ -29,6 +29,27 @@ export class StaffingResponseDetails {
     this.navCtrl.push(StaffingResponseForm, staffingResponse);
   }
 
+  acceptResponse(staffingResponse) {
+    staffingResponse.accepted = true;
+    staffingResponse.response_status = "Accepted"
+    this.updateResponse(staffingResponse);
+  }
+  rejectResponse(staffingResponse) {
+    staffingResponse.accepted = false;
+    staffingResponse.response_status = "Rejected"
+    this.updateResponse(staffingResponse);
+  }
+  updateResponse(staffingResponse) {
+    this.staffingResponseApi.updateStaffingResponse(staffingResponse).subscribe(
+      staffingResponse => {
+        this.respUtility.showSuccess('Response Updated');
+      },
+      error => {
+        this.respUtility.showFailure(error);
+      }
+    );
+  }
+
   deleteStaffingResponse(staffingResponse) {
     this.staffingResponseApi.deleteStaffingResponse(staffingResponse).subscribe(
       response => {
@@ -42,6 +63,6 @@ export class StaffingResponseDetails {
   }
 
   confirmDelete(staffingResponse) {
-    this.respUtility.confirmDelete(this.deleteStaffingResponse.bind(this), staffingResponse);      
+    this.respUtility.confirmDelete(this.deleteStaffingResponse.bind(this), staffingResponse);
   }
 }

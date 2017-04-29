@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, AlertController, ToastController }
 import { StaffingRequestForm } from '../staffing-request/staffing-request-form';
 import { StaffingRequestApi } from '../../providers/staffing-request-api';
 import { ResponseUtility } from '../../providers/response-utility';
+import { StaffingResponse } from '../staffing-response/staffing-response';
 /**
  * Generated class for the StaffingRequestsDetails page.
  *
@@ -46,7 +47,15 @@ export class StaffingRequestDetails {
     );
   }
 
+  showResponses(staffing_request) {
+    this.navCtrl.push(StaffingResponse, staffing_request);
+  }
+
   confirmDelete(staffingRequest) {
     this.respUtility.confirmDelete(this.deleteStaffingRequest.bind(this), staffingRequest);      
+  }
+
+  sendResponse() {
+
   }
 }

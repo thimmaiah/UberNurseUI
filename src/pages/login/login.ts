@@ -12,8 +12,12 @@ import { ResponseUtility } from '../../providers/response-utility';
 })
 export class Login {
 
-  email: any = "thimmaiah@gmail.com";
-  password: any = "thimmaiah@gmail.com";
+  //email: any = "thimmaiah@gmail.com";
+  //password: any = "thimmaiah@gmail.com";
+
+  email: any = "admin@ubernurse.com";
+  password: any = "admin@ubernurse.com";
+
 
   slideOneForm: FormGroup;
   constructor(public navCtrl: NavController,
