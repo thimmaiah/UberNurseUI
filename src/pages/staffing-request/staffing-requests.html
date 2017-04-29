@@ -9,17 +9,18 @@
 
   <ion-navbar color="primary">
     <ion-title>Staffing Requests</ion-title>
-    <ion-buttons end>
-      <button icon-only ion-button (click)="newRequest()">
-        <ion-icon name="add"></ion-icon></button>
-    </ion-buttons>
-
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+
+  <ion-fab bottom right>
+    <button ion-fab (click)="newRequest()"><ion-icon name="add"></ion-icon></button>
+  </ion-fab>
+
+
   <ion-list>
     <button ion-item *ngFor="let staffingRequest of staffingRequests" (click)=getStaffingRequestDetails(staffingRequest)>
        
@@ -34,12 +35,17 @@
       <p>
         End Date: {{staffingRequest.end_date | date: 'dd/MM/yyyy H:mm'}}
       </p>
-       
-      <p>
-        Rate Per Hour: {{staffingRequest.rate_per_hour}}
-      </p>
-       
+
       
+      <ion-badge>{{staffingRequest.rate_per_hour | currency}}</ion-badge> 
+       
+
+      <button  item-right ion-button color="secondary" icon-only *ngIf="staffingRequest.request_status == 'Approved'">
+        <ion-icon name='checkmark' is-active="true"></ion-icon>
+      </button>
+
+
+
     </button>
   </ion-list>
 
