@@ -4,7 +4,7 @@ import { StaffingResponseForm } from '../staffing-response/staffing-response-for
 import { StaffingRequestDetails } from '../staffing-request/staffing-request-details';
 import { StaffingResponseApi } from '../../providers/staffing-response-api';
 import { ResponseUtility } from '../../providers/response-utility';
-
+import { ActionSheetController, Platform } from 'ionic-angular';
 
 @Component({
   selector: 'page-staffing-response-details',
@@ -15,9 +15,11 @@ export class StaffingResponseDetails {
   staffingResponse: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
+    public platform: Platform,
     public staffingResponseApi: StaffingResponseApi,
     public alertController: AlertController,
     public toastController: ToastController,
+    public actionSheetCtrl: ActionSheetController,
     public respUtility: ResponseUtility) {
     this.staffingResponse = this.navParams.data;
   }
@@ -73,5 +75,80 @@ export class StaffingResponseDetails {
     this.navCtrl.push(StaffingRequestDetails, staffingRequest);
   }
 
-  
+   presentActionSheet(staffingResponse) {
+    let buttons = [];
+
+    if (staffingResponse.can_manage == true) {
+      console.log("can manage staffingResponse");
+      buttons = buttons.concat([
+        {
+          text: 'Edit',
+          icon: !this.platform.is('ios') ? 'create' : null,
+          handler: () => {
+            console.log('Edit clicked');
+            this.editStaffingResponse(staffingResponse);
+          }
+        }, {
+          text: 'Delete',
+          role: 'destructive',
+          icon: !this.platform.is('ios') ? 'trash' : null,
+          handler: () => {
+            console.log('Delete clicked');
+            this.confirmDelete(staffingResponse);
+          }
+        }, {
+          text: 'Show Request',
+          icon: !this.platform.is('ios') ? 'folder' : null,
+          handler: () => {
+            console.log('Show Request clicked');
+            this.showRequest(staffingResponse);
+          }
+        }
+      ]);
+    } else {
+    
+        buttons = buttons.concat([
+          {
+            text: 'Accept Response',
+            icon: !this.platform.is('ios') ? 'checkmark' : null,
+            handler: () => {
+              console.log('Accept clicked');
+              this.acceptResponse(staffingResponse);
+            }
+          }, 
+          {
+            text: 'Reject Response',
+            role: 'destructive',
+            icon: !this.platform.is('ios') ? 'close-circle' : null,
+            handler: () => {
+              console.log('Deny clicked');
+              this.rejectResponse(staffingResponse);
+            }
+          }
+        ]);
+    }
+
+    buttons = buttons.concat([
+      {
+        text: 'Hide Menu',
+        role: 'cancel',
+        icon: !this.platform.is('ios') ? 'close' : null,
+        handler: () => {
+          console.log('Cancel clicked');
+        }
+      }
+    ]);
+
+    let title = buttons.length == 1 ? "No action required" : "Actions";
+
+    console.log(buttons);
+
+    let actionSheet = this.actionSheetCtrl.create({
+      title: title,
+      cssClass: 'action-sheets',
+      buttons: buttons
+    });
+    actionSheet.present();
+  }
+
 }

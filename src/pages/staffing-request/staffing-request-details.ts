@@ -163,7 +163,7 @@ export class StaffingRequestDetails {
         buttons = buttons.concat([
           {
             text: 'Apply Now',
-            icon: !this.platform.is('ios') ? 'reply' : null,
+            icon: !this.platform.is('ios') ? 'checkmark' : null,
             handler: () => {
               console.log('Apply clicked');
               this.sendResponse(staffingRequest);
@@ -209,10 +209,12 @@ export class StaffingRequestDetails {
       }
     ]);
 
+    let title = buttons.length == 1 ? "No action required" : "Actions";
+
     console.log(buttons);
 
     let actionSheet = this.actionSheetCtrl.create({
-      title: 'Actions',
+      title: title,
       cssClass: 'action-sheets',
       buttons: buttons
     });

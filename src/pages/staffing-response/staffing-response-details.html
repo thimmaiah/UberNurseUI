@@ -9,12 +9,17 @@
 
 <ion-content padding>
 
+  <ion-fab bottom right>
+    <button ion-fab (click)="presentActionSheet(staffingResponse)"><ion-icon name="apps"></ion-icon></button>
+  </ion-fab>
+
+
   <ion-list>
 
     <ion-item>
       <ion-row>
         <ion-col>
-          Start Code:
+          Name:
         </ion-col>
         <ion-col>
           {{staffingResponse.user.first_name}}, {{staffingResponse.user.last_name}}
