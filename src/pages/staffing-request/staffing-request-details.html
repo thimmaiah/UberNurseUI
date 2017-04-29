@@ -19,17 +19,7 @@
 <ion-content padding>
 
   <ion-fab bottom right>
-    <button ion-fab><ion-icon name="color-wand"></ion-icon></button>
-    <ion-fab-list side="top">
-      <button icon-only ion-button (click)="showResponses(staffingRequest)" *ngIf="staffingRequest.can_manage == true">
-        <ion-icon name="folder-open"></ion-icon></button>
-      <button icon-only ion-button (click)="editStaffingRequest(staffingRequest)" *ngIf="staffingRequest.can_manage == true">
-        <ion-icon name="create"></ion-icon></button>
-      <button icon-only ion-button (click)="confirmApprove(staffingRequest)" *ngIf="canApprove(staffingRequest)">
-        <ion-icon name="checkmark"></ion-icon></button>
-      <button icon-only ion-button (click)="confirmDeny(staffingRequest)" *ngIf="canApprove(staffingRequest)">
-        <ion-icon name="close"></ion-icon></button>
-    </ion-fab-list>
+    <button ion-fab (click)="presentActionSheet(staffingRequest)"><ion-icon name="color-wand"></ion-icon></button>
   </ion-fab>
 
   <ion-list>
@@ -156,46 +146,6 @@
     </ion-item>
 
   </ion-list>
-
-
-
-  <ion-row *ngIf="staffingRequest.can_manage == true">
-
-    <ion-col>
-      <button ion-button full color="secondary" (click)="editStaffingRequest(staffingRequest)">Edit</button>
-    </ion-col>
-    <ion-col>
-      <button ion-button full color="danger" (click)="confirmDelete(staffingRequest)">Delete</button>
-    </ion-col>
-
-  </ion-row>
-
-  <ion-row *ngIf="canApprove(staffingRequest)">
-
-    <ion-col>
-      <button ion-button [disabled]="staffingRequest.request_status=='Approved'" full color="secondary" (click)="confirmApprove(staffingRequest)">Approve</button>
-    </ion-col>
-    <ion-col>
-      <button ion-button full color="danger" (click)="confirmDeny(staffingRequest)">Deny</button>
-    </ion-col>
-
-  </ion-row>
-
-  <ion-row *ngIf="staffingRequest.can_manage == true">
-    <ion-col>
-      <button ion-button full color="primary" (click)="showResponses(staffingRequest)">View Reponses</button>
-    </ion-col>
-  </ion-row>
-
-  <ion-row *ngIf="staffingRequest.can_manage == false">
-
-    <ion-col>
-      <button [disabled]="hasUserResponded()" ion-button full color="secondary" (click)="sendResponse(staffingRequest)">Apply Now</button>
-    </ion-col>
-
-  </ion-row>
-
-
 
 
 </ion-content>

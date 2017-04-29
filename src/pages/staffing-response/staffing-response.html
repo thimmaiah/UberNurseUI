@@ -23,10 +23,10 @@
       </p>
 
       <p>
-        {{staffingResponse.user.phone}}
+        Phone: {{staffingResponse.user.phone}}
       </p>
       <p>
-        {{staffingResponse.user.email}}
+        Email: {{staffingResponse.user.email}}
       </p>
        <p> 
         {{staffingResponse.user.occupation}}
@@ -35,10 +35,11 @@
         {{staffingResponse.user.speciality}}
       </p>
        
-      <p>
-        Response Status: {{staffingResponse.response_status}}
-      </p>
-      
+      <ion-badge
+        *ngIf="staffingResponse.response_status" 
+        item-right [color]="staffingResponse.response_status == 'Accepted' ? 'secondary' : 'danger'">
+        {{staffingResponse.response_status}}
+      </ion-badge> 
       
     </button>
   </ion-list>

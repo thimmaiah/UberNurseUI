@@ -15,6 +15,20 @@
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
 
+
+
+$colors: (
+  primary:    #488aff,
+  secondary:  #32db64,
+  danger:     #f53d3d,
+  light:      #f4f4f4,
+  dark:       #222,
+  twitter: (
+    base: #55acee,
+    contrast: #ffffff
+  )
+);
+
 .error-text {
     color: red !important;
 }
@@ -40,5 +54,16 @@
     color: red;
     button{
         color: red !important;
+    }
+}
+
+.action-sheets {
+    .action-sheet-cancel ion-icon,
+    .action-sheet-destructive ion-icon {
+        color: color($colors, danger);
+    }
+
+    ion-icon {
+        color: color($colors, primary);
     }
 }

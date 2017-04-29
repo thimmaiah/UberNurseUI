@@ -4,6 +4,7 @@ import { StaffingRequestApi } from '../../providers/staffing-request-api';
 import { ResponseUtility } from '../../providers/response-utility';
 import { StaffingRequestDetails } from '../staffing-request/staffing-request-details'
 import { StaffingRequestForm } from '../staffing-request/staffing-request-form'
+import { Angular2TokenService } from 'angular2-token';
 
 /**
  * Generated class for the StaffingRequestss page.
@@ -20,10 +21,16 @@ export class StaffingRequest {
 
   staffingRequests: any;
   staffingRequest: any;
+  current_user: {};
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams,
+    private tokenService: Angular2TokenService,
     public loadingController: LoadingController, 
-    public staffingRequestApi: StaffingRequestApi, public respUtility: ResponseUtility) {
+    public staffingRequestApi: StaffingRequestApi, 
+    public respUtility: ResponseUtility) {
+
+      this.current_user = tokenService.currentUserData;
   }
 
   
