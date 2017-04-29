@@ -77,4 +77,19 @@ export class ResponseUtility {
     });
     confirm.present();
   }
+
+  confirmAction(actionFn, entity, msg) {
+    let confirm = this.alertController.create({
+      title: "Confirm",
+      message: msg,
+      buttons: [
+        {
+          text: 'Yes',
+          handler: () => { actionFn(entity); }          
+        },
+        { text: 'No' }
+      ]
+    });
+    confirm.present();
+  }
 }

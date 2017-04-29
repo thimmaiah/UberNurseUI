@@ -7,10 +7,16 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <ion-title>Requests Details</ion-title>
+    <ion-title>Request Details</ion-title>
     <ion-buttons end>
-      <button icon-only ion-button (click)="showResponses(staffingRequest)"><ion-icon name="folder-open"></ion-icon></button>
-      <button icon-only ion-button (click)="editStaffingRequest(staffingRequest)"><ion-icon name="create"></ion-icon></button>
+      <button icon-only ion-button (click)="showResponses(staffingRequest)" *ngIf="staffingRequest.can_manage == true">
+        <ion-icon name="folder-open"></ion-icon></button>
+      <button icon-only ion-button (click)="editStaffingRequest(staffingRequest)" *ngIf="staffingRequest.can_manage == true">
+        <ion-icon name="create"></ion-icon></button>
+      <button icon-only ion-button (click)="confirmApprove(staffingRequest)" *ngIf="canApprove(staffingRequest)">
+        <ion-icon name="checkmark"></ion-icon></button>
+      <button icon-only ion-button (click)="confirmDeny(staffingRequest)" *ngIf="canApprove(staffingRequest)">
+        <ion-icon name="close"></ion-icon></button>
     </ion-buttons>
   </ion-navbar>
 
@@ -28,7 +34,7 @@
           Hospital:
         </ion-col>
         <ion-col>
-          {{staffingRequest.hospital.name}}
+          {{staffingRequest.hospital?.name}}
         </ion-col>
       </ion-row>
     </ion-item>
@@ -39,7 +45,7 @@
           Entered By:
         </ion-col>
         <ion-col>
-          {{staffingRequest.user.first_name}} {{staffingRequest.user.last_name}}
+          {{staffingRequest.user?.first_name}} {{staffingRequest.user?.last_name}}
         </ion-col>
       </ion-row>
     </ion-item>
@@ -158,19 +164,32 @@
 
   </ion-row>
 
+  <ion-row *ngIf="canApprove(staffingRequest)">
+
+    <ion-col>
+      <button ion-button [disabled]="staffingRequest.request_status=='Approved'" full color="secondary" (click)="confirmApprove(staffingRequest)">Approve</button>
+    </ion-col>
+    <ion-col>
+      <button ion-button full color="danger" (click)="confirmDeny(staffingRequest)">Deny</button>
+    </ion-col>
+
+  </ion-row>
+
   <ion-row *ngIf="staffingRequest.can_manage == true">
     <ion-col>
-      <button ion-button full color="primary" (click)="showResponses(staffingRequest)">Reponses</button>
+      <button ion-button full color="primary" (click)="showResponses(staffingRequest)">View Reponses</button>
     </ion-col>
   </ion-row>
 
   <ion-row *ngIf="staffingRequest.can_manage == false">
 
     <ion-col>
-      <button ion-button full color="secondary" (click)="sendResponse(staffingRequest)">Apply Now</button>
+      <button [disabled]="hasUserResponded()" ion-button full color="secondary" (click)="sendResponse(staffingRequest)">Apply Now</button>
     </ion-col>
 
   </ion-row>
+
+
 
 
 </ion-content>

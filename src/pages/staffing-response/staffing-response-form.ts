@@ -15,8 +15,6 @@ export class StaffingResponseForm {
   @ViewChild('signupSlider') signupSlider: any;
 
   slideOneForm: FormGroup;
-  slideTwoForm: FormGroup;
-
   submitAttempt: boolean = false;
 
   constructor(public navCtrl: NavController,
@@ -26,22 +24,24 @@ export class StaffingResponseForm {
     public respUtility: ResponseUtility) {
 
     this.staffingResponse = this.navParams.data;
+    if (this.isAcceptedResponse()) {
+      // This is an approved response.
+      // Ensure start and end code becomes mandatory
+      this.slideOneForm = formBuilder.group({
 
-    this.slideOneForm = formBuilder.group({
-       
-      start_code: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
-       
-      end_code: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
-       
-      response_status: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
-       
-      accepted: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
-        
-    });
+        start_code: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
+        end_code: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])]
 
-    this.slideTwoForm = formBuilder.group({
-      
-    });
+      });
+    } else {
+      // This is an new response.
+      // Ensure start and end code are NOT mandatory
+      this.slideOneForm = formBuilder.group({
+        start_code:[],
+        end_code:[]
+      });
+    }
+
 
   }
 
@@ -58,6 +58,10 @@ export class StaffingResponseForm {
     this.signupSlider.slidePrev();
   }
 
+  isAcceptedResponse() {
+    return this.staffingResponse["response_status"] == "Accepted";
+  }
+
   save() {
     this.submitAttempt = true;
     //console.log(this.staffingResponse);
@@ -66,14 +70,13 @@ export class StaffingResponseForm {
     if (!this.slideOneForm.valid) {
       this.signupSlider.slideTo(0);
     }
-    else if (!this.slideTwoForm.valid) {
-      this.signupSlider.slideTo(1);
-    }
     else {
+      this.submitAttempt = false;
       if (this.staffingResponse["id"]) {
         this.staffingResponseApi.updateStaffingResponse(this.staffingResponse).subscribe(
           staffingResponse => {
-            this.respUtility.showSuccess('StaffingResponses saved successfully.');
+            this.respUtility.showSuccess('Responses saved successfully.');
+            this.navCtrl.pop();
           },
           error => {
             this.respUtility.showFailure(error);
@@ -82,7 +85,8 @@ export class StaffingResponseForm {
       } else {
         this.staffingResponseApi.createStaffingResponse(this.staffingResponse).subscribe(
           staffingResponse => {
-            this.respUtility.showSuccess('StaffingResponses saved successfully.');
+            this.respUtility.showSuccess('Responses saved successfully.');
+            this.navCtrl.pop();
           },
           error => {
             this.respUtility.showFailure(error);

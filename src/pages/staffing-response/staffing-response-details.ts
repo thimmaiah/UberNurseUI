@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
 import { StaffingResponseForm } from '../staffing-response/staffing-response-form';
+import { StaffingRequestDetails } from '../staffing-request/staffing-request-details';
 import { StaffingResponseApi } from '../../providers/staffing-response-api';
 import { ResponseUtility } from '../../providers/response-utility';
 
@@ -53,7 +54,7 @@ export class StaffingResponseDetails {
   deleteStaffingResponse(staffingResponse) {
     this.staffingResponseApi.deleteStaffingResponse(staffingResponse).subscribe(
       response => {
-        this.respUtility.showSuccess("Deleted StaffingResponses");
+        this.respUtility.showSuccess("Deleted Response");
         this.navCtrl.pop();
       },
       error => {
@@ -65,4 +66,12 @@ export class StaffingResponseDetails {
   confirmDelete(staffingResponse) {
     this.respUtility.confirmDelete(this.deleteStaffingResponse.bind(this), staffingResponse);
   }
+
+  showRequest(staffingResponse) {
+    let staffingRequest = {}
+    staffingRequest["id"] = staffingResponse["staffing_request_id"];
+    this.navCtrl.push(StaffingRequestDetails, staffingRequest);
+  }
+
+  
 }
