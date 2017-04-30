@@ -38,14 +38,14 @@ export class HospitalForm {
       name: ['', Validators.compose([Validators.maxLength(30), Validators.required])],       
       address: ['', Validators.compose([Validators.maxLength(30), Validators.required])],       
       street: ['', Validators.compose([Validators.maxLength(30), Validators.required])],       
-      locality: ['', Validators.compose([Validators.maxLength(30), Validators.required])]
-        
+      locality: ['', Validators.compose([Validators.maxLength(30), Validators.required])],
+      town: ['', Validators.compose([Validators.maxLength(30), Validators.required])],       
+      postcode: ['', Validators.compose([Validators.maxLength(30), Validators.required])],       
+      base_rate: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('^\\d+$'), Validators.required])]  
     });
 
     this.slideTwoForm = formBuilder.group({
-      town: ['', Validators.compose([Validators.maxLength(30), Validators.required])],       
-      postcode: ['', Validators.compose([Validators.maxLength(30), Validators.required])],       
-      base_rate: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('^\\d+$'), Validators.required])]      
+            
     });
 
   }
@@ -55,14 +55,6 @@ export class HospitalForm {
   }
 
 
-  next() {
-    this.signupSlider.slideNext();
-  }
-
-  prev() {
-    this.signupSlider.slidePrev();
-  }
-
   save() {
     this.submitAttempt = true;
     //console.log(this.hospital);
@@ -71,10 +63,8 @@ export class HospitalForm {
     if (!this.slideOneForm.valid) {
       this.signupSlider.slideTo(0);
     }
-    else if (!this.slideTwoForm.valid) {
-      this.signupSlider.slideTo(1);
-    }
     else {
+      this.submitAttempt = false;
       if (this.hospital["id"]) {
         this.hospitalApi.updateHospital(this.hospital).subscribe(
           hospital => {

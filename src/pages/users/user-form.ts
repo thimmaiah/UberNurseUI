@@ -42,17 +42,18 @@ export class UserForm {
       password: [''],
       role: [''],
       sex: [''],
-      phone: ['', Validators.pattern('^\\d+$'),]
-    });
-
-
-    this.slideTwoForm = formBuilder.group({
+      phone: ['', Validators.pattern('^\\d+$'),],
       address: ['', Validators.compose([Validators.required, Validators.pattern('[0-9a-z, A-Z]*')])],
       languages: ['', Validators.compose([Validators.required, Validators.pattern('[a-z, A-Z]*')])],
       pref_commute_distance: ['', Validators.compose([Validators.required, Validators.pattern('^\\d+$')])],
       occupation: ['', Validators.compose([Validators.pattern('[a-z, A-Z]*')])],
       speciality: ['', Validators.compose([Validators.required, Validators.pattern('[a-z, A-Z]*')])],
       experience: ['', Validators.compose([Validators.required, Validators.pattern('^\\d+$')])]
+    });
+
+
+    this.slideTwoForm = formBuilder.group({
+      
     });
 
   }
@@ -62,14 +63,6 @@ export class UserForm {
   }
 
 
-  next() {
-    this.signupSlider.slideNext();
-  }
-
-  prev() {
-    this.signupSlider.slidePrev();
-  }
-
   save() {
     this.submitAttempt = true;
     //console.log(this.user);
@@ -77,9 +70,6 @@ export class UserForm {
 
     if (!this.slideOneForm.valid) {
       this.signupSlider.slideTo(0);
-    }
-    else if (!this.slideTwoForm.valid) {
-      this.signupSlider.slideTo(1);
     }
     else {
       if (this.user["id"]) {

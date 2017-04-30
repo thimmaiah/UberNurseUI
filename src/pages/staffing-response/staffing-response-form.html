@@ -14,59 +14,52 @@
 
 
 <ion-content padding>
-  <ion-slides #signupSlider pager>
 
-    <ion-slide>
+  <p *ngIf="submitAttempt" style="color: #ea6153;">Please fill out all details accurately.</p>
 
-      <p *ngIf="submitAttempt" style="color: #ea6153;">Please fill out all details accurately.</p>
+  <ion-list no-lines>
 
-      <ion-list no-lines>
+    <ion-card *ngIf="!isAcceptedResponse()">
 
-        <ion-card *ngIf="!isAcceptedResponse()">
-
-          <ion-card-content>
-            <ion-card-title>
-              Submit your interest.
-            </ion-card-title>
-            <p>
-              Once you click 'Submit', your response will be sent to the requestors. 
-              If they accept your response, you will be notified. 
-            </p>
-          </ion-card-content>
-        </ion-card>
+      <ion-card-content>
+        <ion-card-title>
+          Submit your interest.
+        </ion-card-title>
+        <p>
+          Once you click 'Submit', your response will be sent to the requestors. If they accept your response, you will be notified.
+        </p>
+      </ion-card-content>
+    </ion-card>
 
 
-        <form [formGroup]="slideOneForm">
+    <form [formGroup]="slideOneForm">
 
-          <ion-item *ngIf="isAcceptedResponse()">
-            <ion-label floating>Start Code</ion-label>
-            <ion-input formControlName="start_code" type="text" [(ngModel)]="staffingResponse.start_code" [class.invalid]="!slideOneForm.controls.start_code.valid && (slideOneForm.controls.start_code.dirty || submitAttempt)"></ion-input>
-          </ion-item>
+      <ion-item *ngIf="isAcceptedResponse()">
+        <ion-label floating>Start Code</ion-label>
+        <ion-input formControlName="start_code" type="text" [(ngModel)]="staffingResponse.start_code" [class.invalid]="!slideOneForm.controls.start_code.valid && (slideOneForm.controls.start_code.dirty || submitAttempt)"></ion-input>
+      </ion-item>
 
-          <ion-item *ngIf="!slideOneForm.controls.start_code.valid  && (slideOneForm.controls.start_code.dirty || submitAttempt)">
-            <p>Please enter a valid Start Code.</p>
-          </ion-item>
+      <ion-item *ngIf="!slideOneForm.controls.start_code.valid  && (slideOneForm.controls.start_code.dirty || submitAttempt)">
+        <p>Please enter a valid Start Code.</p>
+      </ion-item>
 
 
 
-          <ion-item *ngIf="isAcceptedResponse()">
-            <ion-label floating>End Code</ion-label>
-            <ion-input formControlName="end_code" type="text" [(ngModel)]="staffingResponse.end_code" [class.invalid]="!slideOneForm.controls.end_code.valid && (slideOneForm.controls.end_code.dirty || submitAttempt)"></ion-input>
-          </ion-item>
+      <ion-item *ngIf="isAcceptedResponse()">
+        <ion-label floating>End Code</ion-label>
+        <ion-input formControlName="end_code" type="text" [(ngModel)]="staffingResponse.end_code" [class.invalid]="!slideOneForm.controls.end_code.valid && (slideOneForm.controls.end_code.dirty || submitAttempt)"></ion-input>
+      </ion-item>
 
-          <ion-item *ngIf="!slideOneForm.controls.end_code.valid  && (slideOneForm.controls.end_code.dirty || submitAttempt)">
-            <p>Please enter a valid End Code.</p>
-          </ion-item>
+      <ion-item *ngIf="!slideOneForm.controls.end_code.valid  && (slideOneForm.controls.end_code.dirty || submitAttempt)">
+        <p>Please enter a valid End Code.</p>
+      </ion-item>
 
 
-        </form>
+    </form>
 
-      </ion-list>
+  </ion-list>
 
-      <button ion-button full color="primary" (click)="save()">Submit</button>
+  <button ion-button full color="primary" (click)="save()">Submit</button>
 
-    </ion-slide>
-
-  </ion-slides>
 
 </ion-content>

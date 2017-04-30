@@ -43,10 +43,6 @@ export class StaffingRequestForm {
 
       request_status: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*')])],
 
-    });
-
-    this.slideTwoForm = formBuilder.group({
-      
       auto_deny_in: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('^\\d+$'), Validators.required])],
 
       payment_status: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*')])],
@@ -57,20 +53,17 @@ export class StaffingRequestForm {
 
     });
 
+    this.slideTwoForm = formBuilder.group({
+      
+      
+    });
+
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad StaffingRequestsForm');
   }
 
-
-  next() {
-    this.signupSlider.slideNext();
-  }
-
-  prev() {
-    this.signupSlider.slidePrev();
-  }
 
   save() {
     this.submitAttempt = true;
@@ -80,10 +73,8 @@ export class StaffingRequestForm {
     if (!this.slideOneForm.valid) {
       this.signupSlider.slideTo(0);
     }
-    else if (!this.slideTwoForm.valid) {
-      this.signupSlider.slideTo(1);
-    }
     else {
+      this.submitAttempt = false;
       if (this.staffingRequest["id"]) {
         this.staffingRequestApi.updateStaffingRequest(this.staffingRequest).subscribe(
           staffingRequest => {

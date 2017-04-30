@@ -14,102 +14,84 @@
 
 
 <ion-content padding>
-  <ion-slides #signupSlider pager>
 
-    <ion-slide>
+  <p *ngIf="submitAttempt" class="error-text">Please fill out all details accurately.</p>
 
-      <p *ngIf="submitAttempt" class="error-text">Please fill out all details accurately.</p>
+  <ion-list no-lines>
 
-      <ion-list no-lines>
+    <form [formGroup]="slideOneForm">
 
-        <form [formGroup]="slideOneForm">
+      <ion-item>
+        <ion-label floating>Start Date</ion-label>
+        <ion-datetime formControlName="start_date" displayFormat="MMM DD, YYYY HH:mm" [(ngModel)]="staffingRequest.start_date" [class.invalid]="!slideOneForm.controls.start_date.valid && (slideOneForm.controls.start_date.dirty || submitAttempt)"></ion-datetime>
+      </ion-item>
 
-          <ion-item>
-            <ion-label floating>Start Date</ion-label>
-            <ion-datetime formControlName="start_date" displayFormat="MMM DD, YYYY HH:mm" [(ngModel)]="staffingRequest.start_date" [class.invalid]="!slideOneForm.controls.start_date.valid && (slideOneForm.controls.start_date.dirty || submitAttempt)"></ion-datetime>
-          </ion-item>
-
-          <ion-item *ngIf="!slideOneForm.controls.start_date.valid  && (slideOneForm.controls.start_date.dirty || submitAttempt)">
-            <p class="error-text">Please enter a valid Start Date.</p>
-          </ion-item>
+      <ion-item *ngIf="!slideOneForm.controls.start_date.valid  && (slideOneForm.controls.start_date.dirty || submitAttempt)">
+        <p class="error-text">Please enter a valid Start Date.</p>
+      </ion-item>
 
 
 
-          <ion-item>
-            <ion-label floating>End Date</ion-label>
-            <ion-datetime formControlName="end_date" displayFormat="MMM DD, YYYY HH:mm" [(ngModel)]="staffingRequest.end_date" [class.invalid]="!slideOneForm.controls.end_date.valid && (slideOneForm.controls.end_date.dirty || submitAttempt)"></ion-datetime>
-          </ion-item>
+      <ion-item>
+        <ion-label floating>End Date</ion-label>
+        <ion-datetime formControlName="end_date" displayFormat="MMM DD, YYYY HH:mm" [(ngModel)]="staffingRequest.end_date" [class.invalid]="!slideOneForm.controls.end_date.valid && (slideOneForm.controls.end_date.dirty || submitAttempt)"></ion-datetime>
+      </ion-item>
 
-          <ion-item *ngIf="!slideOneForm.controls.end_date.valid  && (slideOneForm.controls.end_date.dirty || submitAttempt)">
-            <p class="error-text">Please enter a valid End Date.</p>
-          </ion-item>
-
-
-
-          <ion-item>
-            <ion-label floating>Rate Per Hour</ion-label>
-            <ion-input formControlName="rate_per_hour" type="text" [(ngModel)]="staffingRequest.rate_per_hour" [class.invalid]="!slideOneForm.controls.rate_per_hour.valid && (slideOneForm.controls.rate_per_hour.dirty || submitAttempt)"></ion-input>
-          </ion-item>
-
-          <ion-item *ngIf="!slideOneForm.controls.rate_per_hour.valid  && (slideOneForm.controls.rate_per_hour.dirty || submitAttempt)">
-            <p class="error-text">Please enter a valid Rate Per Hour.</p>
-          </ion-item>
-
-
-          <ion-item *ngIf="!slideOneForm.controls.request_status.valid  && (slideOneForm.controls.request_status.dirty || submitAttempt)">
-            <p class="error-text">Please enter a valid Request Status.</p>
-          </ion-item>
-
-
-        </form>
-
-      </ion-list>
-
-    </ion-slide>
-
-    <ion-slide>
-
-      <ion-list no-lines>
-
-        <form [formGroup]="slideTwoForm">
-
-          <ion-item>
-            <ion-label floating>Auto Deny In</ion-label>
-            <ion-input formControlName="auto_deny_in" type="text" [(ngModel)]="staffingRequest.auto_deny_in" [class.invalid]="!slideTwoForm.controls.auto_deny_in.valid && (slideTwoForm.controls.auto_deny_in.dirty || submitAttempt)"></ion-input>
-          </ion-item>
-
-          <ion-item *ngIf="!slideTwoForm.controls.auto_deny_in.valid  && (slideTwoForm.controls.auto_deny_in.dirty || submitAttempt)">
-            <p class="error-text">Please enter a valid Auto Deny in hours.</p>
-          </ion-item>
-
-          <ion-item>
-            <ion-label floating>Start Code</ion-label>
-            <ion-input formControlName="start_code" type="text" [(ngModel)]="staffingRequest.start_code" [class.invalid]="!slideTwoForm.controls.start_code.valid && (slideTwoForm.controls.start_code.dirty || submitAttempt)"></ion-input>
-          </ion-item>
-
-          <ion-item *ngIf="!slideTwoForm.controls.start_code.valid  && (slideTwoForm.controls.start_code.dirty || submitAttempt)">
-            <p>Please enter a valid Start Code.</p>
-          </ion-item>
+      <ion-item *ngIf="!slideOneForm.controls.end_date.valid  && (slideOneForm.controls.end_date.dirty || submitAttempt)">
+        <p class="error-text">Please enter a valid End Date.</p>
+      </ion-item>
 
 
 
-          <ion-item>
-            <ion-label floating>End Code</ion-label>
-            <ion-input formControlName="end_code" type="text" [(ngModel)]="staffingRequest.end_code" [class.invalid]="!slideTwoForm.controls.end_code.valid && (slideTwoForm.controls.end_code.dirty || submitAttempt)"></ion-input>
-          </ion-item>
+      <ion-item>
+        <ion-label floating>Rate Per Hour</ion-label>
+        <ion-input formControlName="rate_per_hour" type="text" [(ngModel)]="staffingRequest.rate_per_hour" [class.invalid]="!slideOneForm.controls.rate_per_hour.valid && (slideOneForm.controls.rate_per_hour.dirty || submitAttempt)"></ion-input>
+      </ion-item>
 
-          <ion-item *ngIf="!slideTwoForm.controls.end_code.valid  && (slideTwoForm.controls.end_code.dirty || submitAttempt)">
-            <p>Please enter a valid End Code.</p>
-          </ion-item>
+      <ion-item *ngIf="!slideOneForm.controls.rate_per_hour.valid  && (slideOneForm.controls.rate_per_hour.dirty || submitAttempt)">
+        <p class="error-text">Please enter a valid Rate Per Hour.</p>
+      </ion-item>
 
-        </form>
 
-      </ion-list>
+      <ion-item *ngIf="!slideOneForm.controls.request_status.valid  && (slideOneForm.controls.request_status.dirty || submitAttempt)">
+        <p class="error-text">Please enter a valid Request Status.</p>
+      </ion-item>
 
-      <button ion-button full color="primary" (click)="save()">Save</button>
 
-    </ion-slide>
 
-  </ion-slides>
+      <ion-item>
+        <ion-label floating>Auto Deny In</ion-label>
+        <ion-input formControlName="auto_deny_in" type="text" [(ngModel)]="staffingRequest.auto_deny_in" [class.invalid]="!slideOneForm.controls.auto_deny_in.valid && (slideOneForm.controls.auto_deny_in.dirty || submitAttempt)"></ion-input>
+      </ion-item>
+
+      <ion-item *ngIf="!slideOneForm.controls.auto_deny_in.valid  && (slideOneForm.controls.auto_deny_in.dirty || submitAttempt)">
+        <p class="error-text">Please enter a valid Auto Deny in hours.</p>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Start Code</ion-label>
+        <ion-input formControlName="start_code" type="text" [(ngModel)]="staffingRequest.start_code" [class.invalid]="!slideOneForm.controls.start_code.valid && (slideOneForm.controls.start_code.dirty || submitAttempt)"></ion-input>
+      </ion-item>
+
+      <ion-item *ngIf="!slideOneForm.controls.start_code.valid  && (slideOneForm.controls.start_code.dirty || submitAttempt)">
+        <p>Please enter a valid Start Code.</p>
+      </ion-item>
+
+
+
+      <ion-item>
+        <ion-label floating>End Code</ion-label>
+        <ion-input formControlName="end_code" type="text" [(ngModel)]="staffingRequest.end_code" [class.invalid]="!slideOneForm.controls.end_code.valid && (slideOneForm.controls.end_code.dirty || submitAttempt)"></ion-input>
+      </ion-item>
+
+      <ion-item *ngIf="!slideOneForm.controls.end_code.valid  && (slideOneForm.controls.end_code.dirty || submitAttempt)">
+        <p>Please enter a valid End Code.</p>
+      </ion-item>
+
+    </form>
+
+  </ion-list>
+
+  <button ion-button full color="primary" (click)="save()">Save</button>
 
 </ion-content>

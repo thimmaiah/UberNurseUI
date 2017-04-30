@@ -34,7 +34,6 @@ import {HospitalApi} from '../providers/hospital-api'
 import {StaffingRequestApi} from '../providers/staffing-request-api'
 import {StaffingResponseApi} from '../providers/staffing-response-api'
 
-import {TokenService} from '../providers/token-service'
 import {ResponseUtility} from '../providers/response-utility'
 
 @NgModule({
@@ -84,7 +83,6 @@ import {ResponseUtility} from '../providers/response-utility'
     HospitalApi,
     StaffingRequestApi,
     StaffingResponseApi,
-    TokenService,
     ResponseUtility,
     StatusBar,
     SplashScreen,
