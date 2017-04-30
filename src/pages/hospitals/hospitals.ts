@@ -35,7 +35,7 @@ export class Hospitals {
     let loader = this.loadingController.create({
       content: 'Loading Hospitals...'
     });
-
+    loader.present();
 
     this.hospitalApi.getHospitals().subscribe(
       Hospital => {
@@ -43,7 +43,7 @@ export class Hospitals {
         console.log("Loaded Hospital");
         console.log(this.hospitals);
       },
-      error => { this.respUtility.showFailure(error); },
+      error => { this.respUtility.showFailure(error); loader.dismiss(); },
       () => { loader.dismiss(); }
     );
 

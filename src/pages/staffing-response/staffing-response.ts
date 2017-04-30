@@ -15,17 +15,21 @@ export class StaffingResponse {
   staffingResponse: any;
   staffingRequest: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams,
     public loadingController: LoadingController,
-    public staffingResponseApi: StaffingResponseApi, public respUtility: ResponseUtility) {
+    public staffingResponseApi: StaffingResponseApi, 
+    public respUtility: ResponseUtility) {
     this.staffingRequest = this.navParams.data;
   }
 
 
   loadAllResponses() {
     let loader = this.loadingController.create({
-      content: 'Loading StaffingResponsess...'
+      content: 'Loading Responses...'
     });
+
+    loader.present();
 
     let staffing_request_id = null;
     if (this.staffingRequest) {

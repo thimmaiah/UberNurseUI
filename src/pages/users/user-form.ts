@@ -1,4 +1,4 @@
-import { IonicPage, NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, ToastController, LoadingController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, ViewChild } from '@angular/core';
 import { UserApi } from '../../providers/user-api';
@@ -31,6 +31,7 @@ export class UserForm {
     public formBuilder: FormBuilder,
     public userApi: UserApi,
     public respUtility: ResponseUtility,
+    public loadingController: LoadingController, 
     private tokenService: Angular2TokenService) {
 
     this.user = this.navParams.data;
@@ -67,11 +68,16 @@ export class UserForm {
     this.submitAttempt = true;
     //console.log(this.user);
 
+    let loader = this.loadingController.create({
+      content: 'Saving ...'
+    });
 
     if (!this.slideOneForm.valid) {
-      this.signupSlider.slideTo(0);
+      //this.signupSlider.slideTo(0);
     }
     else {
+      this.submitAttempt = false;
+      loader.present();
       if (this.user["id"]) {
         this.userApi.updateUser(this.user).subscribe(
           user => {
@@ -79,7 +85,9 @@ export class UserForm {
           },
           error => {
             this.respUtility.showFailure(error);
-          }
+            loader.dismiss();
+          },
+          () => { loader.dismiss(); }
         );
       } else {
         this.register(this.user);

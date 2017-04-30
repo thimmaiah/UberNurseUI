@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { StaffingResponseForm } from '../staffing-response/staffing-response-form';
 import { StaffingRequestDetails } from '../staffing-request/staffing-request-details';
 import { StaffingResponseApi } from '../../providers/staffing-response-api';
@@ -17,9 +17,8 @@ export class StaffingResponseDetails {
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public platform: Platform,
     public staffingResponseApi: StaffingResponseApi,
-    public alertController: AlertController,
-    public toastController: ToastController,
     public actionSheetCtrl: ActionSheetController,
+    public loadingController: LoadingController,
     public respUtility: ResponseUtility) {
     this.staffingResponse = this.navParams.data;
   }
@@ -43,25 +42,37 @@ export class StaffingResponseDetails {
     this.updateResponse(staffingResponse);
   }
   updateResponse(staffingResponse) {
+
+    let loader = this.loadingController.create({
+      content: 'Updating Responses...'
+    });
+
+    loader.present();
+
     this.staffingResponseApi.updateStaffingResponse(staffingResponse).subscribe(
       staffingResponse => {
         this.respUtility.showSuccess('Response Updated');
       },
-      error => {
-        this.respUtility.showFailure(error);
-      }
+      error => { this.respUtility.showFailure(error); loader.dismiss(); },
+      () => { loader.dismiss(); }
     );
   }
 
   deleteStaffingResponse(staffingResponse) {
+
+    let loader = this.loadingController.create({
+      content: 'Deleting Response...'
+    });
+
+    loader.present();
+
     this.staffingResponseApi.deleteStaffingResponse(staffingResponse).subscribe(
       response => {
         this.respUtility.showSuccess("Deleted Response");
         this.navCtrl.pop();
       },
-      error => {
-        this.respUtility.showFailure(error);
-      }
+      error => { this.respUtility.showFailure(error); loader.dismiss(); },
+      () => { loader.dismiss(); }
     );
   }
 

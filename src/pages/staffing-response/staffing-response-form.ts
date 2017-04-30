@@ -1,4 +1,4 @@
-import { IonicPage, NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, ToastController, LoadingController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, ViewChild } from '@angular/core';
 import { StaffingResponseApi } from '../../providers/staffing-response-api';
@@ -20,6 +20,7 @@ export class StaffingResponseForm {
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public formBuilder: FormBuilder,
+    public loadingController: LoadingController,
     public staffingResponseApi: StaffingResponseApi,
     public respUtility: ResponseUtility) {
 
@@ -49,15 +50,6 @@ export class StaffingResponseForm {
     console.log('ionViewDidLoad StaffingResponsesForm');
   }
 
-
-  next() {
-    this.signupSlider.slideNext();
-  }
-
-  prev() {
-    this.signupSlider.slidePrev();
-  }
-
   isAcceptedResponse() {
     return this.staffingResponse["response_status"] == "Accepted";
   }
@@ -65,13 +57,17 @@ export class StaffingResponseForm {
   save() {
     this.submitAttempt = true;
     //console.log(this.staffingResponse);
-
+    let loader = this.loadingController.create({
+      content: 'Saving ...'
+    });
 
     if (!this.slideOneForm.valid) {
       this.signupSlider.slideTo(0);
     }
     else {
       this.submitAttempt = false;
+      loader.present();
+
       if (this.staffingResponse["id"]) {
         this.staffingResponseApi.updateStaffingResponse(this.staffingResponse).subscribe(
           staffingResponse => {
@@ -80,7 +76,9 @@ export class StaffingResponseForm {
           },
           error => {
             this.respUtility.showFailure(error);
-          }
+            loader.dismiss();
+          },
+          () => {loader.dismiss();}
         );
       } else {
         this.staffingResponseApi.createStaffingResponse(this.staffingResponse).subscribe(
@@ -90,7 +88,9 @@ export class StaffingResponseForm {
           },
           error => {
             this.respUtility.showFailure(error);
-          }
+            loader.dismiss();
+          },
+          () => {loader.dismiss();}
         );
       }
     }

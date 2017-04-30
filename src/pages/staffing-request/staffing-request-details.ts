@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { StaffingRequestForm } from '../staffing-request/staffing-request-form';
 import { StaffingRequestApi } from '../../providers/staffing-request-api';
 import { ResponseUtility } from '../../providers/response-utility';
@@ -10,12 +10,7 @@ import { ActionSheetController, Platform } from 'ionic-angular';
 
 import * as _ from 'lodash';
 
-/**
- * Generated class for the StaffingRequestsDetails page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
+
 //@IonicPage()
 @Component({
   selector: 'page-staffing-request-details',
@@ -25,12 +20,12 @@ export class StaffingRequestDetails {
 
   staffingRequest: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
+  constructor(public navCtrl: NavController,
+    public navParams: NavParams,
+    public loadingController: LoadingController,
     public platform: Platform,
     private tokenService: Angular2TokenService,
     public staffingRequestApi: StaffingRequestApi,
-    public alertController: AlertController,
-    public toastController: ToastController,
     public actionSheetCtrl: ActionSheetController,
     public respUtility: ResponseUtility) {
 
@@ -58,25 +53,34 @@ export class StaffingRequestDetails {
   }
 
   deleteStaffingRequest(staffingRequest) {
+    let loader = this.loadingController.create({
+      content: 'Deleting Request...'
+    });
+
+    loader.present();
+
     this.staffingRequestApi.deleteStaffingRequest(staffingRequest).subscribe(
       response => {
         this.respUtility.showSuccess("Deleted StaffingRequests");
         this.navCtrl.pop();
       },
-      error => {
-        this.respUtility.showFailure(error);
-      }
+      error => { this.respUtility.showFailure(error); loader.dismiss(); },
+      () => { loader.dismiss(); }
     );
   }
 
   updateStaffingRequest(staffingRequest) {
+    let loader = this.loadingController.create({
+      content: 'Updating Request...'
+    });
+
+    loader.present();
     this.staffingRequestApi.updateStaffingRequest(staffingRequest).subscribe(
       response => {
         this.respUtility.showSuccess("Request Updated");
       },
-      error => {
-        this.respUtility.showFailure(error);
-      }
+      error => { this.respUtility.showFailure(error); loader.dismiss(); },
+      () => { loader.dismiss(); }
     );
   }
 
@@ -184,7 +188,7 @@ export class StaffingRequestDetails {
               console.log('Approve clicked');
               this.confirmApprove(staffingRequest);
             }
-          }, 
+          },
           {
             text: 'Deny Request',
             role: 'destructive',

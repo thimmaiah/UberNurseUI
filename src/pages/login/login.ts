@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TokenService } from '../../providers/token-service';
 import { Angular2TokenService } from 'angular2-token';
@@ -24,6 +24,7 @@ export class Login {
     public navParams: NavParams,
     public formBuilder: FormBuilder,
     public respUtility: ResponseUtility,
+    public loadingController: LoadingController,
     private tokenService: Angular2TokenService) {
 
 
@@ -38,12 +39,20 @@ export class Login {
   }
 
   login() {
+
+    let loader = this.loadingController.create({
+      content: 'Login in progress ...'
+    });
+
+    loader.present();
+
     this.tokenService.signIn({ email: this.email, password: this.password }).subscribe(
       res => {
         console.log(res);
         this.tokenService.validateToken().subscribe(
           res => console.log(res),
-          error => console.log(error)
+          error => { console.log(error), loader.dismiss();},
+          () => {loader.dismiss();}
         );
 
         this.navCtrl.popToRoot();

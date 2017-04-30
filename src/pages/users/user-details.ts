@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, ToastController, LoadingController } from 'ionic-angular';
 import { UserForm } from '../users/user-form';
 import { UserApi } from '../../providers/user-api';
 import { ResponseUtility } from '../../providers/response-utility';
@@ -22,6 +22,7 @@ export class UserDetails {
     public userApi: UserApi,
     public alertController: AlertController,
     public toastController: ToastController,
+    public loadingController: LoadingController,
     public respUtility: ResponseUtility) {
     this.user = this.navParams.data;
   }
@@ -35,6 +36,13 @@ export class UserDetails {
   }
 
   deleteUser(user) {
+
+    let loader = this.loadingController.create({
+      content: 'Deleting User...'
+    });
+
+    loader.present();
+
     this.userApi.deleteUser(user).subscribe(
       response => {
         this.respUtility.showSuccess("Deleted User");
@@ -42,11 +50,13 @@ export class UserDetails {
       },
       error => {
         this.respUtility.showFailure(error);
-      }
+        loader.dismiss();
+      },
+      () => { loader.dismiss(); }
     );
   }
 
   confirmDelete(user) {
-    this.respUtility.confirmDelete(this.deleteUser.bind(this), user);      
+    this.respUtility.confirmDelete(this.deleteUser.bind(this), user);
   }
 }

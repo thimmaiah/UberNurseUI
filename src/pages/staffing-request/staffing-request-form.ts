@@ -1,4 +1,4 @@
-import { IonicPage, NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController, ToastController, LoadingController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, ViewChild } from '@angular/core';
 import { StaffingRequestApi } from '../../providers/staffing-request-api';
@@ -28,6 +28,7 @@ export class StaffingRequestForm {
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public formBuilder: FormBuilder,
+    public loadingController: LoadingController,
     public staffingRequestApi: StaffingRequestApi,
     public respUtility: ResponseUtility) {
 
@@ -68,13 +69,17 @@ export class StaffingRequestForm {
   save() {
     this.submitAttempt = true;
     //console.log(this.staffingRequest);
-
+    let loader = this.loadingController.create({
+      content: 'Saving ...'
+    });
 
     if (!this.slideOneForm.valid) {
       this.signupSlider.slideTo(0);
     }
     else {
       this.submitAttempt = false;
+      loader.present();
+
       if (this.staffingRequest["id"]) {
         this.staffingRequestApi.updateStaffingRequest(this.staffingRequest).subscribe(
           staffingRequest => {
@@ -83,7 +88,9 @@ export class StaffingRequestForm {
           },
           error => {
             this.respUtility.showFailure(error);
-          }
+            loader.dismiss();
+          },
+          () => {loader.dismiss();}
         );
       } else {
         this.staffingRequestApi.createStaffingRequest(this.staffingRequest).subscribe(
@@ -93,7 +100,9 @@ export class StaffingRequestForm {
           },
           error => {
             this.respUtility.showFailure(error);
-          }
+            loader.dismiss();
+          },
+          () => {loader.dismiss()}
         );
       }
     }

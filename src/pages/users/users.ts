@@ -34,13 +34,14 @@ export class Users {
       content: 'Loading Users...'
     });
 
+    loader.present();
 
     this.userApi.getUsers().subscribe(
       users => {
         this.users = users;
         console.log("Loaded users");
       },
-      error => { this.respUtility.showFailure(error); },
+      error => { this.respUtility.showFailure(error); loader.dismiss(); },
       () => { loader.dismiss(); }
     );
 
@@ -51,7 +52,8 @@ export class Users {
       content: 'Loading Users...'
     });
 
-    loader.present()
+    loader.present();
+
     this.userApi.getUserDetails(user.id).subscribe(
       user => {
         this.user = user;

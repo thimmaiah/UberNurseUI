@@ -39,9 +39,10 @@ export class StaffingRequest {
     console.log('ionViewWillEnter StaffingRequestss');
 
     let loader = this.loadingController.create({
-      content: 'Loading StaffingRequests...'
+      content: 'Loading Requests...'
     });
 
+    loader.present();
 
     this.staffingRequestApi.getStaffingRequests().subscribe(
       staffingRequests => {
