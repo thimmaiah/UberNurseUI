@@ -16,7 +16,9 @@
 <ion-content padding>
   <ion-list>
     <button ion-item *ngFor="let hospital of hospitals" (click)=getHospitalDetails(hospital)>
-       
+      <ion-thumbnail item-left>
+        <img [src]="hospital.image_url">
+      </ion-thumbnail> 
       <p>
         {{hospital.name}}
       </p>
