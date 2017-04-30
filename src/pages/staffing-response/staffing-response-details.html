@@ -85,35 +85,5 @@
 
   </ion-list>
 
-  <ion-row *ngIf="staffingResponse.can_manage == true">
-
-    <ion-col>
-      <button ion-button full color="secondary" (click)="editStaffingResponse(staffingResponse)">Edit</button>
-    </ion-col>
-    <ion-col>
-      <button ion-button full color="danger" (click)="confirmDelete(staffingResponse)">Delete</button>
-    </ion-col>
-
-  </ion-row>
-
-  <ion-row *ngIf="staffingResponse.can_manage == false">
-
-    <ion-col>
-      <button ion-button full color="secondary" (click)="acceptResponse(staffingResponse)">Accept</button>
-    </ion-col>
-    <ion-col>
-      <button ion-button full color="danger" (click)="rejectResponse(staffingResponse)">Reject</button>
-    </ion-col>
-
-  </ion-row>
-
-  <ion-row *ngIf="staffingResponse.can_manage == true">
-
-    <ion-col>
-      <button ion-button full color="primary" (click)="showRequest(staffingResponse)">Show Request`</button>
-    </ion-col>
-    
-  </ion-row>
-
-
+  
 </ion-content>
