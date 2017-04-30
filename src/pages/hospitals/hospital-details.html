@@ -89,14 +89,14 @@
             Base Rate: 
           </ion-col>
           <ion-col>
-            {{hospital.base_rate}}
+            {{hospital.base_rate | currency}}
           </ion-col>
         </ion-row>
       </ion-item>
       
       </ion-list>
       
-  <ion-row>
+  <ion-row  *ngIf="hospital.can_manage == true">
 
     <ion-col>
       <button ion-button full color="secondary" (click)="editHospital(hospital)">Edit</button>
