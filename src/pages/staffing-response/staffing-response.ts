@@ -53,7 +53,7 @@ export class StaffingResponse {
 
   getStaffingResponseDetails(staffingResponse) {
     let loader = this.loadingController.create({
-      content: 'Loading StaffingResponsess...'
+      content: 'Loading Responses...'
     });
 
     loader.present()
