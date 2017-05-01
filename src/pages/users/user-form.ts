@@ -49,7 +49,9 @@ export class UserForm {
       pref_commute_distance: ['', Validators.compose([Validators.required, Validators.pattern('^\\d+$')])],
       occupation: ['', Validators.compose([Validators.pattern('[a-z, A-Z]*')])],
       speciality: ['', Validators.compose([Validators.required, Validators.pattern('[a-z, A-Z]*')])],
-      experience: ['', Validators.compose([Validators.required, Validators.pattern('^\\d+$')])]
+      experience: ['', Validators.compose([Validators.required, Validators.pattern('^\\d+$')])],
+      bank_account: [''],
+      sort_code: ['']
     });
 
 

@@ -86,28 +86,46 @@ export class StaffingResponseDetails {
     this.navCtrl.push(StaffingRequestDetails, staffingRequest);
   }
 
-   presentActionSheet(staffingResponse) {
+  presentActionSheet(staffingResponse) {
     let buttons = [];
 
     if (staffingResponse.can_manage == true) {
       console.log("can manage staffingResponse");
       buttons = buttons.concat([
+        // {
+        //   text: 'Edit',
+        //   icon: !this.platform.is('ios') ? 'create' : null,
+        //   handler: () => {
+        //     console.log('Edit clicked');
+        //     this.editStaffingResponse(staffingResponse);
+        //   }
+        // }, {
+        //   text: 'Delete',
+        //   role: 'destructive',
+        //   icon: !this.platform.is('ios') ? 'trash' : null,
+        //   handler: () => {
+        //     console.log('Delete clicked');
+        //     this.confirmDelete(staffingResponse);
+        //   }
+        // }, 
         {
-          text: 'Edit',
-          icon: !this.platform.is('ios') ? 'create' : null,
+          text: 'Accept Response',
+          icon: !this.platform.is('ios') ? 'checkmark' : null,
           handler: () => {
-            console.log('Edit clicked');
-            this.editStaffingResponse(staffingResponse);
+            console.log('Accept clicked');
+            this.acceptResponse(staffingResponse);
           }
-        }, {
-          text: 'Delete',
+        },
+        {
+          text: 'Reject Response',
           role: 'destructive',
-          icon: !this.platform.is('ios') ? 'trash' : null,
+          icon: !this.platform.is('ios') ? 'close-circle' : null,
           handler: () => {
-            console.log('Delete clicked');
-            this.confirmDelete(staffingResponse);
+            console.log('Deny clicked');
+            this.rejectResponse(staffingResponse);
           }
-        }, {
+        },
+        {
           text: 'Show Request',
           icon: !this.platform.is('ios') ? 'folder' : null,
           handler: () => {
@@ -117,26 +135,10 @@ export class StaffingResponseDetails {
         }
       ]);
     } else {
-    
-        buttons = buttons.concat([
-          {
-            text: 'Accept Response',
-            icon: !this.platform.is('ios') ? 'checkmark' : null,
-            handler: () => {
-              console.log('Accept clicked');
-              this.acceptResponse(staffingResponse);
-            }
-          }, 
-          {
-            text: 'Reject Response',
-            role: 'destructive',
-            icon: !this.platform.is('ios') ? 'close-circle' : null,
-            handler: () => {
-              console.log('Deny clicked');
-              this.rejectResponse(staffingResponse);
-            }
-          }
-        ]);
+
+      buttons = buttons.concat([
+
+      ]);
     }
 
     buttons = buttons.concat([

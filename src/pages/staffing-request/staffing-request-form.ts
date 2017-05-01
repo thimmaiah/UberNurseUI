@@ -111,7 +111,7 @@ export class StaffingRequestForm {
       } else {
         this.staffingRequestApi.createStaffingRequest(this.staffingRequest).subscribe(
           staffingRequest => {
-            this.respUtility.showSuccess('Request saved successfully.');
+            this.respUtility.showSuccess('Request saved successfully. Please get it approved at the earliest.');
             this.navCtrl.pop();
           },
           error => {

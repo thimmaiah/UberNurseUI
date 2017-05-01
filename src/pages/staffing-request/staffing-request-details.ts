@@ -36,7 +36,6 @@ export class StaffingRequestDetails {
       this.staffingRequestApi.getStaffingRequestDetails(this.staffingRequest.id).subscribe(
         staffingRequest => {
           this.staffingRequest = staffingRequest;
-          console.log(staffingRequest["start_date"].getTimezoneOffset());
         },
         error => {
           this.respUtility.showFailure(error);
@@ -163,20 +162,21 @@ export class StaffingRequestDetails {
           }
         }
       ]);
-    } else {
-      if (!this.hasUserResponded()) {
-        buttons = buttons.concat([
-          {
-            text: 'Apply Now',
-            icon: !this.platform.is('ios') ? 'checkmark' : null,
-            handler: () => {
-              console.log('Apply clicked');
-              this.sendResponse(staffingRequest);
-            }
-          }
-        ]);
-      }
     }
+    // else {
+    //   if (!this.hasUserResponded()) {
+    //     buttons = buttons.concat([
+    //       {
+    //         text: 'Apply Now',
+    //         icon: !this.platform.is('ios') ? 'checkmark' : null,
+    //         handler: () => {
+    //           console.log('Apply clicked');
+    //           this.sendResponse(staffingRequest);
+    //         }
+    //       }
+    //     ]);
+    //   }
+    // }
 
     if (this.canApprove(staffingRequest)) {
 

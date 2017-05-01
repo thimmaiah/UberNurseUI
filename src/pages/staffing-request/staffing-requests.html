@@ -18,7 +18,7 @@
     <button ion-item *ngFor="let staffingRequest of staffingRequests" (click)=getStaffingRequestDetails(staffingRequest)>
        
       <p>
-        Hospital: {{staffingRequest.hospital.name}}
+        Care Home: {{staffingRequest.hospital.name}}
       </p>
 
       <p>
@@ -35,6 +35,9 @@
       </ion-badge>
       <ion-badge color="danger" *ngIf="staffingRequest.request_status == 'Denied'">
         Denied
+      </ion-badge>
+      <ion-badge class="warning-badge" *ngIf="!staffingRequest.request_status || staffingRequest.request_status == 'Pending Approval'">
+        Pending Approval
       </ion-badge>
      
 

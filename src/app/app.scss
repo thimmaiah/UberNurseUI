@@ -23,11 +23,16 @@ $colors: (
   danger:     #f53d3d,
   light:      #f4f4f4,
   dark:       #222,
+  warning:    orange,
   twitter: (
     base: #55acee,
     contrast: #ffffff
   )
 );
+
+.warning-badge {
+    background: orange;
+}
 
 .error-text {
     color: red !important;
