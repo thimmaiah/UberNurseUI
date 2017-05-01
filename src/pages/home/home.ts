@@ -21,7 +21,7 @@ export class HomePage {
     private tokenService: Angular2TokenService) {
 
     this.tokenService.init({
-      apiBase: "http://192.168.0.5:3000"
+      apiBase: "http://localhost:3000"
     });
 
     this.currentUser = this.tokenService.currentUserData;

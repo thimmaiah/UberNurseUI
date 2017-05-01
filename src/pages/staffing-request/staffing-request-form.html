@@ -23,7 +23,9 @@
 
       <ion-item>
         <ion-label floating>Start Date</ion-label>
-        <ion-datetime formControlName="start_date" displayFormat="MMM DD, YYYY HH:mm" [(ngModel)]="staffingRequest.start_date" [class.invalid]="!slideOneForm.controls.start_date.valid && (slideOneForm.controls.start_date.dirty || submitAttempt)"></ion-datetime>
+        <ion-datetime formControlName="start_date" displayFormat="MMM DD, YYYY HH:mm" 
+        [min]="todayStr"
+        [(ngModel)]="staffingRequest.start_date" [class.invalid]="!slideOneForm.controls.start_date.valid && (slideOneForm.controls.start_date.dirty || submitAttempt)"></ion-datetime>
       </ion-item>
 
       <ion-item *ngIf="!slideOneForm.controls.start_date.valid  && (slideOneForm.controls.start_date.dirty || submitAttempt)">
@@ -34,7 +36,9 @@
 
       <ion-item>
         <ion-label floating>End Date</ion-label>
-        <ion-datetime formControlName="end_date" displayFormat="MMM DD, YYYY HH:mm" [(ngModel)]="staffingRequest.end_date" [class.invalid]="!slideOneForm.controls.end_date.valid && (slideOneForm.controls.end_date.dirty || submitAttempt)"></ion-datetime>
+        <ion-datetime formControlName="end_date" displayFormat="MMM DD, YYYY HH:mm" 
+        [min]="todayStr"
+        [(ngModel)]="staffingRequest.end_date" [class.invalid]="!slideOneForm.controls.end_date.valid && (slideOneForm.controls.end_date.dirty || submitAttempt)"></ion-datetime>
       </ion-item>
 
       <ion-item *ngIf="!slideOneForm.controls.end_date.valid  && (slideOneForm.controls.end_date.dirty || submitAttempt)">

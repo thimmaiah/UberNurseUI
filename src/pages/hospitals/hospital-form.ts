@@ -73,16 +73,18 @@ export class HospitalForm {
       if (this.hospital["id"]) {
         this.hospitalApi.updateHospital(this.hospital).subscribe(
           hospital => {
-            this.respUtility.showSuccess('Hospitals saved successfully.');
+            this.respUtility.showSuccess('Hospital saved successfully.');
           },
           error => {
             this.respUtility.showFailure(error);
-          }
+            loader.dismiss();
+          },
+          () => {loader.dismiss();}
         );
       } else {
         this.hospitalApi.createHospital(this.hospital).subscribe(
           hospital => {
-            this.respUtility.showSuccess('Hospitals saved successfully.');
+            this.respUtility.showSuccess('Hospital saved successfully.');
           },
           error => {
             this.respUtility.showFailure(error);

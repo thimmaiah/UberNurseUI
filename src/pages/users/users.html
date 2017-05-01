@@ -15,7 +15,12 @@
 
 <ion-content padding>
   <ion-list>
+      
     <button ion-item *ngFor="let user of users" (click)=getUserDetails(user)>
+      <ion-thumbnail item-left>
+        <img [src]="user.image">
+      </ion-thumbnail> 
+      
       {{user.first_name}} {{user.last_name}} 
       <p>
         {{user.phone}}

@@ -18,6 +18,10 @@
   <ion-list>
     <button ion-item *ngFor="let staffingResponse of staffingResponses" (click)=getStaffingResponseDetails(staffingResponse)>
 
+      <ion-thumbnail item-left>
+        <img [src]="staffingResponse.user.image">
+      </ion-thumbnail> 
+      
       <p>
         Name: {{staffingResponse.user.first_name}}, {{staffingResponse.user.last_name}}
       </p>

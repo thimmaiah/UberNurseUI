@@ -36,6 +36,7 @@ export class StaffingRequestDetails {
       this.staffingRequestApi.getStaffingRequestDetails(this.staffingRequest.id).subscribe(
         staffingRequest => {
           this.staffingRequest = staffingRequest;
+          console.log(staffingRequest["start_date"].getTimezoneOffset());
         },
         error => {
           this.respUtility.showFailure(error);

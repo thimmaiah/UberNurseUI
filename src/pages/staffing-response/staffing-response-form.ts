@@ -71,7 +71,7 @@ export class StaffingResponseForm {
       if (this.staffingResponse["id"]) {
         this.staffingResponseApi.updateStaffingResponse(this.staffingResponse).subscribe(
           staffingResponse => {
-            this.respUtility.showSuccess('Responses saved successfully.');
+            this.respUtility.showSuccess('Response saved successfully.');
             this.navCtrl.pop();
           },
           error => {
@@ -83,7 +83,7 @@ export class StaffingResponseForm {
       } else {
         this.staffingResponseApi.createStaffingResponse(this.staffingResponse).subscribe(
           staffingResponse => {
-            this.respUtility.showSuccess('Responses saved successfully.');
+            this.respUtility.showSuccess('Response saved successfully.');
             this.navCtrl.pop();
           },
           error => {

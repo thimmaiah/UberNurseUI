@@ -29,6 +29,7 @@ import { HospitalDetails } from '../pages/hospitals/hospital-details';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpModule } from '@angular/http';
+import {MomentModule} from 'angular2-moment';
 import {UserApi} from '../providers/user-api'
 import {HospitalApi} from '../providers/hospital-api'
 import {StaffingRequestApi} from '../providers/staffing-request-api'
@@ -58,6 +59,7 @@ import {ResponseUtility} from '../providers/response-utility'
     BrowserModule,
     HttpModule,
     RouterModule,
+    MomentModule,
     IonicModule.forRoot(MyApp),
   ],
   bootstrap: [IonicApp],
