@@ -5,6 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
 import { Users } from '../pages/users/users';
+import { UserPic } from '../pages/user-pic/user-pic';
 import { Hospitals } from '../pages/hospitals/hospitals';
 import { Login } from '../pages/login/login';
 import { StaffingRequest } from '../pages/staffing-request/staffing-request';
@@ -30,7 +31,7 @@ export class MyApp {
       { title: 'Hospitals', component: Hospitals },
       { title: 'StaffingRequest', component: StaffingRequest },
       { title: 'StaffingResponse', component: StaffingResponse },
-      { title: 'Login', component: Login },
+      { title: 'UserPic', component: UserPic },
       { title: 'Users', component: Users }
     ];
 

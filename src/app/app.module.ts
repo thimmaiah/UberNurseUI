@@ -2,7 +2,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
-import { Camera } from '@ionic-native/camera';
+import { Camera, CameraOptions } from '@ionic-native/camera';
+import { File } from '@ionic-native/file';
+import { Transfer } from '@ionic-native/transfer';
+import { FilePath } from '@ionic-native/file-path';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -10,6 +13,7 @@ import { Login } from '../pages/login/login';
 
 import { Angular2TokenService } from 'angular2-token';
 
+import { UserPic } from '../pages/user-pic/user-pic';
 import { Users } from '../pages/users/users';
 import { UserForm } from '../pages/users/user-form';
 import { UserDetails } from '../pages/users/user-details';
@@ -43,6 +47,7 @@ import {ResponseUtility} from '../providers/response-utility'
     MyApp,
     HomePage,
     Login,
+    UserPic,
     Users,    
     UserForm,
     UserDetails,
@@ -68,6 +73,7 @@ import {ResponseUtility} from '../providers/response-utility'
     MyApp,
     HomePage,
     Login,
+    UserPic,
     Users,
     UserForm,
     UserDetails,
@@ -91,6 +97,9 @@ import {ResponseUtility} from '../providers/response-utility'
     SplashScreen,
     Angular2TokenService,
     Camera,
+    File,
+    FilePath,
+    Transfer,
     {provide: ErrorHandler, useClass: IonicErrorHandler}
   ]
 })
