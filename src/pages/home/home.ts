@@ -7,6 +7,7 @@ import { StaffingResponse } from '../staffing-response/staffing-response';
 import { StaffingRequest } from '../staffing-request/staffing-request';
 import { UserDetails } from '../users/user-details';
 import { UserForm } from '../users/user-form';
+import { Payment } from '../payment/payment';
 
 @Component({
   selector: 'page-home',
@@ -25,12 +26,20 @@ export class HomePage {
     });
 
     this.currentUser = this.tokenService.currentUserData;
+    
 
   }
 
   ionViewWillEnter() {
     console.log('ionViewWillEnter HomePage');
     this.currentUser = this.tokenService.currentUserData;
+    if(this.currentUser && this.currentUser.role == "Care Giver" && this.currentUser.verified !== 'true') {
+      this.respUtility.showWarning("Please upload your documents for verification");
+    }
+  }
+
+  show_payments() {
+    this.navCtrl.push(Payment);
   }
 
   show_staffing_requests() {

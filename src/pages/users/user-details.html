@@ -28,6 +28,14 @@
       <p>
         {{user.speciality}}
       </p>
+
+        <ion-badge
+          *ngIf="user.role == 'Care Giver' && user.verified != 'true'" 
+          item-right color="danger">
+          Not 
+          Verified
+        </ion-badge> 
+      
     </button>
 
   <ion-row>
@@ -40,6 +48,30 @@
     </ion-col>
 
   </ion-row>
+
+  <ion-card>
+
+
+    <ion-card-content>
+      <ion-item>
+        <ion-label>Nursing Certificates</ion-label>
+        <ion-toggle checked="false"></ion-toggle>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Passport</ion-label>
+        <ion-toggle checked="true"></ion-toggle>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Address Proof</ion-label>
+        <ion-toggle checked="true"></ion-toggle>
+      </ion-item>
+
+    </ion-card-content>
+
+  </ion-card>
+
 
 
 </ion-content>

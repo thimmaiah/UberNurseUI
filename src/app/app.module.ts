@@ -18,6 +18,8 @@ import { UserPic } from '../pages/user-pic/user-pic';
 import { Users } from '../pages/users/users';
 import { UserForm } from '../pages/users/user-form';
 import { UserDetails } from '../pages/users/user-details';
+import { UserVerification } from '../pages/user-verification/user-verification';
+
 
 import { StaffingRequest } from '../pages/staffing-request/staffing-request';
 import { StaffingRequestForm } from '../pages/staffing-request/staffing-request-form';
@@ -58,6 +60,7 @@ import {ResponseUtility} from '../providers/response-utility'
     Users,    
     UserForm,
     UserDetails,
+    UserVerification,
     StaffingResponse,
     StaffingResponseForm,
     StaffingResponseDetails,
@@ -87,6 +90,7 @@ import {ResponseUtility} from '../providers/response-utility'
     Users,
     UserForm,
     UserDetails,
+    UserVerification,
     StaffingResponse,
     StaffingResponseForm,
     StaffingResponseDetails,

@@ -151,7 +151,7 @@ export class StaffingResponseDetails {
         buttons = buttons.concat([
           {
             text: 'Make Payment',
-            icon: !this.platform.is('ios') ? 'currency' : null,
+            icon: !this.platform.is('ios') ? 'cash' : null,
             handler: () => {
               console.log('Make Payment clicked');
               this.makePayment(staffingResponse);

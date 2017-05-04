@@ -34,6 +34,16 @@
       <p>
         {{user.speciality}}
       </p>
+
+      <p>
+        <ion-badge
+          *ngIf="user.role == 'Care Giver' && user.verified != 'true'" 
+          item-right [color]="danger">
+          Pending Verification
+        </ion-badge> 
+      
+      </p>
+
     </button>
   </ion-list>
 
