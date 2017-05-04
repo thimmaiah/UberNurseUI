@@ -5,20 +5,20 @@ import { HospitalDetails } from './hospital-details';
 import { HospitalForm } from './hospital-form';
 
 @NgModule({
-  declarations: [
-    Hospitals,
-    HospitalDetails,
-    HospitalForm
-  ],
-  imports: [
-    IonicPageModule.forChild(Hospitals),
-    IonicPageModule.forChild(HospitalDetails),
-    IonicPageModule.forChild(HospitalForm)
-  ],
-  exports: [
-    Hospitals,
-    HospitalDetails,
-    HospitalForm
-  ]
+  // declarations: [
+  //   Hospitals,
+  //   HospitalDetails,
+  //   HospitalForm
+  // ],
+  // imports: [
+  //   IonicPageModule.forChild(Hospitals),
+  //   IonicPageModule.forChild(HospitalDetails),
+  //   IonicPageModule.forChild(HospitalForm)
+  // ],
+  // exports: [
+  //   Hospitals,
+  //   HospitalDetails,
+  //   HospitalForm
+  // ]
 })
 export class HospitalssModule {}

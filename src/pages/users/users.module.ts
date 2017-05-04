@@ -5,20 +5,20 @@ import { UserDetails } from './user-details';
 import { UserForm } from './user-form';
 
 @NgModule({
-  declarations: [
-    Users,
-    UserDetails,
-    UserForm
-  ],
-  imports: [
-    IonicPageModule.forChild(Users),
-    IonicPageModule.forChild(UserDetails),
-    IonicPageModule.forChild(UserForm)
-  ],
-  exports: [
-    Users,
-    UserDetails,
-    UserForm
-  ]
+  // declarations: [
+  //   Users,
+  //   UserDetails,
+  //   UserForm
+  // ],
+  // imports: [
+  //   IonicPageModule.forChild(Users),
+  //   IonicPageModule.forChild(UserDetails),
+  //   IonicPageModule.forChild(UserForm)
+  // ],
+  // exports: [
+  //   Users,
+  //   UserDetails,
+  //   UserForm
+  // ]
 })
 export class UsersModule {}

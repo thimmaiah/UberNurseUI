@@ -3,14 +3,14 @@ import { IonicModule } from 'ionic-angular';
 import { Login } from './login';
 
 @NgModule({
-  declarations: [
-    Login,
-  ],
-  imports: [
-    //IonicModule.forChild(Login),
-  ],
-  exports: [
-    Login
-  ]
+  // declarations: [
+  //   Login,
+  // ],
+  // imports: [
+  //   //IonicModule.forChild(Login),
+  // ],
+  // exports: [
+  //   Login
+  // ]
 })
 export class LoginModule {}

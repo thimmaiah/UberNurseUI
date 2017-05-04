@@ -3,6 +3,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
+import { CameraPreview } from '@ionic-native/camera-preview';
 import { File } from '@ionic-native/file';
 import { Transfer } from '@ionic-native/transfer';
 import { FilePath } from '@ionic-native/file-path';
@@ -26,17 +27,23 @@ import { StaffingResponse } from '../pages/staffing-response/staffing-response';
 import { StaffingResponseDetails } from '../pages/staffing-response/staffing-response-details';
 import { StaffingResponseForm } from '../pages/staffing-response/staffing-response-form';
 
+import { Payment } from '../pages/payment/payment';
+import { PaymentDetails } from '../pages/payment/payment-details';
+import { PaymentForm } from '../pages/payment/payment-form';
+
+
 import { Hospitals } from '../pages/hospitals/hospitals';
 import { HospitalForm } from '../pages/hospitals/hospital-form';
 import { HospitalDetails } from '../pages/hospitals/hospital-details';
 
-
+import { Diagnostic } from '@ionic-native/diagnostic';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpModule } from '@angular/http';
 import {MomentModule} from 'angular2-moment';
 import {UserApi} from '../providers/user-api'
 import {HospitalApi} from '../providers/hospital-api'
+import {PaymentApi} from '../providers/payment-api'
 import {StaffingRequestApi} from '../providers/staffing-request-api'
 import {StaffingResponseApi} from '../providers/staffing-response-api'
 
@@ -54,6 +61,9 @@ import {ResponseUtility} from '../providers/response-utility'
     StaffingResponse,
     StaffingResponseForm,
     StaffingResponseDetails,
+    Payment,
+    PaymentForm,
+    PaymentDetails,    
     StaffingRequest,
     StaffingRequestForm,
     StaffingRequestDetails,
@@ -80,6 +90,9 @@ import {ResponseUtility} from '../providers/response-utility'
     StaffingResponse,
     StaffingResponseForm,
     StaffingResponseDetails,
+    Payment,
+    PaymentForm,
+    PaymentDetails,        
     StaffingRequest,
     StaffingRequestForm,
     StaffingRequestDetails,
@@ -92,11 +105,14 @@ import {ResponseUtility} from '../providers/response-utility'
     HospitalApi,
     StaffingRequestApi,
     StaffingResponseApi,
+    PaymentApi,
     ResponseUtility,
     StatusBar,
     SplashScreen,
     Angular2TokenService,
     Camera,
+    CameraPreview,
+    Diagnostic,
     File,
     FilePath,
     Transfer,

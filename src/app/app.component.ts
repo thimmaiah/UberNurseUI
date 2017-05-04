@@ -10,6 +10,7 @@ import { Hospitals } from '../pages/hospitals/hospitals';
 import { Login } from '../pages/login/login';
 import { StaffingRequest } from '../pages/staffing-request/staffing-request';
 import { StaffingResponse } from '../pages/staffing-response/staffing-response';
+import {Payment} from '../pages/payment/payment'
 
 
 @Component({
@@ -32,7 +33,8 @@ export class MyApp {
       { title: 'StaffingRequest', component: StaffingRequest },
       { title: 'StaffingResponse', component: StaffingResponse },
       { title: 'UserPic', component: UserPic },
-      { title: 'Users', component: Users }
+      { title: 'Users', component: Users },
+      { title: 'Payments', component: Payment }
     ];
 
   }

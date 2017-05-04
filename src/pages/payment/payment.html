@@ -1,0 +1,40 @@
+
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Payments</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <button ion-item *ngFor="let payment of payments" (click)=getPaymentDetails(payment)>
+       
+      <p>
+        For:
+        {{payment.staffing_request.start_date | date: 'dd/MM/yyyy H:mm'}} - 
+        {{payment.staffing_request.end_date | date: 'dd/MM/yyyy H:mm'}}
+      </p>
+       
+      <p>
+        User: {{payment.user.first_name}} {{payment.user.last_name}}
+      </p>
+       
+      <p>
+        Hospital: {{payment.hospital.name}}
+      </p>
+              
+      <p>
+        Amount: {{payment.amount}}
+      </p>
+       
+      <p>
+        Notes: {{payment.notes}}
+      </p>
+      
+    </button>
+  </ion-list>
+
+</ion-content>
