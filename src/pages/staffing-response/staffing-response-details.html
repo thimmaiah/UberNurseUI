@@ -16,7 +16,7 @@
 
 
   <ion-list>
-    <img [src]="staffingResponse.user.image">
+    <img [src]="staffingResponse.user.image" style="max-height:300px;">
     <ion-item>
       <ion-row>
         <ion-col>
@@ -79,6 +79,17 @@
         </ion-col>
         <ion-col>
           {{staffingResponse.response_status}}
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+    <ion-item>
+      <ion-row>
+        <ion-col>
+          Payment Status:
+        </ion-col>
+        <ion-col>
+          {{staffingResponse.payment_status}}
         </ion-col>
       </ion-row>
     </ion-item>

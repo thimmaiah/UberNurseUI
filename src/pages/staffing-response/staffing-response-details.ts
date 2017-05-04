@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { StaffingResponseForm } from '../staffing-response/staffing-response-form';
+import { PaymentForm } from '../payment/payment-form';
 import { StaffingRequestDetails } from '../staffing-request/staffing-request-details';
 import { StaffingResponseApi } from '../../providers/staffing-response-api';
 import { ResponseUtility } from '../../providers/response-utility';
@@ -86,6 +87,16 @@ export class StaffingResponseDetails {
     this.navCtrl.push(StaffingRequestDetails, staffingRequest);
   }
 
+  makePayment(staffingResponse) {
+    let payment = {
+      staffing_request_id: staffingResponse.staffing_request_id,
+      user_id: staffingResponse.user_id,
+      staffing_response_id: staffingResponse.id,
+      notes: "Thank you for your service."
+    }
+    this.navCtrl.push(PaymentForm, payment);
+  }
+
   presentActionSheet(staffingResponse) {
     let buttons = [];
 
@@ -136,9 +147,18 @@ export class StaffingResponseDetails {
       ]);
     } else {
 
-      buttons = buttons.concat([
-
-      ]);
+      if (this.staffingResponse.response_status == "Accepted" && this.staffingResponse.payment_status !== "Paid") {
+        buttons = buttons.concat([
+          {
+            text: 'Make Payment',
+            icon: !this.platform.is('ios') ? 'currency' : null,
+            handler: () => {
+              console.log('Make Payment clicked');
+              this.makePayment(staffingResponse);
+            }
+          }
+        ]);
+      }
     }
 
     buttons = buttons.concat([

@@ -38,13 +38,19 @@
       <p>
         {{staffingResponse.user.speciality}}
       </p>
-       
-      <ion-badge
-        *ngIf="staffingResponse.response_status" 
-        item-right [color]="staffingResponse.response_status == 'Accepted' ? 'secondary' : 'danger'">
-        {{staffingResponse.response_status}}
-      </ion-badge> 
-      
+
+      <p>
+        <ion-badge
+          *ngIf="staffingResponse.response_status" 
+          item-right [color]="staffingResponse.response_status == 'Accepted' ? 'secondary' : 'danger'">
+          {{staffingResponse.response_status}}
+        </ion-badge> 
+        <ion-badge
+          *ngIf="staffingResponse.payment_status" 
+          item-right [color]="staffingResponse.payment_status == 'Paid' ? 'secondary' : 'danger'">
+          {{staffingResponse.payment_status}}
+        </ion-badge> 
+      </p>
     </button>
   </ion-list>
 

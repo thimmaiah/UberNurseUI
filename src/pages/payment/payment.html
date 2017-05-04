@@ -14,8 +14,8 @@
        
       <p>
         For:
-        {{payment.staffing_request.start_date | date: 'dd/MM/yyyy H:mm'}} - 
-        {{payment.staffing_request.end_date | date: 'dd/MM/yyyy H:mm'}}
+        {{payment.staffing_request?.start_date | date: 'dd/MM/yyyy H:mm'}} - 
+        {{payment.staffing_request?.end_date | date: 'dd/MM/yyyy H:mm'}}
       </p>
        
       <p>
