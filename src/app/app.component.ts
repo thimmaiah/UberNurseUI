@@ -10,7 +10,9 @@ import { Hospitals } from '../pages/hospitals/hospitals';
 import { Login } from '../pages/login/login';
 import { StaffingRequest } from '../pages/staffing-request/staffing-request';
 import { StaffingResponse } from '../pages/staffing-response/staffing-response';
-import {Payment} from '../pages/payment/payment'
+import { Payment } from '../pages/payment/payment'
+
+import { Config } from '../providers/config';
 
 
 @Component({
@@ -23,7 +25,11 @@ export class MyApp {
 
   pages: Array<{ title: string, component: any }>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(public platform: Platform,
+    public statusBar: StatusBar,
+    public splashScreen: SplashScreen,
+    public config:Config) {
+
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -40,6 +46,9 @@ export class MyApp {
   }
 
   initializeApp() {
+
+    console.log(this.config.props["API_URL"]);
+
     this.platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.

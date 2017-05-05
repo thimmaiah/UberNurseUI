@@ -9,7 +9,11 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class Config {
 
-  public API_URL = "http://192.168.0.4:3000";
+  private dev = {
+    API_URL: "http://192.168.0.4:3000"
+  };
+  
+  public props = this.dev;
 
   constructor() {
     

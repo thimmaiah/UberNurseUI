@@ -8,6 +8,7 @@ import { StaffingRequest } from '../staffing-request/staffing-request';
 import { UserDetails } from '../users/user-details';
 import { UserForm } from '../users/user-form';
 import { Payment } from '../payment/payment';
+import { Config } from '../../providers/config';
 
 @Component({
   selector: 'page-home',
@@ -19,10 +20,11 @@ export class HomePage {
 
   constructor(public navCtrl: NavController,
     public respUtility: ResponseUtility,
-    private tokenService: Angular2TokenService) {
+    private tokenService: Angular2TokenService,
+    private config: Config) {
 
     this.tokenService.init({
-      apiBase: "http://192.168.0.4:3000"
+      apiBase: config.props["API_URL"]
     });
 
     this.currentUser = this.tokenService.currentUserData;
@@ -54,6 +56,7 @@ export class HomePage {
   }
 
   show_profile() {
+    this.currentUser.reload = true;
     this.navCtrl.push(UserDetails, this.currentUser);
   }
 

@@ -4,6 +4,7 @@ import { UserForm } from '../users/user-form';
 import { UserPic } from '../user-pic/user-pic';
 import { UserApi } from '../../providers/user-api';
 import { ResponseUtility } from '../../providers/response-utility';
+import { UserDoc } from '../user-doc/user-doc';
 import * as _ from 'lodash';
 
 @Component({
@@ -21,6 +22,9 @@ export class UserDetails {
     public loadingController: LoadingController,
     public respUtility: ResponseUtility) {
     this.user = this.navParams.data;
+    if(this.user.reload) {
+      this.loadUser();
+    }
   }
 
   ionViewDidLoad() {
@@ -31,6 +35,25 @@ export class UserDetails {
     this.navCtrl.push(UserForm, user);
   }
 
+  loadUser() {
+    let loader = this.loadingController.create({
+      content: 'Loading User...'
+    });
+
+    loader.present();
+
+    this.userApi.getUserDetails(this.user.id).subscribe(
+      response => {
+        this.respUtility.showSuccess("Loaded User");
+        this.user = response;
+      },
+      error => {
+        this.respUtility.showFailure(error);
+        loader.dismiss();
+      },
+      () => { loader.dismiss(); }
+    );
+  }
   deleteUser(user) {
 
     let loader = this.loadingController.create({
@@ -58,14 +81,18 @@ export class UserDetails {
 
   pendingDocs() {
     let required = ["Id Card", "Certificate", "Address Proof"]
-    let pending = _.dropWhile(required, (required_type) => { 
-      let found = _.find(this.user.user_docs, function(doc) { return doc.doc_type == required_type; }); 
-      return found != null; 
+    let pending = _.dropWhile(required, (required_type) => {
+      let found = _.find(this.user.user_docs, function (doc) { return doc.doc_type == required_type; });
+      return found != null;
     });
-    return _.map(pending, (doc_type) => {return {name:"Not Uploaded", doc_type: doc_type}});
+    return _.map(pending, (doc_type) => { return { name: "Not Uploaded", doc_type: doc_type } });
   }
 
   uploadNow(doc) {
     this.navCtrl.push(UserPic, doc);
+  }
+
+  viewDoc(doc) {
+    this.navCtrl.push(UserDoc, doc);
   }
 }

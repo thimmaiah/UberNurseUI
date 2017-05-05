@@ -54,27 +54,27 @@
 
     <ion-card-content>
 
-      <ion-item *ngFor="let doc of user.user_docs">
+      <ion-list>
 
-        <ion-label>
+        <button ion-item *ngFor="let doc of user.user_docs" (click)="viewDoc(doc)">
+          <ion-icon name="document" item-right [color]="doc.verified == true ? 'secondary' : 'danger'"></ion-icon>
           <p>{{doc.doc_type}}</p>
           <p>Uploaded: {{doc.created_at | date : 'dd/MM/yyyy' }}</p>
-          <ion-badge [color]="doc.verified == 'true' ? 'secondary' : 'danger'">
-            {{doc.verified == 'true' ? 'Verified' : 'Pending Verification'}}
+          <ion-badge [color]="doc.verified == true ? 'secondary' : 'danger'">
+            {{doc.verified == true ? 'Verified' : 'Pending Verification'}}
           </ion-badge>
-        </ion-label>
+        </button>
 
-      </ion-item>
 
-      <ion-item *ngFor="let doc of pendingDocs()">
-
-        <ion-label (click)="uploadNow(doc)">
+        <button ion-item *ngFor="let doc of pendingDocs()" (click)="uploadNow(doc)">
+          <ion-icon name="cloud-upload" item-right color="primary"></ion-icon>
           <p>{{doc.doc_type}}</p>
-          <p>Upload Now</p>
-        </ion-label>
-        <ion-toggle right checked="doc.validated == 'true''"></ion-toggle>
+          <ion-badge>
+            Upload Now
+          </ion-badge>   
+        </button>
 
-      </ion-item>
+      </ion-list>
 
     </ion-card-content>
 

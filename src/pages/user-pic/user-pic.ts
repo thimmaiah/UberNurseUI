@@ -157,7 +157,8 @@ export class UserPic {
 
   public uploadImage() {
     // Destination URL
-    let url = "http://192.168.0.4:3000/user_docs";
+    let api_url = this.config.props["API_URL"]
+    let url = `${api_url}/user_docs`;
 
     // File for Upload
     let targetPath = this.lastImage;
