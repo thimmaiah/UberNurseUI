@@ -22,7 +22,7 @@ export class HomePage {
     private tokenService: Angular2TokenService) {
 
     this.tokenService.init({
-      apiBase: "http://localhost:3000"
+      apiBase: "http://192.168.0.4:3000"
     });
 
     this.currentUser = this.tokenService.currentUserData;
@@ -31,8 +31,11 @@ export class HomePage {
   }
 
   ionViewWillEnter() {
-    console.log('ionViewWillEnter HomePage');
     this.currentUser = this.tokenService.currentUserData;
+    
+    console.log('ionViewWillEnter HomePage ');
+    console.log(this.currentUser);
+    
     if(this.currentUser && this.currentUser.role == "Care Giver" && this.currentUser.verified !== 'true') {
       this.respUtility.showWarning("Please upload your documents for verification");
     }

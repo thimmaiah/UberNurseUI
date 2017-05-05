@@ -44,6 +44,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpModule } from '@angular/http';
 import {MomentModule} from 'angular2-moment';
 import {UserApi} from '../providers/user-api'
+import {Config} from '../providers/config'
 import {HospitalApi} from '../providers/hospital-api'
 import {PaymentApi} from '../providers/payment-api'
 import {StaffingRequestApi} from '../providers/staffing-request-api'
@@ -105,6 +106,7 @@ import {ResponseUtility} from '../providers/response-utility'
     HospitalDetails
   ],
   providers: [
+    Config,
     UserApi,
     HospitalApi,
     StaffingRequestApi,

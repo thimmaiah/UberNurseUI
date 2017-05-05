@@ -6,7 +6,9 @@ import { Transfer } from '@ionic-native/transfer';
 import { FilePath } from '@ionic-native/file-path';
 import { CameraPreview, CameraPreviewPictureOptions, CameraPreviewOptions, CameraPreviewDimensions } from '@ionic-native/camera-preview';
 import { Diagnostic } from '@ionic-native/diagnostic';
-
+import { ResponseUtility } from '../../providers/response-utility';
+import { Config } from '../../providers/config';
+import { Angular2TokenService } from 'angular2-token';
 
 
 declare var cordova: any;
@@ -19,6 +21,7 @@ export class UserPic {
 
   lastImage: string = null;
   base64Image = null;
+  current_user = null;
 
   cameraPreviewOpts: CameraPreviewOptions = {
     x: 0,
@@ -34,6 +37,7 @@ export class UserPic {
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
+    public respUtility: ResponseUtility,
     public actionSheetCtrl: ActionSheetController,
     public toastCtrl: ToastController,
     public platform: Platform,
@@ -43,99 +47,16 @@ export class UserPic {
     private camera: Camera,
     private filePath: FilePath,
     private file: File,
-    private transfer: Transfer) {
+    private transfer: Transfer,
+    private config: Config,
+    private tokenService: Angular2TokenService) {
 
-  
+      this.current_user = tokenService.currentUserData;
 
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad UserPic');
-  }
-
-
-  takePic() {
-    const options: CameraOptions = {
-      quality: 100,
-      destinationType: this.camera.DestinationType.DATA_URL,
-      encodingType: this.camera.EncodingType.JPEG,
-      mediaType: this.camera.MediaType.PICTURE
-    }
-
-    this.camera.getPicture(options).then((imageData) => {
-      // imageData is either a base64 encoded string or a file URI
-      // If it's base64:
-      this.base64Image = 'data:image/jpeg;base64,' + imageData;
-    }, (err) => {
-      // Handle error
-    });
-  }
-
-  checkPermissions() {
-    this.diagnostic.isCameraAuthorized().then((authorized) => {
-      if (authorized) {
-        console.log('starting Camera');
-        this.previewPic();
-      }
-      else {
-        this.diagnostic.requestCameraAuthorization().then((status) => {
-          if (status == this.diagnostic.permissionStatus.GRANTED)
-            this.previewPic();
-          else {
-            // Permissions not granted
-            // Therefore, create and present toast
-            this.toastCtrl.create(
-              {
-                message: "Cannot access camera",
-                position: "bottom",
-                duration: 5000
-              }
-            ).present();
-          }
-        });
-      }
-    });
-  }
-  previewPic() {
-    var cameraPreviewOpts: CameraPreviewOptions = {
-      x: 0,
-      y: 0,
-      width: window.screen.width,
-      height: window.screen.height,
-      camera: 'rear',
-      tapPhoto: true,
-      previewDrag: true,
-      toBack: true,
-      alpha: 1
-    };
-
-    var that = this;
-
-    let options = {
-      x: 0,
-      y: 0,
-      width: 120,
-      height: 120,
-      camera: "back",
-      toBack: false,
-      tapPhoto: false,
-      previewDrag: false
-    };
-    console.log("camera: " + options.camera);
-    this.cameraPreview.startCamera(cameraPreviewOpts).then(() => {
-      console.log("startCamera");
-      that.toastCtrl.create(
-        {
-          message: "Starting Camera: OK",
-          position: "bottom",
-          duration: 5000
-        }
-      ).present();
-    }, function (error) {
-      console.log('error', error);
-    });
-
-
   }
 
   public takePicture(sourceType) {
@@ -153,21 +74,15 @@ export class UserPic {
 
     // Get the data of an image
     this.camera.getPicture(options).then((imagePath) => {
+      console.log("imagePath = " + imagePath);
       // Special handling for Android library
       if (this.platform.is('android') && sourceType === this.camera.PictureSourceType.PHOTOLIBRARY) {
-        this.filePath.resolveNativePath(imagePath)
-          .then(filePath => {
-            let correctPath = filePath.substr(0, filePath.lastIndexOf('/') + 1);
 
-            let currentNameBuilder = imagePath.substr(imagePath.lastIndexOf('/') + 1);
-
-            let currentName = currentNameBuilder.substr(0, currentNameBuilder.lastIndexOf('?')); console.log(correctPath);
-            console.log(currentName);
-            this.copyFileToLocalDir(correctPath, currentName, this.createFileName());
-          });
+            this.lastImage = "file://" + imagePath;
+        
       } else {
-        var currentName = imagePath.substr(imagePath.lastIndexOf('/') + 1);
-        var correctPath = imagePath.substr(0, imagePath.lastIndexOf('/') + 1);
+        let currentName = imagePath.substr(imagePath.lastIndexOf('/') + 1);
+        let correctPath = imagePath.substr(0, imagePath.lastIndexOf('/') + 1);
         console.log(correctPath);
         console.log(currentName);
 
@@ -192,9 +107,7 @@ export class UserPic {
         {
           text: 'Use Camera',
           handler: () => {
-            //this.takePicture(this.camera.PictureSourceType.CAMERA);
-            //this.takePic();
-            this.checkPermissions();
+            this.takePicture(this.camera.PictureSourceType.CAMERA);
           }
         },
         {
@@ -212,6 +125,7 @@ export class UserPic {
     var d = new Date(),
       n = d.getTime(),
       newFileName = n + ".jpg";
+    console.log("newFileName = " + newFileName);
     return newFileName;
   }
 
@@ -219,6 +133,8 @@ export class UserPic {
   private copyFileToLocalDir(namePath, currentName, newFileName) {
     this.file.copyFile(namePath, currentName, cordova.file.dataDirectory, newFileName).then(success => {
       this.lastImage = newFileName;
+      console.log("lastImage = " + this.lastImage);
+
     }, error => {
       console.log(error);
       this.presentToast('Error while storing file.');
@@ -246,20 +162,32 @@ export class UserPic {
 
   public uploadImage() {
     // Destination URL
-    var url = "http://localhost:3000/user_docs";
+    let url = "http://192.168.0.4:3000/user_docs";
 
     // File for Upload
-    var targetPath = this.pathForImage(this.lastImage);
+    let targetPath = this.lastImage;
 
     // File name only
-    var filename = this.lastImage;
+    let filename = this.lastImage.substr(this.lastImage.lastIndexOf('/') + 1);
+        
+    let authData = this.tokenService.currentAuthData;
 
     var options = {
-      fileKey: "file",
+      fileKey: "user_doc[doc]",
       fileName: filename,
       chunkedMode: false,
       mimeType: "multipart/form-data",
-      params: { 'fileName': filename }
+      params: { 'user_doc[name]': filename, 
+                "user_doc[doc_type]": "Id Card",
+                // Need the auth headers as user_docs is a protected API
+                "headers": {
+                  "access-token": authData.accessToken,
+                  "client" : authData.client,
+                  "token-type" : authData.tokenType,
+                  "uid" : authData.uid,
+                  "expiry" : authData.expiry
+                } 
+            }
     };
 
     let fileTransfer = this.transfer.create();
