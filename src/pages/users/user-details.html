@@ -53,19 +53,27 @@
 
 
     <ion-card-content>
-      <ion-item>
-        <ion-label>Nursing Certificates</ion-label>
-        <ion-toggle checked="false"></ion-toggle>
+
+      <ion-item *ngFor="let doc of user.user_docs">
+
+        <ion-label>
+          <p>{{doc.doc_type}}</p>
+          <p>Uploaded: {{doc.created_at | date : 'dd/MM/yyyy' }}</p>
+          <ion-badge [color]="doc.verified == 'true' ? 'secondary' : 'danger'">
+            {{doc.verified == 'true' ? 'Verified' : 'Pending Verification'}}
+          </ion-badge>
+        </ion-label>
+
       </ion-item>
 
-      <ion-item>
-        <ion-label>Passport</ion-label>
-        <ion-toggle checked="true"></ion-toggle>
-      </ion-item>
+      <ion-item *ngFor="let doc of pendingDocs()">
 
-      <ion-item>
-        <ion-label>Address Proof</ion-label>
-        <ion-toggle checked="true"></ion-toggle>
+        <ion-label (click)="uploadNow(doc)">
+          <p>{{doc.doc_type}}</p>
+          <p>Upload Now</p>
+        </ion-label>
+        <ion-toggle right checked="doc.validated == 'true''"></ion-toggle>
+
       </ion-item>
 
     </ion-card-content>

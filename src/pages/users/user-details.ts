@@ -1,15 +1,11 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, ToastController, LoadingController } from 'ionic-angular';
 import { UserForm } from '../users/user-form';
+import { UserPic } from '../user-pic/user-pic';
 import { UserApi } from '../../providers/user-api';
 import { ResponseUtility } from '../../providers/response-utility';
-/**
- * Generated class for the UserDetails page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
-//@IonicPage()
+import * as _ from 'lodash';
+
 @Component({
   selector: 'page-user-details',
   templateUrl: 'user-details.html',
@@ -58,5 +54,18 @@ export class UserDetails {
 
   confirmDelete(user) {
     this.respUtility.confirmDelete(this.deleteUser.bind(this), user);
+  }
+
+  pendingDocs() {
+    let required = ["Id Card", "Certificate", "Address Proof"]
+    let pending = _.dropWhile(required, (required_type) => { 
+      let found = _.find(this.user.user_docs, function(doc) { return doc.doc_type == required_type; }); 
+      return found != null; 
+    });
+    return _.map(pending, (doc_type) => {return {name:"Not Uploaded", doc_type: doc_type}});
+  }
+
+  uploadNow(doc) {
+    this.navCtrl.push(UserPic, doc);
   }
 }

@@ -70,7 +70,8 @@ export class HomePage {
         this.respUtility.showMsg("Logged out");
       },
       error => {
-        console.log(error)
+        console.log(error);
+        this.currentUser = null;
         this.respUtility.showWarning("Could not log user out at this time");
       } 
     );

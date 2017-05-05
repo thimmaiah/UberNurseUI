@@ -59,6 +59,7 @@ export class Login {
       },
       error => {
         console.log(error);
+        loader.dismiss();
         if(error.status == 401) {
           let body = JSON.parse(error._body);
           this.respUtility.showWarning(body.errors);

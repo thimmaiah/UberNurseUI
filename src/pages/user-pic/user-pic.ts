@@ -22,6 +22,7 @@ export class UserPic {
   lastImage: string = null;
   base64Image = null;
   current_user = null;
+  user_doc : {};
 
   cameraPreviewOpts: CameraPreviewOptions = {
     x: 0,
@@ -52,6 +53,7 @@ export class UserPic {
     private tokenService: Angular2TokenService) {
 
       this.current_user = tokenService.currentUserData;
+      this.user_doc = this.navParams.data;
 
   }
 
@@ -85,12 +87,13 @@ export class UserPic {
         let correctPath = imagePath.substr(0, imagePath.lastIndexOf('/') + 1);
         console.log(correctPath);
         console.log(currentName);
+        this.lastImage = imagePath;
 
-        this.copyFileToLocalDir(correctPath, currentName, this.createFileName());
+        //this.copyFileToLocalDir(correctPath, currentName, this.createFileName());
       }
     }, (err) => {
       console.log(err);
-      this.presentToast('Error while selecting image.');
+      this.respUtility.showWarning('Error while selecting image.');
     });
   }
 
@@ -137,18 +140,10 @@ export class UserPic {
 
     }, error => {
       console.log(error);
-      this.presentToast('Error while storing file.');
+      this.respUtility.showWarning('Error while storing file.');
     });
   }
 
-  private presentToast(text) {
-    let toast = this.toastCtrl.create({
-      message: text,
-      duration: 3000,
-      position: 'top'
-    });
-    toast.present();
-  }
 
   // Always get the accurate path to your apps folder
   public pathForImage(img) {
@@ -168,25 +163,26 @@ export class UserPic {
     let targetPath = this.lastImage;
 
     // File name only
-    let filename = this.lastImage.substr(this.lastImage.lastIndexOf('/') + 1);
+    this.user_doc["name"] = this.lastImage.substr(this.lastImage.lastIndexOf('/') + 1);
         
     let authData = this.tokenService.currentAuthData;
 
     var options = {
       fileKey: "user_doc[doc]",
-      fileName: filename,
+      fileName: this.user_doc["name"],
       chunkedMode: false,
       mimeType: "multipart/form-data",
-      params: { 'user_doc[name]': filename, 
-                "user_doc[doc_type]": "Id Card",
-                // Need the auth headers as user_docs is a protected API
-                "headers": {
-                  "access-token": authData.accessToken,
-                  "client" : authData.client,
-                  "token-type" : authData.tokenType,
-                  "uid" : authData.uid,
-                  "expiry" : authData.expiry
-                } 
+      params: { 'user_doc[name]': this.user_doc["name"], 
+                "user_doc[doc_type]": this.user_doc["doc_type"],
+                "user_doc[user_id]": this.current_user.id,                
+                // // Need the auth headers as user_docs is a protected API
+                // "headers": {
+                //   "access-token": authData.accessToken,
+                //   "client" : authData.client,
+                //   "token-type" : authData.tokenType,
+                //   "uid" : authData.uid,
+                //   "expiry" : authData.expiry
+                // } 
             }
     };
 
@@ -200,10 +196,14 @@ export class UserPic {
     // Use the FileTransfer to upload the image
     fileTransfer.upload(targetPath, url, options).then(data => {
       loading.dismissAll()
-      this.presentToast('Image succesful uploaded.');
+      this.respUtility.showSuccess('Image succesful uploaded.');
+      console.log(data);
+      // Update the tokenService.currentAuthData
+      
+      this.navCtrl.pop();
     }, err => {
       loading.dismissAll()
-      this.presentToast('Error while uploading file.');
+      this.respUtility.showWarning('Error while uploading file.');
     });
   }
 }
