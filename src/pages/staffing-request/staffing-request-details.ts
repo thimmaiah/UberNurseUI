@@ -84,15 +84,6 @@ export class StaffingRequestDetails {
     );
   }
 
-  approveRequest(staffingRequest) {
-    staffingRequest.request_status = "Approved"
-    this.updateStaffingRequest(staffingRequest);
-  }
-
-  denyRequest(staffingRequest) {
-    staffingRequest.request_status = "Denied"
-    this.updateStaffingRequest(staffingRequest);
-  }
 
   showResponses(staffing_request) {
     this.navCtrl.push(StaffingResponse, staffing_request);
@@ -100,18 +91,6 @@ export class StaffingRequestDetails {
 
   confirmDelete(staffingRequest) {
     this.respUtility.confirmDelete(this.deleteStaffingRequest.bind(this), staffingRequest);
-  }
-
-  confirmApprove(staffingRequest) {
-    this.respUtility.confirmAction(this.approveRequest.bind(this), staffingRequest, "Once approved the request cannot be modified. Are you sure?");
-  }
-
-  confirmDeny(staffingRequest) {
-    this.respUtility.confirmAction(this.denyRequest.bind(this), staffingRequest, "Deny the current request. Are you sure?");
-  }
-
-  canApprove(staffing_request) {
-    return (staffing_request.can_manage == true && staffing_request.request_status != "Approved");
   }
 
   sendResponse(staffing_request) {
@@ -177,31 +156,6 @@ export class StaffingRequestDetails {
     //     ]);
     //   }
     // }
-
-    if (this.canApprove(staffingRequest)) {
-
-      if (staffingRequest.request_status != 'Approved') {
-        buttons = buttons.concat([
-          {
-            text: 'Approve Request',
-            icon: !this.platform.is('ios') ? 'checkmark' : null,
-            handler: () => {
-              console.log('Approve clicked');
-              this.confirmApprove(staffingRequest);
-            }
-          },
-          {
-            text: 'Deny Request',
-            role: 'destructive',
-            icon: !this.platform.is('ios') ? 'close-circle' : null,
-            handler: () => {
-              console.log('Deny clicked');
-              this.confirmDeny(staffingRequest);
-            }
-          }
-        ]);
-      }
-    }
 
     buttons = buttons.concat([
       {

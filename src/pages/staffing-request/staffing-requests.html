@@ -30,18 +30,12 @@
       </p>
       
       <ion-badge>{{staffingRequest.rate_per_hour | currency}}</ion-badge> 
-      <ion-badge color="secondary" *ngIf="staffingRequest.request_status == 'Approved'">
-        Approved
+      <ion-badge color="secondary" *ngIf="staffingRequest.request_status == 'Open'">
+        Open
       </ion-badge>
-      <ion-badge color="danger" *ngIf="staffingRequest.request_status == 'Denied'">
-        Denied
+      <ion-badge color="danger" *ngIf="staffingRequest.request_status == 'Closed'">
+        Closed
       </ion-badge>
-      <ion-badge class="warning-badge" *ngIf="!staffingRequest.request_status || staffingRequest.request_status == 'Pending Approval'">
-        Pending Approval
-      </ion-badge>
-     
-
-      
 
 
     </button>

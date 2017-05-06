@@ -111,7 +111,7 @@ export class StaffingRequestForm {
       } else {
         this.staffingRequestApi.createStaffingRequest(this.staffingRequest).subscribe(
           staffingRequest => {
-            this.respUtility.showSuccess('Request saved successfully. Please get it approved at the earliest.');
+            this.respUtility.showSuccess('Request saved successfully. We will notify you when we fill the slot with a Care Giver.');
             this.navCtrl.pop();
           },
           error => {
