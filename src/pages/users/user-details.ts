@@ -80,7 +80,7 @@ export class UserDetails {
   }
 
   pendingDocs() {
-    let required = ["Id Card", "Certificate", "Address Proof"]
+    let required = ["ID Card", "Certificate", "Address Proof"]
     let pending = _.dropWhile(required, (required_type) => {
       let found = _.find(this.user.user_docs, function (doc) { return doc.doc_type == required_type; });
       return found != null;
