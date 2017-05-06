@@ -16,12 +16,12 @@ export class UserDoc {
   doc_url = null;
   current_user: {};
   constructor(public navCtrl: NavController,
-              public navParams: NavParams,
-              private config: Config,
-              private tokenService: Angular2TokenService,
-              private userDocApi: UserDocApi,
-              private loadingController: LoadingController,
-              private respUtility: ResponseUtility) {
+    public navParams: NavParams,
+    private config: Config,
+    private tokenService: Angular2TokenService,
+    private userDocApi: UserDocApi,
+    private loadingController: LoadingController,
+    private respUtility: ResponseUtility) {
 
     this.document = this.navParams.data;
     this.doc_url = config.props["API_URL"] + this.document.doc;

@@ -1,0 +1,47 @@
+<!--
+  Generated template for the Ratingss page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Ratings</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-card *ngIf="ratings.length == 0">
+    <ion-card-title class="center">
+      No Ratings Available
+    </ion-card-title>
+
+    <ion-card-content>
+      <p>
+        Sorry there are no Ratings at this time. Please check back later.
+      </p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-list>
+    <button ion-item *ngFor="let rating of ratings" (click)=getRatingDetails(rating)>
+      
+      <ion-thumbnail item-left>
+        <img [src]="rating.user.image">
+      </ion-thumbnail> 
+      
+      <rating [(ngModel)]="rating.stars" readOnly="false"></rating>
+       
+      <p>
+        {{rating.comments}}
+      </p>
+      
+    </button>
+  </ion-list>
+
+</ion-content>

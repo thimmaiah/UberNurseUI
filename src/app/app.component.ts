@@ -11,6 +11,7 @@ import { Login } from '../pages/login/login';
 import { StaffingRequest } from '../pages/staffing-request/staffing-request';
 import { StaffingResponse } from '../pages/staffing-response/staffing-response';
 import { Payment } from '../pages/payment/payment'
+import { Rating } from '../pages/rating/rating'
 
 import { Config } from '../providers/config';
 
@@ -40,7 +41,8 @@ export class MyApp {
       { title: 'StaffingResponse', component: StaffingResponse },
       { title: 'UserPic', component: UserPic },
       { title: 'Users', component: Users },
-      { title: 'Payments', component: Payment }
+      { title: 'Payments', component: Payment },
+      { title: 'Ratings', component: Rating }
     ];
 
   }
@@ -63,3 +65,4 @@ export class MyApp {
     this.nav.push(page.component);
   }
 }
+

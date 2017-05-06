@@ -13,6 +13,8 @@ import { HomePage } from '../pages/home/home';
 import { Login } from '../pages/login/login';
 
 import { Angular2TokenService } from 'angular2-token';
+// Import ionic2-rating module
+import { Ionic2RatingModule } from 'ionic2-rating';
 
 import { UserPic } from '../pages/user-pic/user-pic';
 import { UserDoc } from '../pages/user-doc/user-doc';
@@ -32,6 +34,11 @@ import { Payment } from '../pages/payment/payment';
 import { PaymentDetails } from '../pages/payment/payment-details';
 import { PaymentForm } from '../pages/payment/payment-form';
 
+import { Rating } from '../pages/rating/rating';
+import { RatingDetails } from '../pages/rating/rating-details';
+import { RatingForm } from '../pages/rating/rating-form';
+
+
 
 import { Hospitals } from '../pages/hospitals/hospitals';
 import { HospitalForm } from '../pages/hospitals/hospital-form';
@@ -47,6 +54,7 @@ import {UserDocApi} from '../providers/user-doc-api'
 import {Config} from '../providers/config'
 import {HospitalApi} from '../providers/hospital-api'
 import {PaymentApi} from '../providers/payment-api'
+import {RatingApi} from '../providers/rating-api'
 import {StaffingRequestApi} from '../providers/staffing-request-api'
 import {StaffingResponseApi} from '../providers/staffing-response-api'
 
@@ -62,6 +70,9 @@ import {ResponseUtility} from '../providers/response-utility'
     Users,    
     UserForm,
     UserDetails,
+    Rating,
+    RatingForm,
+    RatingDetails,
     StaffingResponse,
     StaffingResponseForm,
     StaffingResponseDetails,
@@ -80,6 +91,7 @@ import {ResponseUtility} from '../providers/response-utility'
     HttpModule,
     RouterModule,
     MomentModule,
+    Ionic2RatingModule,
     IonicModule.forRoot(MyApp),
   ],
   bootstrap: [IonicApp],
@@ -92,6 +104,9 @@ import {ResponseUtility} from '../providers/response-utility'
     Users,
     UserForm,
     UserDetails,
+    Rating,
+    RatingForm,
+    RatingDetails,
     StaffingResponse,
     StaffingResponseForm,
     StaffingResponseDetails,
@@ -109,6 +124,7 @@ import {ResponseUtility} from '../providers/response-utility'
     Config,
     UserApi,
     UserDocApi,
+    RatingApi,
     HospitalApi,
     StaffingRequestApi,
     StaffingResponseApi,

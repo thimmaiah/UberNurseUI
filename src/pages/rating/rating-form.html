@@ -1,0 +1,54 @@
+<!--
+  Generated template for the RatingsForm pemail.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pemails and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Ratings</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+      <p *ngIf="submitAttempt" style="color: #ea6153;">Please fill out all details accurately.</p>
+
+      <ion-list no-lines>
+
+        <form [formGroup]="slideOneForm">
+
+            
+
+          <ion-item>
+            <rating formControlName="stars"  [(ngModel)]="rating.stars" readOnly="false"></rating>
+          </ion-item>
+
+          <ion-item *ngIf="!slideOneForm.controls.stars.valid  && (slideOneForm.controls.stars.dirty || submitAttempt)">
+            <p>Please enter a valid Stars.</p>
+          </ion-item>
+
+           
+
+          <ion-item>
+            <ion-label floating>Comments</ion-label>
+            <ion-input formControlName="comments" type="text" 
+            [(ngModel)]="rating.comments"
+            [class.invalid]="!slideOneForm.controls.comments.valid && (slideOneForm.controls.comments.dirty || submitAttempt)"></ion-input>
+          </ion-item>
+
+          <ion-item *ngIf="!slideOneForm.controls.comments.valid  && (slideOneForm.controls.comments.dirty || submitAttempt)">
+            <p>Please enter a valid Comments.</p>
+          </ion-item>
+
+          
+        </form>
+
+      </ion-list>
+
+      <button ion-button full color="primary" (click)="save()">Save</button>
+
+</ion-content>

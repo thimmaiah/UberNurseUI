@@ -73,6 +73,21 @@ $colors: (
     }
 }
 
+
+ ul {
+    padding-left: 0px;
+
+    &.rating li {
+        padding: 0px 0px !important;
+        background: none;
+        color: #ffb400;
+
+        ion-icon {
+            font-size: 30px;
+        }
+    }
+  }
+
 .home-page {
 
   ion-card {
@@ -96,4 +111,5 @@ $colors: (
     width: 100%;
     color: #fff;
   }
+  
 }
