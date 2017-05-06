@@ -22,7 +22,7 @@ export class UserDetails {
     public loadingController: LoadingController,
     public respUtility: ResponseUtility) {
     this.user = this.navParams.data;
-    if(this.user.reload) {
+    if (this.user.reload) {
       this.loadUser();
     }
   }
@@ -94,5 +94,19 @@ export class UserDetails {
 
   viewDoc(doc) {
     this.navCtrl.push(UserDoc, doc);
+  }
+
+  getDocColorAndText(doc) {
+    switch (doc.verified) {
+      case true: {
+        return ["secondary", "Verified"];
+      }
+      case false: {
+        return ["danger", "Rejected"];
+      }
+      default: {
+        return ["primary", "Pending Verification"];
+      }
+    }
   }
 }

@@ -1,4 +1,3 @@
-
 <ion-header>
 
   <ion-navbar>
@@ -9,5 +8,21 @@
 
 
 <ion-content padding>
-  <img [src]="doc_url"/>
+  <img [src]="doc_url" />
+
+  <ion-item>
+    <ion-label floating>Notes</ion-label>
+    <ion-input [(ngModel)]="document.notes"></ion-input>
+  </ion-item>
+
+  <ion-row *ngIf="current_user.role == 'Super User'">
+
+    <ion-col>
+      <button ion-button full color="secondary" (click)="markVerified(document)">Mark Verified</button>
+    </ion-col>
+    <ion-col>
+      <button ion-button full color="danger" (click)="markRejected(document)">Mark Rejected</button>
+    </ion-col>
+
+  </ion-row>
 </ion-content>
