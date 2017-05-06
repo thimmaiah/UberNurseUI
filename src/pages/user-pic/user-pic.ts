@@ -176,6 +176,7 @@ export class UserPic {
       params: { 'user_doc[name]': this.user_doc["name"], 
                 "user_doc[doc_type]": this.user_doc["doc_type"],
                 "user_doc[user_id]": this.current_user.id,                
+                "user_doc[id]": this.user_doc["id"],
                 // // Need the auth headers as user_docs is a protected API
                 // "headers": {
                 //   "access-token": authData.accessToken,

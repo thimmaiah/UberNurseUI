@@ -25,4 +25,10 @@
     </ion-col>
 
   </ion-row>
+  <ion-row *ngIf="document.verified == false">
+    <ion-col>
+      <button ion-button full color="primary" (click)="uploadDocument(document)">Upload Document</button>
+    </ion-col>
+  </ion-row>
+
 </ion-content>

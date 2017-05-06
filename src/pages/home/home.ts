@@ -38,7 +38,7 @@ export class HomePage {
     console.log('ionViewWillEnter HomePage ');
     console.log(this.currentUser);
     
-    if(this.currentUser && this.currentUser.role == "Care Giver" && this.currentUser.verified !== 'true') {
+    if(this.currentUser && this.currentUser.role == "Care Giver" && this.currentUser.verified !== true) {
       this.respUtility.showWarning("Please upload your documents for verification");
     }
   }
@@ -56,7 +56,6 @@ export class HomePage {
   }
 
   show_profile() {
-    this.currentUser.reload = true;
     this.navCtrl.push(UserDetails, this.currentUser);
   }
 

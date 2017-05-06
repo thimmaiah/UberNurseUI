@@ -21,11 +21,11 @@ export class Users {
   user: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    public loadingController: LoadingController, 
+    public loadingController: LoadingController,
     public userApi: UserApi, public respUtility: ResponseUtility) {
   }
 
-  
+
 
   ionViewWillEnter() {
     console.log('ionViewWillEnter Users');
@@ -48,21 +48,6 @@ export class Users {
   }
 
   getUserDetails(user) {
-    let loader = this.loadingController.create({
-      content: 'Loading Users...'
-    });
-
-    loader.present();
-
-    this.userApi.getUserDetails(user.id).subscribe(
-      user => {
-        this.user = user;
-        console.log("got user " + user);
-        this.navCtrl.push(UserDetails, user);
-      },
-      error => { this.respUtility.showFailure(error); loader.dismiss();},
-      () => { loader.dismiss(); }
-    );
-
+    this.navCtrl.push(UserDetails, user);
   }
 }

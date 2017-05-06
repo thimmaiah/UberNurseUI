@@ -4,6 +4,7 @@ import { Config } from '../../providers/config';
 import { Angular2TokenService } from 'angular2-token';
 import { UserDocApi } from '../../providers/user-doc-api';
 import { ResponseUtility } from '../../providers/response-utility';
+import { UserPic } from '../user-pic/user-pic';
 
 @Component({
   selector: 'page-user-doc',
@@ -15,12 +16,13 @@ export class UserDoc {
   doc_url = null;
   current_user: {};
   constructor(public navCtrl: NavController,
-    public navParams: NavParams,
-    private config: Config,
-    private tokenService: Angular2TokenService,
-    private userDocApi: UserDocApi,
-    private loadingController: LoadingController,
-    private respUtility: ResponseUtility) {
+              public navParams: NavParams,
+              private config: Config,
+              private tokenService: Angular2TokenService,
+              private userDocApi: UserDocApi,
+              private loadingController: LoadingController,
+              private respUtility: ResponseUtility) {
+
     this.document = this.navParams.data;
     this.doc_url = config.props["API_URL"] + this.document.doc;
 
@@ -29,6 +31,10 @@ export class UserDoc {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad UserDoc');
+  }
+
+  uploadDocument(document) {
+    this.navCtrl.push(UserPic, document);
   }
 
   markVerified(document) {

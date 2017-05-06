@@ -15,20 +15,22 @@ export class UserDetails {
 
   user: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams,
     public userApi: UserApi,
     public alertController: AlertController,
     public toastController: ToastController,
     public loadingController: LoadingController,
     public respUtility: ResponseUtility) {
+    
     this.user = this.navParams.data;
-    if (this.user.reload) {
-      this.loadUser();
-    }
+    
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad UserDetails');
+  ionViewWillEnter() {
+    console.log('ionViewWillEnter UserDetails');
+    // Always reload the user from the server for a fresh copy
+    this.loadUser();
   }
 
   editUser(user) {
