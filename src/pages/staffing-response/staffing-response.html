@@ -37,7 +37,7 @@
       <p>
         Name: {{staffingResponse.user.first_name}}, {{staffingResponse.user.last_name}}
       </p>
-
+      <rating [(ngModel)]="staffingResponse.user.rating" readOnly="true"></rating>
       <p>
         Phone: {{staffingResponse.user.phone}}
       </p>

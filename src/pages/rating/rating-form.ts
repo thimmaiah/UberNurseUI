@@ -64,6 +64,7 @@ export class RatingForm {
         this.ratingApi.updateRating(this.rating).subscribe(
           rating => {
             this.respUtility.showSuccess('Rating saved successfully.');
+            this.navCtrl.pop();
           },
           error => {
             this.respUtility.showFailure(error);
@@ -75,6 +76,7 @@ export class RatingForm {
         this.ratingApi.createRating(this.rating).subscribe(
           rating => {
             this.respUtility.showSuccess('Rating saved successfully.');
+            this.navCtrl.pop();
           },
           error => {
             this.respUtility.showFailure(error);

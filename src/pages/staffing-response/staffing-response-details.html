@@ -24,6 +24,7 @@
         </ion-col>
         <ion-col>
           {{staffingResponse.user.first_name}}, {{staffingResponse.user.last_name}}
+          <rating [(ngModel)]="staffingResponse.user.rating" readOnly="true"></rating>
         </ion-col>
       </ion-row>
     </ion-item>

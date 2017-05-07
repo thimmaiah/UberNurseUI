@@ -15,7 +15,10 @@
 <ion-content padding>
 
   <button ion-item (click)="editUser(user)">
-      {{user.first_name}} {{user.last_name}} 
+      {{user.first_name}} {{user.last_name}}
+      <p *ngIf="user.role == 'Care Giver'">
+        <rating [(ngModel)]="user.rating" readOnly="true"></rating>
+      </p> 
       <p>
         {{user.phone}}
       </p>

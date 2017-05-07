@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { StaffingResponseForm } from '../staffing-response/staffing-response-form';
 import { PaymentForm } from '../payment/payment-form';
+import { RatingForm } from '../rating/rating-form';
 import { StaffingRequestDetails } from '../staffing-request/staffing-request-details';
 import { StaffingResponseApi } from '../../providers/staffing-response-api';
 import { ResponseUtility } from '../../providers/response-utility';
@@ -97,6 +98,16 @@ export class StaffingResponseDetails {
     this.navCtrl.push(PaymentForm, payment);
   }
 
+  rate(staffingResponse) {
+    let rating = {
+      staffing_request_id: staffingResponse.staffing_request_id,
+      user_id: staffingResponse.user_id,
+      staffing_response_id: staffingResponse.id,
+      comments: "Great Work."
+    }
+    this.navCtrl.push(RatingForm, rating);
+  }
+
   presentActionSheet(staffingResponse) {
     let buttons = [];
 
@@ -147,17 +158,32 @@ export class StaffingResponseDetails {
       ]);
     } else {
 
-      if (this.staffingResponse.response_status == "Accepted" && this.staffingResponse.payment_status !== "Paid") {
-        buttons = buttons.concat([
-          {
-            text: 'Make Payment',
-            icon: !this.platform.is('ios') ? 'cash' : null,
-            handler: () => {
-              console.log('Make Payment clicked');
-              this.makePayment(staffingResponse);
+      if (this.staffingResponse.response_status == "Accepted") {
+        if (this.staffingResponse.payment_status !== "Paid") {
+          buttons = buttons.concat([
+            {
+              text: 'Make Payment',
+              icon: !this.platform.is('ios') ? 'cash' : null,
+              handler: () => {
+                console.log('Make Payment clicked');
+                this.makePayment(staffingResponse);
+              }
             }
-          }
-        ]);
+          ]);
+        }
+
+        if (this.staffingResponse.rated != true) {
+          buttons = buttons.concat([
+            {
+              text: 'Rate',
+              icon: !this.platform.is('ios') ? 'star' : null,
+              handler: () => {
+                console.log('Rate clicked');
+                this.rate(staffingResponse);
+              }
+            }
+          ]);
+        }
       }
     }
 
