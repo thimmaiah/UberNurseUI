@@ -11,7 +11,7 @@ import { StaffingResponseDetails } from '../staffing-response/staffing-response-
 })
 export class StaffingResponse {
 
-  staffingResponses = [];
+  staffingResponses: any;
   staffingResponse: any;
   staffingRequest: any;
 

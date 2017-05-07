@@ -2,7 +2,9 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { StaffingResponseForm } from '../staffing-response/staffing-response-form';
 import { PaymentForm } from '../payment/payment-form';
+import { PaymentDetails } from '../payment/payment-details';
 import { RatingForm } from '../rating/rating-form';
+import { RatingDetails } from '../rating/rating-details';
 import { StaffingRequestDetails } from '../staffing-request/staffing-request-details';
 import { StaffingResponseApi } from '../../providers/staffing-response-api';
 import { ResponseUtility } from '../../providers/response-utility';
@@ -114,22 +116,19 @@ export class StaffingResponseDetails {
     if (staffingResponse.can_manage == true) {
       console.log("can manage staffingResponse");
       buttons = buttons.concat([
-        // {
-        //   text: 'Edit',
-        //   icon: !this.platform.is('ios') ? 'create' : null,
-        //   handler: () => {
-        //     console.log('Edit clicked');
-        //     this.editStaffingResponse(staffingResponse);
-        //   }
-        // }, {
-        //   text: 'Delete',
-        //   role: 'destructive',
-        //   icon: !this.platform.is('ios') ? 'trash' : null,
-        //   handler: () => {
-        //     console.log('Delete clicked');
-        //     this.confirmDelete(staffingResponse);
-        //   }
-        // }, 
+        {
+          text: 'Show Request',
+          icon: !this.platform.is('ios') ? 'folder' : null,
+          handler: () => {
+            console.log('Show Request clicked');
+            this.showRequest(staffingResponse);
+          }
+        }
+      ]);
+
+      if (this.staffingResponse.response_status != "Accepted") {
+
+        buttons = buttons.concat([
         {
           text: 'Accept Response',
           icon: !this.platform.is('ios') ? 'checkmark' : null,
@@ -146,16 +145,36 @@ export class StaffingResponseDetails {
             console.log('Deny clicked');
             this.rejectResponse(staffingResponse);
           }
-        },
-        {
-          text: 'Show Request',
-          icon: !this.platform.is('ios') ? 'folder' : null,
-          handler: () => {
-            console.log('Show Request clicked');
-            this.showRequest(staffingResponse);
-          }
         }
       ]);
+      }
+
+      if (this.staffingResponse.payment_status == "Paid") {
+        buttons = buttons.concat([
+          {
+            text: 'View Payment',
+            icon: !this.platform.is('ios') ? 'cash' : null,
+            handler: () => {
+              console.log('View Payment clicked');
+              this.navCtrl.push(PaymentDetails, this.staffingResponse.payment)
+            }
+          }
+        ]);
+      }
+
+      if (this.staffingResponse.rated == true) {
+        buttons = buttons.concat([
+          {
+            text: 'View Rating',
+            icon: !this.platform.is('ios') ? 'star' : null,
+            handler: () => {
+              console.log('View Rating clicked');
+              this.navCtrl.push(RatingDetails, this.staffingResponse.rating);
+            }
+          }
+        ]);
+      }
+
     } else {
 
       if (this.staffingResponse.response_status == "Accepted") {
@@ -170,6 +189,17 @@ export class StaffingResponseDetails {
               }
             }
           ]);
+        } else if (this.staffingResponse.payment_status == "Paid") {
+          buttons = buttons.concat([
+            {
+              text: 'View Payment',
+              icon: !this.platform.is('ios') ? 'cash' : null,
+              handler: () => {
+                console.log('View Payment clicked');
+                this.navCtrl.push(PaymentDetails, this.staffingResponse.payment)
+              }
+            }
+          ]);
         }
 
         if (this.staffingResponse.rated != true) {
@@ -180,6 +210,17 @@ export class StaffingResponseDetails {
               handler: () => {
                 console.log('Rate clicked');
                 this.rate(staffingResponse);
+              }
+            }
+          ]);
+        } else {
+          buttons = buttons.concat([
+            {
+              text: 'View Rating',
+              icon: !this.platform.is('ios') ? 'star' : null,
+              handler: () => {
+                console.log('View Rating clicked');
+                this.navCtrl.push(RatingDetails, this.staffingResponse.rating);
               }
             }
           ]);

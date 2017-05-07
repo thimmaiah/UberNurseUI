@@ -13,7 +13,7 @@ import { RatingDetails } from '../rating/rating-details'
 })
 export class Rating {
 
-  ratings = [];
+  ratings: any;
   rating: any;
 
   constructor(public navCtrl: NavController,

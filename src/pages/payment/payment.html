@@ -9,6 +9,19 @@
 
 
 <ion-content padding>
+
+  <ion-card *ngIf="payments && payments.length == 0">
+    <ion-card-title class="center">
+      No Payments Found
+    </ion-card-title>
+
+    <ion-card-content>
+      <p>
+        Sorry there are no Payments at this time. Please check back later.
+      </p>
+    </ion-card-content>
+  </ion-card>
+
   <ion-list>
     <button ion-item *ngFor="let payment of payments" (click)=getPaymentDetails(payment)>
        

@@ -17,7 +17,7 @@
 
       <ion-list>
        
-      <ion-item>
+      <ion-item *ngIf="payment.staffing_request">
         <ion-row>
           <ion-col>
             Staffing Request: 
@@ -31,7 +31,7 @@
         </ion-row>
       </ion-item>
        
-      <ion-item>
+      <ion-item *ngIf="payment.user">
         <ion-row>
           <ion-col>
             Care Giver: 
@@ -42,7 +42,7 @@
         </ion-row>
       </ion-item>
        
-      <ion-item>
+      <ion-item *ngIf="payment.hospital">
         <ion-row>
           <ion-col>
             Hospital: 
@@ -77,7 +77,7 @@
       
       </ion-list>
       
-  <ion-row>
+  <ion-row *ngIf="payment.can_manage == true">
 
     <ion-col>
       <button ion-button full color="secondary" (click)="editPayment(payment)">Edit</button>

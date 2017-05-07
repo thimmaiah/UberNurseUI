@@ -16,7 +16,7 @@
 
 <ion-content padding>
 
-  <ion-card *ngIf="ratings.length == 0">
+  <ion-card *ngIf="ratings && ratings.length == 0">
     <ion-card-title class="center">
       No Ratings Available
     </ion-card-title>
@@ -34,6 +34,13 @@
       <ion-thumbnail item-left>
         <img [src]="rating.user.image">
       </ion-thumbnail> 
+      
+      <p>
+        Hospital: {{rating.hospital.name}}
+      </p>
+      <p>
+        Care Giver: {{rating.user.first_name}} {{rating.user.last_name}}
+      </p>
       
       <rating [(ngModel)]="rating.stars" readOnly="false"></rating>
        
