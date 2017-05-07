@@ -29,16 +29,28 @@
         {{user.role}}
       </p>
       <p>
-        {{user.speciality}}
+        Speciality: {{user.speciality}}
       </p>
 
+      <div *ngIf="user.role == 'Care Giver'">
+        
+        <p>
+          Bank Account: {{user.bank_account}}
+        </p>
+        <p>
+          Sort Code: {{user.sort_code}}
+        </p>
+
+
         <ion-badge
-          *ngIf="user.role == 'Care Giver' && user.verified != true" 
+          *ngIf="user.verified != true" 
           item-right color="danger">
           Not 
           Verified
         </ion-badge> 
       
+      </div>
+
     </button>
 
   <ion-row>

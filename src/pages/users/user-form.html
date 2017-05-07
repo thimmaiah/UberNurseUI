@@ -71,8 +71,7 @@
         <ion-select [(ngModel)]="user.role" [class.invalid]="!slideOneForm.controls.role.valid && (slideOneForm.controls.role.dirty || submitAttempt)"
           formControlName="role">
           <ion-option value="Care Giver" checked="true">Care Giver</ion-option>
-          <ion-option value="Admin">Admin</ion-option>
-          <ion-option value="Employee">Employee</ion-option>
+          <ion-option value="Admin">Care Home Admin</ion-option>
         </ion-select>
       </ion-item>
 
@@ -142,6 +141,8 @@
         <p class="error-text">Please enter experience in years.</p>
       </ion-item>
 
+      <div *ngIf="user.role == 'Care Giver'">  
+
       <ion-item>
         <ion-label floating>Bank Account Number</ion-label>
         <ion-input formControlName="bank_account" type="bank_account" [(ngModel)]="user.bank_account" [class.invalid]="!slideOneForm.controls.bank_account.valid && (slideOneForm.controls.bank_account.dirty || submitAttempt)"></ion-input>
@@ -159,7 +160,9 @@
       <ion-item *ngIf="!slideOneForm.controls.sort_code.valid  && (slideOneForm.controls.sort_code.dirty || submitAttempt)">
         <p class="error-text">Please enter 6 digit sort code.</p>
       </ion-item>
-
+      
+      </div>
+        
     </form>
 
   </ion-list>
