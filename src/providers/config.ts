@@ -12,6 +12,10 @@ export class Config {
   private dev = {
     API_URL: "http://192.168.0.4:3000"
   };
+
+  private prod = {
+    API_URL: "/"
+  };
   
   public props = this.dev;
 

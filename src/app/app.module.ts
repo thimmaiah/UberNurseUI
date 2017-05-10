@@ -48,17 +48,18 @@ import { Diagnostic } from '@ionic-native/diagnostic';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpModule } from '@angular/http';
-import {MomentModule} from 'angular2-moment';
-import {UserApi} from '../providers/user-api'
-import {UserDocApi} from '../providers/user-doc-api'
-import {Config} from '../providers/config'
-import {HospitalApi} from '../providers/hospital-api'
-import {PaymentApi} from '../providers/payment-api'
-import {RatingApi} from '../providers/rating-api'
-import {StaffingRequestApi} from '../providers/staffing-request-api'
-import {StaffingResponseApi} from '../providers/staffing-response-api'
+import { MomentModule } from 'angular2-moment';
+import { UserApi } from '../providers/user-api'
+import { UserDocApi } from '../providers/user-doc-api'
+import { Config } from '../providers/config'
+import { HospitalApi } from '../providers/hospital-api'
+import { PaymentApi } from '../providers/payment-api'
+import { RatingApi } from '../providers/rating-api'
+import { StaffingRequestApi } from '../providers/staffing-request-api'
+import { StaffingResponseApi } from '../providers/staffing-response-api'
 
-import {ResponseUtility} from '../providers/response-utility'
+import { ResponseUtility } from '../providers/response-utility'
+import { Push } from '@ionic-native/push';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,7 @@ import {ResponseUtility} from '../providers/response-utility'
     Login,
     UserPic,
     UserDoc,
-    Users,    
+    Users,
     UserForm,
     UserDetails,
     Rating,
@@ -78,7 +79,7 @@ import {ResponseUtility} from '../providers/response-utility'
     StaffingResponseDetails,
     Payment,
     PaymentForm,
-    PaymentDetails,    
+    PaymentDetails,
     StaffingRequest,
     StaffingRequestForm,
     StaffingRequestDetails,
@@ -112,7 +113,7 @@ import {ResponseUtility} from '../providers/response-utility'
     StaffingResponseDetails,
     Payment,
     PaymentForm,
-    PaymentDetails,        
+    PaymentDetails,
     StaffingRequest,
     StaffingRequestForm,
     StaffingRequestDetails,
@@ -121,6 +122,7 @@ import {ResponseUtility} from '../providers/response-utility'
     HospitalDetails
   ],
   providers: [
+    Push,
     Config,
     UserApi,
     UserDocApi,
@@ -139,8 +141,8 @@ import {ResponseUtility} from '../providers/response-utility'
     File,
     FilePath,
     Transfer,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })
-export class AppModule {}
+export class AppModule { }
 
