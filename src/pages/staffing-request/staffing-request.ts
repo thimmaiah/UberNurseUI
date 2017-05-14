@@ -60,7 +60,8 @@ export class StaffingRequest {
       content: 'Loading Staffing Requests...'
     });
 
-    loader.present()
+    loader.present();
+    
     this.staffingRequestApi.getStaffingRequestDetails(staffingRequest.id).subscribe(
       staffingRequest => {
         this.staffingRequest = staffingRequest;

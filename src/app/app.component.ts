@@ -49,9 +49,8 @@ export class MyApp {
     this.pages = [
 
       { title: 'Care Homes', component: Hospitals },
-      { title: 'StaffingRequest', component: StaffingRequest },
-      { title: 'StaffingResponse', component: StaffingResponse },
-      { title: 'UserPic', component: UserPic },
+      { title: 'Staffing Requests', component: StaffingRequest },
+      { title: 'Slots', component: StaffingResponse },
       { title: 'Users', component: Users },
       { title: 'Payments', component: Payment },
       { title: 'Ratings', component: Rating }

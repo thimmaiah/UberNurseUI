@@ -1,6 +1,5 @@
 {
   "name": "UberNurseUI",
   "app_id": "7a3013ca",
-  "v2": true,
-  "typescript": true
+  "type": "ionic-angular"
 }

@@ -56,17 +56,19 @@ export class UserDetails {
       () => { loader.dismiss(); }
     );
   }
-  deleteUser(user) {
+
+  deactivateUser(user) {
 
     let loader = this.loadingController.create({
-      content: 'Deleting User...'
+      content: 'Deactivating User...'
     });
 
+    user.active = false;
     loader.present();
 
-    this.userApi.deleteUser(user).subscribe(
+    this.userApi.updateUser(user).subscribe(
       response => {
-        this.respUtility.showSuccess("Deleted User");
+        this.respUtility.showSuccess("Deactivated User");
         this.navCtrl.pop();
       },
       error => {
@@ -77,12 +79,12 @@ export class UserDetails {
     );
   }
 
-  confirmDelete(user) {
-    this.respUtility.confirmDelete(this.deleteUser.bind(this), user);
+  confirmDeactivate(user) {
+    this.respUtility.confirmAction(this.deactivateUser.bind(this), user, "Deactivate User. Confirm?");
   }
 
   pendingDocs() {
-    let required = ["ID Card", "Certificate", "Address Proof"]
+    let required = ["ID Card", "Certificate", "Address Proof", "Profile Pic"]
     let pending = _.dropWhile(required, (required_type) => {
       let found = _.find(this.user.user_docs, function (doc) { return doc.doc_type == required_type; });
       return found != null;

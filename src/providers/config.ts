@@ -13,11 +13,16 @@ export class Config {
     API_URL: "http://192.168.0.4:3000"
   };
 
+  private test = {
+    API_URL: "http://localhost:3000",
+    ENV: "test"
+  };
+
   private prod = {
     API_URL: "/"
   };
   
-  public props = this.dev;
+  public props = this.test;
 
   constructor() {
     

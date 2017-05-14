@@ -41,27 +41,6 @@
       </ion-item>
 
 
-
-      <ion-item>
-        <ion-label floating>Street</ion-label>
-        <ion-input formControlName="street" type="text" [(ngModel)]="hospital.street" [class.invalid]="!slideOneForm.controls.street.valid && (slideOneForm.controls.street.dirty || submitAttempt)"></ion-input>
-      </ion-item>
-
-      <ion-item *ngIf="!slideOneForm.controls.street.valid  && (slideOneForm.controls.street.dirty || submitAttempt)">
-        <p class="error-text">Please enter a valid street.</p>
-      </ion-item>
-
-
-
-      <ion-item>
-        <ion-label floating>Locality</ion-label>
-        <ion-input formControlName="locality" type="text" [(ngModel)]="hospital.locality" [class.invalid]="!slideOneForm.controls.locality.valid && (slideOneForm.controls.locality.dirty || submitAttempt)"></ion-input>
-      </ion-item>
-
-      <ion-item *ngIf="!slideOneForm.controls.locality.valid  && (slideOneForm.controls.locality.dirty || submitAttempt)">
-        <p class="error-text">Please enter a valid locality.</p>
-      </ion-item>
-
       <ion-item>
         <ion-label floating>Town</ion-label>
         <ion-input formControlName="town" type="text" [(ngModel)]="hospital.town" [class.invalid]="!slideOneForm.controls.town.valid && (slideOneForm.controls.town.dirty || submitAttempt)"></ion-input>

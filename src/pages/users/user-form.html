@@ -86,15 +86,16 @@
 
 
       <ion-item>
-        <ion-label floating>Address</ion-label>
-        <ion-input [(ngModel)]="user.address" [class.invalid]="!slideOneForm.controls.address.valid && (slideOneForm.controls.address.dirty || submitAttempt)"
-          formControlName="address" type="text"></ion-input>
+        <ion-label floating>Postal Code</ion-label>
+        <ion-input [(ngModel)]="user.postcode" [class.invalid]="!slideOneForm.controls.postcode.valid && (slideOneForm.controls.postcode.dirty || submitAttempt)"
+          formControlName="postcode" type="text"></ion-input>
       </ion-item>
 
-      <ion-item *ngIf="!slideOneForm.controls.address.valid && !slideOneForm.controls.address.pending && (slideOneForm.controls.address.dirty || submitAttempt)">
-        <p>Sorry, that address can not be used!</p>
+      <ion-item *ngIf="!slideOneForm.controls.postcode.valid && !slideOneForm.controls.postcode.pending && (slideOneForm.controls.postcode.dirty || submitAttempt)">
+        <p>Sorry, that postcode can not be used!</p>
       </ion-item>
 
+      <div *ngIf="user.role == 'Care Giver'">
       <ion-item>
         <ion-label floating>Languages</ion-label>
         <ion-input formControlName="languages" type="languages" [(ngModel)]="user.languages" [class.invalid]="!slideOneForm.controls.languages.valid && (slideOneForm.controls.languages.dirty || submitAttempt)"></ion-input>
@@ -105,22 +106,13 @@
       </ion-item>
 
       <ion-item>
-        <ion-label floating>Pref Commute Distance</ion-label>
+        <ion-label floating>Pref Commute Distance (in Kms)</ion-label>
         <ion-input formControlName="pref_commute_distance" type="pref_commute_distance" [(ngModel)]="user.pref_commute_distance"
           [class.invalid]="!slideOneForm.controls.pref_commute_distance.valid && (slideOneForm.controls.pref_commute_distance.dirty || submitAttempt)"></ion-input>
       </ion-item>
 
       <ion-item *ngIf="!slideOneForm.controls.pref_commute_distance.valid  && (slideOneForm.controls.pref_commute_distance.dirty || submitAttempt)">
-        <p class="error-text">Please enter a valid commute distance in KMs.</p>
-      </ion-item>
-
-      <ion-item>
-        <ion-label floating>Occupation</ion-label>
-        <ion-input formControlName="occupation" type="occupation" [(ngModel)]="user.occupation" [class.invalid]="!slideOneForm.controls.occupation.valid && (slideOneForm.controls.occupation.dirty || submitAttempt)"></ion-input>
-      </ion-item>
-
-      <ion-item *ngIf="!slideOneForm.controls.occupation.valid  && (slideOneForm.controls.occupation.dirty || submitAttempt)">
-        <p class="error-text">Please enter a valid occupation.</p>
+        <p class="error-text">Enter a valid number which is the distance in KMs.</p>
       </ion-item>
 
       <ion-item>
@@ -133,15 +125,13 @@
       </ion-item>
 
       <ion-item>
-        <ion-label floating>Experience</ion-label>
+        <ion-label floating>Years of Experience</ion-label>
         <ion-input formControlName="experience" type="experience" [(ngModel)]="user.experience" [class.invalid]="!slideOneForm.controls.experience.valid && (slideOneForm.controls.experience.dirty || submitAttempt)"></ion-input>
       </ion-item>
 
       <ion-item *ngIf="!slideOneForm.controls.experience.valid  && (slideOneForm.controls.experience.dirty || submitAttempt)">
-        <p class="error-text">Please enter experience in years.</p>
+        <p class="error-text">Enter a number which is the experience in years.</p>
       </ion-item>
-
-      <div *ngIf="user.role == 'Care Giver'">  
 
       <ion-item>
         <ion-label floating>Bank Account Number</ion-label>

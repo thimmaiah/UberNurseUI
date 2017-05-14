@@ -9,7 +9,7 @@
 
 <ion-content>
   <ion-card *ngIf="!currentUser">
-    <img src="http://pprtravelnursing.com/wp-content/uploads/sites/4/2016/04/travel-nurse-jobs-2016.jpg" />
+    <img *ngIf="config.props['ENV'] != 'test'" src="http://pprtravelnursing.com/wp-content/uploads/sites/4/2016/04/travel-nurse-jobs-2016.jpg" />
     <ion-card-content>
       <ion-card-title class="center">
         Please Login or Register

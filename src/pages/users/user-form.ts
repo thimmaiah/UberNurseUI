@@ -31,11 +31,11 @@ export class UserForm {
     public formBuilder: FormBuilder,
     public userApi: UserApi,
     public respUtility: ResponseUtility,
-    public loadingController: LoadingController, 
+    public loadingController: LoadingController,
     private tokenService: Angular2TokenService) {
 
     this.user = this.navParams.data;
-
+    
     this.slideOneForm = formBuilder.group({
       first_name: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
       last_name: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
@@ -44,20 +44,15 @@ export class UserForm {
       role: [''],
       sex: [''],
       phone: ['', Validators.pattern('^\\d+$'),],
-      address: ['', Validators.compose([Validators.required, Validators.pattern('[0-9a-z, A-Z]*')])],
-      languages: ['', Validators.compose([Validators.required, Validators.pattern('[a-z, A-Z]*')])],
-      pref_commute_distance: ['', Validators.compose([Validators.required, Validators.pattern('^\\d+$')])],
-      occupation: ['', Validators.compose([Validators.pattern('[a-z, A-Z]*')])],
-      speciality: ['', Validators.compose([Validators.required, Validators.pattern('[a-z, A-Z]*')])],
-      experience: ['', Validators.compose([Validators.required, Validators.pattern('^\\d+$')])],
+      postcode: ['', Validators.compose([Validators.required])],
+      languages: ['', Validators.compose([Validators.pattern('[a-z, A-Z]*')])],
+      pref_commute_distance: ['', Validators.compose([Validators.pattern('^\\d+$')])],
+      speciality: ['', Validators.compose([Validators.pattern('[a-z, A-Z]*')])],
+      experience: ['', Validators.compose([Validators.pattern('^\\d+$')])],
       bank_account: [''],
       sort_code: ['']
     });
 
-
-    this.slideTwoForm = formBuilder.group({
-      
-    });
 
   }
 
@@ -92,26 +87,28 @@ export class UserForm {
           () => { loader.dismiss(); }
         );
       } else {
-        this.register(this.user);
+        this.register(this.user, loader);
       }
     }
   }
 
-  register(user) {
+  register(user, loader) {
     this.tokenService.registerAccount(user).subscribe(
       res => {
         console.log(res);
         this.navCtrl.popToRoot();
+
       },
       error => {
         console.log(error);
-        if(error.status == 401) {
+        if (error.status == 401) {
           let body = JSON.parse(error._body);
           this.respUtility.showWarning(body.errors);
         } else {
           this.respUtility.showFailure(error);
         }
-      }
+      },
+      () => { loader.dismiss(); }
     );
   }
 

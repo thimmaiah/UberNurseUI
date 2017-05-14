@@ -20,12 +20,12 @@
       <form [formGroup]="slideOneForm">
         <ion-item>
           <ion-label floating>Email</ion-label>
-          <ion-input formControlName="email" type="text" [(ngModel)]="email" [class.invalid]="!slideOneForm.controls.email.valid && (slideOneForm.controls.email.dirty || submitAttempt)"></ion-input>
+          <ion-input formControlName="email" name="email" type="text" [(ngModel)]="email" [class.invalid]="!slideOneForm.controls.email.valid && (slideOneForm.controls.email.dirty || submitAttempt)"></ion-input>
         </ion-item>
 
         <ion-item>
           <ion-label floating>Password</ion-label>
-          <ion-input formControlName="password" type="password" [(ngModel)]="password" [class.invalid]="!slideOneForm.controls.password.valid && (slideOneForm.controls.password.dirty || submitAttempt)"></ion-input>
+          <ion-input formControlName="password" name="password" type="password" [(ngModel)]="password" [class.invalid]="!slideOneForm.controls.password.valid && (slideOneForm.controls.password.dirty || submitAttempt)"></ion-input>
         </ion-item>
       </form>
 

@@ -38,8 +38,6 @@ export class HospitalForm {
        
       name: ['', Validators.compose([Validators.maxLength(30), Validators.required])],       
       address: ['', Validators.compose([Validators.maxLength(30), Validators.required])],       
-      street: ['', Validators.compose([Validators.maxLength(30), Validators.required])],       
-      locality: ['', Validators.compose([Validators.maxLength(30), Validators.required])],
       town: ['', Validators.compose([Validators.maxLength(30), Validators.required])],       
       postcode: ['', Validators.compose([Validators.maxLength(30), Validators.required])],       
       base_rate: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('^\\d+$'), Validators.required])]  

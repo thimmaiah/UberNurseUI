@@ -28,11 +28,16 @@
        <p> 
         {{user.role}}
       </p>
-      <p>
-        Speciality: {{user.speciality}}
-      </p>
 
       <div *ngIf="user.role == 'Care Giver'">
+
+        <p>
+          Speciality: {{user.speciality}}
+        </p>
+
+        <p>
+          Experience: {{user.experience}}
+        </p>
         
         <p>
           Bank Account: {{user.bank_account}}
@@ -41,6 +46,9 @@
           Sort Code: {{user.sort_code}}
         </p>
 
+        <p>
+          {{user.address}}
+        </p>
 
         <ion-badge
           *ngIf="user.verified != true" 
@@ -59,7 +67,7 @@
       <button ion-button full color="secondary" (click)="editUser(user)">Edit</button>
     </ion-col>
     <ion-col>
-      <button ion-button full color="danger" (click)="confirmDelete(user)">Delete</button>
+      <button ion-button full color="danger" (click)="confirmDeactivate(user)">Deactivate</button>
     </ion-col>
 
   </ion-row>
