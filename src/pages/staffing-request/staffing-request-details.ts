@@ -9,7 +9,7 @@ import { Angular2TokenService } from 'angular2-token';
 import { ActionSheetController, Platform } from 'ionic-angular';
 
 import * as _ from 'lodash';
-
+import * as moment from 'moment';
 
 //@IonicPage()
 @Component({
@@ -30,6 +30,7 @@ export class StaffingRequestDetails {
     public respUtility: ResponseUtility) {
 
     this.staffingRequest = this.navParams.data;
+    
     // Sometimes we get a shallow req - ie one that has only the id. 
     // We need to fill it up from the server side
     if (!this.staffingRequest.user && this.staffingRequest.id) {

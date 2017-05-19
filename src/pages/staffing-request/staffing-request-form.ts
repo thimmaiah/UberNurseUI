@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, ViewChild } from '@angular/core';
 import { StaffingRequestApi } from '../../providers/staffing-request-api';
 import { ResponseUtility } from '../../providers/response-utility';
+import * as moment from 'moment';
 
 
 //@IonicPage()
@@ -30,11 +31,12 @@ export class StaffingRequestForm {
 
     this.staffingRequest = this.navParams.data;
 
+
     this.slideOneForm = formBuilder.group({
 
-      start_date: ['', Validators.compose([Validators.maxLength(30), Validators.required])],
+      start_date: ['', Validators.compose([Validators.required])],
 
-      end_date: ['', Validators.compose([Validators.maxLength(30), Validators.required])],
+      end_date: ['', Validators.compose([Validators.required])],
 
       rate_per_hour: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('^\\d+$'), Validators.required])],
 
@@ -59,24 +61,20 @@ export class StaffingRequestForm {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad StaffingRequestsForm');
-    let today = new Date();
-    today.setHours(0, 0, 0);
-    this.todayStr = today.toISOString();
-    console.log(today.toLocaleString());
-    console.log(today.toISOString());
-    if (!this.staffingRequest["start_date"]) {
-      this.staffingRequest["start_date"] = this.todayStr;
-      today.setHours(today.getHours() + 5);
-      this.staffingRequest["end_date"] = today.toISOString();
+    if (this.staffingRequest["start_date"]) {
+      // Need to convert back to local time
+      this.staffingRequest["start_date"] = moment(this.staffingRequest["start_date"]).format();
+      this.staffingRequest["end_date"] = moment(this.staffingRequest["end_date"]).format();
+    }
+    else {
+      let start_of_day = moment().add(1, 'day').hour(8).minute(0);
+      this.staffingRequest["start_date"] = start_of_day.format();;
+      let end_date = start_of_day.add(8, 'hours').format();
+      this.staffingRequest["end_date"] = end_date;
+      console.log(`end date = ${end_date}`);
     }
   }
 
-  getLocalDate(date) {
-    let n: number = date.getTime();
-    n -= (date.getTimezoneOffset() * 60 * 1000);
-    let d: string = new Date(n).toISOString();
-    return d;
-  }
 
   save() {
     this.submitAttempt = true;
@@ -86,15 +84,11 @@ export class StaffingRequestForm {
     });
 
     if (!this.slideOneForm.valid) {
-      
+
     }
     else {
       this.submitAttempt = false;
       loader.present();
-      // Due to a bug in ion-datetime - its not sending the appropriate timezone info
-      // So we need to trim the last Z char from the datetime sent. Else we run into problems
-      this.staffingRequest["start_date"] = this.staffingRequest["start_date"].substring(0, this.staffingRequest["start_date"].length - 1) + "GMT+5:30";
-      this.staffingRequest["end_date"] = this.staffingRequest["end_date"].substring(0, this.staffingRequest["end_date"].length - 1) + "GMT+5:30";
 
       if (this.staffingRequest["id"]) {
         this.staffingRequestApi.updateStaffingRequest(this.staffingRequest).subscribe(
