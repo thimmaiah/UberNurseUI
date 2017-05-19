@@ -23,7 +23,7 @@
 
       <ion-item>
         <ion-label floating>First Name</ion-label>
-        <ion-input formControlName="first_name" type="text" [(ngModel)]="user.first_name" [class.invalid]="!slideOneForm.controls.first_name.valid && (slideOneForm.controls.first_name.dirty || submitAttempt)"></ion-input>
+        <ion-input name="first_name" formControlName="first_name" type="text" [(ngModel)]="user.first_name" [class.invalid]="!slideOneForm.controls.first_name.valid && (slideOneForm.controls.first_name.dirty || submitAttempt)"></ion-input>
       </ion-item>
 
       <ion-item *ngIf="!slideOneForm.controls.first_name.valid  && (slideOneForm.controls.first_name.dirty || submitAttempt)">
@@ -32,7 +32,7 @@
 
       <ion-item>
         <ion-label floating>Last Name</ion-label>
-        <ion-input formControlName="last_name" type="text" [(ngModel)]="user.last_name" [class.invalid]="!slideOneForm.controls.last_name.valid && (slideOneForm.controls.email.dirty || submitAttempt)"></ion-input>
+        <ion-input name="last_name" formControlName="last_name" type="text" [(ngModel)]="user.last_name" [class.invalid]="!slideOneForm.controls.last_name.valid && (slideOneForm.controls.email.dirty || submitAttempt)"></ion-input>
       </ion-item>
 
       <ion-item *ngIf="!slideOneForm.controls.last_name.valid  && (slideOneForm.controls.last_name.dirty || submitAttempt)">
@@ -41,7 +41,7 @@
 
       <ion-item>
         <ion-label floating>Email</ion-label>
-        <ion-input formControlName="email" type="email" [(ngModel)]="user.email" [class.invalid]="!slideOneForm.controls.email.valid && (slideOneForm.controls.email.dirty || submitAttempt)"></ion-input>
+        <ion-input name="email" formControlName="email" type="email" [(ngModel)]="user.email" [class.invalid]="!slideOneForm.controls.email.valid && (slideOneForm.controls.email.dirty || submitAttempt)"></ion-input>
       </ion-item>
 
       <ion-item *ngIf="!slideOneForm.controls.email.valid  && (slideOneForm.controls.email.dirty || submitAttempt)">
@@ -50,7 +50,7 @@
 
       <ion-item *ngIf="!user.id">
         <ion-label floating>Password</ion-label>
-        <ion-input formControlName="password" type="password" [(ngModel)]="user.password" [class.invalid]="!slideOneForm.controls.password.valid && (slideOneForm.controls.password.dirty || submitAttempt)"></ion-input>
+        <ion-input name="password" formControlName="password" type="password" [(ngModel)]="user.password" [class.invalid]="!slideOneForm.controls.password.valid && (slideOneForm.controls.password.dirty || submitAttempt)"></ion-input>
       </ion-item>
 
       <ion-item *ngIf="!slideOneForm.controls.password.valid  && (slideOneForm.controls.password.dirty || submitAttempt)">
@@ -59,25 +59,26 @@
 
       <ion-item>
         <ion-label floating>Phone</ion-label>
-        <ion-input formControlName="phone" type="text" [(ngModel)]="user.phone" [class.invalid]="!slideOneForm.controls.phone.valid && (slideOneForm.controls.email.dirty || submitAttempt)"></ion-input>
+        <ion-input name="phone" formControlName="phone" type="text" [(ngModel)]="user.phone" [class.invalid]="!slideOneForm.controls.phone.valid && (slideOneForm.controls.email.dirty || submitAttempt)"></ion-input>
       </ion-item>
 
       <ion-item *ngIf="!slideOneForm.controls.phone.valid  && (slideOneForm.controls.phone.dirty || submitAttempt)">
         <p class="error-text">Please enter a valid phone.</p>
       </ion-item>
 
-      <ion-item>
+      <ion-item id="role">
         <ion-label floating>Role</ion-label>
-        <ion-select [(ngModel)]="user.role" [class.invalid]="!slideOneForm.controls.role.valid && (slideOneForm.controls.role.dirty || submitAttempt)"
+        <ion-select name="role" [(ngModel)]="user.role" [class.invalid]="!slideOneForm.controls.role.valid && (slideOneForm.controls.role.dirty || submitAttempt)"
           formControlName="role">
           <ion-option value="Care Giver" checked="true">Care Giver</ion-option>
+          <ion-option value="Nurse" >Nurse</ion-option>
           <ion-option value="Admin">Care Home Admin</ion-option>
         </ion-select>
       </ion-item>
 
-      <ion-item>
+      <ion-item id="sex">
         <ion-label floating>Sex</ion-label>
-        <ion-select [(ngModel)]="user.sex" [class.invalid]="!slideOneForm.controls.sex.valid && (slideOneForm.controls.sex.dirty || submitAttempt)"
+        <ion-select name="sex" [(ngModel)]="user.sex" [class.invalid]="!slideOneForm.controls.sex.valid && (slideOneForm.controls.sex.dirty || submitAttempt)"
           formControlName="sex">
           <ion-option value="M" checked="true">Male</ion-option>
           <ion-option value="F">Female</ion-option>
@@ -87,7 +88,7 @@
 
       <ion-item>
         <ion-label floating>Postal Code</ion-label>
-        <ion-input [(ngModel)]="user.postcode" [class.invalid]="!slideOneForm.controls.postcode.valid && (slideOneForm.controls.postcode.dirty || submitAttempt)"
+        <ion-input name="postcode" [(ngModel)]="user.postcode" [class.invalid]="!slideOneForm.controls.postcode.valid && (slideOneForm.controls.postcode.dirty || submitAttempt)"
           formControlName="postcode" type="text"></ion-input>
       </ion-item>
 
@@ -95,10 +96,10 @@
         <p>Sorry, that postcode can not be used!</p>
       </ion-item>
 
-      <div *ngIf="user.role == 'Care Giver'">
+      <div *ngIf="user.role == 'Care Giver' || user.role == 'Nurse' ">
       <ion-item>
         <ion-label floating>Languages</ion-label>
-        <ion-input formControlName="languages" type="languages" [(ngModel)]="user.languages" [class.invalid]="!slideOneForm.controls.languages.valid && (slideOneForm.controls.languages.dirty || submitAttempt)"></ion-input>
+        <ion-input name="languages" formControlName="languages" type="languages" [(ngModel)]="user.languages" [class.invalid]="!slideOneForm.controls.languages.valid && (slideOneForm.controls.languages.dirty || submitAttempt)"></ion-input>
       </ion-item>
 
       <ion-item *ngIf="!slideOneForm.controls.languages.valid  && (slideOneForm.controls.languages.dirty || submitAttempt)">
@@ -107,7 +108,7 @@
 
       <ion-item>
         <ion-label floating>Pref Commute Distance (in Kms)</ion-label>
-        <ion-input formControlName="pref_commute_distance" type="pref_commute_distance" [(ngModel)]="user.pref_commute_distance"
+        <ion-input name="pref_commute_distance" formControlName="pref_commute_distance" type="pref_commute_distance" [(ngModel)]="user.pref_commute_distance"
           [class.invalid]="!slideOneForm.controls.pref_commute_distance.valid && (slideOneForm.controls.pref_commute_distance.dirty || submitAttempt)"></ion-input>
       </ion-item>
 
@@ -117,7 +118,7 @@
 
       <ion-item>
         <ion-label floating>Speciality</ion-label>
-        <ion-input formControlName="speciality" type="speciality" [(ngModel)]="user.speciality" [class.invalid]="!slideOneForm.controls.speciality.valid && (slideOneForm.controls.speciality.dirty || submitAttempt)"></ion-input>
+        <ion-input name="speciality" formControlName="speciality" type="speciality" [(ngModel)]="user.speciality" [class.invalid]="!slideOneForm.controls.speciality.valid && (slideOneForm.controls.speciality.dirty || submitAttempt)"></ion-input>
       </ion-item>
 
       <ion-item *ngIf="!slideOneForm.controls.speciality.valid  && (slideOneForm.controls.speciality.dirty || submitAttempt)">
@@ -126,7 +127,7 @@
 
       <ion-item>
         <ion-label floating>Years of Experience</ion-label>
-        <ion-input formControlName="experience" type="experience" [(ngModel)]="user.experience" [class.invalid]="!slideOneForm.controls.experience.valid && (slideOneForm.controls.experience.dirty || submitAttempt)"></ion-input>
+        <ion-input name="experience" formControlName="experience" type="experience" [(ngModel)]="user.experience" [class.invalid]="!slideOneForm.controls.experience.valid && (slideOneForm.controls.experience.dirty || submitAttempt)"></ion-input>
       </ion-item>
 
       <ion-item *ngIf="!slideOneForm.controls.experience.valid  && (slideOneForm.controls.experience.dirty || submitAttempt)">
@@ -135,7 +136,7 @@
 
       <ion-item>
         <ion-label floating>Bank Account Number</ion-label>
-        <ion-input formControlName="bank_account" type="bank_account" [(ngModel)]="user.bank_account" [class.invalid]="!slideOneForm.controls.bank_account.valid && (slideOneForm.controls.bank_account.dirty || submitAttempt)"></ion-input>
+        <ion-input name="bank_account" formControlName="bank_account" type="bank_account" [(ngModel)]="user.bank_account" [class.invalid]="!slideOneForm.controls.bank_account.valid && (slideOneForm.controls.bank_account.dirty || submitAttempt)"></ion-input>
       </ion-item>
 
       <ion-item *ngIf="!slideOneForm.controls.bank_account.valid  && (slideOneForm.controls.bank_account.dirty || submitAttempt)">
@@ -144,7 +145,7 @@
 
       <ion-item>
         <ion-label floating>Sort Code</ion-label>
-        <ion-input formControlName="sort_code" type="sort_code" [(ngModel)]="user.sort_code" [class.invalid]="!slideOneForm.controls.sort_code.valid && (slideOneForm.controls.sort_code.dirty || submitAttempt)"></ion-input>
+        <ion-input name="sort_code" formControlName="sort_code" type="sort_code" [(ngModel)]="user.sort_code" [class.invalid]="!slideOneForm.controls.sort_code.valid && (slideOneForm.controls.sort_code.dirty || submitAttempt)"></ion-input>
       </ion-item>
 
       <ion-item *ngIf="!slideOneForm.controls.sort_code.valid  && (slideOneForm.controls.sort_code.dirty || submitAttempt)">

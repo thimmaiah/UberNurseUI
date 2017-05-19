@@ -96,8 +96,8 @@ export class UserForm {
     this.tokenService.registerAccount(user).subscribe(
       res => {
         console.log(res);
+        this.respUtility.showSuccess("Please check your email for verification link. Verfiy your email & then login.");
         this.navCtrl.popToRoot();
-
       },
       error => {
         console.log(error);

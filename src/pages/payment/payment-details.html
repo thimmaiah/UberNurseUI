@@ -34,7 +34,7 @@
       <ion-item *ngIf="payment.user">
         <ion-row>
           <ion-col>
-            Care Giver: 
+            {{payment.user.role}}: 
           </ion-col>
           <ion-col>
             {{payment.user.first_name}} {{payment.user.last_name}}

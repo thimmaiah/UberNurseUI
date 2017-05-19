@@ -20,8 +20,8 @@ export class PaymentApi {
     console.log('PaymentApi Provider Created');
   }
 
-  getPayments() {
-    return this.tokenService.get(`${this.base_url}.json`).map(response=>{
+  getPayments(page) {
+    return this.tokenService.get(`${this.base_url}.json?page=${page}`).map(response=>{
       this.payments = response.json();
       return this.payments;
     })

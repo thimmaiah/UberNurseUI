@@ -14,8 +14,8 @@ export class RatingApi {
     console.log('RatingApi Provider Created');
   }
 
-  getRatings() {
-    return this.tokenService.get(`${this.base_url}.json`).map(response=>{
+  getRatings(page) {
+    return this.tokenService.get(`${this.base_url}.json?page=${page}`).map(response=>{
       this.ratings = response.json();
       return this.ratings;
     })

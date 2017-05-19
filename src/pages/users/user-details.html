@@ -16,7 +16,7 @@
 
   <button ion-item (click)="editUser(user)">
       {{user.first_name}} {{user.last_name}}
-      <p *ngIf="user.role == 'Care Giver'">
+      <p *ngIf="user.role == 'Care Giver' || user.role == 'Nurse'">
         <rating [(ngModel)]="user.rating" readOnly="true"></rating>
       </p> 
       <p>
@@ -29,7 +29,7 @@
         {{user.role}}
       </p>
 
-      <div *ngIf="user.role == 'Care Giver'">
+      <div *ngIf="user.role == 'Care Giver' || user.role == 'Nurse'">
 
         <p>
           Speciality: {{user.speciality}}
@@ -75,7 +75,7 @@
   <ion-card>
 
 
-    <ion-card-content *ngIf="user.role == 'Care Giver'">
+    <ion-card-content *ngIf="user.role == 'Care Giver' || user.role == 'Nurse'">
 
       <ion-list>
 

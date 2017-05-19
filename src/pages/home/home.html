@@ -9,13 +9,13 @@
 
 <ion-content>
   <ion-card *ngIf="!currentUser">
-    <img *ngIf="config.props['ENV'] != 'test'" src="http://pprtravelnursing.com/wp-content/uploads/sites/4/2016/04/travel-nurse-jobs-2016.jpg" />
+    <img src="/splash.jpg" />
     <ion-card-content>
       <ion-card-title class="center">
         Please Login or Register
       </ion-card-title>
       <p>
-        The most popular way to hire temporary Care Givers across the UK
+        The most popular way to hire temporary Care Givers & Nurses across the UK
       </p>
     </ion-card-content>
 
@@ -43,7 +43,7 @@
 
   <div class="home-page">
     <ion-card *ngIf="currentUser">
-      <img src="http://pprtravelnursing.com/wp-content/uploads/sites/4/2016/04/travel-nurse-jobs-2016.jpg" />
+      <img src="/splash.jpg" />
       <div class="card-title">Welcome</div>
       <div class="card-subtitle">{{currentUser.first_name}} {{currentUser.last_name}}</div>
     </ion-card>

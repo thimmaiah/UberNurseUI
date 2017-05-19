@@ -9,7 +9,7 @@
 
 <ion-content padding>
 
-  <ion-fab bottom right *ngIf="current_user.role!='Care Giver'">
+  <ion-fab bottom right *ngIf="current_user.role!='Care Giver' && current_user.role!='Nurse' ">
     <button ion-fab (click)="newRequest()"><ion-icon name="add"></ion-icon></button>
   </ion-fab>
 
