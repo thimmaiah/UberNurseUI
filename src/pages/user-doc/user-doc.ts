@@ -24,6 +24,7 @@ export class UserDoc {
     private respUtility: ResponseUtility) {
 
     this.document = this.navParams.data;
+    console.log(this.document);
     this.doc_url = config.props["API_URL"] + this.document.doc;
 
     this.current_user = tokenService.currentUserData;
