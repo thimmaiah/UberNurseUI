@@ -124,29 +124,47 @@ export class StaffingResponseDetails {
             this.showRequest(staffingResponse);
           }
         }
+
       ]);
 
       if (this.staffingResponse.response_status != "Accepted") {
 
         buttons = buttons.concat([
-        {
-          text: 'Accept Response',
-          icon: !this.platform.is('ios') ? 'checkmark' : null,
-          handler: () => {
-            console.log('Accept clicked');
-            this.acceptResponse(staffingResponse);
+          {
+            text: 'Accept Response',
+            icon: !this.platform.is('ios') ? 'checkmark' : null,
+            handler: () => {
+              console.log('Accept clicked');
+              this.acceptResponse(staffingResponse);
+            }
           }
-        },
-        {
-          text: 'Reject Response',
-          role: 'destructive',
-          icon: !this.platform.is('ios') ? 'close-circle' : null,
-          handler: () => {
-            console.log('Deny clicked');
-            this.rejectResponse(staffingResponse);
+        ]);
+      } else {
+        buttons = buttons.concat([
+          {
+            text: 'Add Start / End Codes',
+            icon: !this.platform.is('ios') ? 'create' : null,
+            handler: () => {
+              console.log('Edit clicked');
+              this.editStaffingResponse(staffingResponse);
+            }
           }
-        }
-      ]);
+        ]);
+      }
+
+      if (this.staffingResponse.response_status != "Rejected") {
+
+        buttons = buttons.concat([
+          {
+            text: 'Reject Response',
+            role: 'destructive',
+            icon: !this.platform.is('ios') ? 'close-circle' : null,
+            handler: () => {
+              console.log('Deny clicked');
+              this.rejectResponse(staffingResponse);
+            }
+          }
+        ]);
       }
 
       if (this.staffingResponse.payment_status == "Paid") {

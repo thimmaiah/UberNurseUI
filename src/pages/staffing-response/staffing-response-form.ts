@@ -30,16 +30,16 @@ export class StaffingResponseForm {
       // Ensure start and end code becomes mandatory
       this.slideOneForm = formBuilder.group({
 
-        start_code: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
-        end_code: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])]
+        start_code: ['', Validators.compose([Validators.maxLength(30), Validators.required])],
+        end_code: ['', Validators.compose([Validators.maxLength(30)])]
 
       });
     } else {
       // This is an new response.
       // Ensure start and end code are NOT mandatory
       this.slideOneForm = formBuilder.group({
-        start_code:[],
-        end_code:[]
+        start_code: [],
+        end_code: []
       });
     }
 
@@ -62,35 +62,48 @@ export class StaffingResponseForm {
     });
 
     if (!this.slideOneForm.valid) {
-      this.signupSlider.slideTo(0);
+
     }
     else {
       this.submitAttempt = false;
       loader.present();
 
       if (this.staffingResponse["id"]) {
-        this.staffingResponseApi.updateStaffingResponse(this.staffingResponse).subscribe(
+        this.staffingResponseApi.updateStaffingResponse(this.staffingResponse).map(res => {
+          console.log(`Response = ${res}`);
+        }).subscribe(
           staffingResponse => {
-            this.respUtility.showSuccess('Response saved successfully.');
+            this.respUtility.showSuccess('Slot saved successfully.');
             this.navCtrl.pop();
           },
           error => {
-            this.respUtility.showFailure(error);
-            loader.dismiss();
+            if (error.status === 422) {
+              let error_response = JSON.parse(error._body);
+              let msg = "";
+              for (var key in error_response) {
+                msg += error_response[key];
+              }
+              this.respUtility.showWarning(msg);
+              loader.dismiss();
+            }
+            else {
+              this.respUtility.showFailure(error);
+              loader.dismiss();
+            }
           },
-          () => {loader.dismiss();}
-        );
+          () => { loader.dismiss(); }
+          );
       } else {
         this.staffingResponseApi.createStaffingResponse(this.staffingResponse).subscribe(
           staffingResponse => {
-            this.respUtility.showSuccess('Response saved successfully.');
+            this.respUtility.showSuccess('Slot saved successfully.');
             this.navCtrl.pop();
           },
           error => {
             this.respUtility.showFailure(error);
             loader.dismiss();
           },
-          () => {loader.dismiss();}
+          () => { loader.dismiss(); }
         );
       }
     }

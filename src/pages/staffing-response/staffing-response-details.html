@@ -95,6 +95,61 @@
       </ion-row>
     </ion-item>
 
+    <ion-item *ngIf="staffingResponse.start_code">
+      <ion-row>
+        <ion-col>
+          Start Code:
+        </ion-col>
+        <ion-col>
+          {{staffingResponse.start_code}}
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+    <ion-item *ngIf="staffingResponse.start_code">
+      <ion-row>
+        <ion-col>
+          Start Time:
+        </ion-col>
+        <ion-col>
+          {{staffingResponse.start_date | date: 'dd/MM/yyyy H:mm'}}
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+    <ion-item *ngIf="staffingResponse.end_code">
+      <ion-row>
+        <ion-col>
+          End Code:
+        </ion-col>
+        <ion-col>
+          {{staffingResponse.end_code}}
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+    <ion-item *ngIf="staffingResponse.end_code">
+      <ion-row>
+        <ion-col>
+          End Time:
+        </ion-col>
+        <ion-col>
+          {{staffingResponse.end_date | date: 'dd/MM/yyyy H:mm'}}
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+    <ion-item *ngIf="staffingResponse.end_code">
+      <ion-row>
+        <ion-col>
+          Worked:
+        </ion-col>
+        <ion-col>
+          {{ (staffingResponse.minutes_worked / 60) | number:'.0-0' }} hrs {{(staffingResponse.minutes_worked/60)*60}} mins
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
 
   </ion-list>
 

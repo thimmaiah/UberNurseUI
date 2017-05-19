@@ -22,11 +22,13 @@
           <ion-col>
             Staffing Request: 
           </ion-col>
-          <ion-col>
-            From:
+          <ion-col text-wrap>
+            <ion-row>From:
             {{payment.staffing_request.start_date | date: 'dd/MM/yyyy H:mm'}}
-            To
+            </ion-row>
+            <ion-row>To:
             {{payment.staffing_request.end_date | date: 'dd/MM/yyyy H:mm'}}
+            </ion-row>
           </ion-col>
         </ion-row>
       </ion-item>
@@ -69,7 +71,7 @@
           <ion-col>
             Notes: 
           </ion-col>
-          <ion-col>
+          <ion-col text-wrap>
             {{payment.notes}}
           </ion-col>
         </ion-row>
