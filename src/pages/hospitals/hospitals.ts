@@ -2,7 +2,10 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { HospitalApi } from '../../providers/hospital-api';
 import { ResponseUtility } from '../../providers/response-utility';
-import { HospitalDetails } from '../hospitals/hospital-details'
+import { HospitalDetails } from '../hospitals/hospital-details';
+import { HospitalForm } from '../hospitals/hospital-form';
+import { Angular2TokenService } from 'angular2-token';
+
 
 /**
  * Generated class for the Hospitals page.
@@ -19,15 +22,20 @@ export class Hospitals {
 
   hospitals: any;
   hospital: any;
-
-  constructor(public navCtrl: NavController, 
+  current_user: any;
+  
+  constructor(public navCtrl: NavController,
     public navParams: NavParams,
-    public loadingController: LoadingController, 
-    public hospitalApi: HospitalApi, 
+    public loadingController: LoadingController,
+    public hospitalApi: HospitalApi,
+    private tokenService: Angular2TokenService,
     public respUtility: ResponseUtility) {
+
+      this.current_user = tokenService.currentUserData;
+
   }
 
-  
+
 
   ionViewWillEnter() {
     console.log('ionViewWillEnter Hospitals');
@@ -65,5 +73,10 @@ export class Hospitals {
       () => { loader.dismiss(); }
     );
 
+  }
+
+  newHospital() {
+    let hospital = {};
+    this.navCtrl.push(HospitalForm,hospital);
   }
 }

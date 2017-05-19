@@ -15,74 +15,86 @@
 
 <ion-content padding>
 
-      <ion-list>
-       
-      <ion-item>
-        <ion-row>
-          <ion-col>
-            Name: 
-          </ion-col>
-          <ion-col text-wrap>
-            {{hospital.name}}
-          </ion-col>
-        </ion-row>
-      </ion-item>
-       
-      <ion-item>
-        <ion-row>
-          <ion-col>
-            Address: 
-          </ion-col>
-          <ion-col text-wrap>
-            {{hospital.address}}
-          </ion-col>
-        </ion-row>
-      </ion-item>
-              
-      <ion-item>
-        <ion-row>
-          <ion-col>
-            Town: 
-          </ion-col>
-          <ion-col>
-            {{hospital.town}}
-          </ion-col>
-        </ion-row>
-      </ion-item>
-       
-      <ion-item>
-        <ion-row>
-          <ion-col>
-            Postcode: 
-          </ion-col>
-          <ion-col>
-            {{hospital.postcode}}
-          </ion-col>
-        </ion-row>
-      </ion-item>
-       
-      <ion-item>
-        <ion-row>
-          <ion-col>
-            Base Rate: 
-          </ion-col>
-          <ion-col>
-            {{hospital.base_rate | currency}}
-          </ion-col>
-        </ion-row>
-      </ion-item>
-      
-      </ion-list>
-      
-  <ion-row  *ngIf="hospital.can_manage == true">
+  <ion-list>
 
+    <ion-item>
+      <ion-row>
+        <ion-col>
+          Name:
+        </ion-col>
+        <ion-col text-wrap>
+          {{hospital.name}}
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+    <ion-item>
+      <ion-row>
+        <ion-col>
+          Address:
+        </ion-col>
+        <ion-col text-wrap>
+          {{hospital.address}}
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+    <ion-item>
+      <ion-row>
+        <ion-col>
+          Town:
+        </ion-col>
+        <ion-col>
+          {{hospital.town}}
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+    <ion-item>
+      <ion-row>
+        <ion-col>
+          Postcode:
+        </ion-col>
+        <ion-col>
+          {{hospital.postcode}}
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+    <ion-item>
+      <ion-row>
+        <ion-col>
+          Base Rate:
+        </ion-col>
+        <ion-col>
+          {{hospital.base_rate | currency}}
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+    <ion-item>
+      <ion-row>
+        <ion-col>
+          Status:
+        </ion-col>
+        <ion-col>
+          <ion-badge *ngIf="hospital.verified != true" item-right color="danger">
+            Not Verified
+          </ion-badge>
+          <ion-badge *ngIf="hospital.verified == true" item-right color="secondary">
+            Verified
+          </ion-badge>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+
+  </ion-list>
+
+  <ion-row *ngIf="hospital.can_manage == true">
     <ion-col>
       <button ion-button full color="secondary" (click)="editHospital(hospital)">Edit</button>
     </ion-col>
-    <ion-col>
-      <button ion-button full color="danger" (click)="confirmDelete(hospital)">Delete</button>
-    </ion-col>
-
   </ion-row>
 
 
