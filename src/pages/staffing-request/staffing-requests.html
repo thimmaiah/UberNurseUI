@@ -9,7 +9,7 @@
 
 <ion-content padding>
 
-  <ion-fab bottom right *ngIf="current_user.role!='Care Giver' && current_user.role!='Nurse' ">
+  <ion-fab id="new_staffing_request_btn" bottom right *ngIf="current_user.role!='Care Giver' && current_user.role!='Nurse' ">
     <button ion-fab (click)="newRequest()"><ion-icon name="add"></ion-icon></button>
   </ion-fab>
 
@@ -23,11 +23,11 @@
       </p>
 
       <p>
-        Start Date: {{staffingRequest.start_date | date: 'dd/MM/yyyy H:mm'}}
+        Start: {{staffingRequest.start_date | date: 'dd/MM/yyyy H:mm'}}
       </p>
        
       <p>
-        End Date: {{staffingRequest.end_date | date: 'dd/MM/yyyy H:mm'}}
+        End: {{staffingRequest.end_date | date: 'dd/MM/yyyy H:mm'}}
       </p>
       
       <ion-badge>{{staffingRequest.rate_per_hour | currency}}</ion-badge> 

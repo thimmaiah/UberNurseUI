@@ -28,15 +28,27 @@
     </ion-card-content>
   </ion-card>
   <ion-list>
-    <button ion-item *ngFor="let staffingResponse of staffingResponses" (click)=getStaffingResponseDetails(staffingResponse)>
+    <button ion-item id="slot-{{staffingResponse.id}}-item" 
+      *ngFor="let staffingResponse of staffingResponses" (click)=getStaffingResponseDetails(staffingResponse)>
 
       <ion-thumbnail item-left>
         <img [src]="staffingResponse.user.image">
       </ion-thumbnail> 
       
       <p>
-        Name: {{staffingResponse.user.first_name}}, {{staffingResponse.user.last_name}}
+        Care Home: {{staffingResponse.hospital.name}}
       </p>
+      <p>
+        Start: {{staffingResponse.staffing_request.start_date | date: 'dd/MM/yyyy H:mm'}}
+      </p>
+      <p>
+        End: {{staffingResponse.staffing_request.end_date | date: 'dd/MM/yyyy H:mm'}}
+      </p>
+      
+      <p>
+        {{staffingResponse.user.role}}: {{staffingResponse.user.first_name}}, {{staffingResponse.user.last_name}}
+      </p>
+
       <rating [(ngModel)]="staffingResponse.user.rating" readOnly="true"></rating>
       <p>
         Phone: {{staffingResponse.user.phone}}

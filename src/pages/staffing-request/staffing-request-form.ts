@@ -38,11 +38,11 @@ export class StaffingRequestForm {
 
       end_date: ['', Validators.compose([Validators.required])],
 
-      rate_per_hour: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('^\\d+$'), Validators.required])],
+      rate_per_hour: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('([0-9]*[.])?[0-9]+'), Validators.required])],
 
       request_status: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*')])],
 
-      auto_deny_in: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('^\\d+$'), Validators.required])],
+      auto_deny_in: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('([0-9]*[.])?[0-9]+'), Validators.required])],
 
       payment_status: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*')])],
 

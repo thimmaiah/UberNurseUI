@@ -49,7 +49,7 @@
 
       <ion-item>
         <ion-label floating>Rate Per Hour</ion-label>
-        <ion-input formControlName="rate_per_hour" type="text" [(ngModel)]="staffingRequest.rate_per_hour" [class.invalid]="!slideOneForm.controls.rate_per_hour.valid && (slideOneForm.controls.rate_per_hour.dirty || submitAttempt)"></ion-input>
+        <ion-input name="rate_per_hour" formControlName="rate_per_hour" type="text" [(ngModel)]="staffingRequest.rate_per_hour" [class.invalid]="!slideOneForm.controls.rate_per_hour.valid && (slideOneForm.controls.rate_per_hour.dirty || submitAttempt)"></ion-input>
       </ion-item>
 
       <ion-item *ngIf="!slideOneForm.controls.rate_per_hour.valid  && (slideOneForm.controls.rate_per_hour.dirty || submitAttempt)">
@@ -57,15 +57,10 @@
       </ion-item>
 
 
-      <ion-item *ngIf="!slideOneForm.controls.request_status.valid  && (slideOneForm.controls.request_status.dirty || submitAttempt)">
-        <p class="error-text">Please enter a valid Request Status.</p>
-      </ion-item>
-
-
 
       <ion-item>
         <ion-label floating>Auto Deny In</ion-label>
-        <ion-input formControlName="auto_deny_in" type="text" [(ngModel)]="staffingRequest.auto_deny_in" [class.invalid]="!slideOneForm.controls.auto_deny_in.valid && (slideOneForm.controls.auto_deny_in.dirty || submitAttempt)"></ion-input>
+        <ion-input name="auto_deny_in" formControlName="auto_deny_in" type="text" [(ngModel)]="staffingRequest.auto_deny_in" [class.invalid]="!slideOneForm.controls.auto_deny_in.valid && (slideOneForm.controls.auto_deny_in.dirty || submitAttempt)"></ion-input>
       </ion-item>
 
       <ion-item *ngIf="!slideOneForm.controls.auto_deny_in.valid  && (slideOneForm.controls.auto_deny_in.dirty || submitAttempt)">
@@ -74,7 +69,7 @@
 
       <ion-item>
         <ion-label floating>Start Code</ion-label>
-        <ion-input formControlName="start_code" type="text" [(ngModel)]="staffingRequest.start_code" [class.invalid]="!slideOneForm.controls.start_code.valid && (slideOneForm.controls.start_code.dirty || submitAttempt)"></ion-input>
+        <ion-input name="start_code" formControlName="start_code" type="text" [(ngModel)]="staffingRequest.start_code" [class.invalid]="!slideOneForm.controls.start_code.valid && (slideOneForm.controls.start_code.dirty || submitAttempt)"></ion-input>
       </ion-item>
 
       <ion-item *ngIf="!slideOneForm.controls.start_code.valid  && (slideOneForm.controls.start_code.dirty || submitAttempt)">
@@ -85,7 +80,7 @@
 
       <ion-item>
         <ion-label floating>End Code</ion-label>
-        <ion-input formControlName="end_code" type="text" [(ngModel)]="staffingRequest.end_code" [class.invalid]="!slideOneForm.controls.end_code.valid && (slideOneForm.controls.end_code.dirty || submitAttempt)"></ion-input>
+        <ion-input name="end_code" formControlName="end_code" type="text" [(ngModel)]="staffingRequest.end_code" [class.invalid]="!slideOneForm.controls.end_code.valid && (slideOneForm.controls.end_code.dirty || submitAttempt)"></ion-input>
       </ion-item>
 
       <ion-item *ngIf="!slideOneForm.controls.end_code.valid  && (slideOneForm.controls.end_code.dirty || submitAttempt)">

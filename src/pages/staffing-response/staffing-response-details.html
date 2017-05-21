@@ -20,7 +20,7 @@
     <ion-item>
       <ion-row>
         <ion-col>
-          Name:
+          {{staffingResponse.user.role}}:
         </ion-col>
         <ion-col>
           {{staffingResponse.user.first_name}}, {{staffingResponse.user.last_name}}
@@ -43,6 +43,28 @@
     <ion-item>
       <ion-row>
         <ion-col>
+          Start:
+        </ion-col>
+        <ion-col>
+          {{staffingResponse.staffing_request.start_date | date: 'dd/MM/yyyy H:mm'}}
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+    <ion-item>
+      <ion-row>
+        <ion-col>
+          End:
+        </ion-col>
+        <ion-col>
+          {{staffingResponse.staffing_request.end_date | date: 'dd/MM/yyyy H:mm'}}
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+    <ion-item>
+      <ion-row>
+        <ion-col>
           Email:
         </ion-col>
         <ion-col>
@@ -51,16 +73,6 @@
       </ion-row>
     </ion-item>
 
-    <ion-item>
-      <ion-row>
-        <ion-col>
-          Occupation:
-        </ion-col>
-        <ion-col>
-          {{staffingResponse.user.occupation}}
-        </ion-col>
-      </ion-row>
-    </ion-item>
 
     <ion-item>
       <ion-row>
