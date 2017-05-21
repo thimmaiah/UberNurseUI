@@ -15,7 +15,8 @@
 
 
   <ion-list>
-    <button ion-item *ngFor="let staffingRequest of staffingRequests" (click)=getStaffingRequestDetails(staffingRequest)>
+    <button ion-item id="StaffingRequest-{{staffingRequest.id}}-item" 
+      *ngFor="let staffingRequest of staffingRequests" (click)=getStaffingRequestDetails(staffingRequest)>
        
       <p>
         Care Home: {{staffingRequest.hospital.name}}

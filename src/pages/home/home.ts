@@ -28,19 +28,20 @@ export class HomePage {
     });
 
     this.currentUser = this.tokenService.currentUserData;
-    
+
 
   }
 
   ionViewWillEnter() {
     this.currentUser = this.tokenService.currentUserData;
-    
+
     console.log('ionViewWillEnter HomePage ');
     console.log(this.currentUser);
-    
-    if(this.currentUser && (this.currentUser.role == "Care Giver" || this.currentUser.role == "Nurse") && this.currentUser.verified !== true) {
+
+    if (this.currentUser && (this.currentUser.role == "Care Giver" || this.currentUser.role == "Nurse") && this.currentUser.verified !== true) {
       this.respUtility.showWarning("Please upload your documents for verification");
     }
+
   }
 
   show_payments() {
@@ -49,7 +50,7 @@ export class HomePage {
 
   show_staffing_requests() {
     this.navCtrl.push(StaffingRequest);
-  } 
+  }
 
   show_staffing_responses() {
     this.navCtrl.push(StaffingResponse);
@@ -75,7 +76,7 @@ export class HomePage {
         console.log(error);
         this.currentUser = null;
         this.respUtility.showWarning("Could not log user out at this time");
-      } 
+      }
     );
 
   }

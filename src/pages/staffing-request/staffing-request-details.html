@@ -74,7 +74,7 @@
           Rate Per Hour:
         </ion-col>
         <ion-col>
-          {{staffingRequest.rate_per_hour}}
+          {{staffingRequest.rate_per_hour | currency}}
         </ion-col>
       </ion-row>
     </ion-item>
@@ -86,28 +86,6 @@
         </ion-col>
         <ion-col>
           {{staffingRequest.request_status}}
-        </ion-col>
-      </ion-row>
-    </ion-item>
-
-    <ion-item>
-      <ion-row>
-        <ion-col>
-          Auto Deny In:
-        </ion-col>
-        <ion-col>
-          {{staffingRequest.auto_deny_in}}
-        </ion-col>
-      </ion-row>
-    </ion-item>
-
-    <ion-item>
-      <ion-row>
-        <ion-col>
-          Response Count:
-        </ion-col>
-        <ion-col>
-          {{staffingRequest.response_count}}
         </ion-col>
       </ion-row>
     </ion-item>
