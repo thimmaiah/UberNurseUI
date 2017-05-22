@@ -21,6 +21,27 @@
 
     <form [formGroup]="slideOneForm">
 
+      <ion-item id="role">
+        <ion-label floating>Role</ion-label>
+        <ion-select name="role" [(ngModel)]="staffingRequest.role" [class.invalid]="!slideOneForm.controls.role.valid && (slideOneForm.controls.role.dirty || submitAttempt)"
+          formControlName="role">
+          <ion-option value="Care Giver" checked="true">Care Giver</ion-option>
+          <ion-option value="Nurse" >Nurse</ion-option>
+        </ion-select>
+      </ion-item>
+  
+      <ion-item id="speciality">
+        <ion-label floating>Speciality</ion-label>
+        <ion-select name="speciality" [(ngModel)]="staffingRequest.speciality" [class.invalid]="!slideOneForm.controls.speciality.valid && (slideOneForm.controls.speciality.dirty || submitAttempt)"
+          formControlName="speciality">
+          <ion-option value="Generalist" checked="true">Generalist</ion-option>
+          <ion-option value="Geriatric Care" >Geriatric Care</ion-option>
+          <ion-option value="Pediatric Care">Pediatric Care</ion-option>
+          <ion-option value="Mental Health">Mental Health</ion-option>
+        </ion-select>
+      </ion-item>
+
+
       <ion-item>
         <ion-label floating>Start Date</ion-label>
         <ion-datetime formControlName="start_date" displayFormat="MMM DD, YYYY HH:mm" 

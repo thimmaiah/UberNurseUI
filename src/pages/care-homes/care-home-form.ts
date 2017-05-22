@@ -72,7 +72,7 @@ export class CareHomeForm {
         this.care_homeApi.updateCareHome(this.care_home).subscribe(
           care_home => {
             this.navCtrl.pop();
-            this.respUtility.showSuccess('CareHome saved successfully. We will inform you once this has been verified.');
+            this.respUtility.showSuccess('CareHome saved successfully.');
           },
           error => {
             this.respUtility.showFailure(error);
@@ -83,7 +83,7 @@ export class CareHomeForm {
       } else {
         this.care_homeApi.createCareHome(this.care_home).subscribe(
           care_home => {
-            this.respUtility.showSuccess('CareHome saved successfully.');
+            this.respUtility.showSuccess('CareHome saved successfully. We will inform you once this has been verified');
           },
           error => {
             this.respUtility.showFailure(error);

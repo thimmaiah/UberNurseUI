@@ -34,6 +34,10 @@ export class StaffingRequestForm {
 
     this.slideOneForm = formBuilder.group({
 
+      role: ['', Validators.compose([Validators.required])],
+      
+      speciality: [''],
+
       start_date: ['', Validators.compose([Validators.required])],
 
       end_date: ['', Validators.compose([Validators.required])],
