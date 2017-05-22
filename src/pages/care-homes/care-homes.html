@@ -1,5 +1,5 @@
 <!--
-  Generated template for the Hospitalss page.
+  Generated template for the CareHomess page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
@@ -15,29 +15,29 @@
 
 <ion-content padding>
 
-  <ion-fab bottom right *ngIf="current_user.role=='Admin' && !current_user.hospital_id">
-    <button ion-fab (click)="newHospital()"><ion-icon name="add"></ion-icon></button>
+  <ion-fab bottom right *ngIf="current_user.role=='Admin' && !current_user.care_home_id">
+    <button id="new_care_home_button" ion-fab (click)="newCareHome()"><ion-icon name="add"></ion-icon></button>
   </ion-fab>
 
   <ion-list>
-    <button ion-item *ngFor="let hospital of hospitals" (click)=getHospitalDetails(hospital)>
+    <button ion-item *ngFor="let care_home of care_homes" (click)=getCareHomeDetails(care_home)>
       <ion-thumbnail item-left>
-        <img [src]="hospital.image_url">
+        <img [src]="care_home.image_url">
       </ion-thumbnail> 
       <p>
-        {{hospital.name}}
+        {{care_home.name}}
       </p>
        
       <p>
-        {{hospital.address}}
+        {{care_home.address}}
       </p>
        
       <p>
-        {{hospital.town}}
+        {{care_home.town}}
       </p>
        
       <p>
-        {{hospital.postcode}}
+        {{care_home.postcode}}
       </p>
       
       

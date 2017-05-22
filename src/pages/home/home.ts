@@ -7,6 +7,7 @@ import { StaffingResponse } from '../staffing-response/staffing-response';
 import { StaffingRequest } from '../staffing-request/staffing-request';
 import { UserDetails } from '../users/user-details';
 import { UserForm } from '../users/user-form';
+import { CareHomeForm } from '../care-homes/care-home-form';
 import { Payment } from '../payment/payment';
 import { Config } from '../../providers/config';
 
@@ -17,6 +18,7 @@ import { Config } from '../../providers/config';
 export class HomePage {
 
   currentUser: any;
+  registerCareHome = false;
 
   constructor(public navCtrl: NavController,
     public respUtility: ResponseUtility,
@@ -27,8 +29,6 @@ export class HomePage {
       apiBase: config.props["API_URL"]
     });
 
-    this.currentUser = this.tokenService.currentUserData;
-
 
   }
 
@@ -38,10 +38,18 @@ export class HomePage {
     console.log('ionViewWillEnter HomePage ');
     console.log(this.currentUser);
 
+    if(this.currentUser && this.currentUser.role == "Admin" && !this.currentUser.care_home_id) {
+      this.registerCareHome = true;
+    }
+
     if (this.currentUser && (this.currentUser.role == "Care Giver" || this.currentUser.role == "Nurse") && this.currentUser.verified !== true) {
       this.respUtility.showWarning("Please upload your documents for verification");
     }
 
+  }
+
+  register_care_home() {
+    this.navCtrl.push(CareHomeForm);
   }
 
   show_payments() {

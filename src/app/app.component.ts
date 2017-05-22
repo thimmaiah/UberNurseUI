@@ -6,7 +6,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
 import { Users } from '../pages/users/users';
 import { UserPic } from '../pages/user-pic/user-pic';
-import { Hospitals } from '../pages/hospitals/hospitals';
+import { CareHomes } from '../pages/care-homes/care-homes';
 import { Login } from '../pages/login/login';
 import { StaffingRequest } from '../pages/staffing-request/staffing-request';
 import { StaffingResponse } from '../pages/staffing-response/staffing-response';
@@ -48,7 +48,7 @@ export class MyApp {
     // used for an example of ngFor and navigation
     this.pages = [
 
-      { title: 'Care Homes', component: Hospitals },
+      { title: 'Care Homes', component: CareHomes },
       { title: 'Staffing Requests', component: StaffingRequest },
       { title: 'Slots', component: StaffingResponse },
       { title: 'Users', component: Users },

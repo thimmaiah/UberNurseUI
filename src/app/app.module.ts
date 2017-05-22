@@ -40,9 +40,9 @@ import { RatingForm } from '../pages/rating/rating-form';
 
 
 
-import { Hospitals } from '../pages/hospitals/hospitals';
-import { HospitalForm } from '../pages/hospitals/hospital-form';
-import { HospitalDetails } from '../pages/hospitals/hospital-details';
+import { CareHomes } from '../pages/care-homes/care-homes';
+import { CareHomeForm } from '../pages/care-homes/care-home-form';
+import { CareHomeDetails } from '../pages/care-homes/care-home-details';
 
 import { Diagnostic } from '@ionic-native/diagnostic';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -52,7 +52,7 @@ import { MomentModule } from 'angular2-moment';
 import { UserApi } from '../providers/user-api'
 import { UserDocApi } from '../providers/user-doc-api'
 import { Config } from '../providers/config'
-import { HospitalApi } from '../providers/hospital-api'
+import { CareHomeApi } from '../providers/care-home-api'
 import { PaymentApi } from '../providers/payment-api'
 import { RatingApi } from '../providers/rating-api'
 import { StaffingRequestApi } from '../providers/staffing-request-api'
@@ -83,9 +83,9 @@ import { Push } from '@ionic-native/push';
     StaffingRequest,
     StaffingRequestForm,
     StaffingRequestDetails,
-    Hospitals,
-    HospitalForm,
-    HospitalDetails
+    CareHomes,
+    CareHomeForm,
+    CareHomeDetails
   ],
   imports: [
     BrowserModule,
@@ -117,9 +117,9 @@ import { Push } from '@ionic-native/push';
     StaffingRequest,
     StaffingRequestForm,
     StaffingRequestDetails,
-    Hospitals,
-    HospitalForm,
-    HospitalDetails
+    CareHomes,
+    CareHomeForm,
+    CareHomeDetails
   ],
   providers: [
     Push,
@@ -127,7 +127,7 @@ import { Push } from '@ionic-native/push';
     UserApi,
     UserDocApi,
     RatingApi,
-    HospitalApi,
+    CareHomeApi,
     StaffingRequestApi,
     StaffingResponseApi,
     PaymentApi,

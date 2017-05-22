@@ -1,33 +1,33 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
-import { HospitalApi } from '../../providers/hospital-api';
+import { CareHomeApi } from '../../providers/care-home-api';
 import { ResponseUtility } from '../../providers/response-utility';
-import { HospitalDetails } from '../hospitals/hospital-details';
-import { HospitalForm } from '../hospitals/hospital-form';
+import { CareHomeDetails } from '../care-homes/care-home-details';
+import { CareHomeForm } from '../care-homes/care-home-form';
 import { Angular2TokenService } from 'angular2-token';
 
 
 /**
- * Generated class for the Hospitals page.
+ * Generated class for the CareHomes page.
  *
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
 @IonicPage()
 @Component({
-  selector: 'page-Hospital',
-  templateUrl: 'hospitals.html',
+  selector: 'page-CareHome',
+  templateUrl: 'care-homes.html',
 })
-export class Hospitals {
+export class CareHomes {
 
-  hospitals: any;
-  hospital: any;
+  care_homes: any;
+  care_home: any;
   current_user: any;
   
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public loadingController: LoadingController,
-    public hospitalApi: HospitalApi,
+    public care_homeApi: CareHomeApi,
     private tokenService: Angular2TokenService,
     public respUtility: ResponseUtility) {
 
@@ -38,18 +38,18 @@ export class Hospitals {
 
 
   ionViewWillEnter() {
-    console.log('ionViewWillEnter Hospitals');
+    console.log('ionViewWillEnter CareHomes');
 
     let loader = this.loadingController.create({
-      content: 'Loading Hospitals...'
+      content: 'Loading CareHomes...'
     });
     loader.present();
 
-    this.hospitalApi.getHospitals().subscribe(
-      Hospital => {
-        this.hospitals = Hospital;
-        console.log("Loaded Hospital");
-        console.log(this.hospitals);
+    this.care_homeApi.getCareHomes().subscribe(
+      CareHome => {
+        this.care_homes = CareHome;
+        console.log("Loaded CareHome");
+        console.log(this.care_homes);
       },
       error => { this.respUtility.showFailure(error); loader.dismiss(); },
       () => { loader.dismiss(); }
@@ -57,17 +57,17 @@ export class Hospitals {
 
   }
 
-  getHospitalDetails(hospital) {
+  getCareHomeDetails(care_home) {
     let loader = this.loadingController.create({
-      content: 'Loading Hospitals...'
+      content: 'Loading CareHomes...'
     });
 
     loader.present()
-    this.hospitalApi.getHospitalDetails(hospital.id).subscribe(
-      hospital => {
-        this.hospital = hospital;
-        console.log("got hospital " + hospital);
-        this.navCtrl.push(HospitalDetails, hospital);
+    this.care_homeApi.getCareHomeDetails(care_home.id).subscribe(
+      care_home => {
+        this.care_home = care_home;
+        console.log("got care_home " + care_home);
+        this.navCtrl.push(CareHomeDetails, care_home);
       },
       error => { this.respUtility.showFailure(error); },
       () => { loader.dismiss(); }
@@ -75,8 +75,8 @@ export class Hospitals {
 
   }
 
-  newHospital() {
-    let hospital = {};
-    this.navCtrl.push(HospitalForm,hospital);
+  newCareHome() {
+    let care_home = {};
+    this.navCtrl.push(CareHomeForm,care_home);
   }
 }

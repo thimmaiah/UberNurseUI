@@ -1,23 +1,23 @@
 import { NavController, NavParams, LoadingController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, ViewChild } from '@angular/core';
-import { HospitalApi } from '../../providers/hospital-api';
+import { CareHomeApi } from '../../providers/care-home-api';
 import { ResponseUtility } from '../../providers/response-utility';
 
 /**
- * Generated class for the HospitalsForm page.
+ * Generated class for the CareHomesForm page.
  *
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
 //@IonicPage()
 @Component({
-  selector: 'page-hospital-form',
-  templateUrl: 'hospital-form.html',
+  selector: 'page-care-home-form',
+  templateUrl: 'care-home-form.html',
 })
-export class HospitalForm {
+export class CareHomeForm {
 
-  hospital: {};
+  care_home: {};
   @ViewChild('signupSlider') signupSlider: any;
 
   slideOneForm: FormGroup;
@@ -29,10 +29,10 @@ export class HospitalForm {
     public navParams: NavParams,
     public formBuilder: FormBuilder,
     public loadingController: LoadingController,
-    public hospitalApi: HospitalApi,
+    public care_homeApi: CareHomeApi,
     public respUtility: ResponseUtility) {
 
-    this.hospital = this.navParams.data;
+    this.care_home = this.navParams.data;
 
     this.slideOneForm = formBuilder.group({
        
@@ -40,7 +40,8 @@ export class HospitalForm {
       address: ['', Validators.compose([Validators.maxLength(30), Validators.required])],       
       town: ['', Validators.compose([Validators.maxLength(30), Validators.required])],       
       postcode: ['', Validators.compose([Validators.maxLength(30), Validators.required])],       
-      base_rate: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('^\\d+$'), Validators.required])]  
+      base_rate: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('([0-9]*[.])?[0-9]+'), Validators.required])],  
+      image_url: ['']  
     });
 
     this.slideTwoForm = formBuilder.group({
@@ -50,28 +51,28 @@ export class HospitalForm {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad HospitalsForm');
+    console.log('ionViewDidLoad CareHomesForm');
   }
 
 
   save() {
     this.submitAttempt = true;
-    //console.log(this.hospital);
+    //console.log(this.care_home);
     let loader = this.loadingController.create({
       content: 'Saving ...'
     });
 
     if (!this.slideOneForm.valid) {
-      this.signupSlider.slideTo(0);
     }
     else {
       this.submitAttempt = false;
       loader.present();
 
-      if (this.hospital["id"]) {
-        this.hospitalApi.updateHospital(this.hospital).subscribe(
-          hospital => {
-            this.respUtility.showSuccess('Hospital saved successfully.');
+      if (this.care_home["id"]) {
+        this.care_homeApi.updateCareHome(this.care_home).subscribe(
+          care_home => {
+            this.navCtrl.pop();
+            this.respUtility.showSuccess('CareHome saved successfully. We will inform you once this has been verified.');
           },
           error => {
             this.respUtility.showFailure(error);
@@ -80,9 +81,9 @@ export class HospitalForm {
           () => {loader.dismiss();}
         );
       } else {
-        this.hospitalApi.createHospital(this.hospital).subscribe(
-          hospital => {
-            this.respUtility.showSuccess('Hospital saved successfully.');
+        this.care_homeApi.createCareHome(this.care_home).subscribe(
+          care_home => {
+            this.respUtility.showSuccess('CareHome saved successfully.');
           },
           error => {
             this.respUtility.showFailure(error);

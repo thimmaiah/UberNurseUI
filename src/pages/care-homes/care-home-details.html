@@ -1,5 +1,5 @@
 <!--
-  Generated template for the HospitalsDetails page.
+  Generated template for the CareHomesDetails page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
@@ -23,7 +23,7 @@
           Name:
         </ion-col>
         <ion-col text-wrap>
-          {{hospital.name}}
+          {{care_home.name}}
         </ion-col>
       </ion-row>
     </ion-item>
@@ -34,7 +34,7 @@
           Address:
         </ion-col>
         <ion-col text-wrap>
-          {{hospital.address}}
+          {{care_home.address}}
         </ion-col>
       </ion-row>
     </ion-item>
@@ -45,7 +45,7 @@
           Town:
         </ion-col>
         <ion-col>
-          {{hospital.town}}
+          {{care_home.town}}
         </ion-col>
       </ion-row>
     </ion-item>
@@ -56,7 +56,7 @@
           Postcode:
         </ion-col>
         <ion-col>
-          {{hospital.postcode}}
+          {{care_home.postcode}}
         </ion-col>
       </ion-row>
     </ion-item>
@@ -67,7 +67,7 @@
           Base Rate:
         </ion-col>
         <ion-col>
-          {{hospital.base_rate | currency}}
+          {{care_home.base_rate | currency}}
         </ion-col>
       </ion-row>
     </ion-item>
@@ -78,10 +78,10 @@
           Status:
         </ion-col>
         <ion-col>
-          <ion-badge *ngIf="hospital.verified != true" item-right color="danger">
+          <ion-badge *ngIf="care_home.verified != true" item-right color="danger">
             Not Verified
           </ion-badge>
-          <ion-badge *ngIf="hospital.verified == true" item-right color="secondary">
+          <ion-badge *ngIf="care_home.verified == true" item-right color="secondary">
             Verified
           </ion-badge>
         </ion-col>
@@ -91,9 +91,9 @@
 
   </ion-list>
 
-  <ion-row *ngIf="hospital.can_manage == true">
+  <ion-row *ngIf="care_home.can_manage == true">
     <ion-col>
-      <button ion-button full color="secondary" (click)="editHospital(hospital)">Edit</button>
+      <button ion-button full color="secondary" (click)="editCareHome(care_home)">Edit</button>
     </ion-col>
   </ion-row>
 

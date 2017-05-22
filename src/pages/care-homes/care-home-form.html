@@ -1,5 +1,5 @@
 <!--
-  Generated template for the HospitalsForm pemail.
+  Generated template for the CareHomesForm pemail.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pemails and navigation.
@@ -22,7 +22,7 @@
 
       <ion-item>
         <ion-label floating>Name</ion-label>
-        <ion-input formControlName="name" type="text" [(ngModel)]="hospital.name" [class.invalid]="!slideOneForm.controls.name.valid && (slideOneForm.controls.name.dirty || submitAttempt)"></ion-input>
+        <ion-input name="name" formControlName="name" type="text" [(ngModel)]="care_home.name" [class.invalid]="!slideOneForm.controls.name.valid && (slideOneForm.controls.name.dirty || submitAttempt)"></ion-input>
       </ion-item>
 
       <ion-item *ngIf="!slideOneForm.controls.name.valid  && (slideOneForm.controls.name.dirty || submitAttempt)">
@@ -33,7 +33,7 @@
 
       <ion-item>
         <ion-label floating>Address</ion-label>
-        <ion-input formControlName="address" type="text" [(ngModel)]="hospital.address" [class.invalid]="!slideOneForm.controls.address.valid && (slideOneForm.controls.address.dirty || submitAttempt)"></ion-input>
+        <ion-input name="address" formControlName="address" type="text" [(ngModel)]="care_home.address" [class.invalid]="!slideOneForm.controls.address.valid && (slideOneForm.controls.address.dirty || submitAttempt)"></ion-input>
       </ion-item>
 
       <ion-item *ngIf="!slideOneForm.controls.address.valid  && (slideOneForm.controls.address.dirty || submitAttempt)">
@@ -43,7 +43,7 @@
 
       <ion-item>
         <ion-label floating>Town</ion-label>
-        <ion-input formControlName="town" type="text" [(ngModel)]="hospital.town" [class.invalid]="!slideOneForm.controls.town.valid && (slideOneForm.controls.town.dirty || submitAttempt)"></ion-input>
+        <ion-input name="town" formControlName="town" type="text" [(ngModel)]="care_home.town" [class.invalid]="!slideOneForm.controls.town.valid && (slideOneForm.controls.town.dirty || submitAttempt)"></ion-input>
       </ion-item>
 
       <ion-item *ngIf="!slideOneForm.controls.town.valid  && (slideOneForm.controls.town.dirty || submitAttempt)">
@@ -54,22 +54,29 @@
 
       <ion-item>
         <ion-label floating>Postcode</ion-label>
-        <ion-input formControlName="postcode" type="text" [(ngModel)]="hospital.postcode" [class.invalid]="!slideOneForm.controls.postcode.valid && (slideOneForm.controls.postcode.dirty || submitAttempt)"></ion-input>
+        <ion-input name="postcode" formControlName="postcode" type="text" [(ngModel)]="care_home.postcode" [class.invalid]="!slideOneForm.controls.postcode.valid && (slideOneForm.controls.postcode.dirty || submitAttempt)"></ion-input>
       </ion-item>
 
       <ion-item *ngIf="!slideOneForm.controls.postcode.valid  && (slideOneForm.controls.postcode.dirty || submitAttempt)">
         <p class="error-text">Please enter a valid postcode.</p>
       </ion-item>
 
-
-
       <ion-item>
         <ion-label floating>Base Rate</ion-label>
-        <ion-input formControlName="base_rate" type="text" [(ngModel)]="hospital.base_rate" [class.invalid]="!slideOneForm.controls.base_rate.valid && (slideOneForm.controls.base_rate.dirty || submitAttempt)"></ion-input>
+        <ion-input name="base_rate" formControlName="base_rate" type="text" [(ngModel)]="care_home.base_rate" [class.invalid]="!slideOneForm.controls.base_rate.valid && (slideOneForm.controls.base_rate.dirty || submitAttempt)"></ion-input>
       </ion-item>
 
       <ion-item *ngIf="!slideOneForm.controls.base_rate.valid  && (slideOneForm.controls.base_rate.dirty || submitAttempt)">
         <p class="error-text">Please enter a valid base_rate.</p>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Image URL</ion-label>
+        <ion-input name="image_url" formControlName="image_url" type="text" [(ngModel)]="care_home.image_url" [class.invalid]="!slideOneForm.controls.image_url.valid && (slideOneForm.controls.image_url.dirty || submitAttempt)"></ion-input>
+      </ion-item>
+
+      <ion-item *ngIf="!slideOneForm.controls.image_url.valid  && (slideOneForm.controls.image_url.dirty || submitAttempt)">
+        <p class="error-text">Please enter a valid image_url.</p>
       </ion-item>
 
     </form>

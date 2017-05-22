@@ -54,6 +54,11 @@
       <ion-card-content>
 
         <ion-list>
+        
+        <button ion-item *ngIf="registerCareHome == true" (click)="register_care_home()">
+          <ion-icon name="home" item-left color="primary"></ion-icon>
+          Register Care Home 
+        </button>
 
         <button ion-item (click)="show_staffing_requests()">
           <ion-icon name="construct" item-left color="primary"></ion-icon>

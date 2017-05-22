@@ -97,7 +97,7 @@ export class StaffingRequestDetails {
   sendResponse(staffing_request) {
     let staffing_response = {};
     staffing_response["staffing_request_id"] = staffing_request.id;
-    staffing_response["hospital_id"] = staffing_request.hospital_id;
+    staffing_response["care_home_id"] = staffing_request.care_home_id;
     this.navCtrl.push(StaffingResponseForm, staffing_response);
   }
 
