@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { AlertController, ToastController } from 'ionic-angular';
+import { AlertController, ToastController, ModalController } from 'ionic-angular';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
+
 
 
 @Injectable()
@@ -9,6 +10,7 @@ export class ResponseUtility {
 
   constructor(public http: Http,
     public alertController: AlertController,
+    public modalController:ModalController,
     public toastController: ToastController) {
     console.log('ResponseUtility Provider Created');
   }
@@ -88,6 +90,17 @@ export class ResponseUtility {
           handler: () => { actionFn(entity); }          
         },
         { text: 'No' }
+      ]
+    });
+    confirm.present();
+  }
+
+  popup(title, msg) {
+    let confirm = this.alertController.create({
+      title: title,
+      message: msg,
+      buttons: [
+        { text: 'Ok' }
       ]
     });
     confirm.present();

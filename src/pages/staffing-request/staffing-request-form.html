@@ -67,18 +67,6 @@
       </ion-item>
 
 
-
-      <ion-item>
-        <ion-label floating>Rate Per Hour</ion-label>
-        <ion-input name="rate_per_hour" formControlName="rate_per_hour" type="text" [(ngModel)]="staffingRequest.rate_per_hour" [class.invalid]="!slideOneForm.controls.rate_per_hour.valid && (slideOneForm.controls.rate_per_hour.dirty || submitAttempt)"></ion-input>
-      </ion-item>
-
-      <ion-item *ngIf="!slideOneForm.controls.rate_per_hour.valid  && (slideOneForm.controls.rate_per_hour.dirty || submitAttempt)">
-        <p class="error-text">Please enter a valid Rate Per Hour.</p>
-      </ion-item>
-
-
-
       <ion-item>
         <ion-label floating>Auto Deny In</ion-label>
         <ion-input name="auto_deny_in" formControlName="auto_deny_in" type="text" [(ngModel)]="staffingRequest.auto_deny_in" [class.invalid]="!slideOneForm.controls.auto_deny_in.valid && (slideOneForm.controls.auto_deny_in.dirty || submitAttempt)"></ion-input>
@@ -112,6 +100,7 @@
 
   </ion-list>
 
-  <button ion-button full color="primary" (click)="save()">Save</button>
+  <button *ngIf="!staffingRequest.price" ion-button full color="success" (click)="price(staffingRequest)">Price Estimate</button>
+  <button *ngIf="staffingRequest.price" ion-button full color="primary" (click)="save()">Save</button>
 
 </ion-content>

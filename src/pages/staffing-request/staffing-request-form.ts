@@ -35,14 +35,12 @@ export class StaffingRequestForm {
     this.slideOneForm = formBuilder.group({
 
       role: ['', Validators.compose([Validators.required])],
-      
+
       speciality: [''],
 
       start_date: ['', Validators.compose([Validators.required])],
 
       end_date: ['', Validators.compose([Validators.required])],
-
-      rate_per_hour: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('([0-9]*[.])?[0-9]+'), Validators.required])],
 
       request_status: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*')])],
 
@@ -122,4 +120,32 @@ export class StaffingRequestForm {
     }
   }
 
+  price(staffingRequest) {
+    //console.log(this.staffingRequest);
+    let loader = this.loadingController.create({
+      content: 'Getting Estimated P*rice ...'
+    });
+
+    loader.present();
+
+    this.staffingRequestApi.price(this.staffingRequest).subscribe(
+      staffingRequest => {
+        console.log(`price=${staffingRequest["price"]}, audit=${staffingRequest["pricing_audit"]}`);
+        this.staffingRequest["price"] = staffingRequest["price"]
+        this.staffingRequest["pricing_audit"] = staffingRequest["pricing_audit"];
+
+        // let msg = "";
+        // for (var propt in staffingRequest["pricing_audit"]) {
+        //   msg += propt.split('_').join(' ') + ' = ' + staffingRequest["pricing_audit"][propt] + ",";
+        // }
+        this.respUtility.popup("Pricing", `Estimated price: GBP ${staffingRequest["price"]}`);
+      },
+      error => {
+        this.respUtility.showFailure(error);
+        loader.dismiss();
+      },
+      () => { loader.dismiss(); }
+    );
+
+  }
 }

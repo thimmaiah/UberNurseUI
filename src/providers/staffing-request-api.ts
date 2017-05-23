@@ -21,6 +21,14 @@ export class StaffingRequestApi {
     })
   }
 
+  price(staffingRequest) {
+    return this.tokenService.post(`${this.base_url}/price.json`, staffingRequest).map(response=>{
+      this.staffingRequest = response.json();
+      return this.staffingRequest;
+      //return response.status;
+    })
+  }
+
   getStaffingRequestDetails(staffingRequest_id) {
     return this.tokenService.get(`${this.base_url}/${staffingRequest_id}.json`).map(response=>{
       this.staffingRequest = response.json();

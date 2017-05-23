@@ -33,6 +33,7 @@ export class MyApp {
     public push: Push, 
     public alertCtrl: AlertController
   ) {
+    
 
     platform.ready().then(() => {
       this.statusBar.styleDefault();
