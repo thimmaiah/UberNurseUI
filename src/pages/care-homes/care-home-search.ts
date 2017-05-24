@@ -21,7 +21,7 @@ export class CareHomeSearch {
   cqc_records = [];
 
   constructor(public navCtrl: NavController,
-    public navParams: NavParams, 
+    public navParams: NavParams,
     public loadingController: LoadingController,
     public care_homeApi: CareHomeApi,
     public cqcApi: CqcRecordApi,
@@ -50,7 +50,11 @@ export class CareHomeSearch {
   }
 
   onSearch(event) {
-    this.loadCareHomes(this.searchTerm);
+    if (this.searchTerm) {
+      this.loadCareHomes(this.searchTerm);
+    } else {
+      this.cqc_records = null;
+    }
   }
 
   onCancel() {
@@ -58,8 +62,14 @@ export class CareHomeSearch {
   }
 
   newCareHome(cqc) {
-    let care_home = {name: cqc.name, postcode: cqc.postcode, 
-      phone: cqc.phone, address: cqc.address, cqc_location: cqc.cqc_location};
-    this.navCtrl.push(CareHomeForm,care_home);
+    let care_home = {};
+    if (cqc) {
+      care_home = {
+        name: cqc.name, postcode: cqc.postcode,
+        phone: cqc.phone, address: cqc.address,
+        cqc_location: cqc.cqc_location
+      };
+    }
+    this.navCtrl.push(CareHomeForm, care_home);
   }
 }

@@ -7,7 +7,7 @@ import { StaffingResponse } from '../staffing-response/staffing-response';
 import { StaffingRequest } from '../staffing-request/staffing-request';
 import { UserDetails } from '../users/user-details';
 import { UserForm } from '../users/user-form';
-import { CareHomeForm } from '../care-homes/care-home-form';
+import { CareHomeSearch } from '../care-homes/care-home-search';
 import { Payment } from '../payment/payment';
 import { Config } from '../../providers/config';
 
@@ -49,7 +49,7 @@ export class HomePage {
   }
 
   register_care_home() {
-    this.navCtrl.push(CareHomeForm);
+    this.navCtrl.push(CareHomeSearch);
   }
 
   show_payments() {

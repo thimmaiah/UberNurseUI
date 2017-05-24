@@ -82,6 +82,7 @@ export class CareHomeForm {
       } else {
         this.care_homeApi.createCareHome(this.care_home).subscribe(
           care_home => {
+            this.navCtrl.popToRoot();
             this.respUtility.showSuccess('CareHome saved successfully. We will inform you once this has been verified');
           },
           error => {

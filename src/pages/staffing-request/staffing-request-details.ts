@@ -126,11 +126,11 @@ export class StaffingRequestDetails {
             this.editStaffingRequest(staffingRequest);
           }
         }, {
-          text: 'Delete',
+          text: 'Cancel',
           role: 'destructive',
           icon: !this.platform.is('ios') ? 'trash' : null,
           handler: () => {
-            console.log('Delete clicked');
+            console.log('Cancel clicked');
             this.confirmDelete(staffingRequest);
           }
         }, {

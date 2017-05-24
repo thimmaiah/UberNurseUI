@@ -108,6 +108,7 @@ export class CareHomes {
   }
 
   onSearch(event) {
+    this.care_homes = null;
     this.loadCareHomes(this.searchTerm, 1, null);
   }
 
