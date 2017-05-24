@@ -15,8 +15,9 @@ export class CareHomeApi {
     console.log('CareHomeApi Provider Created');
   }
 
-  getCareHomes() {
-    return this.tokenService.get(`${this.base_url}.json`).map(response=>{
+  getCareHomes(searchTerm) {
+    let endpoint = `${this.base_url}.json?search=${searchTerm}`;
+    return this.tokenService.get(endpoint).map(response=>{
       this.care_homes = response.json();
       return this.care_homes;
     })

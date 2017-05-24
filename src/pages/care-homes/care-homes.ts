@@ -23,6 +23,7 @@ export class CareHomes {
   care_homes: any;
   care_home: any;
   current_user: any;
+  searchTerm = "";
   
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -39,13 +40,16 @@ export class CareHomes {
 
   ionViewWillEnter() {
     console.log('ionViewWillEnter CareHomes');
+    this.loadCareHomes("");
+  }
 
+  loadCareHomes(searchTerm) {
     let loader = this.loadingController.create({
       content: 'Loading CareHomes...'
     });
     loader.present();
 
-    this.care_homeApi.getCareHomes().subscribe(
+    this.care_homeApi.getCareHomes(searchTerm).subscribe(
       CareHome => {
         this.care_homes = CareHome;
         console.log("Loaded CareHome");
@@ -54,7 +58,6 @@ export class CareHomes {
       error => { this.respUtility.showFailure(error); loader.dismiss(); },
       () => { loader.dismiss(); }
     );
-
   }
 
   getCareHomeDetails(care_home) {
@@ -78,5 +81,13 @@ export class CareHomes {
   newCareHome() {
     let care_home = {};
     this.navCtrl.push(CareHomeForm,care_home);
+  }
+
+  onInput(event) {
+    this.loadCareHomes(this.searchTerm);
+  }
+
+  onCancel() {
+    this.searchTerm = "";
   }
 }

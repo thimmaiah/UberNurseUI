@@ -15,6 +15,11 @@
 
 <ion-content padding>
 
+  <ion-searchbar [(ngModel)]="searchTerm" [showCancelButton]="shouldShowCancel" 
+      (ionInput)="onInput($event)" (ionCancel)="onCancel($event)"
+      animated=true debounce=500>
+  </ion-searchbar>
+
   <ion-fab bottom right *ngIf="current_user.role=='Admin' && !current_user.care_home_id">
     <button id="new_care_home_button" ion-fab (click)="newCareHome()"><ion-icon name="add"></ion-icon></button>
   </ion-fab>
