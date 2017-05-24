@@ -15,7 +15,31 @@
 
 <ion-content padding>
 
-  <ion-searchbar [(ngModel)]="search" [showCancelButton]="shouldShowCancel" (ionInput)="onInput($event)" (ionCancel)="onCancel($event)">
+  <ion-searchbar [(ngModel)]="searchTerm" [showCancelButton]="shouldShowCancel" (ionInput)="onSearch($event)" (ionCancel)="onCancel($event)">
   </ion-searchbar>
+
+
+  <ion-list>
+    <button ion-item *ngFor="let cqc of cqc_records" (click)=newCareHome(cqc)>
+      <p>
+        {{cqc.name}}
+      </p>
+       
+      <p>
+        {{cqc.address}}
+      </p>
+       
+      <p>
+        {{cqc.phone}}
+      </p>
+       
+      <p>
+        {{cqc.postcode}}
+      </p>
+      
+      
+    </button>
+  </ion-list>
+
 
 </ion-content>

@@ -36,11 +36,10 @@ export class CareHomeForm {
 
     this.slideOneForm = formBuilder.group({
        
-      name: ['', Validators.compose([Validators.maxLength(30), Validators.required])],       
-      address: ['', Validators.compose([Validators.maxLength(30), Validators.required])],       
-      town: ['', Validators.compose([Validators.maxLength(30), Validators.required])],       
-      postcode: ['', Validators.compose([Validators.maxLength(30), Validators.required])],       
-      base_rate: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('([0-9]*[.])?[0-9]+'), Validators.required])],  
+      name: ['', Validators.compose([Validators.required])],       
+      address: ['', Validators.compose([Validators.required])],       
+      town: ['', Validators.compose([Validators.required])],       
+      postcode: ['', Validators.compose([Validators.maxLength(8), Validators.required])],       
       image_url: ['']  
     });
 

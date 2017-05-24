@@ -41,6 +41,7 @@ import { RatingForm } from '../pages/rating/rating-form';
 
 
 import { CareHomes } from '../pages/care-homes/care-homes';
+import { CareHomeSearch } from '../pages/care-homes/care-home-search';
 import { CareHomeForm } from '../pages/care-homes/care-home-form';
 import { CareHomeDetails } from '../pages/care-homes/care-home-details';
 
@@ -53,6 +54,7 @@ import { UserApi } from '../providers/user-api'
 import { UserDocApi } from '../providers/user-doc-api'
 import { Config } from '../providers/config'
 import { CareHomeApi } from '../providers/care-home-api'
+import { CqcRecordApi } from '../providers/cqc-record-api'
 import { PaymentApi } from '../providers/payment-api'
 import { RatingApi } from '../providers/rating-api'
 import { StaffingRequestApi } from '../providers/staffing-request-api'
@@ -85,7 +87,8 @@ import { Push } from '@ionic-native/push';
     StaffingRequestDetails,
     CareHomes,
     CareHomeForm,
-    CareHomeDetails
+    CareHomeDetails,
+    CareHomeSearch
   ],
   imports: [
     BrowserModule,
@@ -119,7 +122,8 @@ import { Push } from '@ionic-native/push';
     StaffingRequestDetails,
     CareHomes,
     CareHomeForm,
-    CareHomeDetails
+    CareHomeDetails,
+    CareHomeSearch
   ],
   providers: [
     Push,
@@ -128,6 +132,7 @@ import { Push } from '@ionic-native/push';
     UserDocApi,
     RatingApi,
     CareHomeApi,
+    CqcRecordApi,
     StaffingRequestApi,
     StaffingResponseApi,
     PaymentApi,

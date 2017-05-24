@@ -62,15 +62,6 @@
       </ion-item>
 
       <ion-item>
-        <ion-label floating>Base Rate</ion-label>
-        <ion-input name="base_rate" formControlName="base_rate" type="text" [(ngModel)]="care_home.base_rate" [class.invalid]="!slideOneForm.controls.base_rate.valid && (slideOneForm.controls.base_rate.dirty || submitAttempt)"></ion-input>
-      </ion-item>
-
-      <ion-item *ngIf="!slideOneForm.controls.base_rate.valid  && (slideOneForm.controls.base_rate.dirty || submitAttempt)">
-        <p class="error-text">Please enter a valid base_rate.</p>
-      </ion-item>
-
-      <ion-item>
         <ion-label floating>Image URL</ion-label>
         <ion-input name="image_url" formControlName="image_url" type="text" [(ngModel)]="care_home.image_url" [class.invalid]="!slideOneForm.controls.image_url.valid && (slideOneForm.controls.image_url.dirty || submitAttempt)"></ion-input>
       </ion-item>

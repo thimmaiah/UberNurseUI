@@ -4,6 +4,7 @@ import { CareHomeApi } from '../../providers/care-home-api';
 import { ResponseUtility } from '../../providers/response-utility';
 import { CareHomeDetails } from '../care-homes/care-home-details';
 import { CareHomeForm } from '../care-homes/care-home-form';
+import { CareHomeSearch } from '../care-homes/care-home-search';
 import { Angular2TokenService } from 'angular2-token';
 
 
@@ -50,8 +51,8 @@ export class CareHomes {
     loader.present();
 
     this.care_homeApi.getCareHomes(searchTerm).subscribe(
-      CareHome => {
-        this.care_homes = CareHome;
+      care_homes => {
+        this.care_homes = care_homes;
         console.log("Loaded CareHome");
         console.log(this.care_homes);
       },
@@ -80,10 +81,10 @@ export class CareHomes {
 
   newCareHome() {
     let care_home = {};
-    this.navCtrl.push(CareHomeForm,care_home);
+    this.navCtrl.push(CareHomeSearch);
   }
 
-  onInput(event) {
+  onSearch(event) {
     this.loadCareHomes(this.searchTerm);
   }
 
