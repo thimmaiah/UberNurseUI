@@ -15,9 +15,8 @@
 
 <ion-content padding>
 
-  <ion-searchbar [(ngModel)]="searchTerm" [showCancelButton]="shouldShowCancel" 
-      (ionInput)="onSearch($event)" (ionCancel)="onCancel($event)"
-      animated=true debounce=500>
+  <ion-searchbar [(ngModel)]="searchTerm" [showCancelButton]="shouldShowCancel" (ionInput)="onSearch($event)" (ionCancel)="onCancel($event)"
+    animated=true debounce=500>
   </ion-searchbar>
 
   <ion-fab bottom right *ngIf="current_user.role=='Admin' && !current_user.care_home_id">
@@ -48,5 +47,11 @@
       
     </button>
   </ion-list>
+
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)" threshold="100px">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
 
 </ion-content>

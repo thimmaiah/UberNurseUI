@@ -57,7 +57,12 @@ export class Payment {
         }
       },
       error => { this.respUtility.showFailure(error); loader.dismiss(); },
-      () => { loader.dismiss(); }
+      () => { 
+        loader.dismiss(); 
+        if (infiniteScroll) {
+          infiniteScroll.complete();
+        }
+      }
     );
 
   }
@@ -84,8 +89,7 @@ export class Payment {
     console.log('loadMorepayments, start is currently ' + this.page);
     this.page += 1;
     infiniteScroll.enable(false);
-    this.loadPayments(this.page, infiniteScroll);
-    infiniteScroll.complete();
+    this.loadPayments(this.page, infiniteScroll);    
   }
 
 }

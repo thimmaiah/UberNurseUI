@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { InfiniteScroll, IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { CareHomeApi } from '../../providers/care-home-api';
 import { ResponseUtility } from '../../providers/response-utility';
 import { CareHomeDetails } from '../care-homes/care-home-details';
@@ -25,6 +25,7 @@ export class CareHomes {
   care_home: any;
   current_user: any;
   searchTerm = "";
+  page = 1;
   
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -41,20 +42,34 @@ export class CareHomes {
 
   ionViewWillEnter() {
     console.log('ionViewWillEnter CareHomes');
-    this.loadCareHomes("");
+    this.loadCareHomes("", 1, null);
   }
 
-  loadCareHomes(searchTerm) {
+  loadCareHomes(searchTerm, page, infiniteScroll:InfiniteScroll) {
     let loader = this.loadingController.create({
-      content: 'Loading CareHomes...'
+      content: 'Loading Care Homes...'
     });
     loader.present();
 
-    this.care_homeApi.getCareHomes(searchTerm).subscribe(
+    this.care_homeApi.getCareHomes(searchTerm, page).subscribe(
       care_homes => {
-        this.care_homes = care_homes;
-        console.log("Loaded CareHome");
-        console.log(this.care_homes);
+
+        if (this.care_homes == null) {
+          this.care_homes = [];
+        }
+
+        if (care_homes.length > 0) {
+          this.care_homes = this.care_homes.concat(care_homes);
+          console.log("Loaded care homes");
+          if (infiniteScroll) {
+            infiniteScroll.enable(true);
+          }
+        } else {
+          if (infiniteScroll) {
+            infiniteScroll.enable(false);
+          }
+        }
+
       },
       error => { this.respUtility.showFailure(error); loader.dismiss(); },
       () => { loader.dismiss(); }
@@ -79,13 +94,21 @@ export class CareHomes {
 
   }
 
+  doInfinite(infiniteScroll: InfiniteScroll) {
+    console.log('loadMorepayments, start is currently ' + this.page);
+    this.page += 1;
+    infiniteScroll.enable(false);
+    this.loadCareHomes("", this.page, infiniteScroll);
+    infiniteScroll.complete();
+  }
+
   newCareHome() {
     let care_home = {};
     this.navCtrl.push(CareHomeSearch);
   }
 
   onSearch(event) {
-    this.loadCareHomes(this.searchTerm);
+    this.loadCareHomes(this.searchTerm, 1, null);
   }
 
   onCancel() {
