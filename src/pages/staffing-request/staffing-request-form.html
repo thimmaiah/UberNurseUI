@@ -26,16 +26,16 @@
         <ion-select name="role" [(ngModel)]="staffingRequest.role" [class.invalid]="!slideOneForm.controls.role.valid && (slideOneForm.controls.role.dirty || submitAttempt)"
           formControlName="role">
           <ion-option value="Care Giver" checked="true">Care Giver</ion-option>
-          <ion-option value="Nurse" >Nurse</ion-option>
+          <ion-option value="Nurse">Nurse</ion-option>
         </ion-select>
       </ion-item>
-  
+
       <ion-item id="speciality">
         <ion-label floating>Speciality</ion-label>
         <ion-select name="speciality" [(ngModel)]="staffingRequest.speciality" [class.invalid]="!slideOneForm.controls.speciality.valid && (slideOneForm.controls.speciality.dirty || submitAttempt)"
           formControlName="speciality">
           <ion-option value="Generalist" checked="true">Generalist</ion-option>
-          <ion-option value="Geriatric Care" >Geriatric Care</ion-option>
+          <ion-option value="Geriatric Care">Geriatric Care</ion-option>
           <ion-option value="Pediatric Care">Pediatric Care</ion-option>
           <ion-option value="Mental Health">Mental Health</ion-option>
         </ion-select>
@@ -44,9 +44,8 @@
 
       <ion-item>
         <ion-label floating>Start Date</ion-label>
-        <ion-datetime formControlName="start_date" displayFormat="MMM DD, YYYY HH:mm" 
-        [min]="todayStr"
-        [(ngModel)]="staffingRequest.start_date" [class.invalid]="!slideOneForm.controls.start_date.valid && (slideOneForm.controls.start_date.dirty || submitAttempt)"></ion-datetime>
+        <ion-datetime formControlName="start_date" displayFormat="MMM DD, YYYY HH:mm" [min]="todayStr" [(ngModel)]="staffingRequest.start_date"
+          [class.invalid]="!slideOneForm.controls.start_date.valid && (slideOneForm.controls.start_date.dirty || submitAttempt)"></ion-datetime>
       </ion-item>
 
       <ion-item *ngIf="!slideOneForm.controls.start_date.valid  && (slideOneForm.controls.start_date.dirty || submitAttempt)">
@@ -57,9 +56,8 @@
 
       <ion-item>
         <ion-label floating>End Date</ion-label>
-        <ion-datetime formControlName="end_date" displayFormat="MMM DD, YYYY HH:mm" 
-        [min]="todayStr"
-        [(ngModel)]="staffingRequest.end_date" [class.invalid]="!slideOneForm.controls.end_date.valid && (slideOneForm.controls.end_date.dirty || submitAttempt)"></ion-datetime>
+        <ion-datetime formControlName="end_date" displayFormat="MMM DD, YYYY HH:mm" [min]="todayStr" [(ngModel)]="staffingRequest.end_date"
+          [class.invalid]="!slideOneForm.controls.end_date.valid && (slideOneForm.controls.end_date.dirty || submitAttempt)"></ion-datetime>
       </ion-item>
 
       <ion-item *ngIf="!slideOneForm.controls.end_date.valid  && (slideOneForm.controls.end_date.dirty || submitAttempt)">
@@ -100,7 +98,14 @@
 
   </ion-list>
 
-  <button *ngIf="!staffingRequest.price" ion-button full color="success" (click)="price(staffingRequest)">Price Estimate</button>
-  <button *ngIf="staffingRequest.price" ion-button full color="primary" (click)="save()">Save</button>
-
+  <ion-row>
+    <ion-col>
+      <button ion-button full color="secondary" (click)="price(staffingRequest)">Price Estimate</button>
+    </ion-col>
+    <ion-col>
+      <button ion-button full color="primary" (click)="save()">Save</button>
+    </ion-col>
+    
+    
+  </ion-row>
 </ion-content>

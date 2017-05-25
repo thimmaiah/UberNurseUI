@@ -68,7 +68,7 @@ export class ResponseUtility {
     let confirm = this.alertController.create({
       title: 'Delete',
       cssClass: 'delete-alert',
-      message: 'Are you sure you want to delete ?',
+      message: 'Are you sure you want to proceed ?',
       buttons: [
         {
           text: 'Yes',
