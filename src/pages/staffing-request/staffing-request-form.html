@@ -22,13 +22,16 @@
     <form [formGroup]="slideOneForm">
 
       <ion-item id="role">
-        <ion-label floating>Role</ion-label>
+        <ion-label floating>Staff Type</ion-label>
         <ion-select name="role" [(ngModel)]="staffingRequest.role" [class.invalid]="!slideOneForm.controls.role.valid && (slideOneForm.controls.role.dirty || submitAttempt)"
           formControlName="role">
           <ion-option value="Care Giver" checked="true">Care Giver</ion-option>
           <ion-option value="Nurse">Nurse</ion-option>
         </ion-select>
       </ion-item>
+      <p class="field-hint">
+        Select the type of temp staff you need.
+      </p>
 
       <ion-item id="speciality">
         <ion-label floating>Speciality</ion-label>
@@ -40,7 +43,9 @@
           <ion-option value="Mental Health">Mental Health</ion-option>
         </ion-select>
       </ion-item>
-
+      <p class="field-hint">
+        Select the speciality of the staff you need.
+      </p>
 
       <ion-item>
         <ion-label floating>Start Date</ion-label>
@@ -51,6 +56,9 @@
       <ion-item *ngIf="!slideOneForm.controls.start_date.valid  && (slideOneForm.controls.start_date.dirty || submitAttempt)">
         <p class="error-text">Please enter a valid Start Date.</p>
       </ion-item>
+      <p class="field-hint">
+        Select the start date & time for the temp staff.
+      </p>
 
 
 
@@ -63,6 +71,9 @@
       <ion-item *ngIf="!slideOneForm.controls.end_date.valid  && (slideOneForm.controls.end_date.dirty || submitAttempt)">
         <p class="error-text">Please enter a valid End Date.</p>
       </ion-item>
+      <p class="field-hint">
+        Select the end date & time for the temp staff.
+      </p>
 
 
       <ion-item>
@@ -73,6 +84,10 @@
       <ion-item *ngIf="!slideOneForm.controls.auto_deny_in.valid  && (slideOneForm.controls.auto_deny_in.dirty || submitAttempt)">
         <p class="error-text">Please enter a valid Auto Deny in hours.</p>
       </ion-item>
+      <p class="field-hint">
+        Select time in hours afterwhich this request expires.
+      </p>
+
 
       <ion-item>
         <ion-label floating>Start Code</ion-label>
@@ -82,6 +97,10 @@
       <ion-item *ngIf="!slideOneForm.controls.start_code.valid  && (slideOneForm.controls.start_code.dirty || submitAttempt)">
         <p>Please enter a valid Start Code.</p>
       </ion-item>
+
+      <p class="field-hint">
+        Select the start code your temp needs to enter upon arrival.
+      </p>
 
 
 
@@ -93,6 +112,10 @@
       <ion-item *ngIf="!slideOneForm.controls.end_code.valid  && (slideOneForm.controls.end_code.dirty || submitAttempt)">
         <p>Please enter a valid End Code.</p>
       </ion-item>
+
+      <p class="field-hint">
+        Select the end code your temp needs to enter upon completion of the shift.
+      </p>
 
     </form>
 
