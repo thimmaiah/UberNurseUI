@@ -30,7 +30,7 @@
         End: {{staffingRequest.end_date | date: 'dd/MM/yyyy H:mm'}}
       </p>
       
-      <ion-badge>{{staffingRequest.rate_per_hour | currency}}</ion-badge> 
+      <ion-badge>{{staffingRequest.price | currency}}</ion-badge> 
       <ion-badge color="secondary" *ngIf="staffingRequest.request_status == 'Open'">
         Open
       </ion-badge>

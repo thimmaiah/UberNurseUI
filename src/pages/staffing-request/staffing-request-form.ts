@@ -123,7 +123,7 @@ export class StaffingRequestForm {
   price(staffingRequest) {
     //console.log(this.staffingRequest);
     let loader = this.loadingController.create({
-      content: 'Getting Estimated P*rice ...'
+      content: 'Getting Estimated Price ...'
     });
 
     loader.present();
