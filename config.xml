@@ -1,12 +1,10 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.ionicframework.ubernurseui725145" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>UberNurseUI</name>
-    <description>An awesome Ionic/Cordova app.</description>
-    <author email="hi@ionicframework" href="http://ionicframework.com/">Ionic Framework Team</author>
+<widget id="uk.co.connuct" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>Care Connect</name>
+    <description>Connecting care homes to care givers and nurses</description>
+    <author email="admin@connuct.co.uk" href="http://blog.connuct.co.uk">Connuct Team</author>
     <content src="index.html" />
     <access origin="*" />
-    <allow-navigation href="http://ionic.local/*" />
-    <allow-navigation href="http://192.168.0.4:8100" />
     <allow-navigation href="*" />
     <allow-navigation href="file://*/*" />
     <allow-intent href="http://*/*" />
@@ -90,10 +88,11 @@
     <plugin name="cordova-plugin-file" spec="~4.3.3" />
     <plugin name="cordova-plugin-filepath" spec="~1.0.2" />
     <plugin name="cordova-plugin-file-transfer" spec="~1.5.1" />
-    <plugin name="com.mbppower.camerapreview" spec="~0.0.8" />
     <plugin name="phonegap-plugin-push" spec="~1.10.3">
         <variable name="SENDER_ID" value="600472014859" />
     </plugin>
     <plugin name="ionic-plugin-deploy" spec="~0.6.7" />
     <engine name="browser" spec="~4.1.0" />
+    <engine name="android" spec="https://github.com/apache/cordova-android.git#5.1.1" />
+    <engine name="ios" spec="^4.0.0" />
 </widget>

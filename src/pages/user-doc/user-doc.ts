@@ -13,7 +13,6 @@ import { UserPic } from '../user-pic/user-pic';
 export class UserDoc {
 
   document: any;
-  doc_url = null;
   current_user: {};
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -25,7 +24,6 @@ export class UserDoc {
 
     this.document = this.navParams.data;
     console.log(this.document);
-    this.doc_url = config.props["API_URL"] + this.document.doc;
 
     this.current_user = tokenService.currentUserData;
   }
