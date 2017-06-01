@@ -95,6 +95,8 @@ export class StaffingResponseDetails {
       staffing_request_id: staffingResponse.staffing_request_id,
       user_id: staffingResponse.user_id,
       staffing_response_id: staffingResponse.id,
+      amount: staffingResponse.price,
+      pricing_audit: staffingResponse.pricing_audit,
       notes: "Thank you for your service."
     }
     this.navCtrl.push(PaymentForm, payment);

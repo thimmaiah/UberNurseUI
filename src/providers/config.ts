@@ -21,7 +21,7 @@ export class Config {
   };
 
   private prod = {
-    API_URL: "",
+    API_URL: "http://dev.connuct.co.uk",
     ENV: "prod"
   };
   

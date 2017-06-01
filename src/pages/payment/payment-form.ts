@@ -4,11 +4,9 @@ import { Component, ViewChild } from '@angular/core';
 import { PaymentApi } from '../../providers/payment-api';
 import { ResponseUtility } from '../../providers/response-utility';
 
-
-
 @Component({
   selector: 'page-payment-form',
-  templateUrl: 'payment-form.html',
+  templateUrl: 'payment-form.html'
 })
 export class PaymentForm {
 
@@ -17,6 +15,7 @@ export class PaymentForm {
 
   slideOneForm: FormGroup;
   slideTwoForm: FormGroup;
+  pricing_audit_keys = [];
 
   submitAttempt: boolean = false;
 
@@ -28,6 +27,7 @@ export class PaymentForm {
     public respUtility: ResponseUtility) {
 
     this.payment = this.navParams.data;
+    this.pricing_audit_keys = Object.keys(this.payment["pricing_audit"]);
 
     this.slideOneForm = formBuilder.group({
               

@@ -6,6 +6,7 @@ import { Angular2TokenService } from 'angular2-token';
 import { ResponseUtility } from '../../providers/response-utility';
 import { Config } from '../../providers/config';
 import { UserApi } from '../../providers/user-api';
+import { UserForm } from '../users/user-form';
 
 @IonicPage()
 @Component({
@@ -14,11 +15,11 @@ import { UserApi } from '../../providers/user-api';
 })
 export class Login {
 
-  email: any = "thimmaiah@gmail.com";
-  password: any = "thimmaiah@gmail.com";
+ // email: any = "thimmaiah@gmail.com";
+  //password: any = "thimmaiah@gmail.com";
 
-  //email: any = "admin@ubernurse.com";
-  //password: any = "admin@ubernurse.com";
+  email: any = "admin@ubernurse.com";
+  password: any = "admin@ubernurse.com";
 
 
   slideOneForm: FormGroup;
@@ -85,7 +86,7 @@ export class Login {
   }
 
   register() {
-
+    this.navCtrl.push(UserForm);
   }
 
   forgotPassword() {

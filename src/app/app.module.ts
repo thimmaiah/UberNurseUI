@@ -3,7 +3,6 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
-import { CameraPreview } from '@ionic-native/camera-preview';
 import { File } from '@ionic-native/file';
 import { Transfer } from '@ionic-native/transfer';
 import { FilePath } from '@ionic-native/file-path';
@@ -62,6 +61,7 @@ import { StaffingResponseApi } from '../providers/staffing-response-api'
 
 import { ResponseUtility } from '../providers/response-utility'
 import { Push } from '@ionic-native/push';
+import { TitleCasePipe } from '../pipes/title-case/title-case';
 
 @NgModule({
   declarations: [
@@ -88,7 +88,8 @@ import { Push } from '@ionic-native/push';
     CareHomes,
     CareHomeForm,
     CareHomeDetails,
-    CareHomeSearch
+    CareHomeSearch,
+    TitleCasePipe
   ],
   imports: [
     BrowserModule,
@@ -141,7 +142,6 @@ import { Push } from '@ionic-native/push';
     SplashScreen,
     Angular2TokenService,
     Camera,
-    CameraPreview,
     Diagnostic,
     File,
     FilePath,

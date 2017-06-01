@@ -157,11 +157,21 @@
           Worked:
         </ion-col>
         <ion-col>
-          {{ (staffingResponse.minutes_worked / 60) | number:'.0-0' }} hrs {{(staffingResponse.minutes_worked/60)*60}} mins
+          {{ (staffingResponse.minutes_worked / 60) | number:'.0-0' }} hrs {{(staffingResponse.minutes_worked % 60)*60}} mins
         </ion-col>
       </ion-row>
     </ion-item>
 
+    <ion-item *ngIf="staffingResponse.end_code">
+      <ion-row>
+        <ion-col>
+          Amount:
+        </ion-col>
+        <ion-col>
+          {{staffingResponse.price | currency}}
+        </ion-col>
+      </ion-row>
+    </ion-item>
 
   </ion-list>
 

@@ -4,7 +4,6 @@ import { Camera, CameraOptions } from '@ionic-native/camera';
 import { File } from '@ionic-native/file';
 import { Transfer } from '@ionic-native/transfer';
 import { FilePath } from '@ionic-native/file-path';
-import { CameraPreview, CameraPreviewPictureOptions, CameraPreviewOptions, CameraPreviewDimensions } from '@ionic-native/camera-preview';
 import { Diagnostic } from '@ionic-native/diagnostic';
 import { ResponseUtility } from '../../providers/response-utility';
 import { Config } from '../../providers/config';
@@ -24,17 +23,6 @@ export class UserPic {
   current_user = null;
   user_doc : {};
 
-  cameraPreviewOpts: CameraPreviewOptions = {
-    x: 0,
-    y: 0,
-    width: window.screen.width,
-    height: window.screen.height,
-    camera: 'rear',
-    tapPhoto: true,
-    previewDrag: true,
-    toBack: true,
-    alpha: 1
-  };
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -43,7 +31,6 @@ export class UserPic {
     public toastCtrl: ToastController,
     public platform: Platform,
     public loadingCtrl: LoadingController,
-    private cameraPreview: CameraPreview,
     private diagnostic: Diagnostic,
     private camera: Camera,
     private filePath: FilePath,
