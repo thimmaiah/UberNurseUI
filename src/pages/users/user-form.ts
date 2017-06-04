@@ -37,24 +37,8 @@ export class UserForm {
 
     this.user = this.navParams.data;
 
-    this.adminForm = formBuilder.group({
-      first_name: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
-      last_name: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
-      email: ['', Validators.compose([Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$'), Validators.required])],
-      password: ['', Validators.compose([Validators.minLength(6), Validators.required])],
-      role: [''],
-      sex: [''],
-      phone: ['', Validators.pattern('^\\d+$'),],
-      postcode: ['', Validators.compose([Validators.required])],
-      languages: ['', Validators.compose([Validators.pattern('[a-z, A-Z]*')])],
-      pref_commute_distance: ['', Validators.compose([Validators.pattern('^\\d+$')])],
-      speciality: ['', Validators.compose([Validators.pattern('[a-z, A-Z]*')])],
-      experience: ['', Validators.compose([Validators.pattern('^\\d+$')])],
-      bank_account: [''],
-      sort_code: ['']
-    });
 
-    this.careGiverForm = formBuilder.group({
+    this.slideOneForm = formBuilder.group({
       first_name: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
       last_name: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
       email: ['', Validators.compose([Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$'), Validators.required])],
@@ -71,11 +55,9 @@ export class UserForm {
       sort_code: ['', Validators.compose([Validators.minLength(6), Validators.required])],
     });
 
-
-    this.slideOneForm = this.adminForm;
-    // PAssword may not be visible, hence disable validations
+    // Password may not be visible, hence disable validations
     let pass = this.slideOneForm.controls["password"];
-    if(this.user["id"]) {
+    if (this.user["id"]) {
       pass.disable();
     } else {
       pass.enable();
@@ -87,10 +69,18 @@ export class UserForm {
   onRoleChange(role) {
     console.log(`Role changed to ${role}`);
 
+    var careGiverFields = ["languages", "pref_commute_distance", "speciality", "experience", "bank_account", "sort_code"];
+    var arrayLength = careGiverFields.length;
+
+
     if (role == "Admin") {
-      this.slideOneForm = this.adminForm;
+      for (var i = 0; i < arrayLength; i++) {
+        this.slideOneForm.controls[careGiverFields[i]].disable();
+      }
     } else {
-      this.slideOneForm = this.careGiverForm;
+      for (var i = 0; i < arrayLength; i++) {
+        this.slideOneForm.controls[careGiverFields[i]].enable();
+      }
     }
   }
 
