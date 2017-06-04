@@ -44,8 +44,6 @@ export class StaffingRequestForm {
 
       request_status: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*')])],
 
-      auto_deny_in: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('([0-9]*[.])?[0-9]+'), Validators.required])],
-
       payment_status: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*')])],
 
       start_code: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('^\\d+$'), Validators.required])],

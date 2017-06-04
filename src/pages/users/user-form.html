@@ -50,11 +50,12 @@
 
       <ion-item *ngIf="!user.id">
         <ion-label floating>Password</ion-label>
-        <ion-input name="password" formControlName="password" type="password" [(ngModel)]="user.password" [class.invalid]="!slideOneForm.controls.password.valid && (slideOneForm.controls.password.dirty || submitAttempt)"></ion-input>
+        <ion-input name="password" formControlName="password" type="password" 
+        [(ngModel)]="user.password" [class.invalid]="!slideOneForm.controls.password.valid && (slideOneForm.controls.password.dirty || submitAttempt)"></ion-input>
       </ion-item>
 
       <ion-item *ngIf="!slideOneForm.controls.password.valid  && (slideOneForm.controls.password.dirty || submitAttempt)">
-        <p class="error-text">Please enter a valid password.</p>
+        <p class="error-text">Please enter a valid password at least 6 chars.</p>
       </ion-item>
 
       <ion-item>
@@ -69,7 +70,7 @@
       <ion-item id="role">
         <ion-label floating>Role</ion-label>
         <ion-select name="role" [(ngModel)]="user.role" [class.invalid]="!slideOneForm.controls.role.valid && (slideOneForm.controls.role.dirty || submitAttempt)"
-          formControlName="role">
+          formControlName="role" (ionChange)="onRoleChange($event)">
           <ion-option value="Care Giver" checked="true">Care Giver</ion-option>
           <ion-option value="Nurse" >Nurse</ion-option>
           <ion-option value="Admin">Care Home Admin</ion-option>

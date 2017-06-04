@@ -75,20 +75,6 @@
         Select the end date & time for the temp staff.
       </p>
 
-
-      <ion-item>
-        <ion-label floating>Auto Deny In</ion-label>
-        <ion-input name="auto_deny_in" formControlName="auto_deny_in" type="number" [(ngModel)]="staffingRequest.auto_deny_in" [class.invalid]="!slideOneForm.controls.auto_deny_in.valid && (slideOneForm.controls.auto_deny_in.dirty || submitAttempt)"></ion-input>
-      </ion-item>
-
-      <ion-item *ngIf="!slideOneForm.controls.auto_deny_in.valid  && (slideOneForm.controls.auto_deny_in.dirty || submitAttempt)">
-        <p class="error-text">Please enter a valid Auto Deny in hours.</p>
-      </ion-item>
-      <p class="field-hint">
-        Select time in hours afterwhich this request expires.
-      </p>
-
-
       <ion-item>
         <ion-label floating>Start Code</ion-label>
         <ion-input name="start_code" formControlName="start_code" type="number" [(ngModel)]="staffingRequest.start_code" [class.invalid]="!slideOneForm.controls.start_code.valid && (slideOneForm.controls.start_code.dirty || submitAttempt)"></ion-input>

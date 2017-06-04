@@ -22,7 +22,8 @@ export class UserForm {
   @ViewChild('signupSlider') signupSlider: any;
 
   slideOneForm: FormGroup;
-  slideTwoForm: FormGroup;
+  adminForm: FormGroup;
+  careGiverForm: FormGroup;
 
   submitAttempt: boolean = false;
 
@@ -35,12 +36,12 @@ export class UserForm {
     private tokenService: Angular2TokenService) {
 
     this.user = this.navParams.data;
-    
-    this.slideOneForm = formBuilder.group({
+
+    this.adminForm = formBuilder.group({
       first_name: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
       last_name: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
       email: ['', Validators.compose([Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$'), Validators.required])],
-      password: [''],
+      password: ['', Validators.compose([Validators.minLength(6), Validators.required])],
       role: [''],
       sex: [''],
       phone: ['', Validators.pattern('^\\d+$'),],
@@ -53,7 +54,44 @@ export class UserForm {
       sort_code: ['']
     });
 
+    this.careGiverForm = formBuilder.group({
+      first_name: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
+      last_name: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*'), Validators.required])],
+      email: ['', Validators.compose([Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$'), Validators.required])],
+      password: ['', Validators.compose([Validators.minLength(6), Validators.required])],
+      role: [''],
+      sex: [''],
+      phone: ['', Validators.pattern('^\\d+$'),],
+      postcode: ['', Validators.compose([Validators.required])],
+      languages: ['', Validators.compose([Validators.pattern('[a-z, A-Z]*')])],
+      pref_commute_distance: ['', Validators.compose([Validators.pattern('^\\d+$'), Validators.required])],
+      speciality: ['', Validators.compose([Validators.pattern('[a-z, A-Z]*'), Validators.required])],
+      experience: ['', Validators.compose([Validators.pattern('^\\d+$'), Validators.required])],
+      bank_account: ['', Validators.compose([Validators.minLength(8), Validators.required])],
+      sort_code: ['', Validators.compose([Validators.minLength(6), Validators.required])],
+    });
 
+
+    this.slideOneForm = this.adminForm;
+    // PAssword may not be visible, hence disable validations
+    let pass = this.slideOneForm.controls["password"];
+    if(this.user["id"]) {
+      pass.disable();
+    } else {
+      pass.enable();
+    }
+
+  }
+
+  // Switch the madatory fields and validations based on the role
+  onRoleChange(role) {
+    console.log(`Role changed to ${role}`);
+
+    if (role == "Admin") {
+      this.slideOneForm = this.adminForm;
+    } else {
+      this.slideOneForm = this.careGiverForm;
+    }
   }
 
   ionViewDidLoad() {
@@ -106,6 +144,7 @@ export class UserForm {
           this.respUtility.showWarning(body.errors);
         } else {
           this.respUtility.showFailure(error);
+          loader.dismiss();
         }
       },
       () => { loader.dismiss(); }
