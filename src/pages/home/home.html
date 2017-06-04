@@ -56,15 +56,18 @@
         <ion-list>
         
         <button ion-item *ngIf="registerCareHome" (click)="register_care_home()">
-          <ion-icon name="home" item-left color="primary"></ion-icon>
+          <ion-icon name="home" item-left color="danger"></ion-icon>
           Register Care Home 
+          <p>
+            Register your care home now.
+          </p>
         </button>
 
         <button ion-item *ngIf="currentUser.role == 'Admin'" (click)="show_staffing_requests()">
           <ion-icon name="construct" item-left color="primary"></ion-icon>
           Staffing Requests
           <p>
-            Staffing Requests for your care home.
+            Request temp staff.
           </p>
         </button>
 

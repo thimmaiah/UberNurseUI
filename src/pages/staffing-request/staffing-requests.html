@@ -9,7 +9,20 @@
 
 <ion-content padding>
 
-  <ion-fab id="new_staffing_request_btn" bottom right *ngIf="current_user.role!='Care Giver' && current_user.role!='Nurse' ">
+  <ion-card *ngIf="staffingRequests && staffingRequests.length == 0">
+    <ion-card-title class="center">
+      No Requests Found
+    </ion-card-title>
+
+    <ion-card-content>
+      <p>
+        Sorry there are no Payments at this time. Please check back later.
+      </p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-fab id="new_staffing_request_btn" bottom right 
+    *ngIf="current_user.role!='Care Giver' && current_user.role!='Nurse' && current_user.care_home && current_user.care_home.verified ">
     <button ion-fab (click)="newRequest()"><ion-icon name="add"></ion-icon></button>
   </ion-fab>
 

@@ -198,7 +198,7 @@ export class StaffingResponseDetails {
     } else {
 
       if (this.staffingResponse.response_status == "Accepted") {
-        if (this.staffingResponse.payment_status !== "Paid") {
+        if (this.staffingResponse.payment_status !== "Paid" && this.staffingResponse.end_code !== null) {
           buttons = buttons.concat([
             {
               text: 'Make Payment',

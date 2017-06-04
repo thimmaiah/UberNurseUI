@@ -38,9 +38,18 @@ export class HomePage {
     console.log('ionViewWillEnter HomePage ');
     console.log(this.currentUser);
 
-    if(this.currentUser && this.currentUser.role == "Admin" && !this.currentUser.care_home_id) {
-      this.registerCareHome = true;
+    if (this.currentUser && this.currentUser.role == "Admin") {
+
+      if (this.currentUser.care_home_id == null) {
+        this.registerCareHome = true;
+        this.respUtility.showWarning("Please register your care home and get it verified at the earliest.");
+      }
+      if (this.currentUser.care_home && !this.currentUser.care_home.verified) {
+        this.respUtility.showWarning("Please Call us to get your care home verified at the earliest.");
+      }
+
     }
+
 
     if (this.currentUser && (this.currentUser.role == "Care Giver" || this.currentUser.role == "Nurse") && this.currentUser.verified !== true) {
       this.respUtility.showWarning("Please upload your documents for verification");
