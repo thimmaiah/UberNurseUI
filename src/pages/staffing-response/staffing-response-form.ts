@@ -81,7 +81,7 @@ export class StaffingResponseForm {
               let error_response = JSON.parse(error._body);
               let msg = "";
               for (var key in error_response) {
-                msg += error_response[key];
+                msg += error_response[key] + ". ";
               }
               this.respUtility.showWarning(msg);
               loader.dismiss();

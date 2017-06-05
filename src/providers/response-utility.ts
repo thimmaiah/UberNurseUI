@@ -10,7 +10,7 @@ export class ResponseUtility {
 
   constructor(public http: Http,
     public alertController: AlertController,
-    public modalController:ModalController,
+    public modalController: ModalController,
     public toastController: ToastController) {
     console.log('ResponseUtility Provider Created');
   }
@@ -18,7 +18,7 @@ export class ResponseUtility {
   showMsg(msg) {
     let toast = this.toastController.create({
       message: msg,
-      duration: 4000, 
+      duration: 4000,
       position: 'bottom'
     });
     toast.present();
@@ -46,12 +46,24 @@ export class ResponseUtility {
     console.log(msg)
   }
 
-  showFailure(error, msg=null) {
+  showFailure(error, msg = null) {
+    if (error.status == 401) {
+      let body = JSON.parse(error._body);
+      this.showWarning(body.errors);
+    } else if (error.status == 422) {
+      let body = JSON.parse(error._body);
+      this.showWarning(body.errors.full_messages);
+    } else {
+      this.showFailureAlert(error, msg);
+    }
+  }
 
-    if(!msg) {
+  showFailureAlert(error, msg = null) {
+
+    if (!msg) {
       msg = 'The operations you were trying failed. Please contact the administrator. ';
     }
-    
+
     let confirm = this.alertController.create({
       title: 'Error',
       cssClass: 'error-alert',
@@ -72,7 +84,7 @@ export class ResponseUtility {
       buttons: [
         {
           text: 'Yes',
-          handler: () => { deleteEntityFn(entity); }          
+          handler: () => { deleteEntityFn(entity); }
         },
         { text: 'No' }
       ]
@@ -87,7 +99,7 @@ export class ResponseUtility {
       buttons: [
         {
           text: 'Yes',
-          handler: () => { actionFn(entity); }          
+          handler: () => { actionFn(entity); }
         },
         { text: 'No' }
       ]

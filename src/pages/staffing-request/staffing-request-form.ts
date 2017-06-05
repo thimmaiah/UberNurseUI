@@ -73,6 +73,15 @@ export class StaffingRequestForm {
       this.staffingRequest["end_date"] = end_date;
       console.log(`end date = ${end_date}`);
     }
+
+    if(this.staffingRequest["start_code"] == null) {
+      this.staffingRequest["start_code"] = Math.floor(1000 + Math.random()*9000);
+    }
+
+    if(this.staffingRequest["end_code"] == null) {
+      this.staffingRequest["end_code"] = Math.floor(1000 + Math.random()*9000);
+    }
+
   }
 
 

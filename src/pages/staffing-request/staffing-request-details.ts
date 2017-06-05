@@ -134,7 +134,7 @@ export class StaffingRequestDetails {
             this.confirmDelete(staffingRequest);
           }
         }, {
-          text: 'Show Responses',
+          text: 'Show Slots',
           icon: !this.platform.is('ios') ? 'list' : null,
           handler: () => {
             console.log('Show Responses clicked');
