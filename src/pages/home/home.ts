@@ -26,7 +26,8 @@ export class HomePage {
     private config: Config) {
 
     this.tokenService.init({
-      apiBase: config.props["API_URL"]
+      apiBase: config.props["API_URL"],
+      updatePasswordPath: "/auth/password"
     });
 
 

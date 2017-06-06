@@ -10,6 +10,8 @@ import { FilePath } from '@ionic-native/file-path';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { Login } from '../pages/login/login';
+import {PasswordReset} from '../pages/login/password-reset'
+
 
 import { Angular2TokenService } from 'angular2-token';
 // Import ionic2-rating module
@@ -68,6 +70,7 @@ import { TitleCasePipe } from '../pipes/title-case/title-case';
     MyApp,
     HomePage,
     Login,
+    PasswordReset,
     UserPic,
     UserDoc,
     Users,
@@ -104,6 +107,7 @@ import { TitleCasePipe } from '../pipes/title-case/title-case';
     MyApp,
     HomePage,
     Login,
+    PasswordReset,
     UserPic,
     UserDoc,
     Users,

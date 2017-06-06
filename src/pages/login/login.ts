@@ -7,8 +7,8 @@ import { ResponseUtility } from '../../providers/response-utility';
 import { Config } from '../../providers/config';
 import { UserApi } from '../../providers/user-api';
 import { UserForm } from '../users/user-form';
+import {PasswordReset} from './password-reset'
 
-@IonicPage()
 @Component({
   selector: 'page-login',
   templateUrl: 'login.html',
@@ -85,6 +85,15 @@ export class Login {
   }
 
   forgotPassword() {
-
+    this.tokenService.resetPassword({email: this.email}).subscribe(
+      res => {
+        console.log(res);
+        let body = JSON.parse(res["_body"]);
+        console.log(body["message"]);
+        this.respUtility.showMsg(body["message"]);
+        this.navCtrl.push(PasswordReset)
+      },
+      error => this.respUtility.showFailure(error)
+    );
   }
 }
