@@ -53,7 +53,7 @@ export class UserPic {
 
     let options: CameraOptions = {
       quality: 100,
-      destinationType: this.camera.DestinationType.NATIVE_URI,
+      destinationType: this.camera.DestinationType.FILE_URI,
       encodingType: this.camera.EncodingType.JPEG,
       mediaType: this.camera.MediaType.PICTURE,
       sourceType: sourceType,
@@ -70,10 +70,10 @@ export class UserPic {
             this.lastImage = "file://" + imagePath;
         
       } else {
-        let currentName = imagePath.substr(imagePath.lastIndexOf('/') + 1);
-        let correctPath = imagePath.substr(0, imagePath.lastIndexOf('/') + 1);
-        console.log(correctPath);
-        console.log(currentName);
+     	//let currentName = imagePath.substr(imagePath.lastIndexOf('/') + 1);
+        //let correctPath = imagePath.substr(0, imagePath.lastIndexOf('/') + 1);
+        //console.log(correctPath);
+        //console.log(currentName);
         this.lastImage = imagePath;
 
         //this.copyFileToLocalDir(correctPath, currentName, this.createFileName());
