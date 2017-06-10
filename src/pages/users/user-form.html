@@ -54,7 +54,7 @@
         [(ngModel)]="user.password" [class.invalid]="!slideOneForm.controls.password.valid && (slideOneForm.controls.password.dirty || submitAttempt)"></ion-input>
       </ion-item>
 
-      <ion-item *ngIf="!slideOneForm.controls.password.valid  && (slideOneForm.controls.password.dirty || submitAttempt)">
+      <ion-item *ngIf="!slideOneForm.controls.password.valid && (slideOneForm.controls.password.dirty || submitAttempt)">
         <p class="error-text">Please enter a valid password at least 6 chars.</p>
       </ion-item>
 

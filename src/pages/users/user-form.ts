@@ -55,13 +55,15 @@ export class UserForm {
       sort_code: ['', Validators.compose([Validators.minLength(6), Validators.required])],
     });
 
-    // Password may not be visible, hence disable validations
-    let pass = this.slideOneForm.controls["password"];
+    this.onRoleChange(this.user["role"]);
+
+    // Password may not be visible, hence disable validations 
     if (this.user["id"]) {
-      pass.disable();
-    } else {
-      pass.enable();
-    }
+      this.slideOneForm.controls["password"].disable();
+      this.slideOneForm.controls["password"].clearValidators();
+      console.log("Disabled password", this.slideOneForm.controls.password.disabled);
+    } 
+
 
   }
 
@@ -82,6 +84,7 @@ export class UserForm {
         this.slideOneForm.controls[careGiverFields[i]].enable();
       }
     }
+
   }
 
   ionViewDidLoad() {
@@ -90,6 +93,7 @@ export class UserForm {
 
 
   save() {
+
     this.submitAttempt = true;
     //console.log(this.user);
 
@@ -97,8 +101,9 @@ export class UserForm {
       content: 'Saving ...'
     });
 
-    if (!this.slideOneForm.valid) {
+    if (this.slideOneForm.invalid) {
       //this.signupSlider.slideTo(0);
+      console.log("Invalid form ", this.slideOneForm.errors);      
     }
     else {
       this.submitAttempt = false;
