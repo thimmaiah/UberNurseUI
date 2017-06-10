@@ -5,7 +5,7 @@ import { Storage } from '@ionic/storage';
 import { Config } from './config';
 import { UserApi } from './user-api';
 import { ResponseUtility } from './response-utility';
-
+import { Events } from 'ionic-angular';
 
 /*
   Generated class for the LoginProvider provider.
@@ -19,10 +19,15 @@ export class LoginProvider {
   constructor(public tokenService: Angular2TokenService,
     public loadingController: LoadingController,
     public storage: Storage,
+    public events: Events,
     public config: Config,
     public userApi: UserApi,
     public respUtility: ResponseUtility) {
     console.log('Hello LoginProvider Provider');
+  }
+
+  clear() {
+    this.storage.clear();
   }
 
   auto_login(navCtrl=null) {
@@ -61,6 +66,8 @@ export class LoginProvider {
         this.storage.set("push_token", this.config.props["push_token"]);
         // Save the push token now that the user is logged in
         console.log(this.tokenService.currentUserData);
+        this.events.publish('user:login:success');
+
         let user = {
           id: this.tokenService.currentUserData.id,
           push_token: this.config.props["push_token"],
@@ -85,6 +92,7 @@ export class LoginProvider {
         console.log(error);
         loader.dismiss();
         this.respUtility.showFailure(error);
+        this.events.publish('user:login:failed');
       }
     );
   }

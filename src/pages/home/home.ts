@@ -11,6 +11,7 @@ import { CareHomeSearch } from '../care-homes/care-home-search';
 import { Payment } from '../payment/payment';
 import { Config } from '../../providers/config';
 import { LoginProvider } from '../../providers/login-provider';
+import { Events } from 'ionic-angular';
 
 @Component({
   selector: 'page-home',
@@ -25,6 +26,7 @@ export class HomePage {
     public respUtility: ResponseUtility,
     private tokenService: Angular2TokenService,
     private config: Config,
+    public events: Events,
     private loginProvider: LoginProvider) {
 
     this.tokenService.init({
@@ -33,10 +35,14 @@ export class HomePage {
     });
 
     this.currentUser = this.tokenService.currentUserData;
-    if(this.currentUser == null) {
-      // Auto login
-      this.navCtrl.push(Login);
-      this.loginProvider.auto_login(this.navCtrl)
+
+    events.subscribe('user:login:success', () => {
+      console.log("HomePage: user:login:success");
+      this.currentUser = this.tokenService.currentUserData;
+    });
+
+    if (this.currentUser == null) {
+      this.loginProvider.auto_login(null);
     }
 
   }
@@ -104,6 +110,8 @@ export class HomePage {
         this.respUtility.showWarning("Could not log user out at this time");
       }
     );
+
+    this.loginProvider.clear();
 
   }
 
