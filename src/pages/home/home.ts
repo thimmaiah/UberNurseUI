@@ -10,6 +10,7 @@ import { UserForm } from '../users/user-form';
 import { CareHomeSearch } from '../care-homes/care-home-search';
 import { Payment } from '../payment/payment';
 import { Config } from '../../providers/config';
+import { LoginProvider } from '../../providers/login-provider';
 
 @Component({
   selector: 'page-home',
@@ -23,13 +24,20 @@ export class HomePage {
   constructor(public navCtrl: NavController,
     public respUtility: ResponseUtility,
     private tokenService: Angular2TokenService,
-    private config: Config) {
+    private config: Config,
+    private loginProvider: LoginProvider) {
 
     this.tokenService.init({
       apiBase: config.props["API_URL"],
       updatePasswordPath: "/auth/password"
     });
 
+    this.currentUser = this.tokenService.currentUserData;
+    if(this.currentUser == null) {
+      // Auto login
+      this.navCtrl.push(Login);
+      this.loginProvider.auto_login(this.navCtrl)
+    }
 
   }
 

@@ -5,9 +5,12 @@ import { TokenService } from '../../providers/token-service';
 import { Angular2TokenService } from 'angular2-token';
 import { ResponseUtility } from '../../providers/response-utility';
 import { Config } from '../../providers/config';
+import { LoginProvider } from '../../providers/login-provider';
 import { UserApi } from '../../providers/user-api';
 import { UserForm } from '../users/user-form';
-import {PasswordReset} from './password-reset'
+import { PasswordReset } from './password-reset';
+import { Storage } from '@ionic/storage';
+
 
 @Component({
   selector: 'page-login',
@@ -15,7 +18,7 @@ import {PasswordReset} from './password-reset'
 })
 export class Login {
 
- // email: any = "thimmaiah@gmail.com";
+  // email: any = "thimmaiah@gmail.com";
   //password: any = "thimmaiah@gmail.com";
 
   email: any = "admin@ubernurse.com";
@@ -30,7 +33,9 @@ export class Login {
     public loadingController: LoadingController,
     private tokenService: Angular2TokenService,
     private config: Config,
-    private userApi: UserApi) {
+    private loginProvider: LoginProvider,
+    private userApi: UserApi,
+    private storage: Storage) {
 
 
     this.slideOneForm = formBuilder.group({
@@ -44,40 +49,7 @@ export class Login {
   }
 
   login() {
-
-    let loader = this.loadingController.create({
-      content: 'Login in progress ...'
-    });
-
-    loader.present();
-
-    this.tokenService.signIn({ email: this.email, password: this.password }).subscribe(
-      res => {
-        console.log(res);
-        // Save the push token now that the user is logged in
-        console.log(this.tokenService.currentUserData);
-        let user = {
-          id: this.tokenService.currentUserData.id,
-          push_token: this.config.props["push_token"],
-          user: { id: this.tokenService.currentUserData.id, push_token: this.config.props["push_token"] }
-        };
-
-        this.userApi.updateUser(user).subscribe(resp => {
-          console.log("Saved push_token to server");
-        },
-          error => {
-            console.log("Failed to save push_token to server. Notification will not work !!");
-          });
-
-        loader.dismiss();
-        this.navCtrl.popToRoot();
-      },
-      error => {
-        console.log(error);
-        loader.dismiss();
-        this.respUtility.showFailure(error);
-      }
-    );
+    this.loginProvider.login(this.email, this.password, this.navCtrl);
   }
 
   register() {
@@ -85,7 +57,7 @@ export class Login {
   }
 
   forgotPassword() {
-    this.tokenService.resetPassword({email: this.email}).subscribe(
+    this.tokenService.resetPassword({ email: this.email }).subscribe(
       res => {
         console.log(res);
         let body = JSON.parse(res["_body"]);

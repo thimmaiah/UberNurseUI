@@ -12,7 +12,7 @@ import { HomePage } from '../pages/home/home';
 import { Login } from '../pages/login/login';
 import {PasswordReset} from '../pages/login/password-reset'
 
-
+import { IonicStorageModule } from '@ionic/storage';
 import { Angular2TokenService } from 'angular2-token';
 // Import ionic2-rating module
 import { Ionic2RatingModule } from 'ionic2-rating';
@@ -64,6 +64,7 @@ import { StaffingResponseApi } from '../providers/staffing-response-api'
 import { ResponseUtility } from '../providers/response-utility'
 import { Push } from '@ionic-native/push';
 import { TitleCasePipe } from '../pipes/title-case/title-case';
+import { LoginProvider } from '../providers/login-provider';
 
 @NgModule({
   declarations: [
@@ -101,6 +102,7 @@ import { TitleCasePipe } from '../pipes/title-case/title-case';
     MomentModule,
     Ionic2RatingModule,
     IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -133,6 +135,7 @@ import { TitleCasePipe } from '../pipes/title-case/title-case';
   providers: [
     Push,
     Config,
+    LoginProvider,
     UserApi,
     UserDocApi,
     RatingApi,
