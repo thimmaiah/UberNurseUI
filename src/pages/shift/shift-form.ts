@@ -16,6 +16,7 @@ export class ShiftForm {
 
   slideOneForm: FormGroup;
   submitAttempt: boolean = false;
+  start_code_present = false;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -25,24 +26,14 @@ export class ShiftForm {
     public respUtility: ResponseUtility) {
 
     this.shift = this.navParams.data;
-    if (this.isAcceptedResponse()) {
-      // This is an approved response.
-      // Ensure start and end code becomes mandatory
-      this.slideOneForm = formBuilder.group({
+    this.start_code_present = this.shift["start_code"] != null
 
-        start_code: ['', Validators.compose([Validators.maxLength(30), Validators.required])],
-        end_code: ['', Validators.compose([Validators.maxLength(30)])]
+    this.slideOneForm = formBuilder.group({
 
-      });
-    } else {
-      // This is an new response.
-      // Ensure start and end code are NOT mandatory
-      this.slideOneForm = formBuilder.group({
-        start_code: [],
-        end_code: []
-      });
-    }
+      start_code: ['', Validators.compose([Validators.maxLength(30)])],
+      end_code: ['', Validators.compose([Validators.maxLength(30)])]
 
+    });
 
   }
 
@@ -53,6 +44,18 @@ export class ShiftForm {
   isAcceptedResponse() {
     return this.shift["response_status"] == "Accepted";
   }
+
+  confirmSave() {
+    let message = "";
+    if (this.shift["start_code"] && this.shift["end_code"] == null) {
+      message = "This will start your shift and set the shift start time to now. Start shift now?";
+    } else {
+      message = "This will end your shift and set the shift end time to now. End shift now?";
+    }
+
+    this.respUtility.confirmAction(this.save.bind(this), null, message);
+  }
+
 
   save() {
     this.submitAttempt = true;
@@ -73,7 +76,7 @@ export class ShiftForm {
           console.log(`Shift = ${res}`);
         }).subscribe(
           shift => {
-            this.respUtility.showSuccess('Shift saved successfully.');
+            this.respUtility.showSuccess('Code Accepted.');
             this.navCtrl.pop();
           },
           error => {

@@ -15,38 +15,65 @@
 
 <ion-content padding>
 
+  <ion-card *ngIf="shift.start_code == null">
+    <ion-card-title class="center error-text">
+      Enter Start Code
+    </ion-card-title>
+
+    <ion-card-content>
+      <p>
+        Please request your care home to provide you with the start code at the start of your shift.
+      </p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="start_code_present && shift.end_code == null">
+    <ion-card-title class="center error-text">
+      Enter End Code
+    </ion-card-title>
+
+    <ion-card-content>
+      <p>
+        Please request your care home to provide you with the end code at the end of your shift.
+      </p>
+    </ion-card-content>
+  </ion-card>
+
+
   <p *ngIf="submitAttempt" style="color: #ea6153;">Please fill out all details accurately.</p>
 
   <ion-list no-lines>
 
     <form [formGroup]="slideOneForm">
 
-      <ion-item *ngIf="isAcceptedResponse()">
-        <ion-label floating>Start Code</ion-label>
-        <ion-input formControlName="start_code" type="text" [(ngModel)]="shift.start_code" [class.invalid]="!slideOneForm.controls.start_code.valid && (slideOneForm.controls.start_code.dirty || submitAttempt)"></ion-input>
-      </ion-item>
+      <div *ngIf="!start_code_present">
+        <ion-item>
+          <ion-label floating>Start Code</ion-label>
+          <ion-input formControlName="start_code" type="text" [(ngModel)]="shift.start_code" [class.invalid]="!slideOneForm.controls.start_code.valid && (slideOneForm.controls.start_code.dirty || submitAttempt)"></ion-input>
+        </ion-item>
 
-      <ion-item *ngIf="!slideOneForm.controls.start_code.valid  && (slideOneForm.controls.start_code.dirty || submitAttempt)">
-        <p>Please enter a valid Start Code.</p>
-      </ion-item>
+        <ion-item *ngIf="!slideOneForm.controls.start_code.valid  && (slideOneForm.controls.start_code.dirty || submitAttempt)">
+          <p>Please enter a valid Start Code.</p>
+        </ion-item>
+      </div>
 
 
+      <div *ngIf="start_code_present">
+        <ion-item>
+          <ion-label floating>End Code</ion-label>
+          <ion-input formControlName="end_code" type="text" [(ngModel)]="shift.end_code" [class.invalid]="!slideOneForm.controls.end_code.valid && (slideOneForm.controls.end_code.dirty || submitAttempt)"></ion-input>
+        </ion-item>
 
-      <ion-item *ngIf="isAcceptedResponse()">
-        <ion-label floating>End Code</ion-label>
-        <ion-input formControlName="end_code" type="text" [(ngModel)]="shift.end_code" [class.invalid]="!slideOneForm.controls.end_code.valid && (slideOneForm.controls.end_code.dirty || submitAttempt)"></ion-input>
-      </ion-item>
-
-      <ion-item *ngIf="!slideOneForm.controls.end_code.valid  && (slideOneForm.controls.end_code.dirty || submitAttempt)">
-        <p>Please enter a valid End Code.</p>
-      </ion-item>
-
+        <ion-item *ngIf="!slideOneForm.controls.end_code.valid  && (slideOneForm.controls.end_code.dirty || submitAttempt)">
+          <p>Please enter a valid End Code.</p>
+        </ion-item>
+      </div>
 
     </form>
 
   </ion-list>
 
-  <button ion-button full color="primary" (click)="save()">Submit</button>
+  <button ion-button full color="primary" (click)="confirmSave()">Submit</button>
 
 
 </ion-content>
