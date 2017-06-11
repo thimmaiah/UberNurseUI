@@ -32,6 +32,7 @@ export class LoginProvider {
       res => {
         this.respUtility.showMsg("Logged out");
         this.events.publish('user:logout:success');
+        this.storage.clear();
       },
       error => {
         console.log(error);
@@ -41,9 +42,6 @@ export class LoginProvider {
     );
   }
 
-  clear() {
-    this.storage.clear();
-  }
 
   auto_login(navCtrl = null) {
     let email = "";
