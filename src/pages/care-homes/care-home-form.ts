@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, ViewChild } from '@angular/core';
 import { CareHomeApi } from '../../providers/care-home-api';
 import { ResponseUtility } from '../../providers/response-utility';
+import { Events } from 'ionic-angular';
 
 /**
  * Generated class for the CareHomesForm page.
@@ -27,6 +28,7 @@ export class CareHomeForm {
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
+    public events: Events,
     public formBuilder: FormBuilder,
     public loadingController: LoadingController,
     public care_homeApi: CareHomeApi,
@@ -70,20 +72,22 @@ export class CareHomeForm {
       if (this.care_home["id"]) {
         this.care_homeApi.updateCareHome(this.care_home).subscribe(
           care_home => {
-            this.navCtrl.pop();
-            this.respUtility.showSuccess('CareHome saved successfully.');
+            this.respUtility.showSuccess('CareHome saved successfully.');    
+            this.navCtrl.pop();        
           },
           error => {
             this.respUtility.showFailure(error);
             loader.dismiss();
+            this.events.publish("care_home:registration:failed");
           },
           () => {loader.dismiss();}
         );
       } else {
         this.care_homeApi.createCareHome(this.care_home).subscribe(
           care_home => {
+            this.events.publish("care_home:registration:success", care_home);                        
             this.navCtrl.popToRoot();
-            this.respUtility.showSuccess('CareHome saved successfully. We will inform you once this has been verified');
+            //this.respUtility.showSuccess('CareHome saved successfully. We will inform you once this has been verified');
           },
           error => {
             this.respUtility.showFailure(error);

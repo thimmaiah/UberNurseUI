@@ -29,11 +29,23 @@ export class HomePage {
     public events: Events,
     private loginProvider: LoginProvider) {
 
+    // When the user login succeeds
     events.subscribe('user:login:success', () => {
       console.log("HomePage: user:login:success");
       this.currentUser = this.tokenService.currentUserData;
+      this.displayMsgs();
     });
 
+    // When the care home registration succeeds
+    events.subscribe('care_home:registration:success', (care_home) => {
+      console.log("HomePage: care_home:registration:success");
+      this.tokenService.currentUserData["care_home_id"] = care_home.id;
+      this.tokenService.currentUserData["care_home"] = care_home;      
+      this.currentUser = this.tokenService.currentUserData;
+      this.displayMsgs();
+    });
+
+    // When the user logout succeeds
     events.subscribe('user:logout:success', () => {
       console.log("HomePage: user:logout:success");
       this.currentUser = null;
@@ -42,9 +54,13 @@ export class HomePage {
   }
 
   ionViewWillEnter() {
-    this.currentUser = this.tokenService.currentUserData;
-
     console.log('ionViewWillEnter HomePage ');
+    this.currentUser = this.tokenService.currentUserData;
+    this.displayMsgs();
+  }
+
+  displayMsgs() {
+
     console.log(this.currentUser);
 
     if (this.currentUser && this.currentUser.role == "Admin") {
@@ -54,16 +70,14 @@ export class HomePage {
         this.respUtility.showWarning("Please register your care home and get it verified at the earliest.");
       }
       if (this.currentUser.care_home && !this.currentUser.care_home.verified) {
+        this.registerCareHome = false;
         this.respUtility.showWarning("Please Call us to get your care home verified at the earliest.");
       }
 
     }
-
-
-    if (this.currentUser && (this.currentUser.role == "Care Giver" || this.currentUser.role == "Nurse") && this.currentUser.verified !== true) {
+    else if (this.currentUser && (this.currentUser.role == "Care Giver" || this.currentUser.role == "Nurse") && this.currentUser.verified !== true) {
       this.respUtility.showWarning("Please upload your documents for verification");
     }
-
   }
 
   register_care_home() {
