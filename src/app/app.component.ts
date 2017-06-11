@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform, AlertController } from 'ionic-angular';
+import { Nav, Platform, AlertController} from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -7,14 +7,23 @@ import { HomePage } from '../pages/home/home';
 import { Users } from '../pages/users/users';
 import { UserPic } from '../pages/user-pic/user-pic';
 import { CareHomes } from '../pages/care-homes/care-homes';
+import { Payment } from '../pages/payment/payment'
+import { Rating } from '../pages/rating/rating'
+import { Angular2TokenService } from 'angular2-token';
+import { Config } from '../providers/config';
+import { Push, PushObject, PushOptions } from '@ionic-native/push';
+import { LoginProvider } from '../providers/login-provider';
+import { Events } from 'ionic-angular';
+
+import { ResponseUtility } from '../../providers/response-utility';
+import { UserDetails } from '../pages/users/user-details';
+import { UserForm } from '../pages/users/user-form';
+import { CareHomeSearch } from '../pages/care-homes/care-home-search';
 import { Login } from '../pages/login/login';
 import { StaffingRequest } from '../pages/staffing-request/staffing-request';
 import { StaffingResponse } from '../pages/staffing-response/staffing-response';
-import { Payment } from '../pages/payment/payment'
-import { Rating } from '../pages/rating/rating'
 
-import { Config } from '../providers/config';
-import { Push, PushObject, PushOptions } from '@ionic-native/push';
+
 
 @Component({
   templateUrl: 'app.html'
@@ -23,39 +32,22 @@ export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any = HomePage;
+  currentUser: any;
 
   pages: Array<{ title: string, component: any }>;
 
   constructor(public platform: Platform,
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
-    public config: Config, 
-    public push: Push, 
-    public alertCtrl: AlertController
-  ) {
-    
+    public push: Push,
+    private tokenService: Angular2TokenService,
+    private config: Config,
+    public events: Events,
+    private loginProvider: LoginProvider,
+    public alertCtrl: AlertController) {
 
-    platform.ready().then(() => {
-      this.statusBar.styleDefault();
-      this.splashScreen.hide();
-      this.initPushNotification();
-    },
-      (error) => {
-        console.log(error);
-      });
 
     this.initializeApp();
-
-    // used for an example of ngFor and navigation
-    this.pages = [
-
-      { title: 'Care Homes', component: CareHomes },
-      { title: 'Staffing Requests', component: StaffingRequest },
-      { title: 'Slots', component: StaffingResponse },
-      { title: 'Users', component: Users },
-      { title: 'Payments', component: Payment },
-      { title: 'Ratings', component: Rating }
-    ];
 
 
   }
@@ -136,18 +128,88 @@ export class MyApp {
 
     console.log(this.config.props["API_URL"]);
 
-    this.platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
-      this.statusBar.styleDefault();
-      this.splashScreen.hide();
-    });
+    this.platform.ready().then(
+      () => {
+        // Okay, so the platform is ready and our plugins are available.
+        // Here you can do any higher level native things you might need.
+        this.statusBar.styleDefault();
+        this.splashScreen.hide();
+        this.initPushNotification();
+
+
+
+        this.tokenService.init({
+          apiBase: this.config.props["API_URL"],
+          updatePasswordPath: "/auth/password"
+        });
+
+        this.currentUser = this.tokenService.currentUserData;
+
+        this.events.subscribe('user:login:success', () => {
+          console.log("HomePage: user:login:success");
+          this.currentUser = this.tokenService.currentUserData;
+
+          if (this.currentUser.role == "Admin") {
+            this.pages = [
+              { title: 'Staffing Requests', component: StaffingRequest },
+              { title: 'Slots', component: StaffingResponse },
+              { title: 'Payments', component: Payment },
+              { title: 'Ratings', component: Rating }
+
+            ];
+            
+            //this.nav.push(StaffingRequest);
+
+          } else {
+            this.pages = [
+              { title: 'Slots', component: StaffingResponse },
+              { title: 'Payments', component: Payment },
+              { title: 'Ratings', component: Rating }
+            ];
+            
+            //this.nav.push(StaffingResponse);
+          }
+        });
+
+        this.events.subscribe('user:logout:success', () => {
+          console.log("HomePage: user:logout:success");
+          this.currentUser = null;
+
+          this.pages = [
+            { title: 'Login', component: Login },
+            { title: 'Register', component: UserDetails },
+          ];
+
+        });
+
+        if (this.currentUser == null) {
+          this.loginProvider.auto_login(null);
+        }
+
+      }
+      , (error) => {
+        console.log(error);
+      });
   }
 
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
     this.nav.push(page.component);
+  }
+
+
+  show_profile() {
+    this.nav.push(UserDetails, this.currentUser);
+  }
+
+  login() {
+    this.nav.push(Login);
+  }
+
+
+  logout() {
+    this.loginProvider.logout();
   }
 }
 

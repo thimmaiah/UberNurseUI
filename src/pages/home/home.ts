@@ -29,21 +29,15 @@ export class HomePage {
     public events: Events,
     private loginProvider: LoginProvider) {
 
-    this.tokenService.init({
-      apiBase: config.props["API_URL"],
-      updatePasswordPath: "/auth/password"
-    });
-
-    this.currentUser = this.tokenService.currentUserData;
-
     events.subscribe('user:login:success', () => {
       console.log("HomePage: user:login:success");
       this.currentUser = this.tokenService.currentUserData;
     });
 
-    if (this.currentUser == null) {
-      this.loginProvider.auto_login(null);
-    }
+    events.subscribe('user:logout:success', () => {
+      console.log("HomePage: user:logout:success");
+      this.currentUser = null;
+    });
 
   }
 
@@ -98,21 +92,7 @@ export class HomePage {
 
 
   logout() {
-    console.log("logout called")
-    this.tokenService.signOut().subscribe(
-      res => {
-        this.currentUser = null;
-        this.respUtility.showMsg("Logged out");
-      },
-      error => {
-        console.log(error);
-        this.currentUser = null;
-        this.respUtility.showWarning("Could not log user out at this time");
-      }
-    );
-
-    this.loginProvider.clear();
-
+    this.loginProvider.logout();
   }
 
   register() {

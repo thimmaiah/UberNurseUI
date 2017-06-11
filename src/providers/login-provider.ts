@@ -26,11 +26,26 @@ export class LoginProvider {
     console.log('Hello LoginProvider Provider');
   }
 
+  logout() {
+    console.log("logout called")
+    this.tokenService.signOut().subscribe(
+      res => {
+        this.respUtility.showMsg("Logged out");
+        this.events.publish('user:logout:success');
+      },
+      error => {
+        console.log(error);
+        this.respUtility.showWarning("Could not log user out at this time");
+        this.events.publish('user:logout:failed');
+      }
+    );
+  }
+
   clear() {
     this.storage.clear();
   }
 
-  auto_login(navCtrl=null) {
+  auto_login(navCtrl = null) {
     let email = "";
     let password = "";
     this.storage
@@ -40,7 +55,7 @@ export class LoginProvider {
           this.storage
             .get("password").then((pval) => {
               password = pval;
-              if(password) {
+              if (password) {
                 console.log(`auto_login: email = ${email}, password = ${password}`);
                 this.login(email, password, navCtrl);
               }
@@ -84,7 +99,7 @@ export class LoginProvider {
         );
 
         loader.dismiss();
-        if(navCtrl != null) {
+        if (navCtrl != null) {
           navCtrl.popToRoot();
         }
       },

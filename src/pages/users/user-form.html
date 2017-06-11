@@ -117,9 +117,15 @@
         <p class="error-text">Enter a valid number which is the distance in miles.</p>
       </ion-item>
 
-      <ion-item>
+      <ion-item id="speciality">
         <ion-label floating>Speciality</ion-label>
-        <ion-input name="speciality" formControlName="speciality" type="speciality" [(ngModel)]="user.speciality" [class.invalid]="!slideOneForm.controls.speciality.valid && (slideOneForm.controls.speciality.dirty || submitAttempt)"></ion-input>
+        <ion-select name="speciality" [(ngModel)]="user.speciality" [class.invalid]="!slideOneForm.controls.speciality.valid && (slideOneForm.controls.speciality.dirty || submitAttempt)"
+          formControlName="speciality">
+          <ion-option value="Generalist">Generalist</ion-option>
+          <ion-option value="Mental Health" >Mental Health</ion-option>
+          <ion-option value="Geriatric Care">Geriatric Care</ion-option>
+          <ion-option value="Pediatric Care">Pediatric Care</ion-option>
+        </ion-select>
       </ion-item>
 
       <ion-item *ngIf="!slideOneForm.controls.speciality.valid  && (slideOneForm.controls.speciality.dirty || submitAttempt)">
