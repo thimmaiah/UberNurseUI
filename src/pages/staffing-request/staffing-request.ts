@@ -22,18 +22,27 @@ export class StaffingRequest {
   staffingRequests: any;
   staffingRequest: any;
   current_user: {};
+  care_home_registration_pending = false;
+  care_home_verification_pending = false;
 
-  constructor(public navCtrl: NavController, 
+  constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private tokenService: Angular2TokenService,
-    public loadingController: LoadingController, 
-    public staffingRequestApi: StaffingRequestApi, 
+    public loadingController: LoadingController,
+    public staffingRequestApi: StaffingRequestApi,
     public respUtility: ResponseUtility) {
 
-      this.current_user = tokenService.currentUserData;
+    this.current_user = tokenService.currentUserData;
+    if (this.current_user["role"] == "Admin") {
+      if (this.current_user["care_home_id"] == null) {
+        this.care_home_registration_pending = true;
+      } else if (this.current_user["care_home"]["verified"] == false) {
+        this.care_home_verification_pending = true;
+      }
+    }
   }
 
-  
+
 
   ionViewWillEnter() {
     console.log('ionViewWillEnter StaffingRequestss');
@@ -61,14 +70,14 @@ export class StaffingRequest {
     });
 
     loader.present();
-    
+
     this.staffingRequestApi.getStaffingRequestDetails(staffingRequest.id).subscribe(
       staffingRequest => {
         this.staffingRequest = staffingRequest;
         console.log("got staffingRequest " + staffingRequest);
         this.navCtrl.push(StaffingRequestDetails, staffingRequest);
       },
-      error => { this.respUtility.showFailure(error); loader.dismiss();  },
+      error => { this.respUtility.showFailure(error); loader.dismiss(); },
       () => { loader.dismiss(); }
     );
 

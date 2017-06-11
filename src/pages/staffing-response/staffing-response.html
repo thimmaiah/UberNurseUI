@@ -15,21 +15,33 @@
 
 
 <ion-content padding>
-  <ion-card *ngIf="staffingResponses && staffingResponses.length == 0">
+
+  <ion-card *ngIf="verification_pending">
+    <ion-card-title class="center error-text">
+      Verification Pending
+    </ion-card-title>
+
+    <ion-card-content>
+      <p>
+        Please upload your documents for verification. Post verification you will be assigned shifts
+        at various Care Homes.
+      </p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card *ngIf="!verification_pending && staffingResponses && staffingResponses.length == 0">
     <ion-card-title class="center">
       No Slots Booked
     </ion-card-title>
 
     <ion-card-content>
       <p>
-        Sorry there is no slot that has been assigned at this time. Please check back later. 
-        We will notify you when a slot is booked.
+        Sorry there is no slot that has been assigned at this time. Please check back later. We will notify you when a slot is booked.
       </p>
     </ion-card-content>
   </ion-card>
   <ion-list>
-    <button ion-item id="slot-{{staffingResponse.id}}-item" 
-      *ngFor="let staffingResponse of staffingResponses" (click)=getStaffingResponseDetails(staffingResponse)>
+    <button ion-item id="slot-{{staffingResponse.id}}-item" *ngFor="let staffingResponse of staffingResponses" (click)=getStaffingResponseDetails(staffingResponse)>
 
       <ion-thumbnail item-left>
         <img [src]="staffingResponse.user.image">

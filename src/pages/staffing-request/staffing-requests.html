@@ -9,7 +9,21 @@
 
 <ion-content padding>
 
-  <ion-card *ngIf="current_user.care_home && !current_user.care_home.verified">
+  <ion-card *ngIf="care_home_registration_pending">
+    <ion-card-title class="center error-text">
+      Care Home Registration Pending
+    </ion-card-title>
+
+    <ion-card-content>
+      <p>
+        Please register your care home and then get it verified. 
+        Post verification you will be able to enter requests for temporary staffing here.
+      </p>
+    </ion-card-content>
+  </ion-card>
+
+
+  <ion-card *ngIf="care_home_verification_pending">
     <ion-card-title class="center error-text">
       Care Home Verification Pending
     </ion-card-title>
@@ -23,7 +37,7 @@
   </ion-card>
 
 
-  <ion-card *ngIf="staffingRequests && staffingRequests.length == 0">
+  <ion-card *ngIf="!care_home_registration_pending && !care_home_verification_pending && staffingRequests && staffingRequests.length == 0">
     <ion-card-title class="center">
       No Requests Found
     </ion-card-title>

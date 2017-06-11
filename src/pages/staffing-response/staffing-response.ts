@@ -3,8 +3,8 @@ import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-an
 import { StaffingResponseApi } from '../../providers/staffing-response-api';
 import { ResponseUtility } from '../../providers/response-utility';
 import { StaffingResponseDetails } from '../staffing-response/staffing-response-details'
+import { Angular2TokenService } from 'angular2-token';
 
-@IonicPage()
 @Component({
   selector: 'page-staffing-response',
   templateUrl: 'staffing-response.html',
@@ -14,13 +14,23 @@ export class StaffingResponse {
   staffingResponses: any;
   staffingResponse: any;
   staffingRequest: any;
+  current_user: {};
+  verification_pending = false;
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
+    private tokenService: Angular2TokenService,
     public loadingController: LoadingController,
     public staffingResponseApi: StaffingResponseApi, 
     public respUtility: ResponseUtility) {
+
     this.staffingRequest = this.navParams.data;
+    this.current_user = tokenService.currentUserData;
+    if (this.current_user["role"] == "Care Giver" || this.current_user["role"] == "Nurse") {
+      this.verification_pending = !this.current_user["verified"];
+      console.log(`StaffingResponse: verification_pending = ${this.verification_pending}`);
+    }
+
   }
 
 
