@@ -92,8 +92,8 @@ export class HomePage {
     this.navCtrl.push(StaffingRequest);
   }
 
-  show_shifts() {
-    this.navCtrl.push(Shift);
+  show_shifts(response_status) {
+    this.navCtrl.push(Shift, {response_status: response_status});
   }
 
   show_profile() {

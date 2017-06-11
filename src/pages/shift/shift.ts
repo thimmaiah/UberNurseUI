@@ -16,6 +16,7 @@ export class Shift {
   staffingRequest: any;
   current_user: {};
   verification_pending = false;
+  response_status = null;
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
@@ -24,7 +25,9 @@ export class Shift {
     public shiftApi: ShiftApi, 
     public respUtility: ResponseUtility) {
 
-    this.staffingRequest = this.navParams.data;
+    this.staffingRequest = this.navParams.data["staffing_request"];
+    this.response_status = this.navParams.data["response_status"];
+
     this.current_user = tokenService.currentUserData;
     if (this.current_user["role"] == "Care Giver" || this.current_user["role"] == "Nurse") {
       this.verification_pending = !this.current_user["verified"];
@@ -46,7 +49,7 @@ export class Shift {
       // Show the responses for this request
       staffing_request_id = this.staffingRequest.id;
     }
-    this.shiftApi.getShifts(staffing_request_id).subscribe(
+    this.shiftApi.getShifts(staffing_request_id, this.response_status).subscribe(
       shifts => {
         this.shifts = shifts;
         console.log("Loaded shifts");

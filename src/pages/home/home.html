@@ -54,30 +54,52 @@
       <ion-card-content>
 
         <ion-list>
-        
-        <button ion-item *ngIf="registerCareHome" (click)="register_care_home()">
-          <ion-icon name="home" item-left color="danger"></ion-icon>
-          Register Care Home 
-          <p>
-            Register your care home now.
-          </p>
-        </button>
 
-        <button ion-item *ngIf="currentUser.role == 'Admin'" (click)="show_staffing_requests()">
-          <ion-icon name="construct" item-left color="primary"></ion-icon>
-          Staffing Requests
-          <p>
-            Request temp staff.
-          </p>
-        </button>
+          <div *ngIf="currentUser.role == 'Admin'">
+            <button ion-item *ngIf="registerCareHome" (click)="register_care_home()">
+              <ion-icon name="home" item-left color="danger"></ion-icon>
+              Register Care Home 
+              <p>
+                Register your care home now.
+              </p>
+            </button>
 
-        <button ion-item (click)="show_shifts()">
-          <ion-icon name="list" item-left item-left color="primary"></ion-icon>
-          Upcoming Shifts
-          <p>
-            Shifts booked for you.
-          </p>
-        </button>
+            <button ion-item (click)="show_staffing_requests()">
+              <ion-icon name="construct" item-left color="primary"></ion-icon>
+              Staffing Requests
+              <p>
+                Request temp staff.
+              </p>
+            </button>
+
+            <button ion-item (click)="show_shifts('Accepted')">
+              <ion-icon name="list" item-left item-left color="primary"></ion-icon>
+              Upcoming Shifts
+              <p>
+                Shifts for your Care Home.
+              </p>
+            </button>
+
+
+          </div>
+
+          <div *ngIf="currentUser.role == 'Care Giver' || currentUser.role == 'Nurse'">
+            <button ion-item (click)="show_shifts('Accepted')">
+              <ion-icon name="list" item-left item-left color="primary"></ion-icon>
+              Upcoming Shifts
+              <p>
+                Shifts confirmed by you.
+              </p>
+            </button>
+
+            <button ion-item (click)="show_shifts('Pending')">
+              <ion-icon name="warning" item-left item-left color="danger"></ion-icon>
+              Pending Shifts
+              <p>
+                Shifts pending your confirmation.
+              </p>
+            </button>
+          </div>
 
         </ion-list>
 

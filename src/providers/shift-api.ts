@@ -6,7 +6,7 @@ import { Angular2TokenService } from 'angular2-token';
 @Injectable()
 export class ShiftApi {
 
-  private base_url = "staffing_responses";
+  private base_url = "shifts";
   shifts = [];
   shift = {};
   
@@ -15,10 +15,10 @@ export class ShiftApi {
     console.log('ShiftApi Provider Created');
   }
 
-  getShifts(staffing_request_id) {
-    let url = `${this.base_url}.json`;
+  getShifts(staffing_request_id, response_status=null) {
+    let url = `${this.base_url}.json?response_status=${response_status}`;
     if(staffing_request_id) {
-      url = `${this.base_url}.json?staffing_request_id=${staffing_request_id}`;
+      url = `${this.base_url}.json?response_status=${response_status}&staffing_request_id=${staffing_request_id}`;
     }
     return this.tokenService.get(url).map(response=>{
       this.shifts = response.json();

@@ -89,7 +89,7 @@ export class StaffingRequestDetails {
 
 
   showResponses(staffing_request) {
-    this.navCtrl.push(Shift, staffing_request);
+    this.navCtrl.push(Shift, {staffing_request: staffing_request});
   }
 
   confirmDelete(staffingRequest) {
