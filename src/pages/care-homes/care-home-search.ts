@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { Searchbar, IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { CareHomeApi } from '../../providers/care-home-api';
 import { CqcRecordApi } from '../../providers/cqc-record-api';
 import { ResponseUtility } from '../../providers/response-utility';
@@ -11,12 +11,14 @@ import { CareHomeForm } from '../care-homes/care-home-form';
  * on Ionic pages and navigation.
  */
 //@IonicPage()
+
 @Component({
   selector: 'page-care-home-search',
   templateUrl: 'care-home-search.html',
 })
 export class CareHomeSearch {
 
+  
   searchTerm = "";
   cqc_records = [];
 
@@ -43,6 +45,7 @@ export class CareHomeSearch {
         this.cqc_records = cqc_records;
         console.log("Loaded CareHome");
         console.log(this.cqc_records);
+
       },
       error => { this.respUtility.showFailure(error); loader.dismiss(); },
       () => { loader.dismiss(); }

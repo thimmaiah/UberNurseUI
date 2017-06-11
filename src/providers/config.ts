@@ -10,8 +10,8 @@ import { Injectable } from '@angular/core';
 export class Config {
 
   private dev = {
-    API_URL: "http://192.168.0.8:3000",
-    //API_URL: "http://localhost:3000",
+    //API_URL: "http://192.168.0.8:3000",
+    API_URL: "http://localhost:3000",
     ENV: "dev"
   };
 
@@ -25,7 +25,7 @@ export class Config {
     ENV: "prod"
   };
   
-  public props = this.test;
+  public props = this.dev;
 
   constructor() {
     
