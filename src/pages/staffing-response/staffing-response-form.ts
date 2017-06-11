@@ -73,7 +73,7 @@ export class StaffingResponseForm {
           console.log(`Response = ${res}`);
         }).subscribe(
           staffingResponse => {
-            this.respUtility.showSuccess('Slot saved successfully.');
+            this.respUtility.showSuccess('Shift saved successfully.');
             this.navCtrl.pop();
           },
           error => {
@@ -96,7 +96,7 @@ export class StaffingResponseForm {
       } else {
         this.staffingResponseApi.createStaffingResponse(this.staffingResponse).subscribe(
           staffingResponse => {
-            this.respUtility.showSuccess('Slot saved successfully.');
+            this.respUtility.showSuccess('Shift saved successfully.');
             this.navCtrl.pop();
           },
           error => {

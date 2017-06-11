@@ -8,7 +8,7 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <ion-title>Slots</ion-title>
+    <ion-title>Shifts</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -31,12 +31,12 @@
 
   <ion-card *ngIf="!verification_pending && staffingResponses && staffingResponses.length == 0">
     <ion-card-title class="center">
-      No Slots Booked
+      No Shifts Found
     </ion-card-title>
 
     <ion-card-content>
       <p>
-        Sorry there is no slot that has been assigned at this time. Please check back later. We will notify you when a slot is booked.
+        Sorry there are no shifts that have been assigned at this time. Please check back later. We will notify you when a shift is booked.
       </p>
     </ion-card-content>
   </ion-card>

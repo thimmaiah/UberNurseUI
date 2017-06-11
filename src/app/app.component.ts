@@ -152,7 +152,7 @@ export class MyApp {
           if (this.currentUser.role == "Admin") {
             this.pages = [
               { title: 'Staffing Requests', component: StaffingRequest },
-              { title: 'Slots', component: StaffingResponse },
+              { title: 'Shifts', component: StaffingResponse },
               { title: 'Payments', component: Payment },
               { title: 'Ratings', component: Rating }
 
@@ -162,7 +162,7 @@ export class MyApp {
 
           } else {
             this.pages = [
-              { title: 'Slots', component: StaffingResponse },
+              { title: 'Shift', component: StaffingResponse },
               { title: 'Payments', component: Payment },
               { title: 'Ratings', component: Rating }
             ];
