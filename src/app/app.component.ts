@@ -21,7 +21,7 @@ import { UserForm } from '../pages/users/user-form';
 import { CareHomeSearch } from '../pages/care-homes/care-home-search';
 import { Login } from '../pages/login/login';
 import { StaffingRequest } from '../pages/staffing-request/staffing-request';
-import { StaffingResponse } from '../pages/staffing-response/staffing-response';
+import { Shift } from '../pages/shift/shift';
 
 
 
@@ -152,7 +152,7 @@ export class MyApp {
           if (this.currentUser.role == "Admin") {
             this.pages = [
               { title: 'Staffing Requests', component: StaffingRequest },
-              { title: 'Shifts', component: StaffingResponse },
+              { title: 'Shifts', component: Shift },
               { title: 'Payments', component: Payment },
               { title: 'Ratings', component: Rating }
 
@@ -162,12 +162,12 @@ export class MyApp {
 
           } else {
             this.pages = [
-              { title: 'Shift', component: StaffingResponse },
+              { title: 'Shift', component: Shift },
               { title: 'Payments', component: Payment },
               { title: 'Ratings', component: Rating }
             ];
             
-            //this.nav.push(StaffingResponse);
+            //this.nav.push(Shift);
           }
         });
 

@@ -3,8 +3,8 @@ import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-an
 import { StaffingRequestForm } from '../staffing-request/staffing-request-form';
 import { StaffingRequestApi } from '../../providers/staffing-request-api';
 import { ResponseUtility } from '../../providers/response-utility';
-import { StaffingResponse } from '../staffing-response/staffing-response';
-import { StaffingResponseForm } from '../staffing-response/staffing-response-form';
+import { Shift } from '../shift/shift';
+import { ShiftForm } from '../shift/shift-form';
 import { Angular2TokenService } from 'angular2-token';
 import { ActionSheetController, Platform } from 'ionic-angular';
 
@@ -19,6 +19,7 @@ import * as moment from 'moment';
 export class StaffingRequestDetails {
 
   staffingRequest: any;
+  current_user = {};
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -30,7 +31,8 @@ export class StaffingRequestDetails {
     public respUtility: ResponseUtility) {
 
     this.staffingRequest = this.navParams.data;
-    
+    this.current_user = this.tokenService.currentUserData;
+
     // Sometimes we get a shallow req - ie one that has only the id. 
     // We need to fill it up from the server side
     if (!this.staffingRequest.user && this.staffingRequest.id) {
@@ -87,7 +89,7 @@ export class StaffingRequestDetails {
 
 
   showResponses(staffing_request) {
-    this.navCtrl.push(StaffingResponse, staffing_request);
+    this.navCtrl.push(Shift, staffing_request);
   }
 
   confirmDelete(staffingRequest) {
@@ -95,15 +97,15 @@ export class StaffingRequestDetails {
   }
 
   sendResponse(staffing_request) {
-    let staffing_response = {};
-    staffing_response["staffing_request_id"] = staffing_request.id;
-    staffing_response["care_home_id"] = staffing_request.care_home_id;
-    this.navCtrl.push(StaffingResponseForm, staffing_response);
+    let shift = {};
+    shift["staffing_request_id"] = staffing_request.id;
+    shift["care_home_id"] = staffing_request.care_home_id;
+    this.navCtrl.push(ShiftForm, shift);
   }
 
   hasUserResponded() {
     let current_user = this.tokenService.currentUserData;
-    let has_responded = _.find(this.staffingRequest["staffing_responses"], function (response) {
+    let has_responded = _.find(this.staffingRequest["shifts"], function (response) {
       console.log(`Matching ${response["user_id"]} with ${current_user["id"]}`)
       return parseInt(response["user_id"]) == current_user["id"];
     });
@@ -137,7 +139,7 @@ export class StaffingRequestDetails {
           text: 'Show Shifts Assigned',
           icon: !this.platform.is('ios') ? 'list' : null,
           handler: () => {
-            console.log('Show Responses clicked');
+            console.log('Show Shifts clicked');
             this.showResponses(staffingRequest);
           }
         }

@@ -27,9 +27,9 @@ import { StaffingRequest } from '../pages/staffing-request/staffing-request';
 import { StaffingRequestForm } from '../pages/staffing-request/staffing-request-form';
 import { StaffingRequestDetails } from '../pages/staffing-request/staffing-request-details';
 
-import { StaffingResponse } from '../pages/staffing-response/staffing-response';
-import { StaffingResponseDetails } from '../pages/staffing-response/staffing-response-details';
-import { StaffingResponseForm } from '../pages/staffing-response/staffing-response-form';
+import { Shift } from '../pages/shift/shift';
+import { ShiftDetails } from '../pages/shift/shift-details';
+import { ShiftForm } from '../pages/shift/shift-form';
 
 import { Payment } from '../pages/payment/payment';
 import { PaymentDetails } from '../pages/payment/payment-details';
@@ -59,7 +59,7 @@ import { CqcRecordApi } from '../providers/cqc-record-api'
 import { PaymentApi } from '../providers/payment-api'
 import { RatingApi } from '../providers/rating-api'
 import { StaffingRequestApi } from '../providers/staffing-request-api'
-import { StaffingResponseApi } from '../providers/staffing-response-api'
+import { ShiftApi } from '../providers/shift-api'
 
 import { ResponseUtility } from '../providers/response-utility'
 import { Push } from '@ionic-native/push';
@@ -80,9 +80,9 @@ import { LoginProvider } from '../providers/login-provider';
     Rating,
     RatingForm,
     RatingDetails,
-    StaffingResponse,
-    StaffingResponseForm,
-    StaffingResponseDetails,
+    Shift,
+    ShiftForm,
+    ShiftDetails,
     Payment,
     PaymentForm,
     PaymentDetails,
@@ -118,9 +118,9 @@ import { LoginProvider } from '../providers/login-provider';
     Rating,
     RatingForm,
     RatingDetails,
-    StaffingResponse,
-    StaffingResponseForm,
-    StaffingResponseDetails,
+    Shift,
+    ShiftForm,
+    ShiftDetails,
     Payment,
     PaymentForm,
     PaymentDetails,
@@ -142,7 +142,7 @@ import { LoginProvider } from '../providers/login-provider';
     CareHomeApi,
     CqcRecordApi,
     StaffingRequestApi,
-    StaffingResponseApi,
+    ShiftApi,
     PaymentApi,
     ResponseUtility,
     StatusBar,

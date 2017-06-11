@@ -1,51 +1,51 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
-import { StaffingResponseForm } from '../staffing-response/staffing-response-form';
+import { ShiftForm } from '../shift/shift-form';
 import { PaymentForm } from '../payment/payment-form';
 import { PaymentDetails } from '../payment/payment-details';
 import { RatingForm } from '../rating/rating-form';
 import { RatingDetails } from '../rating/rating-details';
 import { StaffingRequestDetails } from '../staffing-request/staffing-request-details';
-import { StaffingResponseApi } from '../../providers/staffing-response-api';
+import { ShiftApi } from '../../providers/shift-api';
 import { ResponseUtility } from '../../providers/response-utility';
 import { ActionSheetController, Platform } from 'ionic-angular';
 
 @Component({
-  selector: 'page-staffing-response-details',
-  templateUrl: 'staffing-response-details.html',
+  selector: 'page-shift-details',
+  templateUrl: 'shift-details.html',
 })
-export class StaffingResponseDetails {
+export class ShiftDetails {
 
-  staffingResponse: any;
+  shift: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public platform: Platform,
-    public staffingResponseApi: StaffingResponseApi,
+    public shiftApi: ShiftApi,
     public actionSheetCtrl: ActionSheetController,
     public loadingController: LoadingController,
     public respUtility: ResponseUtility) {
-    this.staffingResponse = this.navParams.data;
+    this.shift = this.navParams.data;
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad StaffingResponsesDetails');
+    console.log('ionViewDidLoad ShiftsDetails');
   }
 
-  editStaffingResponse(staffingResponse) {
-    this.navCtrl.push(StaffingResponseForm, staffingResponse);
+  editShift(shift) {
+    this.navCtrl.push(ShiftForm, shift);
   }
 
-  acceptResponse(staffingResponse) {
-    staffingResponse.accepted = true;
-    staffingResponse.response_status = "Accepted"
-    this.updateResponse(staffingResponse);
+  acceptResponse(shift) {
+    shift.accepted = true;
+    shift.response_status = "Accepted"
+    this.updateResponse(shift);
   }
-  rejectResponse(staffingResponse) {
-    staffingResponse.accepted = false;
-    staffingResponse.response_status = "Rejected"
-    this.updateResponse(staffingResponse);
+  rejectResponse(shift) {
+    shift.accepted = false;
+    shift.response_status = "Rejected"
+    this.updateResponse(shift);
   }
-  updateResponse(staffingResponse) {
+  updateResponse(shift) {
 
     let loader = this.loadingController.create({
       content: 'Updating Responses...'
@@ -53,26 +53,26 @@ export class StaffingResponseDetails {
 
     loader.present();
 
-    this.staffingResponseApi.updateStaffingResponse(staffingResponse).subscribe(
-      staffingResponse => {
-        this.respUtility.showSuccess('Response Updated');
+    this.shiftApi.updateShift(shift).subscribe(
+      shift => {
+        this.respUtility.showSuccess('Shift Updated');
       },
       error => { this.respUtility.showFailure(error); loader.dismiss(); },
       () => { loader.dismiss(); }
     );
   }
 
-  deleteStaffingResponse(staffingResponse) {
+  deleteShift(shift) {
 
     let loader = this.loadingController.create({
-      content: 'Deleting Response...'
+      content: 'Deleting Shift...'
     });
 
     loader.present();
 
-    this.staffingResponseApi.deleteStaffingResponse(staffingResponse).subscribe(
+    this.shiftApi.deleteShift(shift).subscribe(
       response => {
-        this.respUtility.showSuccess("Deleted Response");
+        this.respUtility.showSuccess("Deleted Shift");
         this.navCtrl.pop();
       },
       error => { this.respUtility.showFailure(error); loader.dismiss(); },
@@ -80,64 +80,64 @@ export class StaffingResponseDetails {
     );
   }
 
-  confirmDelete(staffingResponse) {
-    this.respUtility.confirmDelete(this.deleteStaffingResponse.bind(this), staffingResponse);
+  confirmDelete(shift) {
+    this.respUtility.confirmDelete(this.deleteShift.bind(this), shift);
   }
 
-  showRequest(staffingResponse) {
+  showRequest(shift) {
     let staffingRequest = {}
-    staffingRequest["id"] = staffingResponse["staffing_request_id"];
+    staffingRequest["id"] = shift["staffing_request_id"];
     this.navCtrl.push(StaffingRequestDetails, staffingRequest);
   }
 
-  makePayment(staffingResponse) {
+  makePayment(shift) {
     let payment = {
-      staffing_request_id: staffingResponse.staffing_request_id,
-      user_id: staffingResponse.user_id,
-      staffing_response_id: staffingResponse.id,
-      amount: staffingResponse.price,
-      pricing_audit: staffingResponse.pricing_audit,
+      staffing_request_id: shift.staffing_request_id,
+      user_id: shift.user_id,
+      shift_id: shift.id,
+      amount: shift.price,
+      pricing_audit: shift.pricing_audit,
       notes: "Thank you for your service."
     }
     this.navCtrl.push(PaymentForm, payment);
   }
 
-  rate(staffingResponse) {
+  rate(shift) {
     let rating = {
-      staffing_request_id: staffingResponse.staffing_request_id,
-      user_id: staffingResponse.user_id,
-      staffing_response_id: staffingResponse.id,
+      staffing_request_id: shift.staffing_request_id,
+      user_id: shift.user_id,
+      shift_id: shift.id,
       comments: "Great Work."
     }
     this.navCtrl.push(RatingForm, rating);
   }
 
-  presentActionSheet(staffingResponse) {
+  presentActionSheet(shift) {
     let buttons = [];
 
-    if (staffingResponse.can_manage == true) {
-      console.log("can manage staffingResponse");
+    if (shift.can_manage == true) {
+      console.log("can manage shift");
       buttons = buttons.concat([
         {
           text: 'Show Request',
           icon: !this.platform.is('ios') ? 'folder' : null,
           handler: () => {
             console.log('Show Request clicked');
-            this.showRequest(staffingResponse);
+            this.showRequest(shift);
           }
         }
 
       ]);
 
-      if (this.staffingResponse.response_status != "Accepted") {
+      if (this.shift.response_status != "Accepted") {
 
         buttons = buttons.concat([
           {
-            text: 'Accept Response',
+            text: 'Accept Shift',
             icon: !this.platform.is('ios') ? 'checkmark' : null,
             handler: () => {
               console.log('Accept clicked');
-              this.acceptResponse(staffingResponse);
+              this.acceptResponse(shift);
             }
           }
         ]);
@@ -148,48 +148,48 @@ export class StaffingResponseDetails {
             icon: !this.platform.is('ios') ? 'create' : null,
             handler: () => {
               console.log('Edit clicked');
-              this.editStaffingResponse(staffingResponse);
+              this.editShift(shift);
             }
           }
         ]);
       }
 
-      if (this.staffingResponse.response_status != "Rejected") {
+      if (this.shift.response_status != "Rejected") {
 
         buttons = buttons.concat([
           {
-            text: 'Reject Response',
+            text: 'Reject Shift',
             role: 'destructive',
             icon: !this.platform.is('ios') ? 'close-circle' : null,
             handler: () => {
-              console.log('Deny clicked');
-              this.rejectResponse(staffingResponse);
+              console.log('Reject clicked');
+              this.rejectResponse(shift);
             }
           }
         ]);
       }
 
-      if (this.staffingResponse.payment_status == "Paid") {
+      if (this.shift.payment_status == "Paid") {
         buttons = buttons.concat([
           {
             text: 'View Payment',
             icon: !this.platform.is('ios') ? 'cash' : null,
             handler: () => {
               console.log('View Payment clicked');
-              this.navCtrl.push(PaymentDetails, this.staffingResponse.payment)
+              this.navCtrl.push(PaymentDetails, this.shift.payment)
             }
           }
         ]);
       }
 
-      if (this.staffingResponse.rated == true) {
+      if (this.shift.rated == true) {
         buttons = buttons.concat([
           {
             text: 'View Rating',
             icon: !this.platform.is('ios') ? 'star' : null,
             handler: () => {
               console.log('View Rating clicked');
-              this.navCtrl.push(RatingDetails, this.staffingResponse.rating);
+              this.navCtrl.push(RatingDetails, this.shift.rating);
             }
           }
         ]);
@@ -197,39 +197,39 @@ export class StaffingResponseDetails {
 
     } else {
 
-      if (this.staffingResponse.response_status == "Accepted") {
-        if (this.staffingResponse.payment_status !== "Paid" && this.staffingResponse.end_code !== null) {
+      if (this.shift.response_status == "Accepted") {
+        if (this.shift.payment_status !== "Paid" && this.shift.end_code !== null) {
           buttons = buttons.concat([
             {
               text: 'Make Payment',
               icon: !this.platform.is('ios') ? 'cash' : null,
               handler: () => {
                 console.log('Make Payment clicked');
-                this.makePayment(staffingResponse);
+                this.makePayment(shift);
               }
             }
           ]);
-        } else if (this.staffingResponse.payment_status == "Paid") {
+        } else if (this.shift.payment_status == "Paid") {
           buttons = buttons.concat([
             {
               text: 'View Payment',
               icon: !this.platform.is('ios') ? 'cash' : null,
               handler: () => {
                 console.log('View Payment clicked');
-                this.navCtrl.push(PaymentDetails, this.staffingResponse.payment)
+                this.navCtrl.push(PaymentDetails, this.shift.payment)
               }
             }
           ]);
         }
 
-        if (this.staffingResponse.rated != true) {
+        if (this.shift.rated != true) {
           buttons = buttons.concat([
             {
               text: 'Rate',
               icon: !this.platform.is('ios') ? 'star' : null,
               handler: () => {
                 console.log('Rate clicked');
-                this.rate(staffingResponse);
+                this.rate(shift);
               }
             }
           ]);
@@ -240,7 +240,7 @@ export class StaffingResponseDetails {
               icon: !this.platform.is('ios') ? 'star' : null,
               handler: () => {
                 console.log('View Rating clicked');
-                this.navCtrl.push(RatingDetails, this.staffingResponse.rating);
+                this.navCtrl.push(RatingDetails, this.shift.rating);
               }
             }
           ]);

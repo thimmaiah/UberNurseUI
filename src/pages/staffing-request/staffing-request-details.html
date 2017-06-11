@@ -9,7 +9,7 @@
   <ion-navbar color="primary">
     <ion-title>Request Details</ion-title>
     <ion-buttons end>
-      
+
     </ion-buttons>
   </ion-navbar>
 
@@ -124,28 +124,29 @@
         </ion-col>
       </ion-row>
     </ion-item>
+    <div *ngIf="current_user.id == staffingRequest.user_id">
+      <ion-item>
+        <ion-row>
+          <ion-col>
+            Start Code:
+          </ion-col>
+          <ion-col>
+            {{staffingRequest.start_code}}
+          </ion-col>
+        </ion-row>
+      </ion-item>
 
-    <ion-item>
-      <ion-row>
-        <ion-col>
-          Start Code:
-        </ion-col>
-        <ion-col>
-          {{staffingRequest.start_code}}
-        </ion-col>
-      </ion-row>
-    </ion-item>
-
-    <ion-item>
-      <ion-row>
-        <ion-col>
-          End Code:
-        </ion-col>
-        <ion-col>
-          {{staffingRequest.end_code}}
-        </ion-col>
-      </ion-row>
-    </ion-item>
+      <ion-item>
+        <ion-row>
+          <ion-col>
+            End Code:
+          </ion-col>
+          <ion-col>
+            {{staffingRequest.end_code}}
+          </ion-col>
+        </ion-row>
+      </ion-item>
+    </div>
 
   </ion-list>
 

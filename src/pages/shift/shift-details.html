@@ -11,20 +11,20 @@
 
 
   <ion-fab bottom right>
-    <button ion-fab (click)="presentActionSheet(staffingResponse)"><ion-icon name="apps"></ion-icon></button>
+    <button ion-fab (click)="presentActionSheet(shift)"><ion-icon name="apps"></ion-icon></button>
   </ion-fab>
 
 
   <ion-list>
-    <img [src]="staffingResponse.user.image" style="max-height:300px;">
+    <img [src]="shift.user.image" style="max-height:300px;">
     <ion-item>
       <ion-row>
         <ion-col>
-          {{staffingResponse.user.role}}:
+          {{shift.user.role}}:
         </ion-col>
         <ion-col>
-          {{staffingResponse.user.first_name}}, {{staffingResponse.user.last_name}}
-          <rating [(ngModel)]="staffingResponse.user.rating" readOnly="true"></rating>
+          {{shift.user.first_name}}, {{shift.user.last_name}}
+          <rating [(ngModel)]="shift.user.rating" readOnly="true"></rating>
         </ion-col>
       </ion-row>
     </ion-item>
@@ -35,7 +35,7 @@
           Phone:
         </ion-col>
         <ion-col>
-          {{staffingResponse.user.phone}}
+          {{shift.user.phone}}
         </ion-col>
       </ion-row>
     </ion-item>
@@ -46,7 +46,7 @@
           Start:
         </ion-col>
         <ion-col>
-          {{staffingResponse.staffing_request.start_date | date: 'dd/MM/yyyy H:mm'}}
+          {{shift.staffing_request.start_date | date: 'dd/MM/yyyy H:mm'}}
         </ion-col>
       </ion-row>
     </ion-item>
@@ -57,7 +57,7 @@
           End:
         </ion-col>
         <ion-col>
-          {{staffingResponse.staffing_request.end_date | date: 'dd/MM/yyyy H:mm'}}
+          {{shift.staffing_request.end_date | date: 'dd/MM/yyyy H:mm'}}
         </ion-col>
       </ion-row>
     </ion-item>
@@ -68,7 +68,7 @@
           Email:
         </ion-col>
         <ion-col>
-          {{staffingResponse.user.email}}
+          {{shift.user.email}}
         </ion-col>
       </ion-row>
     </ion-item>
@@ -80,7 +80,7 @@
           Speciality:
         </ion-col>
         <ion-col>
-          {{staffingResponse.user.speciality}}
+          {{shift.user.speciality}}
         </ion-col>
       </ion-row>
     </ion-item>
@@ -88,10 +88,10 @@
     <ion-item>
       <ion-row>
         <ion-col>
-          Response Status:
+          Status:
         </ion-col>
         <ion-col>
-          {{staffingResponse.response_status}}
+          {{shift.response_status}}
         </ion-col>
       </ion-row>
     </ion-item>
@@ -102,73 +102,73 @@
           Payment Status:
         </ion-col>
         <ion-col>
-          {{staffingResponse.payment_status}}
+          {{shift.payment_status}}
         </ion-col>
       </ion-row>
     </ion-item>
 
-    <ion-item *ngIf="staffingResponse.start_code">
+    <ion-item *ngIf="shift.start_code">
       <ion-row>
         <ion-col>
           Start Code:
         </ion-col>
         <ion-col>
-          {{staffingResponse.start_code}}
+          {{shift.start_code}}
         </ion-col>
       </ion-row>
     </ion-item>
 
-    <ion-item *ngIf="staffingResponse.start_code">
+    <ion-item *ngIf="shift.start_code">
       <ion-row>
         <ion-col>
           Start Time:
         </ion-col>
         <ion-col>
-          {{staffingResponse.start_date | date: 'dd/MM/yyyy H:mm'}}
+          {{shift.start_date | date: 'dd/MM/yyyy H:mm'}}
         </ion-col>
       </ion-row>
     </ion-item>
 
-    <ion-item *ngIf="staffingResponse.end_code">
+    <ion-item *ngIf="shift.end_code">
       <ion-row>
         <ion-col>
           End Code:
         </ion-col>
         <ion-col>
-          {{staffingResponse.end_code}}
+          {{shift.end_code}}
         </ion-col>
       </ion-row>
     </ion-item>
 
-    <ion-item *ngIf="staffingResponse.end_code">
+    <ion-item *ngIf="shift.end_code">
       <ion-row>
         <ion-col>
           End Time:
         </ion-col>
         <ion-col>
-          {{staffingResponse.end_date | date: 'dd/MM/yyyy H:mm'}}
+          {{shift.end_date | date: 'dd/MM/yyyy H:mm'}}
         </ion-col>
       </ion-row>
     </ion-item>
 
-    <ion-item *ngIf="staffingResponse.end_code">
+    <ion-item *ngIf="shift.end_code">
       <ion-row>
         <ion-col>
           Worked:
         </ion-col>
         <ion-col>
-          {{ (staffingResponse.minutes_worked / 60) | number:'.0-0' }} hrs {{(staffingResponse.minutes_worked % 60)}} mins
+          {{ (shift.minutes_worked / 60) | number:'.0-0' }} hrs {{(shift.minutes_worked % 60)}} mins
         </ion-col>
       </ion-row>
     </ion-item>
 
-    <ion-item *ngIf="staffingResponse.end_code">
+    <ion-item *ngIf="shift.end_code">
       <ion-row>
         <ion-col>
           Amount:
         </ion-col>
         <ion-col>
-          {{staffingResponse.price | currency}}
+          {{shift.price | currency}}
         </ion-col>
       </ion-row>
     </ion-item>

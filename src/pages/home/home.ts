@@ -3,7 +3,7 @@ import { NavController } from 'ionic-angular';
 import { Angular2TokenService } from 'angular2-token';
 import { Login } from '../login/login';
 import { ResponseUtility } from '../../providers/response-utility';
-import { StaffingResponse } from '../staffing-response/staffing-response';
+import { Shift } from '../shift/shift';
 import { StaffingRequest } from '../staffing-request/staffing-request';
 import { UserDetails } from '../users/user-details';
 import { UserForm } from '../users/user-form';
@@ -92,8 +92,8 @@ export class HomePage {
     this.navCtrl.push(StaffingRequest);
   }
 
-  show_staffing_responses() {
-    this.navCtrl.push(StaffingResponse);
+  show_shifts() {
+    this.navCtrl.push(Shift);
   }
 
   show_profile() {

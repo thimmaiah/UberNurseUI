@@ -1,5 +1,5 @@
 <!--
-  Generated template for the StaffingResponsesForm pemail.
+  Generated template for the ShiftsForm pemail.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pemails and navigation.
@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar color="primary">
-    <ion-title>Response</ion-title>
+    <ion-title>Shift</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -23,7 +23,7 @@
 
       <ion-item *ngIf="isAcceptedResponse()">
         <ion-label floating>Start Code</ion-label>
-        <ion-input formControlName="start_code" type="text" [(ngModel)]="staffingResponse.start_code" [class.invalid]="!slideOneForm.controls.start_code.valid && (slideOneForm.controls.start_code.dirty || submitAttempt)"></ion-input>
+        <ion-input formControlName="start_code" type="text" [(ngModel)]="shift.start_code" [class.invalid]="!slideOneForm.controls.start_code.valid && (slideOneForm.controls.start_code.dirty || submitAttempt)"></ion-input>
       </ion-item>
 
       <ion-item *ngIf="!slideOneForm.controls.start_code.valid  && (slideOneForm.controls.start_code.dirty || submitAttempt)">
@@ -34,7 +34,7 @@
 
       <ion-item *ngIf="isAcceptedResponse()">
         <ion-label floating>End Code</ion-label>
-        <ion-input formControlName="end_code" type="text" [(ngModel)]="staffingResponse.end_code" [class.invalid]="!slideOneForm.controls.end_code.valid && (slideOneForm.controls.end_code.dirty || submitAttempt)"></ion-input>
+        <ion-input formControlName="end_code" type="text" [(ngModel)]="shift.end_code" [class.invalid]="!slideOneForm.controls.end_code.valid && (slideOneForm.controls.end_code.dirty || submitAttempt)"></ion-input>
       </ion-item>
 
       <ion-item *ngIf="!slideOneForm.controls.end_code.valid  && (slideOneForm.controls.end_code.dirty || submitAttempt)">

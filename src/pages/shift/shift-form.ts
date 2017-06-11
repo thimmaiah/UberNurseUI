@@ -1,17 +1,17 @@
 import { IonicPage, NavController, NavParams, AlertController, ToastController, LoadingController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, ViewChild } from '@angular/core';
-import { StaffingResponseApi } from '../../providers/staffing-response-api';
+import { ShiftApi } from '../../providers/shift-api';
 import { ResponseUtility } from '../../providers/response-utility';
 
 
 @Component({
-  selector: 'page-staffing-response-form',
-  templateUrl: 'staffing-response-form.html',
+  selector: 'page-shift-form',
+  templateUrl: 'shift-form.html',
 })
-export class StaffingResponseForm {
+export class ShiftForm {
 
-  staffingResponse: {};
+  shift: {};
   @ViewChild('signupSlider') signupSlider: any;
 
   slideOneForm: FormGroup;
@@ -21,10 +21,10 @@ export class StaffingResponseForm {
     public navParams: NavParams,
     public formBuilder: FormBuilder,
     public loadingController: LoadingController,
-    public staffingResponseApi: StaffingResponseApi,
+    public shiftApi: ShiftApi,
     public respUtility: ResponseUtility) {
 
-    this.staffingResponse = this.navParams.data;
+    this.shift = this.navParams.data;
     if (this.isAcceptedResponse()) {
       // This is an approved response.
       // Ensure start and end code becomes mandatory
@@ -47,16 +47,16 @@ export class StaffingResponseForm {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad StaffingResponsesForm');
+    console.log('ionViewDidLoad ShiftsForm');
   }
 
   isAcceptedResponse() {
-    return this.staffingResponse["response_status"] == "Accepted";
+    return this.shift["response_status"] == "Accepted";
   }
 
   save() {
     this.submitAttempt = true;
-    //console.log(this.staffingResponse);
+    //console.log(this.shift);
     let loader = this.loadingController.create({
       content: 'Saving ...'
     });
@@ -68,11 +68,11 @@ export class StaffingResponseForm {
       this.submitAttempt = false;
       loader.present();
 
-      if (this.staffingResponse["id"]) {
-        this.staffingResponseApi.updateStaffingResponse(this.staffingResponse).map(res => {
-          console.log(`Response = ${res}`);
+      if (this.shift["id"]) {
+        this.shiftApi.updateShift(this.shift).map(res => {
+          console.log(`Shift = ${res}`);
         }).subscribe(
-          staffingResponse => {
+          shift => {
             this.respUtility.showSuccess('Shift saved successfully.');
             this.navCtrl.pop();
           },
@@ -94,8 +94,8 @@ export class StaffingResponseForm {
           () => { loader.dismiss(); }
           );
       } else {
-        this.staffingResponseApi.createStaffingResponse(this.staffingResponse).subscribe(
-          staffingResponse => {
+        this.shiftApi.createShift(this.shift).subscribe(
+          shift => {
             this.respUtility.showSuccess('Shift saved successfully.');
             this.navCtrl.pop();
           },
