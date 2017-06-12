@@ -46,7 +46,7 @@ export class UserDetails {
 
     this.userApi.getUserDetails(this.user.id).subscribe(
       response => {
-        this.respUtility.showSuccess("Loaded User");
+        //this.respUtility.showSuccess("Loaded User");
         this.user = response;
       },
       error => {

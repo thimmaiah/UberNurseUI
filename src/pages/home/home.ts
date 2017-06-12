@@ -71,7 +71,7 @@ export class HomePage {
       }
       if (this.currentUser.care_home && !this.currentUser.care_home.verified) {
         this.registerCareHome = false;
-        this.respUtility.showWarning("Please Call us to get your care home verified at the earliest.");
+        this.respUtility.showWarning("Please call us to get your care home verified at the earliest.");
       }
 
     }

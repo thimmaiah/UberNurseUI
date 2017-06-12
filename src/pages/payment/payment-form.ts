@@ -31,7 +31,7 @@ export class PaymentForm {
 
     this.slideOneForm = formBuilder.group({
               
-      amount: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('^\\d+$'), Validators.required])],
+      amount: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[0-9]*(\.[0-9]+)?'), Validators.required])],
        
       notes: [''],
         
