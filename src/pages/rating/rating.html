@@ -31,31 +31,31 @@
   <ion-list>
     <button ion-item *ngFor="let rating of ratings" (click)=getRatingDetails(rating)>
       
-      <ion-thumbnail item-left>
-        <img [src]="rating.user.image">
-      </ion-thumbnail> 
+        <ion-thumbnail item-left>
+          <img [src]="rating.rated_entity.image_url">
+        </ion-thumbnail> 
+
+        <p>
+          CareHome: {{rating.care_home.name}}
+        </p>
+
+        <p *ngIf="rating.rated_entity_type =='User'">
+          {{rating.rated_entity.role}}: {{rating.rated_entity.first_name}} {{rating.rated_entity.last_name}}
+        </p>
+        
+        <rating [(ngModel)]="rating.stars" readOnly="false"></rating>
+        
+        <p>
+          {{rating.comments}}
+        </p>
       
-      <p>
-        CareHome: {{rating.care_home.name}}
-      </p>
-      <p>
-        {{rating.user.role}}: {{rating.user.first_name}} {{rating.user.last_name}}
-      </p>
-      
-      <rating [(ngModel)]="rating.stars" readOnly="false"></rating>
-       
-      <p>
-        {{rating.comments}}
-      </p>
       
     </button>
   </ion-list>
 
   <ion-infinite-scroll (ionInfinite)="doInfinite($event)" threshold="100px">
-    <ion-infinite-scroll-content
-      loadingSpinner="bubbles"
-      loadingText="Loading more data...">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
-  
+
 </ion-content>

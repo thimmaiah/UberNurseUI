@@ -51,8 +51,8 @@ export class UserForm {
       pref_commute_distance: ['', Validators.compose([Validators.pattern('^\\d+$'), Validators.required])],
       speciality: ['', Validators.compose([Validators.pattern('[a-z, A-Z]*'), Validators.required])],
       experience: ['', Validators.compose([Validators.pattern('^\\d+$'), Validators.required])],
-      bank_account: ['', Validators.compose([Validators.minLength(8), Validators.required])],
-      sort_code: ['', Validators.compose([Validators.minLength(6), Validators.required])],
+      bank_account: ['', Validators.compose([Validators.minLength(8), Validators.maxLength(8), Validators.required])],
+      sort_code: ['', Validators.compose([Validators.minLength(6), Validators.maxLength(6), Validators.required])],
     });
 
     this.onRoleChange(this.user["role"]);

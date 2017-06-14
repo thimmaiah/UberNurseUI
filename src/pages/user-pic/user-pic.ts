@@ -192,6 +192,7 @@ export class UserPic {
       this.navCtrl.pop();
     }, err => {
       loading.dismissAll()
+      console.log(err);
       this.respUtility.showWarning('Error while uploading file.');
     });
   }
