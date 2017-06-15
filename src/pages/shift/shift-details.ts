@@ -105,7 +105,9 @@ export class ShiftDetails {
   rate(shift) {
     let rating = {
       staffing_request_id: shift.staffing_request_id,
-      user_id: shift.user_id,
+      rated_entity_id: shift.user_id,
+      rated_entity_type: "User",
+      care_home_id: shift.care_home_id,
       shift_id: shift.id,
       comments: "Great Work."
     }

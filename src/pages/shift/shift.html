@@ -41,7 +41,7 @@
     </ion-card-content>
   </ion-card>
   <ion-list>
-    <button ion-item id="slot-{{shift.id}}-item" *ngFor="let shift of shifts" (click)=getShiftDetails(shift)>
+    <button ion-item id="shift-{{shift.id}}-item" *ngFor="let shift of shifts" (click)=getShiftDetails(shift)>
 
       <ion-thumbnail item-left>
         <img [src]="shift.user.image">

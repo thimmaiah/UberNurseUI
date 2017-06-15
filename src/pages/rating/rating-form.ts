@@ -31,8 +31,7 @@ export class RatingForm {
 
     this.slideOneForm = formBuilder.group({
        
-      stars: [''],
-       
+      stars: [''],       
       comments: [''],
         
     });

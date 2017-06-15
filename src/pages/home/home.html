@@ -84,6 +84,16 @@
           </div>
 
           <div *ngIf="currentUser.role == 'Care Giver' || currentUser.role == 'Nurse'">
+
+            <button ion-item (click)="show_profile()" *ngIf="currentUser.verified == false">
+              <ion-icon name="contact" item-left item-left color="danger"></ion-icon>
+              Upload Documents
+              <p>
+                Upload your documents for verification.
+              </p>
+            </button>
+
+
             <button ion-item (click)="show_shifts('Accepted')">
               <ion-icon name="list" item-left item-left color="primary"></ion-icon>
               Upcoming Shifts
@@ -93,7 +103,7 @@
             </button>
 
             <button ion-item (click)="show_shifts('Pending')">
-              <ion-icon name="warning" item-left item-left color="danger"></ion-icon>
+              <ion-icon name="warning" item-left item-left color="primary"></ion-icon>
               Pending Shifts
               <p>
                 Shifts pending your confirmation.
