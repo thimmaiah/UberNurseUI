@@ -7,11 +7,13 @@ import { Shift } from '../shift/shift';
 import { StaffingRequest } from '../staffing-request/staffing-request';
 import { UserDetails } from '../users/user-details';
 import { UserForm } from '../users/user-form';
+import { RegisterPage } from '../users/register';
 import { CareHomeSearch } from '../care-homes/care-home-search';
 import { Payment } from '../payment/payment';
 import { Config } from '../../providers/config';
 import { LoginProvider } from '../../providers/login-provider';
 import { Events } from 'ionic-angular';
+import {ContactPage} from '../static/contact'
 
 @Component({
   selector: 'page-home',
@@ -110,15 +112,11 @@ export class HomePage {
   }
 
   register() {
-    // let user = {"first_name": "Mohith", "last_name":"Thimmaiah", "email":"thimm@gmail.com",
-    // "phone":"9449025878", "role":"Care Giver", "sex":"Male", "address":"123 Bakers Street", 
-    // "languages":"English,French", "occupation":"Nurse", "speciality":"Geriatrics", "experience":10, 
-    // "pref_commute_distance":10};
-    this.navCtrl.push(UserForm);
+    this.navCtrl.push(RegisterPage);
   }
 
   contact() {
-    //this.navCtrl.push(Contact);
+    this.navCtrl.push(ContactPage);
   }
 
 }

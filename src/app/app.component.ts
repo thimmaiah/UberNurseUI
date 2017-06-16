@@ -18,6 +18,8 @@ import { Events } from 'ionic-angular';
 import { ResponseUtility } from '../../providers/response-utility';
 import { UserDetails } from '../pages/users/user-details';
 import { UserForm } from '../pages/users/user-form';
+import { RegisterPage } from '../pages/users/register';
+
 import { CareHomeSearch } from '../pages/care-homes/care-home-search';
 import { Login } from '../pages/login/login';
 import { StaffingRequest } from '../pages/staffing-request/staffing-request';
@@ -179,7 +181,7 @@ export class MyApp {
 
           this.pages = [
             { title: 'Login', component: Login },
-            { title: 'Register', component: UserDetails },
+            { title: 'Register', component: RegisterPage },
             { title: 'About Us', component: AboutPage },
             { title: 'Terms & Conditions', component: TermsPage },
             { title: 'Contact Us', component: ContactPage },
@@ -191,7 +193,7 @@ export class MyApp {
           this.loginProvider.auto_login(null);
           this.pages = [
             { title: 'Login', component: Login },
-            { title: 'Register', component: UserDetails },
+            { title: 'Register', component: UserForm },
             { title: 'About Us', component: AboutPage },
             { title: 'Terms & Conditions', component: TermsPage },
             { title: 'Contact Us', component: ContactPage },

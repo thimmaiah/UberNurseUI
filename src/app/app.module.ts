@@ -22,6 +22,7 @@ import { UserDoc } from '../pages/user-doc/user-doc';
 import { Users } from '../pages/users/users';
 import { UserForm } from '../pages/users/user-form';
 import { UserDetails } from '../pages/users/user-details';
+import { RegisterPage } from '../pages/users/register';
 
 import { StaffingRequest } from '../pages/staffing-request/staffing-request';
 import { StaffingRequestForm } from '../pages/staffing-request/staffing-request-form';
@@ -81,6 +82,7 @@ import { LoginProvider } from '../providers/login-provider';
     Users,
     UserForm,
     UserDetails,
+    RegisterPage,
     Rating,
     RatingForm,
     RatingDetails,
@@ -122,6 +124,7 @@ import { LoginProvider } from '../providers/login-provider';
     Users,
     UserForm,
     UserDetails,
+    RegisterPage,
     Rating,
     RatingForm,
     RatingDetails,
