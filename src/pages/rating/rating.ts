@@ -15,19 +15,32 @@ export class Rating {
   ratings = null;
   rating: any;
   page = 1;
+  load_ratings = true;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public loadingController: LoadingController,
     public ratingApi: RatingApi,
     public respUtility: ResponseUtility) {
+
+      if(this.navParams.data["load_ratings"] != null) {
+        this.load_ratings = this.navParams.data["load_ratings"];
+        console.log(`load_ratings = ${this.load_ratings}`);
+        if(!this.load_ratings) {
+          this.ratings = this.navParams.data["ratings"];
+          console.log(`ratings`, this.ratings);
+        }
+      }
+
   }
 
 
 
   ionViewWillEnter() {
     console.log('ionViewWillEnter Ratingss');
-    this.loadRatings(1, null);
+    if(this.load_ratings) {
+      this.loadRatings(1, null);
+    }
   }
 
   loadRatings(page, infiniteScroll: InfiniteScroll) {

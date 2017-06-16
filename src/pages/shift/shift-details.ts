@@ -4,7 +4,7 @@ import { ShiftForm } from '../shift/shift-form';
 import { PaymentForm } from '../payment/payment-form';
 import { PaymentDetails } from '../payment/payment-details';
 import { RatingForm } from '../rating/rating-form';
-import { RatingDetails } from '../rating/rating-details';
+import { Rating } from '../rating/rating';
 import { StaffingRequestDetails } from '../staffing-request/staffing-request-details';
 import { ShiftApi } from '../../providers/shift-api';
 import { ResponseUtility } from '../../providers/response-utility';
@@ -102,7 +102,7 @@ export class ShiftDetails {
     this.navCtrl.push(PaymentForm, payment);
   }
 
-  rate(shift) {
+  rate_care_giver(shift) {
     let rating = {
       staffing_request_id: shift.staffing_request_id,
       rated_entity_id: shift.user_id,
@@ -114,64 +114,129 @@ export class ShiftDetails {
     this.navCtrl.push(RatingForm, rating);
   }
 
-  presentActionSheet(shift) {
-    let buttons = [];
+  rate_care_home(shift) {
+    let rating = {
+      staffing_request_id: shift.staffing_request_id,
+      rated_entity_id: shift.care_home_id,
+      rated_entity_type: "CareHome",
+      care_home_id: shift.care_home_id,
+      shift_id: shift.id,
+      comments: "Thank you."
+    }
+    this.navCtrl.push(RatingForm, rating);
+  }
 
-    if (shift.can_manage == true) {
-      console.log("can manage shift");
+  care_giver_menus(shift, buttons) {
+
+    console.log("can manage shift");
+    buttons = buttons.concat([
+      {
+        text: 'Show Request',
+        icon: !this.platform.is('ios') ? 'folder' : null,
+        handler: () => {
+          console.log('Show Request clicked');
+          this.showRequest(shift);
+        }
+      }
+
+    ]);
+
+    if (this.shift.response_status != "Accepted") {
+
       buttons = buttons.concat([
         {
-          text: 'Show Request',
-          icon: !this.platform.is('ios') ? 'folder' : null,
+          text: 'Accept Shift',
+          icon: !this.platform.is('ios') ? 'checkmark' : null,
           handler: () => {
-            console.log('Show Request clicked');
-            this.showRequest(shift);
+            console.log('Accept clicked');
+            this.acceptResponse(shift);
           }
         }
-
       ]);
+    } else {
+      buttons = buttons.concat([
+        {
+          text: 'Add Start / End Codes',
+          icon: !this.platform.is('ios') ? 'create' : null,
+          handler: () => {
+            console.log('Edit clicked');
+            this.editShift(shift);
+          }
+        }
+      ]);
+    }
 
-      if (this.shift.response_status != "Accepted") {
+    if (this.shift.response_status != "Rejected") {
 
+      buttons = buttons.concat([
+        {
+          text: 'Reject Shift',
+          role: 'destructive',
+          icon: !this.platform.is('ios') ? 'close-circle' : null,
+          handler: () => {
+            console.log('Reject clicked');
+            this.rejectResponse(shift);
+          }
+        }
+      ]);
+    }
+
+    if (this.shift.payment_status == "Paid") {
+      buttons = buttons.concat([
+        {
+          text: 'View Payment',
+          icon: !this.platform.is('ios') ? 'cash' : null,
+          handler: () => {
+            console.log('View Payment clicked');
+            this.navCtrl.push(PaymentDetails, this.shift.payment)
+          }
+        }
+      ]);
+    }
+
+    if (this.shift.care_home_rated != true) {
         buttons = buttons.concat([
           {
-            text: 'Accept Shift',
-            icon: !this.platform.is('ios') ? 'checkmark' : null,
+            text: 'Rate Care Home',
+            icon: !this.platform.is('ios') ? 'star' : null,
             handler: () => {
-              console.log('Accept clicked');
-              this.acceptResponse(shift);
+              console.log('Rate clicked');
+              this.rate_care_home(shift);
             }
           }
         ]);
       } else {
         buttons = buttons.concat([
           {
-            text: 'Add Start / End Codes',
-            icon: !this.platform.is('ios') ? 'create' : null,
+            text: 'View Rating',
+            icon: !this.platform.is('ios') ? 'star' : null,
             handler: () => {
-              console.log('Edit clicked');
-              this.editShift(shift);
+              console.log('View Rating clicked');
+              this.navCtrl.push(Rating, {"ratings": this.shift.ratings, "load_ratings": false});
             }
           }
         ]);
       }
 
-      if (this.shift.response_status != "Rejected") {
+      console.log(`buttons = ${buttons}`);
+      return buttons;
+  }
 
+  care_home_menus(shift, buttons) {
+
+    if (this.shift.response_status == "Accepted") {
+      if (this.shift.payment_status !== "Paid" && this.shift.end_code !== null) {
         buttons = buttons.concat([
           {
-            text: 'Reject Shift',
-            role: 'destructive',
-            icon: !this.platform.is('ios') ? 'close-circle' : null,
+            text: 'Make Payment',
+            icon: !this.platform.is('ios') ? 'cash' : null,
             handler: () => {
-              console.log('Reject clicked');
-              this.rejectResponse(shift);
+              console.log('Make Payment clicked');
+              this.makePayment(shift);
             }
           }
         ]);
-      }
-
-      if (this.shift.payment_status == "Paid") {
+      } else if (this.shift.payment_status == "Paid") {
         buttons = buttons.concat([
           {
             text: 'View Payment',
@@ -184,71 +249,46 @@ export class ShiftDetails {
         ]);
       }
 
-      if (this.shift.rated == true) {
+      if (this.shift.rated != true) {
+        buttons = buttons.concat([
+          {
+            text: 'Rate Care Giver',
+            icon: !this.platform.is('ios') ? 'star' : null,
+            handler: () => {
+              console.log('Rate clicked');
+              this.rate_care_giver(shift);
+            }
+          }
+        ]);
+      } else {
         buttons = buttons.concat([
           {
             text: 'View Rating',
             icon: !this.platform.is('ios') ? 'star' : null,
             handler: () => {
               console.log('View Rating clicked');
-              this.navCtrl.push(RatingDetails, this.shift.rating);
+              this.navCtrl.push(Rating, {"ratings": this.shift.ratings, "load_ratings": false});
             }
           }
         ]);
       }
 
-    } else {
-
-      if (this.shift.response_status == "Accepted") {
-        if (this.shift.payment_status !== "Paid" && this.shift.end_code !== null) {
-          buttons = buttons.concat([
-            {
-              text: 'Make Payment',
-              icon: !this.platform.is('ios') ? 'cash' : null,
-              handler: () => {
-                console.log('Make Payment clicked');
-                this.makePayment(shift);
-              }
-            }
-          ]);
-        } else if (this.shift.payment_status == "Paid") {
-          buttons = buttons.concat([
-            {
-              text: 'View Payment',
-              icon: !this.platform.is('ios') ? 'cash' : null,
-              handler: () => {
-                console.log('View Payment clicked');
-                this.navCtrl.push(PaymentDetails, this.shift.payment)
-              }
-            }
-          ]);
-        }
-
-        if (this.shift.rated != true) {
-          buttons = buttons.concat([
-            {
-              text: 'Rate',
-              icon: !this.platform.is('ios') ? 'star' : null,
-              handler: () => {
-                console.log('Rate clicked');
-                this.rate(shift);
-              }
-            }
-          ]);
-        } else {
-          buttons = buttons.concat([
-            {
-              text: 'View Rating',
-              icon: !this.platform.is('ios') ? 'star' : null,
-              handler: () => {
-                console.log('View Rating clicked');
-                this.navCtrl.push(RatingDetails, this.shift.rating);
-              }
-            }
-          ]);
-        }
-      }
     }
+
+    console.log(`buttons = ${buttons}`);
+    return buttons;
+  }
+
+  presentActionSheet(shift) {
+    let buttons = [];
+
+    if (shift.can_manage == true) {
+      buttons = this.care_giver_menus(shift, buttons);
+    } else {
+      buttons = this.care_home_menus(shift, buttons);
+    }
+
+    console.log(`buttons = ${buttons}`);
 
     buttons = buttons.concat([
       {

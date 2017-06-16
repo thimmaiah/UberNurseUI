@@ -30,19 +30,30 @@
 
   <ion-list>
     <button ion-item *ngFor="let rating of ratings" (click)=getRatingDetails(rating)>
-      
+        
         <ion-thumbnail item-left>
           <img [src]="rating.rated_entity.image_url">
         </ion-thumbnail> 
 
-        <p>
-          CareHome: {{rating.care_home.name}}
-        </p>
+        <div *ngIf="rating.rated_entity_type =='User'">
+          <p>
+            Rated By: {{rating.care_home.name}}
+          </p>
 
-        <p *ngIf="rating.rated_entity_type =='User'">
-          {{rating.rated_entity.role}}: {{rating.rated_entity.first_name}} {{rating.rated_entity.last_name}}
-        </p>
+          <p>
+            {{rating.rated_entity.role}}: {{rating.rated_entity.first_name}} {{rating.rated_entity.last_name}}
+          </p>
+        </div>
         
+        <div *ngIf="rating.rated_entity_type =='CareHome'">
+          <p>
+            Care Home: {{rating.rated_entity.name}} 
+          </p>
+          <p>
+          </p>
+        </div>
+        
+
         <rating [(ngModel)]="rating.stars" readOnly="false"></rating>
         
         <p>
