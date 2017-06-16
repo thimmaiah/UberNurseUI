@@ -27,6 +27,10 @@ import { StaffingRequest } from '../pages/staffing-request/staffing-request';
 import { StaffingRequestForm } from '../pages/staffing-request/staffing-request-form';
 import { StaffingRequestDetails } from '../pages/staffing-request/staffing-request-details';
 
+import {AboutPage} from '../pages/static/about';
+import {TermsPage} from '../pages/static/terms';
+import {ContactPage} from '../pages/static/contact';
+
 import { Shift } from '../pages/shift/shift';
 import { ShiftDetails } from '../pages/shift/shift-details';
 import { ShiftForm } from '../pages/shift/shift-form';
@@ -93,7 +97,10 @@ import { LoginProvider } from '../providers/login-provider';
     CareHomeForm,
     CareHomeDetails,
     CareHomeSearch,
-    TitleCasePipe
+    TitleCasePipe,
+    AboutPage,
+    ContactPage,
+    TermsPage
   ],
   imports: [
     BrowserModule,
@@ -130,7 +137,10 @@ import { LoginProvider } from '../providers/login-provider';
     CareHomes,
     CareHomeForm,
     CareHomeDetails,
-    CareHomeSearch
+    CareHomeSearch,
+    AboutPage,
+    ContactPage,
+    TermsPage
   ],
   providers: [
     Push,

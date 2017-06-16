@@ -22,7 +22,9 @@ import { CareHomeSearch } from '../pages/care-homes/care-home-search';
 import { Login } from '../pages/login/login';
 import { StaffingRequest } from '../pages/staffing-request/staffing-request';
 import { Shift } from '../pages/shift/shift';
-
+import {AboutPage} from '../pages/static/about';
+import {TermsPage} from '../pages/static/terms';
+import {ContactPage} from '../pages/static/contact';
 
 
 @Component({
@@ -178,12 +180,22 @@ export class MyApp {
           this.pages = [
             { title: 'Login', component: Login },
             { title: 'Register', component: UserDetails },
+            { title: 'About Us', component: AboutPage },
+            { title: 'Terms & Conditions', component: TermsPage },
+            { title: 'Contact Us', component: ContactPage },
           ];
 
         });
 
         if (this.currentUser == null) {
           this.loginProvider.auto_login(null);
+          this.pages = [
+            { title: 'Login', component: Login },
+            { title: 'Register', component: UserDetails },
+            { title: 'About Us', component: AboutPage },
+            { title: 'Terms & Conditions', component: TermsPage },
+            { title: 'Contact Us', component: ContactPage },
+          ];
         }
 
       }

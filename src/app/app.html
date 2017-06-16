@@ -10,12 +10,14 @@
       <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
         {{p.title}}
       </button>
+      <div *ngIf="current_user != null">
       <button menuClose ion-item (click)="show_profile()">
         Profile
       </button>
       <button menuClose ion-item (click)="logout()">
         Logout
       </button>
+      </div>
       
     </ion-list>
   </ion-content>
