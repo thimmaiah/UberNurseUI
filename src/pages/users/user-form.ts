@@ -4,7 +4,7 @@ import { Component, ViewChild } from '@angular/core';
 import { UserApi } from '../../providers/user-api';
 import { ResponseUtility } from '../../providers/response-utility';
 import { Angular2TokenService } from 'angular2-token';
-
+import { UserValidator } from './user-validator'
 /**
  * Generated class for the UserForm page.
  *
@@ -26,6 +26,7 @@ export class UserForm {
   careGiverForm: FormGroup;
 
   submitAttempt: boolean = false;
+  confirm_password;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -43,8 +44,10 @@ export class UserForm {
       last_name: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z0-9 ]*'), Validators.required])],
       email: ['', Validators.compose([Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$'), Validators.required])],
       password: ['', Validators.compose([Validators.minLength(6), Validators.required])],
+      confirm_password: ['', Validators.compose([Validators.minLength(6), Validators.required])],
       role: [''],
       sex: [''],
+      accept_terms: ['', Validators.compose([Validators.required])],
       phone: ['', Validators.pattern('^\\d+$'),],
       postcode: ['', Validators.compose([Validators.required])],
       languages: ['', Validators.compose([Validators.pattern('[a-z, A-Z]*')])],
@@ -53,7 +56,7 @@ export class UserForm {
       experience: ['', Validators.compose([Validators.pattern('^\\d+$'), Validators.required])],
       bank_account: ['', Validators.compose([Validators.minLength(8), Validators.maxLength(8), Validators.required])],
       sort_code: ['', Validators.compose([Validators.minLength(6), Validators.maxLength(6), Validators.required])],
-    });
+    }, { "validator": this.isMatching });
 
     this.onRoleChange(this.user["role"]);
 
@@ -61,12 +64,30 @@ export class UserForm {
     if (this.user["id"]) {
       this.slideOneForm.controls["password"].disable();
       this.slideOneForm.controls["password"].clearValidators();
+      this.slideOneForm.controls["confirm_password"].disable();
+      this.slideOneForm.controls["confirm_password"].clearValidators();
+      this.slideOneForm.controls["terms"].disable();
+      this.slideOneForm.controls["terms"].clearValidators();
       console.log("Disabled password", this.slideOneForm.controls.password.disabled);
-    } 
+    }
 
 
   }
 
+  isMatching(group: FormGroup) {
+
+    console.log(`password check`, group);
+
+    let firstPassword = group.controls['password'].value;
+    let secondPassword = group.controls['confirm_password'].value;
+    if ((firstPassword && secondPassword) && (firstPassword != secondPassword)) {
+      console.log("passwords mismatch");
+      group.controls['confirm_password'].setErrors({ "pw_mismatch": true });
+      return { "pw_mismatch": true };
+    } else {
+      return null;
+    }
+  }
   // Switch the madatory fields and validations based on the role
   onRoleChange(role) {
     console.log(`Role changed to ${role}`);
@@ -96,14 +117,13 @@ export class UserForm {
 
     this.submitAttempt = true;
     //console.log(this.user);
-
     let loader = this.loadingController.create({
       content: 'Saving ...'
     });
 
     if (this.slideOneForm.invalid) {
       //this.signupSlider.slideTo(0);
-      console.log("Invalid form ", this.slideOneForm.errors);      
+      console.log("Invalid form ", this.slideOneForm.errors);
     }
     else {
       this.submitAttempt = false;
