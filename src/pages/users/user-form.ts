@@ -66,8 +66,8 @@ export class UserForm {
       this.slideOneForm.controls["password"].clearValidators();
       this.slideOneForm.controls["confirm_password"].disable();
       this.slideOneForm.controls["confirm_password"].clearValidators();
-      this.slideOneForm.controls["terms"].disable();
-      this.slideOneForm.controls["terms"].clearValidators();
+      this.slideOneForm.controls["accept_terms"].disable();
+      this.slideOneForm.controls["accept_terms"].clearValidators();
       console.log("Disabled password", this.slideOneForm.controls.password.disabled);
     }
 
@@ -92,7 +92,7 @@ export class UserForm {
   onRoleChange(role) {
     console.log(`Role changed to ${role}`);
 
-    var careGiverFields = ["languages", "pref_commute_distance", "speciality", "experience", "bank_account", "sort_code"];
+    var careGiverFields = ["languages", "pref_commute_distance", "speciality", "experience"];
     var arrayLength = careGiverFields.length;
 
 

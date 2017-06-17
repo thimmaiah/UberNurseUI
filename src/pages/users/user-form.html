@@ -149,33 +149,17 @@
           <p class="error-text">Enter a number which is the experience in years.</p>
         </ion-item>
 
-        <ion-item>
-          <ion-label floating>Bank Account Number</ion-label>
-          <ion-input name="bank_account" formControlName="bank_account" type="bank_account" [(ngModel)]="user.bank_account" [class.invalid]="!slideOneForm.controls.bank_account.valid && (slideOneForm.controls.bank_account.dirty || submitAttempt)"></ion-input>
-        </ion-item>
-
-        <ion-item *ngIf="!slideOneForm.controls.bank_account.valid  && (slideOneForm.controls.bank_account.dirty || submitAttempt)">
-          <p class="error-text">Please enter 8 digit bank account.</p>
-        </ion-item>
-
-        <ion-item>
-          <ion-label floating>Sort Code</ion-label>
-          <ion-input name="sort_code" formControlName="sort_code" type="sort_code" [(ngModel)]="user.sort_code" [class.invalid]="!slideOneForm.controls.sort_code.valid && (slideOneForm.controls.sort_code.dirty || submitAttempt)"></ion-input>
-        </ion-item>
-
-        <ion-item *ngIf="!slideOneForm.controls.sort_code.valid  && (slideOneForm.controls.sort_code.dirty || submitAttempt)">
-          <p class="error-text">Please enter 6 digit sort code.</p>
-        </ion-item>
-
       </div>
 
-      <ion-item>
-        <ion-checkbox [(ngModel)]="user.accept_terms" formControlName="accept_terms" type="accept_terms" value='true'></ion-checkbox>
-        <ion-label>Accept Terms</ion-label>
-      </ion-item>
-      <ion-item *ngIf="!slideOneForm.controls.accept_terms.valid  && (slideOneForm.controls.accept_terms.dirty || submitAttempt)">
-        <p class="error-text">Please accept the T&C.</p>
-      </ion-item>
+      <div *ngIf="!user.id">
+        <ion-item>
+          <ion-checkbox id="accept_terms" [(ngModel)]="user.accept_terms" formControlName="accept_terms" type="accept_terms" value='true'></ion-checkbox>
+          <ion-label>Accept Terms</ion-label>
+        </ion-item>
+        <ion-item *ngIf="!slideOneForm.controls.accept_terms.valid  && (slideOneForm.controls.accept_terms.dirty || submitAttempt)">
+          <p class="error-text">Please accept the T&C.</p>
+        </ion-item>
+      </div>
 
     </form>
 

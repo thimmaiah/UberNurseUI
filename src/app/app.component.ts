@@ -17,6 +17,7 @@ import { Events } from 'ionic-angular';
 
 import { ResponseUtility } from '../../providers/response-utility';
 import { UserDetails } from '../pages/users/user-details';
+import { BankingDetailsPage } from '../pages/users/banking-details';
 import { UserForm } from '../pages/users/user-form';
 import { RegisterPage } from '../pages/users/register';
 
@@ -168,7 +169,8 @@ export class MyApp {
             this.pages = [
               { title: 'Shift', component: Shift },
               { title: 'Payments', component: Payment },
-              { title: 'Ratings', component: Rating }
+              { title: 'Ratings', component: Rating },
+              { title: 'Banking Details', component: BankingDetailsPage }
             ];
             
             //this.nav.push(Shift);
