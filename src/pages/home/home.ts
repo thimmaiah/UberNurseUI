@@ -13,7 +13,8 @@ import { Payment } from '../payment/payment';
 import { Config } from '../../providers/config';
 import { LoginProvider } from '../../providers/login-provider';
 import { Events } from 'ionic-angular';
-import {ContactPage} from '../static/contact'
+import { ContactPage } from '../static/contact';
+import { BankingDetailsPage } from '../users/banking-details';
 
 @Component({
   selector: 'page-home',
@@ -42,7 +43,7 @@ export class HomePage {
     events.subscribe('care_home:registration:success', (care_home) => {
       console.log("HomePage: care_home:registration:success");
       this.tokenService.currentUserData["care_home_id"] = care_home.id;
-      this.tokenService.currentUserData["care_home"] = care_home;      
+      this.tokenService.currentUserData["care_home"] = care_home;
       this.currentUser = this.tokenService.currentUserData;
       this.displayMsgs();
     });
@@ -77,8 +78,15 @@ export class HomePage {
       }
 
     }
-    else if (this.currentUser && (this.currentUser.role == "Care Giver" || this.currentUser.role == "Nurse") && this.currentUser.verified !== true) {
-      this.respUtility.showWarning("Please upload your documents for verification");
+    else if (this.currentUser &&
+      (this.currentUser.role == "Care Giver" || this.currentUser.role == "Nurse")) {
+      if (this.currentUser.verified !== true) {
+        this.navCtrl.push(UserDetails, this.currentUser);
+        this.respUtility.showWarning("Please upload your documents for verification");
+      } else if(this.currentUser.bank_account == null) {
+        this.navCtrl.push(BankingDetailsPage, this.currentUser);
+        this.respUtility.showWarning("Please enter your Bank details");
+      }
     }
   }
 
@@ -95,7 +103,7 @@ export class HomePage {
   }
 
   show_shifts(response_status) {
-    this.navCtrl.push(Shift, {response_status: response_status});
+    this.navCtrl.push(Shift, { response_status: response_status });
   }
 
   show_profile() {

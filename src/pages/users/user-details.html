@@ -20,13 +20,13 @@
         <rating [(ngModel)]="user.rating" readOnly="true"></rating>
       </p> 
       <p>
-        {{user.phone}}
+        Phone: {{user.phone}}
       </p>
       <p>
-        {{user.email}}
+        Email: {{user.email}}
       </p>
        <p> 
-        {{user.role}}
+        Role: {{user.role}}
       </p>
 
       <div *ngIf="user.role == 'Care Giver' || user.role == 'Nurse'">
@@ -50,9 +50,6 @@
           Sort Code: {{user.sort_code}}
         </p>
 
-        <p>
-          {{user.address}}
-        </p>
 
         <ion-badge
           *ngIf="user.verified != true" 

@@ -57,6 +57,7 @@ export class BankingDetailsPage {
       this.userApi.updateUser(this.user).subscribe(
         user => {
           this.respUtility.showSuccess('Saved successfully.');
+          this.navCtrl.popToRoot();
         },
         error => {
           this.respUtility.showFailure(error);
