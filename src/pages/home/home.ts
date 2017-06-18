@@ -72,19 +72,33 @@ export class HomePage {
         this.registerCareHome = true;
         this.respUtility.showWarning("Please register your care home and get it verified at the earliest.");
       }
-      if (this.currentUser.care_home && !this.currentUser.care_home.verified) {
-        this.registerCareHome = false;
-        this.respUtility.showWarning("Please call us to get your care home verified at the earliest.");
+      if (this.currentUser.care_home) {
+        if (!this.currentUser.care_home.verified) {
+          this.registerCareHome = false;
+          this.respUtility.showWarning("Please call us to get your care home verified at the earliest.");
+        } else if (this.currentUser.bank_account == null) {
+          if (this.currentUser.bank_details_warning_shown != true) {
+            this.currentUser.bank_details_warning_shown = true;
+            this.navCtrl.push(BankingDetailsPage, this.currentUser);
+          }
+          this.respUtility.showWarning("Please enter your Bank details");
+        }
       }
 
     }
     else if (this.currentUser &&
       (this.currentUser.role == "Care Giver" || this.currentUser.role == "Nurse")) {
       if (this.currentUser.verified !== true) {
-        this.navCtrl.push(UserDetails, this.currentUser);
+        if (this.currentUser.upload_docs_warning_shown != true) {
+          this.navCtrl.push(UserDetails, this.currentUser);
+          this.currentUser.upload_docs_warning_shown = true;
+        }
         this.respUtility.showWarning("Please upload your documents for verification");
-      } else if(this.currentUser.bank_account == null) {
-        this.navCtrl.push(BankingDetailsPage, this.currentUser);
+      } else if (this.currentUser.bank_account == null) {
+        if (this.currentUser.bank_details_warning_shown != true) {
+          this.currentUser.bank_details_warning_shown = true;
+          this.navCtrl.push(BankingDetailsPage, this.currentUser);
+        }
         this.respUtility.showWarning("Please enter your Bank details");
       }
     }

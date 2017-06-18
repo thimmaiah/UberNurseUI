@@ -57,7 +57,7 @@
 
           <div *ngIf="currentUser.role == 'Admin'">
             <button ion-item *ngIf="registerCareHome" (click)="register_care_home()">
-              <ion-icon name="home" item-left color="danger"></ion-icon>
+              <ion-icon name="home" item-left color="primary"></ion-icon>
               Register Care Home 
               <p>
                 Register your care home now.
@@ -86,10 +86,10 @@
           <div *ngIf="currentUser.role == 'Care Giver' || currentUser.role == 'Nurse'">
 
             <button ion-item (click)="show_profile()" *ngIf="currentUser.verified == false">
-              <ion-icon name="contact" item-left item-left color="danger"></ion-icon>
+              <ion-icon name="folder" item-left item-left color="primary"></ion-icon>
               Upload Documents
               <p>
-                Upload your documents for verification.
+                Upload documents for verification.
               </p>
             </button>
 
