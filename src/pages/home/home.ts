@@ -9,6 +9,7 @@ import { UserDetails } from '../users/user-details';
 import { UserForm } from '../users/user-form';
 import { RegisterPage } from '../users/register';
 import { CareHomeSearch } from '../care-homes/care-home-search';
+import { CareHomeBankingDetails } from '../care-homes/care-home-banking-details';
 import { Payment } from '../payment/payment';
 import { Config } from '../../providers/config';
 import { LoginProvider } from '../../providers/login-provider';
@@ -115,6 +116,10 @@ export class HomePage extends DocLinks {
 
   add_banking_details() {
     this.navCtrl.push(BankingDetailsPage);
+  }
+
+  add_care_home_banking_details() {
+    this.navCtrl.push(CareHomeBankingDetails, this.currentUser.care_home);
   }
 
   show_payments() {

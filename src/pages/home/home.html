@@ -56,30 +56,52 @@
         <ion-list>
 
           <div *ngIf="currentUser.role == 'Admin'">
-            <button ion-item *ngIf="registerCareHome" (click)="register_care_home()">
-              <ion-icon name="home" item-left color="primary"></ion-icon>
-              Register Care Home 
-              <p>
-                Register your care home now.
-              </p>
-            </button>
 
-            <button ion-item (click)="show_staffing_requests()">
-              <ion-icon name="construct" item-left color="primary"></ion-icon>
-              Staffing Requests
-              <p>
-                Request temp staff.
-              </p>
-            </button>
+            <div *ngIf="currentUser.care_home_id == null || currentUser.care_home.verified != 'true'">
+              <button ion-item *ngIf="currentUser.care_home_id == null" (click)="register_care_home()">
+                <ion-icon name="home" item-left color="primary"></ion-icon>
+                Register Care Home 
+                <p>
+                  Register your care home now.
+                </p>
+              </button>
 
-            <button ion-item (click)="show_shifts('Accepted')">
-              <ion-icon name="list" item-left item-left color="primary"></ion-icon>
-              Upcoming Shifts
-              <p>
-                Shifts for your Care Home.
-              </p>
-            </button>
 
+              <button ion-item (click)="show_profile()">
+                <ion-icon name="call" item-left item-left color="primary"></ion-icon>
+                Verify Mobile Number
+                <p>
+                  Verify your mobile number now.
+                </p>
+              </button>
+
+              <button ion-item (click)="add_care_home_banking_details()" *ngIf="currentUser.care_home_id != null && currentUser.care_home.bank_account == null">
+                <ion-icon name="cash" item-left item-left color="primary"></ion-icon>
+                Banking Information
+                <p>
+                  Add your banking details.
+                </p>
+              </button>
+
+            </div>
+
+            <div *ngIf="currentUser.care_home_id != null && currentUser.care_home.verified == 'true'">
+              <button ion-item (click)="show_staffing_requests()">
+                <ion-icon name="construct" item-left color="primary"></ion-icon>
+                Staffing Requests
+                <p>
+                  Request temp staff.
+                </p>
+              </button>
+
+              <button ion-item (click)="show_shifts('Accepted')">
+                <ion-icon name="list" item-left item-left color="primary"></ion-icon>
+                Upcoming Shifts
+                <p>
+                  Shifts for your Care Home.
+                </p>
+              </button>
+            </div>
 
           </div>
 

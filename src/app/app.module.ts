@@ -51,6 +51,7 @@ import { CareHomes } from '../pages/care-homes/care-homes';
 import { CareHomeSearch } from '../pages/care-homes/care-home-search';
 import { CareHomeForm } from '../pages/care-homes/care-home-form';
 import { CareHomeDetails } from '../pages/care-homes/care-home-details';
+import { CareHomeBankingDetails } from '../pages/care-homes/care-home-banking-details';
 
 import { Diagnostic } from '@ionic-native/diagnostic';
 import { StatusBar } from '@ionic-native/status-bar';
@@ -102,6 +103,7 @@ import { LoginProvider } from '../providers/login-provider';
     CareHomeForm,
     CareHomeDetails,
     CareHomeSearch,
+    CareHomeBankingDetails,
     TitleCasePipe,
     AboutPage,
     ContactPage,
@@ -145,6 +147,7 @@ import { LoginProvider } from '../providers/login-provider';
     CareHomeForm,
     CareHomeDetails,
     CareHomeSearch,
+    CareHomeBankingDetails,
     AboutPage,
     ContactPage,
     TermsPage
