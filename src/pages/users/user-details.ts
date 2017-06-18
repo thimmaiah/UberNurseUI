@@ -84,7 +84,7 @@ export class UserDetails {
   }
 
   pendingDocs() {
-    let required = ["ID Card", "Certificate", "Address Proof",  "DBS", "Profile Pic"]
+    let required = ["ID Card", "Qualifying Certificate", "Address Proof",  "DBS", "Profile Pic"]
     let pending = _.dropWhile(required, (required_type) => {
       let found = _.find(this.user.user_docs, function (doc) { return doc.doc_type == required_type; });
       return found != null;
