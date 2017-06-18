@@ -85,4 +85,6 @@ export class UserDetails extends DocLinks {
     this.respUtility.confirmAction(this.deactivateUser.bind(this), user, "Deactivate User. Confirm?");
   }
 
+ 
+
 }

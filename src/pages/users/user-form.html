@@ -75,16 +75,6 @@
         <p class="error-text">Please enter a valid phone.</p>
       </ion-item>
 
-      <ion-item id="role">
-        <ion-label floating>Role</ion-label>
-        <ion-select name="role" [(ngModel)]="user.role" [class.invalid]="!slideOneForm.controls.role.valid && (slideOneForm.controls.role.dirty || submitAttempt)"
-          formControlName="role" (ionChange)="onRoleChange($event)">
-          <ion-option value="Care Giver" checked="true">Care Giver</ion-option>
-          <ion-option value="Nurse">Nurse</ion-option>
-          <ion-option value="Admin">Care Home Admin</ion-option>
-        </ion-select>
-      </ion-item>
-
       <ion-item id="sex">
         <ion-label floating>Sex</ion-label>
         <ion-select name="sex" [(ngModel)]="user.sex" [class.invalid]="!slideOneForm.controls.sex.valid && (slideOneForm.controls.sex.dirty || submitAttempt)"
@@ -106,14 +96,6 @@
       </ion-item>
 
       <div *ngIf="user.role == 'Care Giver' || user.role == 'Nurse' ">
-        <ion-item>
-          <ion-label floating>Languages</ion-label>
-          <ion-input name="languages" formControlName="languages" type="languages" [(ngModel)]="user.languages" [class.invalid]="!slideOneForm.controls.languages.valid && (slideOneForm.controls.languages.dirty || submitAttempt)"></ion-input>
-        </ion-item>
-
-        <ion-item *ngIf="!slideOneForm.controls.languages.valid  && (slideOneForm.controls.languages.dirty || submitAttempt)">
-          <p class="error-text">Please enter a valid languages.</p>
-        </ion-item>
 
         <ion-item>
           <ion-label floating>Pref Commute Distance (in Miles)</ion-label>
@@ -122,40 +104,17 @@
         </ion-item>
 
         <ion-item *ngIf="!slideOneForm.controls.pref_commute_distance.valid  && (slideOneForm.controls.pref_commute_distance.dirty || submitAttempt)">
-          <p class="error-text">Enter a valid number which is the distance in miles.</p>
-        </ion-item>
-
-        <ion-item id="speciality">
-          <ion-label floating>Speciality</ion-label>
-          <ion-select name="speciality" [(ngModel)]="user.speciality" [class.invalid]="!slideOneForm.controls.speciality.valid && (slideOneForm.controls.speciality.dirty || submitAttempt)"
-            formControlName="speciality">
-            <ion-option value="Generalist">Generalist</ion-option>
-            <ion-option value="Mental Health">Mental Health</ion-option>
-            <ion-option value="Geriatric Care">Geriatric Care</ion-option>
-            <ion-option value="Pediatric Care">Pediatric Care</ion-option>
-          </ion-select>
-        </ion-item>
-
-        <ion-item *ngIf="!slideOneForm.controls.speciality.valid  && (slideOneForm.controls.speciality.dirty || submitAttempt)">
-          <p class="error-text">Please enter a valid speciality.</p>
-        </ion-item>
-
-        <ion-item>
-          <ion-label floating>Years of Experience</ion-label>
-          <ion-input name="experience" formControlName="experience" type="experience" [(ngModel)]="user.experience" [class.invalid]="!slideOneForm.controls.experience.valid && (slideOneForm.controls.experience.dirty || submitAttempt)"></ion-input>
-        </ion-item>
-
-        <ion-item *ngIf="!slideOneForm.controls.experience.valid  && (slideOneForm.controls.experience.dirty || submitAttempt)">
-          <p class="error-text">Enter a number which is the experience in years.</p>
+          <p class="error-text">Enter a valid distance in miles.</p>
         </ion-item>
 
       </div>
 
-      <div *ngIf="!user.id">
+      <div *ngIf="!user.id" text-wrap>
         <ion-item>
           <ion-checkbox id="accept_terms" [(ngModel)]="user.accept_terms" formControlName="accept_terms" type="accept_terms" value='true'></ion-checkbox>
-          <ion-label>Accept Terms</ion-label>
+          <ion-label text-warp>I have read and agree to the Terms & Conditions</ion-label>
         </ion-item>
+        <button ion-button full clear color="primary" (click)="show_terms()">Terms & Conditions</button>
         <ion-item *ngIf="!slideOneForm.controls.accept_terms.valid  && (slideOneForm.controls.accept_terms.dirty || submitAttempt)">
           <p class="error-text">Please accept the T&C.</p>
         </ion-item>

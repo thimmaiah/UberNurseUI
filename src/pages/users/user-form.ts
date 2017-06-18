@@ -5,13 +5,8 @@ import { UserApi } from '../../providers/user-api';
 import { ResponseUtility } from '../../providers/response-utility';
 import { Angular2TokenService } from 'angular2-token';
 import { UserValidator } from './user-validator'
-/**
- * Generated class for the UserForm page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
-//@IonicPage()
+import { TermsPage } from '../static/terms';
+
 @Component({
   selector: 'page-user-form',
   templateUrl: 'user-form.html',
@@ -38,22 +33,18 @@ export class UserForm {
 
     this.user = this.navParams.data;
 
-    
+
     this.slideOneForm = formBuilder.group({
       first_name: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z0-9 ]*'), Validators.required])],
       last_name: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z0-9 ]*'), Validators.required])],
       email: ['', Validators.compose([Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$'), Validators.required])],
       password: ['', Validators.compose([Validators.minLength(6), Validators.required])],
       confirm_password: ['', Validators.compose([Validators.required])],
-      role: [''],
       sex: [''],
       accept_terms: ['', Validators.compose([Validators.required])],
       phone: ['', Validators.pattern('^\\d+$'),],
       postcode: ['', Validators.compose([Validators.required])],
-      languages: ['', Validators.compose([Validators.pattern('[a-z, A-Z]*')])],
       pref_commute_distance: ['', Validators.compose([Validators.pattern('^\\d+$'), Validators.required])],
-      speciality: ['', Validators.compose([Validators.pattern('[a-z, A-Z]*'), Validators.required])],
-      experience: ['', Validators.compose([Validators.pattern('^\\d+$'), Validators.required])],
     }, { "validator": this.isMatching });
 
     this.onRoleChange(this.user["role"]);
@@ -69,16 +60,15 @@ export class UserForm {
       console.log("Disabled password", this.slideOneForm.controls.password.disabled);
     }
 
-
   }
 
   isMatching(group: FormGroup) {
 
-    
+
     let firstPassword = group.controls['password'].value;
     let secondPassword = group.controls['confirm_password'].value;
     console.log(`password check ${firstPassword}, ${secondPassword}`);
-    
+
 
     if ((firstPassword && secondPassword) && (firstPassword != secondPassword)) {
       console.log("passwords mismatch");
@@ -93,7 +83,7 @@ export class UserForm {
   onRoleChange(role) {
     console.log(`Role changed to ${role}`);
 
-    var careGiverFields = ["languages", "pref_commute_distance", "speciality", "experience"];
+    var careGiverFields = ["pref_commute_distance"];
     var arrayLength = careGiverFields.length;
 
 
@@ -165,6 +155,10 @@ export class UserForm {
       },
       () => { loader.dismiss(); }
     );
+  }
+
+  show_terms() {
+    this.navCtrl.push(TermsPage);
   }
 
 }
