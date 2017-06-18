@@ -29,9 +29,16 @@ export class BankingDetailsPage {
     this.slideOneForm = formBuilder.group({
       bank_account: ['', Validators.compose([Validators.minLength(8), Validators.maxLength(8), Validators.required])],
       sort_code: ['', Validators.compose([Validators.minLength(6), Validators.maxLength(6), Validators.required])],
+      accept_bank_transactions: ['', Validators.compose([Validators.required])],
     });
 
-    this.user = this.tokenService.currentUserData;
+    let current_user = this.tokenService.currentUserData;
+    this.user = {
+      "id": current_user.id,
+      "bank_account": current_user["bank_account"],
+      "sort_code": current_user["sort_code"],
+      "accept_bank_transactions": current_user["accept_bank_transactions"]
+    };
   }
 
   ionViewDidLoad() {

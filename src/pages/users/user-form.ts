@@ -83,7 +83,7 @@ export class UserForm {
   onRoleChange(role) {
     console.log(`Role changed to ${role}`);
 
-    var careGiverFields = ["pref_commute_distance"];
+    var careGiverFields = ["pref_commute_distance", "postcode"];
     var arrayLength = careGiverFields.length;
 
 

@@ -85,17 +85,19 @@
       </ion-item>
 
 
-      <ion-item>
-        <ion-label floating>Postal Code</ion-label>
-        <ion-input name="postcode" [(ngModel)]="user.postcode" [class.invalid]="!slideOneForm.controls.postcode.valid && (slideOneForm.controls.postcode.dirty || submitAttempt)"
-          formControlName="postcode" type="text"></ion-input>
-      </ion-item>
-
-      <ion-item *ngIf="!slideOneForm.controls.postcode.valid && !slideOneForm.controls.postcode.pending && (slideOneForm.controls.postcode.dirty || submitAttempt)">
-        <p>Sorry, that postcode can not be used!</p>
-      </ion-item>
-
       <div *ngIf="user.role == 'Care Giver' || user.role == 'Nurse' ">
+
+        <ion-item>
+          <ion-label floating>Postal Code</ion-label>
+          <ion-input name="postcode" [(ngModel)]="user.postcode" [class.invalid]="!slideOneForm.controls.postcode.valid && (slideOneForm.controls.postcode.dirty || submitAttempt)"
+            formControlName="postcode" type="text"></ion-input>
+        </ion-item>
+
+        <ion-item *ngIf="!slideOneForm.controls.postcode.valid && !slideOneForm.controls.postcode.pending && (slideOneForm.controls.postcode.dirty || submitAttempt)">
+          <p>Sorry, that postcode can not be used!</p>
+        </ion-item>
+
+
 
         <ion-item>
           <ion-label floating>Pref Commute Distance (in Miles)</ion-label>
@@ -124,6 +126,6 @@
 
   </ion-list>
 
-  <button ion-button full color="primary" (click)="save()">Save</button>
+  <button ion-button full color="primary" (click)="save()" [disabled]="slideOneForm.invalid">Save</button>
 
 </ion-content>

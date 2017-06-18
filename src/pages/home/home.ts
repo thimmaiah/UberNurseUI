@@ -89,12 +89,11 @@ export class HomePage extends DocLinks {
         this.registerCareHome = true;
         this.navCtrl.push(CareHomeSearch);
         this.respUtility.showWarning("Please register your care home and get it verified at the earliest.");
-      }
-      if (this.currentUser.care_home) {
+      } else if (this.currentUser.care_home) {
         if (!this.currentUser.care_home.verified) {
           this.registerCareHome = false;
           this.respUtility.showWarning("Please call us to get your care home verified at the earliest.");
-        } else if (this.currentUser.bank_account == null) {
+        } else if (this.currentUser.care_home.bank_account == null) {
           this.respUtility.showWarning("Please enter your Bank details");
         }
       }

@@ -16,7 +16,7 @@
 <ion-content padding>
 
   <ion-list>
-   
+
     <form [formGroup]="slideOneForm">
 
       <ion-item>
@@ -35,6 +35,12 @@
 
       <ion-item *ngIf="!slideOneForm.controls.sort_code.valid  && (slideOneForm.controls.sort_code.dirty || submitAttempt)">
         <p class="error-text">Please enter 6 digit sort code.</p>
+      </ion-item>
+
+      <ion-item text-wrap>
+        <ion-checkbox id="accept_bank_transactions" [(ngModel)]="user.accept_bank_transactions" 
+          [checked]="user.accept_bank_transactions" formControlName="accept_bank_transactions" value='true'></ion-checkbox>
+        <ion-label text-warp>I agree to direct debit & credit for this account</ion-label>
       </ion-item>
 
     </form>

@@ -11,7 +11,7 @@ export class DocLinks {
   }
 
   pendingDocs(user) {
-    let required = ["ID Card", "Qualifying Certificate", "Address Proof", "DBS", "Profile Pic"]
+    let required = ["Profile Pic", "ID Card", "Qualifying Certificate", "Address Proof", "DBS"]
     let pending = _.dropWhile(required, (required_type) => {
       let found = _.find(user.user_docs, function (doc) { return doc.doc_type == required_type; });
       return found != null;
