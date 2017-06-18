@@ -38,13 +38,13 @@ export class UserForm {
 
     this.user = this.navParams.data;
 
-
+    
     this.slideOneForm = formBuilder.group({
       first_name: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z0-9 ]*'), Validators.required])],
       last_name: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z0-9 ]*'), Validators.required])],
       email: ['', Validators.compose([Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$'), Validators.required])],
       password: ['', Validators.compose([Validators.minLength(6), Validators.required])],
-      confirm_password: ['', Validators.compose([Validators.minLength(6), Validators.required])],
+      confirm_password: ['', Validators.compose([Validators.required])],
       role: [''],
       sex: [''],
       accept_terms: ['', Validators.compose([Validators.required])],
@@ -54,8 +54,6 @@ export class UserForm {
       pref_commute_distance: ['', Validators.compose([Validators.pattern('^\\d+$'), Validators.required])],
       speciality: ['', Validators.compose([Validators.pattern('[a-z, A-Z]*'), Validators.required])],
       experience: ['', Validators.compose([Validators.pattern('^\\d+$'), Validators.required])],
-      bank_account: ['', Validators.compose([Validators.minLength(8), Validators.maxLength(8), Validators.required])],
-      sort_code: ['', Validators.compose([Validators.minLength(6), Validators.maxLength(6), Validators.required])],
     }, { "validator": this.isMatching });
 
     this.onRoleChange(this.user["role"]);
@@ -76,10 +74,12 @@ export class UserForm {
 
   isMatching(group: FormGroup) {
 
-    console.log(`password check`, group);
-
+    
     let firstPassword = group.controls['password'].value;
     let secondPassword = group.controls['confirm_password'].value;
+    console.log(`password check ${firstPassword}, ${secondPassword}`);
+    
+
     if ((firstPassword && secondPassword) && (firstPassword != secondPassword)) {
       console.log("passwords mismatch");
       group.controls['confirm_password'].setErrors({ "pw_mismatch": true });
@@ -87,6 +87,7 @@ export class UserForm {
     } else {
       return null;
     }
+
   }
   // Switch the madatory fields and validations based on the role
   onRoleChange(role) {
