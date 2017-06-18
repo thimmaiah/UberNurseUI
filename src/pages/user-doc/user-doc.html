@@ -17,17 +17,21 @@
 
   <ion-row *ngIf="current_user.role == 'Super User'">
 
-    <ion-col>
+    <ion-col col-6>
       <button ion-button full color="secondary" (click)="markVerified(document)">Mark Verified</button>
     </ion-col>
-    <ion-col>
+    <ion-col col-6>
       <button ion-button full color="danger" (click)="markRejected(document)">Mark Rejected</button>
     </ion-col>
 
   </ion-row>
+
   <ion-row>
-    <ion-col>
+    <ion-col col-6>
       <button ion-button full color="primary" (click)="uploadDocument(document)">Upload Document</button>
+    </ion-col>
+    <ion-col col-6>
+      <button ion-button full color="danger" (click)="confirmDeleteDocument(document)">Delete Document</button>
     </ion-col>
   </ion-row>
 

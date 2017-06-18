@@ -4,6 +4,7 @@ import { Component, ViewChild } from '@angular/core';
 import { UserApi } from '../../providers/user-api';
 import { ResponseUtility } from '../../providers/response-utility';
 import { Angular2TokenService } from 'angular2-token';
+import { Events } from 'ionic-angular';
 
 import { UserForm } from './user-form';
 
@@ -24,7 +25,8 @@ export class BankingDetailsPage {
     public userApi: UserApi,
     public respUtility: ResponseUtility,
     public loadingController: LoadingController,
-    private tokenService: Angular2TokenService) {
+    private tokenService: Angular2TokenService,
+    public events: Events) {
 
     this.slideOneForm = formBuilder.group({
       bank_account: ['', Validators.compose([Validators.minLength(8), Validators.maxLength(8), Validators.required])],
@@ -64,6 +66,7 @@ export class BankingDetailsPage {
       this.userApi.updateUser(this.user).subscribe(
         user => {
           this.respUtility.showSuccess('Saved successfully.');
+          this.events.publish("current_user:reload");
           this.navCtrl.popToRoot();
         },
         error => {

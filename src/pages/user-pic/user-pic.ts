@@ -191,7 +191,7 @@ export class UserPic {
       console.log(data);
       // Update the tokenService.currentAuthData
       this.events.publish("current_user:reload");
-      this.navCtrl.pop();
+      this.navCtrl.popToRoot();
     }, err => {
       loading.dismissAll()
       console.log(err);

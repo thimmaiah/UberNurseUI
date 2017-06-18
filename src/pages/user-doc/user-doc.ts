@@ -5,6 +5,7 @@ import { Angular2TokenService } from 'angular2-token';
 import { UserDocApi } from '../../providers/user-doc-api';
 import { ResponseUtility } from '../../providers/response-utility';
 import { UserPic } from '../user-pic/user-pic';
+import { Events } from 'ionic-angular';
 
 @Component({
   selector: 'page-user-doc',
@@ -20,7 +21,8 @@ export class UserDoc {
     private tokenService: Angular2TokenService,
     private userDocApi: UserDocApi,
     private loadingController: LoadingController,
-    private respUtility: ResponseUtility) {
+    private respUtility: ResponseUtility,
+    public events: Events) {
 
     this.document = this.navParams.data;
     console.log(this.document);
@@ -36,6 +38,31 @@ export class UserDoc {
     this.navCtrl.push(UserPic, document);
   }
 
+  deleteDocument(document) {
+    let loader = this.loadingController.create({
+      content: 'Deleting ...'
+    });
+    loader.present();
+    
+    this.userDocApi.deleteUserDoc(document).subscribe(
+      staffingRequest => {
+        this.respUtility.showSuccess('Deletion Successfull.');
+        this.events.publish("current_user:reload");
+        this.navCtrl.pop();
+      },
+      error => {
+        this.respUtility.showFailure(error);
+        loader.dismiss();
+      },
+      () => { loader.dismiss(); }
+    );
+  }
+
+  confirmDeleteDocument(document) {
+    this.respUtility.confirmAction(this.deleteDocument.bind(this), document, "Delete Document. Confirm?");
+  }
+
+
   markVerified(document) {
     document.verified = true;
     this.save(document);
@@ -50,6 +77,9 @@ export class UserDoc {
     let loader = this.loadingController.create({
       content: 'Saving ...'
     });
+
+    loader.present();
+
     this.userDocApi.updateUserDoc(document).subscribe(
       staffingRequest => {
         this.respUtility.showSuccess('Action Successfull.');
