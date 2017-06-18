@@ -72,6 +72,7 @@ import { Push } from '@ionic-native/push';
 import { TitleCasePipe } from '../pipes/title-case/title-case';
 import { LoginProvider } from '../providers/login-provider';
 
+
 @NgModule({
   declarations: [
     MyApp,

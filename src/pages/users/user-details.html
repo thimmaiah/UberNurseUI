@@ -14,7 +14,9 @@
 
 <ion-content padding>
 
-  <button ion-item (click)="editUser(user)">
+  <div>
+
+    <button ion-item (click)="editUser(user)">
       {{user.first_name}} {{user.last_name}}
       <p *ngIf="user.role == 'Care Giver' || user.role == 'Nurse'">
         <rating [(ngModel)]="user.rating" readOnly="true"></rating>
@@ -62,17 +64,15 @@
 
     </button>
 
-  <ion-row>
+    <ion-row>
 
-    <ion-col>
-      <button ion-button full color="secondary" (click)="editUser(user)">Edit</button>
-    </ion-col>
-    <ion-col>
-      <button ion-button full color="danger" (click)="confirmDeactivate(user)">Deactivate</button>
-    </ion-col>
+      <ion-col>
+        <button ion-button full color="secondary" (click)="editUser(user)">Edit</button>
+      </ion-col>
 
-  </ion-row>
+    </ion-row>
 
+  </div>
   <ion-card>
 
 
@@ -93,7 +93,7 @@
         </button>
 
 
-        <button ion-item *ngFor="let doc of pendingDocs()" (click)="uploadNow(doc)">
+        <button ion-item *ngFor="let doc of pendingDocs(user)" (click)="uploadNow(doc)">
           <ion-icon name="cloud-upload" item-right color="primary"></ion-icon>
           <p>{{doc.doc_type}}</p>
           <ion-badge>

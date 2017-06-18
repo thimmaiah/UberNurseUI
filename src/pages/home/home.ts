@@ -15,12 +15,13 @@ import { LoginProvider } from '../../providers/login-provider';
 import { Events } from 'ionic-angular';
 import { ContactPage } from '../static/contact';
 import { BankingDetailsPage } from '../users/banking-details';
+import { DocLinks } from '../users/doc-links';
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
-export class HomePage {
+export class HomePage extends DocLinks {
 
   currentUser: any;
   registerCareHome = false;
@@ -31,6 +32,8 @@ export class HomePage {
     private config: Config,
     public events: Events,
     private loginProvider: LoginProvider) {
+
+    super(navCtrl);
 
     // When the user login succeeds
     events.subscribe('user:login:success', () => {
@@ -77,10 +80,6 @@ export class HomePage {
           this.registerCareHome = false;
           this.respUtility.showWarning("Please call us to get your care home verified at the earliest.");
         } else if (this.currentUser.bank_account == null) {
-          if (this.currentUser.bank_details_warning_shown != true) {
-            this.currentUser.bank_details_warning_shown = true;
-            this.navCtrl.push(BankingDetailsPage, this.currentUser);
-          }
           this.respUtility.showWarning("Please enter your Bank details");
         }
       }
@@ -89,16 +88,8 @@ export class HomePage {
     else if (this.currentUser &&
       (this.currentUser.role == "Care Giver" || this.currentUser.role == "Nurse")) {
       if (this.currentUser.verified !== true) {
-        if (this.currentUser.upload_docs_warning_shown != true) {
-          this.navCtrl.push(UserDetails, this.currentUser);
-          this.currentUser.upload_docs_warning_shown = true;
-        }
         this.respUtility.showWarning("Please upload your documents for verification");
       } else if (this.currentUser.bank_account == null) {
-        if (this.currentUser.bank_details_warning_shown != true) {
-          this.currentUser.bank_details_warning_shown = true;
-          this.navCtrl.push(BankingDetailsPage, this.currentUser);
-        }
         this.respUtility.showWarning("Please enter your Bank details");
       }
     }

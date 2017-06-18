@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, ToastController, LoadingController } from 'ionic-angular';
 import { UserForm } from '../users/user-form';
+import { DocLinks } from './doc-links';
 import { UserPic } from '../user-pic/user-pic';
 import { UserApi } from '../../providers/user-api';
 import { ResponseUtility } from '../../providers/response-utility';
@@ -11,20 +12,21 @@ import * as _ from 'lodash';
   selector: 'page-user-details',
   templateUrl: 'user-details.html',
 })
-export class UserDetails {
+export class UserDetails extends DocLinks {
 
   user: any;
 
-  constructor(public navCtrl: NavController, 
+  constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public userApi: UserApi,
     public alertController: AlertController,
     public toastController: ToastController,
     public loadingController: LoadingController,
     public respUtility: ResponseUtility) {
-    
+
+    super(navCtrl);
     this.user = this.navParams.data;
-    
+
   }
 
   ionViewWillEnter() {
@@ -83,34 +85,4 @@ export class UserDetails {
     this.respUtility.confirmAction(this.deactivateUser.bind(this), user, "Deactivate User. Confirm?");
   }
 
-  pendingDocs() {
-    let required = ["ID Card", "Qualifying Certificate", "Address Proof",  "DBS", "Profile Pic"]
-    let pending = _.dropWhile(required, (required_type) => {
-      let found = _.find(this.user.user_docs, function (doc) { return doc.doc_type == required_type; });
-      return found != null;
-    });
-    return _.map(pending, (doc_type) => { return { name: "Not Uploaded", doc_type: doc_type } });
-  }
-
-  uploadNow(doc) {
-    this.navCtrl.push(UserPic, doc);
-  }
-
-  viewDoc(doc) {
-    this.navCtrl.push(UserDoc, doc);
-  }
-
-  getDocColorAndText(doc) {
-    switch (doc.verified) {
-      case true: {
-        return ["secondary", "Verified"];
-      }
-      case false: {
-        return ["danger", "Rejected"];
-      }
-      default: {
-        return ["primary", "Pending Verification"];
-      }
-    }
-  }
 }
