@@ -22,6 +22,7 @@ import { UserForm } from '../pages/users/user-form';
 import { RegisterPage } from '../pages/users/register';
 
 import { CareHomeSearch } from '../pages/care-homes/care-home-search';
+import { CareHomeBankingDetails } from '../pages/care-homes/care-home-banking-details';
 import { Login } from '../pages/login/login';
 import { StaffingRequest } from '../pages/staffing-request/staffing-request';
 import { Shift } from '../pages/shift/shift';
@@ -159,7 +160,8 @@ export class MyApp {
               { title: 'Staffing Requests', component: StaffingRequest },
               { title: 'Shifts', component: Shift },
               { title: 'Payments', component: Payment },
-              { title: 'Ratings', component: Rating }
+              { title: 'Ratings', component: Rating },
+              { title: 'Banking Details', component: CareHomeBankingDetails }
 
             ];
             

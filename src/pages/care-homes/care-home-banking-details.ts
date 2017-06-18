@@ -29,7 +29,7 @@ export class CareHomeBankingDetails {
       sort_code: ['', Validators.compose([Validators.minLength(6), Validators.maxLength(6), Validators.required])],
     });
 
-    this.care_home = this.navParams.data;
+    this.care_home = this.tokenService.currentUserData["care_home"];
   }
 
   ionViewDidLoad() {
