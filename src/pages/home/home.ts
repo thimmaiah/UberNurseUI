@@ -54,8 +54,8 @@ export class HomePage extends DocLinks {
     events.subscribe('current_user:reload', () => {
       console.log("HomePage: current_user:reload");
       this.tokenService.validateToken().subscribe(
-        resp => { 
-          console.log(resp); 
+        resp => {
+          console.log(resp);
           let body = JSON.parse(resp["_body"]);
           this.currentUser = body["data"];
         },
@@ -86,6 +86,7 @@ export class HomePage extends DocLinks {
 
       if (this.currentUser.care_home_id == null) {
         this.registerCareHome = true;
+        this.navCtrl.push(CareHomeSearch);
         this.respUtility.showWarning("Please register your care home and get it verified at the earliest.");
       }
       if (this.currentUser.care_home) {
@@ -110,6 +111,10 @@ export class HomePage extends DocLinks {
 
   register_care_home() {
     this.navCtrl.push(CareHomeSearch);
+  }
+
+  add_banking_details() {
+    this.navCtrl.push(BankingDetailsPage);
   }
 
   show_payments() {

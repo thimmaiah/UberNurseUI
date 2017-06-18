@@ -116,6 +116,14 @@
                   Verify your mobile number now.
                 </p>
               </button>
+
+              <button ion-item (click)="add_banking_details()" *ngIf="currentUser.bank_account == null">
+                <ion-icon name="cash" item-left item-left color="primary"></ion-icon>
+                Banking Information
+                <p>
+                  Add your banking details.
+                </p>
+              </button>
             </div>
 
             <div *ngIf="currentUser.verified == true">
