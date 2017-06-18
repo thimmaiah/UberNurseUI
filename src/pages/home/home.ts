@@ -51,6 +51,19 @@ export class HomePage extends DocLinks {
       this.displayMsgs();
     });
 
+    events.subscribe('current_user:reload', () => {
+      console.log("HomePage: current_user:reload");
+      this.tokenService.validateToken().subscribe(
+        resp => { 
+          console.log(resp); 
+          let body = JSON.parse(resp["_body"]);
+          this.currentUser = body["data"];
+        },
+        err => { console.log(err) }
+      );
+      this.displayMsgs();
+    });
+
     // When the user logout succeeds
     events.subscribe('user:logout:success', () => {
       console.log("HomePage: user:logout:success");

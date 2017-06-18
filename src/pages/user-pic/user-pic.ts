@@ -8,6 +8,7 @@ import { Diagnostic } from '@ionic-native/diagnostic';
 import { ResponseUtility } from '../../providers/response-utility';
 import { Config } from '../../providers/config';
 import { Angular2TokenService } from 'angular2-token';
+import { Events } from 'ionic-angular';
 
 
 declare var cordova: any;
@@ -37,11 +38,12 @@ export class UserPic {
     private file: File,
     private transfer: Transfer,
     private config: Config,
-    private tokenService: Angular2TokenService) {
+    private tokenService: Angular2TokenService,
+    public events: Events) {
 
       this.current_user = tokenService.currentUserData;
       this.user_doc = this.navParams.data;
-
+      
   }
 
   ionViewDidLoad() {
@@ -188,7 +190,7 @@ export class UserPic {
       this.respUtility.showSuccess('Image succesful uploaded.');
       console.log(data);
       // Update the tokenService.currentAuthData
-      
+      this.events.publish("current_user:reload");
       this.navCtrl.pop();
     }, err => {
       loading.dismissAll()
