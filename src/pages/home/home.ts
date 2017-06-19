@@ -3,138 +3,41 @@ import { NavController } from 'ionic-angular';
 import { Angular2TokenService } from 'angular2-token';
 import { Login } from '../login/login';
 import { ResponseUtility } from '../../providers/response-utility';
-import { Shift } from '../shift/shift';
-import { StaffingRequest } from '../staffing-request/staffing-request';
-import { UserDetails } from '../users/user-details';
-import { UserForm } from '../users/user-form';
 import { RegisterPage } from '../users/register';
-import { CareHomeSearch } from '../care-homes/care-home-search';
-import { CareHomeBankingDetails } from '../care-homes/care-home-banking-details';
 import { Payment } from '../payment/payment';
 import { Config } from '../../providers/config';
 import { LoginProvider } from '../../providers/login-provider';
 import { Events } from 'ionic-angular';
 import { ContactPage } from '../static/contact';
-import { BankingDetailsPage } from '../users/banking-details';
-import { DocLinks } from '../users/doc-links';
+import {HomeEvents} from './home-events';
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
-export class HomePage extends DocLinks {
+export class HomePage extends HomeEvents {
 
   currentUser: any;
   registerCareHome = false;
 
   constructor(public navCtrl: NavController,
     public respUtility: ResponseUtility,
-    private tokenService: Angular2TokenService,
-    private config: Config,
+    public tokenService: Angular2TokenService,
+    public config: Config,
     public events: Events,
     private loginProvider: LoginProvider) {
 
-    super(navCtrl);
-
-    // When the user login succeeds
-    events.subscribe('user:login:success', () => {
-      console.log("HomePage: user:login:success");
-      this.currentUser = this.tokenService.currentUserData;
-      this.displayMsgs();
-    });
-
-    // When the care home registration succeeds
-    events.subscribe('care_home:registration:success', (care_home) => {
-      console.log("HomePage: care_home:registration:success");
-      this.tokenService.currentUserData["care_home_id"] = care_home.id;
-      this.tokenService.currentUserData["care_home"] = care_home;
-      this.currentUser = this.tokenService.currentUserData;
-      this.displayMsgs();
-    });
-
-    events.subscribe('current_user:reload', () => {
-      console.log("HomePage: current_user:reload");
-      this.tokenService.validateToken().subscribe(
-        resp => {
-          console.log(resp);
-          let body = JSON.parse(resp["_body"]);
-          this.currentUser = body["data"];
-        },
-        err => { console.log(err) }
-      );
-      this.displayMsgs();
-    });
-
-    // When the user logout succeeds
-    events.subscribe('user:logout:success', () => {
-      console.log("HomePage: user:logout:success");
-      this.currentUser = null;
-    });
+    super(navCtrl, respUtility, tokenService, config, events);
 
   }
 
   ionViewWillEnter() {
     console.log('ionViewWillEnter HomePage ');
     this.currentUser = this.tokenService.currentUserData;
-    this.displayMsgs();
-  }
-
-  displayMsgs() {
-
-    console.log(this.currentUser);
-
-    if (this.currentUser && this.currentUser.role == "Admin") {
-
-      if (this.currentUser.care_home_id == null) {
-        this.registerCareHome = true;
-        this.navCtrl.push(CareHomeSearch);
-        this.respUtility.showWarning("Please register your care home and get it verified at the earliest.");
-      } else if (this.currentUser.care_home) {
-        if (!this.currentUser.care_home.verified) {
-          this.registerCareHome = false;
-          this.respUtility.showWarning("Please call us to get your care home verified at the earliest.");
-        } else if (this.currentUser.care_home.bank_account == null) {
-          this.respUtility.showWarning("Please enter your Bank details");
-        }
-      }
-
-    }
-    else if (this.currentUser &&
-      (this.currentUser.role == "Care Giver" || this.currentUser.role == "Nurse")) {
-      if (this.currentUser.verified !== true) {
-        this.respUtility.showWarning("Please upload your documents for verification");
-      } else if (this.currentUser.bank_account == null) {
-        this.respUtility.showWarning("Please enter your Bank details");
-      }
-    }
-  }
-
-  register_care_home() {
-    this.navCtrl.push(CareHomeSearch);
-  }
-
-  add_banking_details() {
-    this.navCtrl.push(BankingDetailsPage);
-  }
-
-  add_care_home_banking_details() {
-    this.navCtrl.push(CareHomeBankingDetails, this.currentUser.care_home);
   }
 
   show_payments() {
     this.navCtrl.push(Payment);
-  }
-
-  show_staffing_requests() {
-    this.navCtrl.push(StaffingRequest);
-  }
-
-  show_shifts(response_status) {
-    this.navCtrl.push(Shift, { response_status: response_status });
-  }
-
-  show_profile() {
-    this.navCtrl.push(UserDetails, this.currentUser);
   }
 
   login() {

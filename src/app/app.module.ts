@@ -9,6 +9,8 @@ import { FilePath } from '@ionic-native/file-path';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { AdminMenus } from '../pages/home/admin-menus';
+import { TempMenus } from '../pages/home/temp-menus';
 import { Login } from '../pages/login/login';
 import {PasswordReset} from '../pages/login/password-reset'
 
@@ -78,6 +80,8 @@ import { LoginProvider } from '../providers/login-provider';
   declarations: [
     MyApp,
     HomePage,
+    AdminMenus,
+    TempMenus,
     Login,
     PasswordReset,
     UserPic,
@@ -122,6 +126,8 @@ import { LoginProvider } from '../providers/login-provider';
   entryComponents: [
     MyApp,
     HomePage,
+    AdminMenus,
+    TempMenus,
     Login,
     PasswordReset,
     UserPic,
