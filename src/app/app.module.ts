@@ -74,6 +74,7 @@ import { ResponseUtility } from '../providers/response-utility'
 import { Push } from '@ionic-native/push';
 import { TitleCasePipe } from '../pipes/title-case/title-case';
 import { LoginProvider } from '../providers/login-provider';
+import { HomeEvents } from '../providers/home-events';
 
 
 @NgModule({
@@ -179,6 +180,7 @@ import { LoginProvider } from '../providers/login-provider';
     File,
     FilePath,
     Transfer,
+    HomeEvents,
     { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })

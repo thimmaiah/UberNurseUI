@@ -152,7 +152,7 @@ export class MyApp {
         this.currentUser = this.tokenService.currentUserData;
 
         this.events.subscribe('user:login:success', () => {
-          console.log("HomePage: user:login:success");
+          console.log("AppComponent: user:login:success");
           this.currentUser = this.tokenService.currentUserData;
 
           if (this.currentUser.role == "Admin") {

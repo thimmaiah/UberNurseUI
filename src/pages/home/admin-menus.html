@@ -1,6 +1,7 @@
-          <div *ngIf="currentUser.role == 'Admin'">
+          <div *ngIf="currentUser && currentUser.role == 'Admin'">
 
             <div *ngIf="currentUser.care_home_id == null || currentUser.care_home.verified != 'true'">
+              
               <button ion-item *ngIf="currentUser.care_home_id == null" (click)="register_care_home()">
                 <ion-icon name="home" item-left color="primary"></ion-icon>
                 Register Care Home 

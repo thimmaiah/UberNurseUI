@@ -17,14 +17,16 @@ import { Events } from 'ionic-angular';
 import { ContactPage } from '../static/contact';
 import { BankingDetailsPage } from '../users/banking-details';
 import { DocLinks } from '../users/doc-links';
-import {HomeEvents} from './home-events';
+import { Menu } from './menus';
+import { HomeEvents } from '../../providers/home-events';
 
 @Component({
     selector: 'admin-menus',
     templateUrl: 'admin-menus.html'
 })
-export class AdminMenus extends HomeEvents {
+export class AdminMenus implements Menu {
 
+    currentUser: any;
     registerCareHome = false;
 
     constructor(public navCtrl: NavController,
@@ -32,14 +34,10 @@ export class AdminMenus extends HomeEvents {
         public tokenService: Angular2TokenService,
         public config: Config,
         public events: Events,
+        public homeEvents: HomeEvents,
         public loginProvider: LoginProvider) {
-        
-        super(navCtrl, respUtility, tokenService, config, events);
 
-        this.currentUser = this.tokenService.currentUserData;
-        this.displayMsgs();
-
-        console.log("AdminMenus: ", this.currentUser);
+        this.homeEvents.registerMenu(this);
 
         // When the care home registration succeeds
         this.events.subscribe('care_home:registration:success', (care_home) => {
@@ -49,20 +47,20 @@ export class AdminMenus extends HomeEvents {
             this.currentUser = this.tokenService.currentUserData;
             this.displayMsgs();
         });
-        
+
+        this.currentUser = this.tokenService.currentUserData;
+        this.displayMsgs();
 
     }
 
     ionViewWillEnter() {
         console.log('ionViewWillEnter AdminMenus');
-        this.currentUser = this.tokenService.currentUserData;
-        this.displayMsgs();
     }
 
 
     displayMsgs() {
 
-        console.log(this.currentUser);
+        console.log("AdminMenus ", this.currentUser);
 
         if (this.currentUser && this.currentUser.role == "Admin") {
 

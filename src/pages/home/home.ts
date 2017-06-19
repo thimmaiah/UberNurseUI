@@ -9,13 +9,14 @@ import { Config } from '../../providers/config';
 import { LoginProvider } from '../../providers/login-provider';
 import { Events } from 'ionic-angular';
 import { ContactPage } from '../static/contact';
-import {HomeEvents} from './home-events';
+import {Menu} from './menus';
+import { HomeEvents } from '../../providers/home-events';
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
-export class HomePage extends HomeEvents {
+export class HomePage implements Menu {
 
   currentUser: any;
   registerCareHome = false;
@@ -25,9 +26,14 @@ export class HomePage extends HomeEvents {
     public tokenService: Angular2TokenService,
     public config: Config,
     public events: Events,
+    public homeEvents: HomeEvents,
     private loginProvider: LoginProvider) {
 
-    super(navCtrl, respUtility, tokenService, config, events);
+      this.homeEvents.registerMenu(this);
+      
+  }
+
+  displayMsgs() {
 
   }
 

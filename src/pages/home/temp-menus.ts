@@ -11,12 +11,14 @@ import { Events } from 'ionic-angular';
 import { ContactPage } from '../static/contact';
 import { BankingDetailsPage } from '../users/banking-details';
 import { DocLinks } from '../users/doc-links';
+import { Menu } from './menus';
+import { HomeEvents } from '../../providers/home-events';
 
 @Component({
     selector: 'temp-menus',
     templateUrl: 'temp-menus.html'
 })
-export class TempMenus extends DocLinks {
+export class TempMenus extends DocLinks implements Menu {
 
     currentUser: any;
 
@@ -25,44 +27,25 @@ export class TempMenus extends DocLinks {
         private tokenService: Angular2TokenService,
         private config: Config,
         public events: Events,
+        public homeEvents: HomeEvents,
         private loginProvider: LoginProvider) {
 
         super(navCtrl);
+        this.homeEvents.registerMenu(this);
+
         this.currentUser = this.tokenService.currentUserData;
         this.displayMsgs();
 
-        // When the user logout succeeds
-        events.subscribe('user:logout:success', () => {
-            console.log("HomePage: user:logout:success");
-            this.currentUser = null;
-        });
-
-        // When the user login succeeds
-        events.subscribe('user:login:success', () => {
-            console.log("HomePage: user:login:success");
-            this.currentUser = this.tokenService.currentUserData;
-            this.displayMsgs();
-        });
-
-
-        events.subscribe('current_user:reload', () => {
-            console.log("HomePage: current_user:reload");
-            this.tokenService.validateToken().subscribe(
-                resp => {
-                    console.log(resp);
-                    let body = JSON.parse(resp["_body"]);
-                    this.currentUser = body["data"];
-                },
-                err => { console.log(err) }
-            );
-            this.displayMsgs();
-        });
-
     }
+
+    ionViewWillEnter() {
+        console.log('ionViewWillEnter TempMenus');
+    }
+
 
     displayMsgs() {
 
-        console.log(this.currentUser);
+        console.log("TempMenus", this.currentUser);
 
         if (this.currentUser &&
             (this.currentUser.role == "Care Giver" || this.currentUser.role == "Nurse")) {
