@@ -76,7 +76,11 @@ export class ShiftForm {
           console.log(`Shift = ${res}`);
         }).subscribe(
           shift => {
-            this.respUtility.showSuccess('Code Accepted.');
+            if(this.shift["end_code"] != null) {
+              this.respUtility.showSuccess('Code Accepted.Your shift has ended.');
+            } else {
+              this.respUtility.showSuccess('Code Accepted.Your shift has started.');
+            }
             this.navCtrl.pop();
           },
           error => {

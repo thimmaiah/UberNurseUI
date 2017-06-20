@@ -28,7 +28,7 @@ export class PhoneVerificationPage {
     public events: Events,
     private tokenService: Angular2TokenService) {
     this.slideOneForm = formBuilder.group({
-      verification_code: ['', Validators.compose([Validators.required])],
+      verification_code: ['', Validators.compose([Validators.maxLength(5), Validators.minLength(5),Validators.required])],
     });
 
     this.current_user = this.tokenService.currentUserData;

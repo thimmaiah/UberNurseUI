@@ -49,7 +49,7 @@
       <div *ngIf="!start_code_present">
         <ion-item>
           <ion-label floating>Start Code</ion-label>
-          <ion-input formControlName="start_code" type="text" [(ngModel)]="shift.start_code" [class.invalid]="!slideOneForm.controls.start_code.valid && (slideOneForm.controls.start_code.dirty || submitAttempt)"></ion-input>
+          <ion-input name="start_code" formControlName="start_code" type="text" [(ngModel)]="shift.start_code" [class.invalid]="!slideOneForm.controls.start_code.valid && (slideOneForm.controls.start_code.dirty || submitAttempt)"></ion-input>
         </ion-item>
 
         <ion-item *ngIf="!slideOneForm.controls.start_code.valid  && (slideOneForm.controls.start_code.dirty || submitAttempt)">
@@ -61,7 +61,7 @@
       <div *ngIf="start_code_present">
         <ion-item>
           <ion-label floating>End Code</ion-label>
-          <ion-input formControlName="end_code" type="text" [(ngModel)]="shift.end_code" [class.invalid]="!slideOneForm.controls.end_code.valid && (slideOneForm.controls.end_code.dirty || submitAttempt)"></ion-input>
+          <ion-input name="end_code" formControlName="end_code" type="text" [(ngModel)]="shift.end_code" [class.invalid]="!slideOneForm.controls.end_code.valid && (slideOneForm.controls.end_code.dirty || submitAttempt)"></ion-input>
         </ion-item>
 
         <ion-item *ngIf="!slideOneForm.controls.end_code.valid  && (slideOneForm.controls.end_code.dirty || submitAttempt)">
