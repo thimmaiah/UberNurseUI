@@ -24,6 +24,7 @@ import { UserDoc } from '../pages/user-doc/user-doc';
 import { Users } from '../pages/users/users';
 import { UserForm } from '../pages/users/user-form';
 import { UserDetails } from '../pages/users/user-details';
+import { PhoneVerificationPage } from '../pages/users/phone-verification';
 import { BankingDetailsPage } from '../pages/users/banking-details';
 import { RegisterPage } from '../pages/users/register';
 
@@ -90,6 +91,7 @@ import { HomeEvents } from '../providers/home-events';
     Users,
     UserForm,
     UserDetails,
+    PhoneVerificationPage,
     BankingDetailsPage,
     RegisterPage,
     Rating,
@@ -136,6 +138,7 @@ import { HomeEvents } from '../providers/home-events';
     Users,
     UserForm,
     UserDetails,
+    PhoneVerificationPage,
     BankingDetailsPage,
     RegisterPage,
     Rating,

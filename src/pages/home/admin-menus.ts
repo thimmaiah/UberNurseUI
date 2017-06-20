@@ -17,6 +17,7 @@ import { Events } from 'ionic-angular';
 import { ContactPage } from '../static/contact';
 import { BankingDetailsPage } from '../users/banking-details';
 import { DocLinks } from '../users/doc-links';
+import { PhoneVerificationPage } from '../users/phone-verification';
 import { Menu } from './menus';
 import { HomeEvents } from '../../providers/home-events';
 
@@ -95,6 +96,10 @@ export class AdminMenus implements Menu {
 
     show_staffing_requests() {
         this.navCtrl.push(StaffingRequest);
+    }
+
+    phone_verification() {
+        this.navCtrl.push(PhoneVerificationPage);
     }
 
     show_shifts(response_status) {

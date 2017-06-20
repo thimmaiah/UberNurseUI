@@ -13,6 +13,7 @@ import { BankingDetailsPage } from '../users/banking-details';
 import { DocLinks } from '../users/doc-links';
 import { Menu } from './menus';
 import { HomeEvents } from '../../providers/home-events';
+import { PhoneVerificationPage } from '../users/phone-verification';
 
 @Component({
     selector: 'temp-menus',
@@ -70,6 +71,9 @@ export class TempMenus extends DocLinks implements Menu {
         this.navCtrl.push(UserDetails, this.currentUser);
     }
 
+    phone_verification() {
+        this.navCtrl.push(PhoneVerificationPage);
+    }
 
 
 }

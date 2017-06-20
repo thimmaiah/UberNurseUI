@@ -1,0 +1,35 @@
+<ion-header>
+
+    <ion-navbar color="primary">
+        <ion-title>Phone Verification</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+    <ion-list text-wrap>
+        
+        <form [formGroup]="slideOneForm" *ngIf="verification_code_sent">
+            <ion-item>
+                <ion-label floating>Verification Code</ion-label>
+                <ion-input name="verification_code" formControlName="verification_code" 
+                type="number" [(ngModel)]="verification_code" 
+                [class.invalid]="!slideOneForm.controls.verification_code.valid && 
+                (slideOneForm.controls.verification_code.dirty)"></ion-input>
+            </ion-item>
+            <p class="field-hint">
+                Enter the verification code sent to your phone via sms.
+            </p>
+        </form>
+    </ion-list>
+
+    <button ion-button full color="primary" (click)="confirmSendVerification()" *ngIf="!verification_code_sent">Send Verification Code</button>
+    <button ion-button full color="primary" (click)="verifiy_code()" *ngIf="verification_code_sent">Verifiy Code</button>
+
+    <p class="center error-text" *ngIf="error_msg">{{error_msg}}</p>
+
+    <p class="center">Your registered phone number is {{current_user.phone}}</p>
+
+</ion-content>

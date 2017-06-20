@@ -31,6 +31,20 @@ export class UserApi {
     })
   }
 
+  sendVerificationCode() {
+    return this.tokenService.post(`${this.base_url}/send_sms_verification.json`, {}).map(response=>{
+      let resp = response.json();
+      return resp;
+    })
+  }
+
+  confirmVerificationCode(code) {
+    return this.tokenService.post(`${this.base_url}/verify_sms_verification.json`, {"code": code}).map(response=>{
+      let resp = response.json();
+      return resp;
+    })
+  }
+
   createUser(user) {
     return this.tokenService.post(`${this.base_url}.json`, user).map(response=>{
       this.user = response.json();
