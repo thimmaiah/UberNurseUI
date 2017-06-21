@@ -5,6 +5,7 @@ import { Login } from '../login/login';
 import { ResponseUtility } from '../../providers/response-utility';
 import { Shift } from '../shift/shift';
 import { StaffingRequest } from '../staffing-request/staffing-request';
+import { StaffingRequestForm } from '../staffing-request/staffing-request-form';
 import { UserDetails } from '../users/user-details';
 import { UserForm } from '../users/user-form';
 import { RegisterPage } from '../users/register';
@@ -52,6 +53,8 @@ export class AdminMenus implements Menu {
         this.currentUser = this.tokenService.currentUserData;
         this.displayMsgs();
 
+        console.log("AdminMenus: Constructor");
+
     }
 
     ionViewWillEnter() {
@@ -96,6 +99,10 @@ export class AdminMenus implements Menu {
 
     show_staffing_requests() {
         this.navCtrl.push(StaffingRequest);
+    }
+
+    new_staffing_request() {
+        this.navCtrl.push(StaffingRequestForm);
     }
 
     phone_verification() {

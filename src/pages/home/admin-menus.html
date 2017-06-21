@@ -1,6 +1,6 @@
           <div *ngIf="currentUser && currentUser.role == 'Admin'">
 
-            <div *ngIf="currentUser.care_home_id == null || currentUser.care_home.verified != 'true'">
+            <div *ngIf="currentUser.care_home_id == null || currentUser.care_home.verified != true">
               
               <button ion-item *ngIf="currentUser.care_home_id == null" (click)="register_care_home()">
                 <ion-icon name="home" item-left color="primary"></ion-icon>
@@ -30,17 +30,25 @@
             </div>
 
             <div *ngIf="currentUser.care_home_id != null && currentUser.care_home.verified == true">
+              <button ion-item (click)="new_staffing_request()">
+                <ion-icon name="add-circle" item-left color="primary"></ion-icon>
+                New Staffing Requests
+                <p>
+                  Create a request for temp staff.
+                </p>
+              </button>
+
               <button ion-item (click)="show_staffing_requests()">
                 <ion-icon name="construct" item-left color="primary"></ion-icon>
                 Staffing Requests
                 <p>
-                  Request temp staff.
+                  Staffing Request you have placed.
                 </p>
               </button>
 
               <button ion-item (click)="show_shifts('Accepted')">
                 <ion-icon name="list" item-left item-left color="primary"></ion-icon>
-                Upcoming Shifts
+                Confirmed Shifts
                 <p>
                   Shifts for your Care Home.
                 </p>

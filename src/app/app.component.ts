@@ -184,8 +184,6 @@ export class MyApp {
           this.currentUser = null;
 
           this.pages = [
-            { title: 'Login', component: Login },
-            { title: 'Register', component: RegisterPage },
             { title: 'About Us', component: AboutPage },
             { title: 'Terms & Conditions', component: TermsPage },
             { title: 'Contact Us', component: ContactPage },

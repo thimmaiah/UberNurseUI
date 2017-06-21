@@ -37,6 +37,7 @@ export class TempMenus extends DocLinks implements Menu {
         this.currentUser = this.tokenService.currentUserData;
         this.displayMsgs();
 
+        console.log("TempMenus: Constructor");
     }
 
     ionViewWillEnter() {

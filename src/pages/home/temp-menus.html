@@ -45,7 +45,7 @@
             <div *ngIf="currentUser.verified == true">
               <button ion-item (click)="show_shifts('Accepted')">
                 <ion-icon name="list" item-left item-left color="primary"></ion-icon>
-                Upcoming Shifts
+                Confirmed Shifts
                 <p>
                   Shifts confirmed by you.
                 </p>
@@ -53,9 +53,9 @@
 
               <button ion-item (click)="show_shifts('Pending')">
                 <ion-icon name="warning" item-left item-left color="primary"></ion-icon>
-                Pending Shifts
+                New Shifts Available
                 <p>
-                  Shifts pending your confirmation.
+                  New shifts pending your confirmation.
                 </p>
               </button>
             </div>

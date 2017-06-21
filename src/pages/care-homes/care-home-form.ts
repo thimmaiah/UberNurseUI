@@ -40,7 +40,6 @@ export class CareHomeForm {
        
       name: ['', Validators.compose([Validators.required])],       
       address: ['', Validators.compose([Validators.required])],       
-      town: ['', Validators.compose([Validators.required])],       
       postcode: ['', Validators.compose([Validators.maxLength(8), Validators.required])],       
       image_url: ['']  
     });

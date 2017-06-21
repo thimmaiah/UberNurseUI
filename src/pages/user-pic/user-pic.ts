@@ -20,7 +20,6 @@ declare var cordova: any;
 export class UserPic {
 
   lastImage: string = null;
-  base64Image = null;
   current_user = null;
   user_doc : {};
 

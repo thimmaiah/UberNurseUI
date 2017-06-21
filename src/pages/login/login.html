@@ -20,7 +20,7 @@
       <form [formGroup]="slideOneForm">
         <ion-item>
           <ion-label floating>Email</ion-label>
-          <ion-input formControlName="email" name="email" type="text" [(ngModel)]="email" [class.invalid]="!slideOneForm.controls.email.valid && (slideOneForm.controls.email.dirty || submitAttempt)"></ion-input>
+          <ion-input formControlName="email" name="email" type="email" [(ngModel)]="email" [class.invalid]="!slideOneForm.controls.email.valid && (slideOneForm.controls.email.dirty || submitAttempt)"></ion-input>
         </ion-item>
 
         <ion-item>

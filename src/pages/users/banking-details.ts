@@ -31,7 +31,6 @@ export class BankingDetailsPage {
     this.slideOneForm = formBuilder.group({
       bank_account: ['', Validators.compose([Validators.minLength(8), Validators.maxLength(8), Validators.required])],
       sort_code: ['', Validators.compose([Validators.minLength(6), Validators.maxLength(6), Validators.required])],
-      accept_bank_transactions: ['', Validators.compose([Validators.required])],
     });
 
     let current_user = this.tokenService.currentUserData;
