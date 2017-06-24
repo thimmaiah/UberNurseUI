@@ -17,7 +17,7 @@
   <div>
 
     <button ion-item (click)="editUser(user)">
-      {{user.first_name}} {{user.last_name}}
+      {{user.title}} {{user.first_name}} {{user.last_name}}
       <p *ngIf="user.role == 'Care Giver' || user.role == 'Nurse'">
         <rating [(ngModel)]="user.rating" readOnly="true"></rating>
       </p> 

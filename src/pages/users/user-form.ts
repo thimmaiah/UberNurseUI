@@ -1,6 +1,7 @@
 import { IonicPage, NavController, NavParams, AlertController, ToastController, LoadingController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Component, ViewChild } from '@angular/core';
+import { Component, ViewChild, ElementRef, Renderer } from '@angular/core';
+import { Keyboard } from '@ionic-native/keyboard';
 import { UserApi } from '../../providers/user-api';
 import { ResponseUtility } from '../../providers/response-utility';
 import { Angular2TokenService } from 'angular2-token';
@@ -15,6 +16,7 @@ export class UserForm {
 
   user: {};
   @ViewChild('signupSlider') signupSlider: any;
+  @ViewChild('title') title;
 
   slideOneForm: FormGroup;
   adminForm: FormGroup;
@@ -29,7 +31,10 @@ export class UserForm {
     public userApi: UserApi,
     public respUtility: ResponseUtility,
     public loadingController: LoadingController,
-    private tokenService: Angular2TokenService) {
+    private tokenService: Angular2TokenService,
+    private elementRef:ElementRef,
+    private renderer:Renderer,
+    private keyboard: Keyboard) {
 
     this.user = this.navParams.data;
 
@@ -40,7 +45,7 @@ export class UserForm {
       email: ['', Validators.compose([Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$'), Validators.required])],
       password: ['', Validators.compose([Validators.minLength(6), Validators.required])],
       confirm_password: ['', Validators.compose([Validators.required])],
-      sex: [''],
+      title: [''],
       accept_terms: ['', Validators.compose([Validators.required])],
       phone: ['', Validators.pattern('^\\d+$'),],
       postcode: ['', Validators.compose([Validators.required])],
@@ -97,6 +102,15 @@ export class UserForm {
       }
     }
 
+  }
+
+  onTitleChange(title) {
+    const element = this.elementRef.nativeElement.querySelector('title');
+    // we need to delay our call in order to work with ionic ...
+    setTimeout(() => {
+      this.renderer.invokeElementMethod(element, 'focus', []);
+      this.keyboard.show();
+    }, 0);
   }
 
   ionViewDidLoad() {

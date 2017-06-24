@@ -194,8 +194,6 @@ export class MyApp {
         if (this.currentUser == null) {
           this.loginProvider.auto_login(null);
           this.pages = [
-            { title: 'Login', component: Login },
-            { title: 'Register', component: UserForm },
             { title: 'About Us', component: AboutPage },
             { title: 'Terms & Conditions', component: TermsPage },
             { title: 'Contact Us', component: ContactPage },

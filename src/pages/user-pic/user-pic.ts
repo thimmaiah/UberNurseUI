@@ -6,6 +6,7 @@ import { Transfer } from '@ionic-native/transfer';
 import { FilePath } from '@ionic-native/file-path';
 import { Diagnostic } from '@ionic-native/diagnostic';
 import { ResponseUtility } from '../../providers/response-utility';
+import { UserDocApi } from '../../providers/user-doc-api';
 import { Config } from '../../providers/config';
 import { Angular2TokenService } from 'angular2-token';
 import { Events } from 'ionic-angular';
@@ -21,7 +22,7 @@ export class UserPic {
 
   lastImage: string = null;
   current_user = null;
-  user_doc : {};
+  user_doc: {};
 
 
   constructor(public navCtrl: NavController,
@@ -37,12 +38,13 @@ export class UserPic {
     private file: File,
     private transfer: Transfer,
     private config: Config,
+    private userDocApi: UserDocApi,
     private tokenService: Angular2TokenService,
     public events: Events) {
 
-      this.current_user = tokenService.currentUserData;
-      this.user_doc = this.navParams.data;
-      
+    this.current_user = tokenService.currentUserData;
+    this.user_doc = this.navParams.data;
+    console.log(this.user_doc);
   }
 
   ionViewDidLoad() {
@@ -68,10 +70,10 @@ export class UserPic {
       // Special handling for Android library
       if (this.platform.is('android') && sourceType === this.camera.PictureSourceType.PHOTOLIBRARY) {
 
-            this.lastImage = "file://" + imagePath;
-        
+        this.lastImage = "file://" + imagePath;
+
       } else {
-     	//let currentName = imagePath.substr(imagePath.lastIndexOf('/') + 1);
+        //let currentName = imagePath.substr(imagePath.lastIndexOf('/') + 1);
         //let correctPath = imagePath.substr(0, imagePath.lastIndexOf('/') + 1);
         //console.log(correctPath);
         //console.log(currentName);
@@ -142,6 +144,37 @@ export class UserPic {
     }
   }
 
+  noDBSFile() {
+
+    let loading = this.loadingCtrl.create({
+      content: 'Updating...',
+    });
+    loading.present();
+
+    this.userDocApi.createUserDoc({
+      name: "Not Available",
+      doc_type: "DBS",
+      user_id: this.current_user.id,
+      not_available: true
+    }).subscribe(
+      resp => {
+        loading.dismissAll()
+        this.respUtility.showSuccess('Succesfully updated.');
+        console.log(resp);
+        // Update the tokenService.currentAuthData
+        this.events.publish("current_user:reload");
+        this.navCtrl.pop();
+      },
+      error => {
+        loading.dismissAll();
+        console.log(error);
+        this.respUtility.showWarning('Error while uploading file.')
+      },
+      () => {
+        //loading.dismissAll();
+      }
+    );
+  }
 
   public uploadImage() {
     // Destination URL
@@ -153,27 +186,28 @@ export class UserPic {
 
     // File name only
     this.user_doc["name"] = this.lastImage.substr(this.lastImage.lastIndexOf('/') + 1);
-        
-    let authData = this.tokenService.currentAuthData;
+
+
 
     var options = {
       fileKey: "user_doc[doc]",
       fileName: this.user_doc["name"],
       chunkedMode: false,
       mimeType: "multipart/form-data",
-      params: { 'user_doc[name]': this.user_doc["name"], 
-                "user_doc[doc_type]": this.user_doc["doc_type"],
-                "user_doc[user_id]": this.current_user.id,                
-                "user_doc[id]": this.user_doc["id"],
-                // // Need the auth headers as user_docs is a protected API
-                // "headers": {
-                //   "access-token": authData.accessToken,
-                //   "client" : authData.client,
-                //   "token-type" : authData.tokenType,
-                //   "uid" : authData.uid,
-                //   "expiry" : authData.expiry
-                // } 
-            }
+      params: {
+        'user_doc[name]': this.user_doc["name"],
+        "user_doc[doc_type]": this.user_doc["doc_type"],
+        "user_doc[user_id]": this.current_user.id,
+        "user_doc[id]": this.user_doc["id"],
+        // // Need the auth headers as user_docs is a protected API
+        // "headers": {
+        //   "access-token": authData.accessToken,
+        //   "client" : authData.client,
+        //   "token-type" : authData.tokenType,
+        //   "uid" : authData.uid,
+        //   "expiry" : authData.expiry
+        // } 
+      }
     };
 
     let fileTransfer = this.transfer.create();

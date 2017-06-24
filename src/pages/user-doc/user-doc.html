@@ -8,8 +8,8 @@
 
 
 <ion-content padding>
-  <img [src]="document.secure_doc_url" />
-
+  <img [src]="document.secure_doc_url" [hidden]="document.not_available"/>
+  <h2 class="center" *ngIf="document.not_available">Not Available</h2>
   <ion-item>
     <ion-label floating>Notes</ion-label>
     <ion-input [(ngModel)]="document.notes"></ion-input>

@@ -8,6 +8,9 @@
 
 <ion-content padding>
   <img src="{{lastImage}}" style="width: 100%" [hidden]="lastImage === null">
+  <button ion-button full icon-left (click)="noDBSFile()" *ngIf="lastImage === null && user_doc.doc_type == 'DBS'">
+    I do not have DBS.
+  </button>
 </ion-content>
 
 <ion-footer>

@@ -21,6 +21,16 @@
 
     <form [formGroup]="slideOneForm">
 
+      <ion-item id="title">
+        <ion-label floating>Title</ion-label>
+        <ion-select name="title" [(ngModel)]="user.title" [class.invalid]="!slideOneForm.controls.title.valid && (slideOneForm.controls.title.dirty || submitAttempt)"
+          formControlName="title">
+          <ion-option value="Mr" checked="true">Mr</ion-option>
+          <ion-option value="Mrs">Mrs</ion-option>
+          <ion-option value="Miss">Miss</ion-option>
+        </ion-select>
+      </ion-item>
+
       <ion-item>
         <ion-label floating>First Name</ion-label>
         <ion-input name="first_name" formControlName="first_name" type="text" [(ngModel)]="user.first_name" [class.invalid]="!slideOneForm.controls.first_name.valid && (slideOneForm.controls.first_name.dirty || submitAttempt)"></ion-input>
@@ -75,14 +85,6 @@
         <p class="error-text">Please enter a valid phone.</p>
       </ion-item>
 
-      <ion-item id="sex">
-        <ion-label floating>Sex</ion-label>
-        <ion-select name="sex" [(ngModel)]="user.sex" [class.invalid]="!slideOneForm.controls.sex.valid && (slideOneForm.controls.sex.dirty || submitAttempt)"
-          formControlName="sex">
-          <ion-option value="M" checked="true">Male</ion-option>
-          <ion-option value="F">Female</ion-option>
-        </ion-select>
-      </ion-item>
 
 
       <div *ngIf="user.role == 'Care Giver' || user.role == 'Nurse' ">

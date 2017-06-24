@@ -33,7 +33,6 @@ export class UserDocApi {
     return this.tokenService.post(`${this.base_url}.json`, user_doc).map(response=>{
       this.user_doc = response.json();
       return this.user_doc;
-      //return response.status;
     })
   }
 
