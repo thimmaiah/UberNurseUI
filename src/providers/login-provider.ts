@@ -37,7 +37,8 @@ export class LoginProvider {
       error => {
         console.log(error);
         this.respUtility.showWarning("Could not log user out at this time");
-        this.events.publish('user:logout:failed');
+        this.events.publish('user:logout:success');
+        this.storage.clear();
       }
     );
   }
