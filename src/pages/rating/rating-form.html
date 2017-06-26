@@ -24,7 +24,7 @@
             
 
           <ion-item>
-            <rating formControlName="stars"  [(ngModel)]="rating.stars" readOnly="false"></rating>
+            <rating id="stars" formControlName="stars"  [(ngModel)]="rating.stars" readOnly="false"></rating>
           </ion-item>
 
           <ion-item *ngIf="!slideOneForm.controls.stars.valid  && (slideOneForm.controls.stars.dirty || submitAttempt)">

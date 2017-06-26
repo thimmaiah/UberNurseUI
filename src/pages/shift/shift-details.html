@@ -23,6 +23,7 @@
       </ion-row>
     </ion-item>
 
+
     <ion-item>
       <ion-row>
         <ion-col>
@@ -30,6 +31,17 @@
         </ion-col>
         <ion-col>
           {{shift.user.phone}}
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+    <ion-item>
+      <ion-row>
+        <ion-col>
+          Care Home:
+        </ion-col>
+        <ion-col>
+          {{shift.care_home.name}}
         </ion-col>
       </ion-row>
     </ion-item>
@@ -149,10 +161,10 @@
   <div *ngIf="shift.can_manage == true">
     <ion-row *ngIf="shift.response_status == 'Pending'">
       <ion-col>
-        <button ion-button full color="secondary" (click)="acceptResponse()">Accept</button>
+        <button ion-button full color="secondary" (click)="acceptResponse(shift)">Accept</button>
       </ion-col>
       <ion-col>
-        <button ion-button full color="primary" (click)="rejectResponse()">Decline</button>
+        <button ion-button full color="primary" (click)="rejectResponse(shift)">Decline</button>
       </ion-col>
     </ion-row>
 

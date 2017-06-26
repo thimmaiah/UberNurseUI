@@ -40,7 +40,7 @@ export class MyApp {
   rootPage: any = HomePage;
   currentUser: any;
 
-  pages: Array<{ title: string, component: any }>;
+  pages: Array<{ title: string, component: any, params: any }>;
 
   constructor(public platform: Platform,
     public statusBar: StatusBar,
@@ -157,11 +157,10 @@ export class MyApp {
 
           if (this.currentUser.role == "Admin") {
             this.pages = [
-              { title: 'Staffing Requests', component: StaffingRequest },
-              { title: 'Shifts', component: Shift },
-              { title: 'Payments', component: Payment },
-              { title: 'Ratings', component: Rating },
-              { title: 'Banking Details', component: CareHomeBankingDetails }
+              { title: 'Past Shifts', component: Shift, params: {response_status:"Closed"} },
+              { title: 'Payment Redcords', component: Payment, params: {} },
+              { title: 'Ratings', component: Rating, params: {} },
+              { title: 'Banking Details', component: CareHomeBankingDetails, params: {} }
 
             ];
             
@@ -169,10 +168,10 @@ export class MyApp {
 
           } else {
             this.pages = [
-              { title: 'Shift', component: Shift },
-              { title: 'Payments', component: Payment },
-              { title: 'Ratings', component: Rating },
-              { title: 'Banking Details', component: BankingDetailsPage }
+              { title: 'Past Shifts', component: Shift, params: {response_status:"Closed"} },
+              { title: 'Payment Records', component: Payment, params: {} },
+              { title: 'Ratings', component: Rating, params: {} },
+              { title: 'Banking Details', component: BankingDetailsPage, params: {} }
             ];
             
             //this.nav.push(Shift);
@@ -184,9 +183,9 @@ export class MyApp {
           this.currentUser = null;
 
           this.pages = [
-            { title: 'About Us', component: AboutPage },
-            { title: 'Terms & Conditions', component: TermsPage },
-            { title: 'Contact Us', component: ContactPage },
+            { title: 'About Us', component: AboutPage, params: {} },
+            { title: 'Terms & Conditions', component: TermsPage, params: {} },
+            { title: 'Contact Us', component: ContactPage, params: {} },
           ];
 
         });
@@ -194,9 +193,9 @@ export class MyApp {
         if (this.currentUser == null) {
           this.loginProvider.auto_login(null);
           this.pages = [
-            { title: 'About Us', component: AboutPage },
-            { title: 'Terms & Conditions', component: TermsPage },
-            { title: 'Contact Us', component: ContactPage },
+            { title: 'About Us', component: AboutPage, params: {} },
+            { title: 'Terms & Conditions', component: TermsPage, params: {} },
+            { title: 'Contact Us', component: ContactPage, params: {} },
           ];
         }
 
@@ -209,7 +208,7 @@ export class MyApp {
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
-    this.nav.push(page.component);
+    this.nav.push(page.component, page.params);
   }
 
 
