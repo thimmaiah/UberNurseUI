@@ -9,12 +9,6 @@
 
 <ion-content>
 
-
-  <ion-fab bottom right>
-    <button id="shift-menus" ion-fab (click)="presentActionSheet(shift)"><ion-icon name="apps"></ion-icon></button>
-  </ion-fab>
-
-
   <ion-list>
     <img [src]="shift.user.image" style="max-height:300px;">
     <ion-item>
@@ -151,6 +145,52 @@
     </ion-item>
 
   </ion-list>
+
+  <div *ngIf="shift.can_manage == true">
+    <ion-row *ngIf="shift.response_status == 'Pending'">
+      <ion-col>
+        <button ion-button full color="secondary" (click)="acceptResponse()">Accept</button>
+      </ion-col>
+      <ion-col>
+        <button ion-button full color="primary" (click)="rejectResponse()">Decline</button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="shift.start_code == null || shift.end_code == null">
+      <ion-col *ngIf="shift.start_code == null">
+        <button ion-button full color="primary" (click)="editShift(shift)">Add Start Code</button>
+      </ion-col>
+      <ion-col *ngIf="shift.start_code != null && shift.end_code == null">
+        <button ion-button full color="primary" (click)="editShift(shift)">Add End Code</button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="shift.end_code != null">
+      <ion-col *ngIf="shift.payment_status == 'Paid'">
+        <button ion-button full color="primary" (click)="viewPayment(shift)">View Payment</button>
+      </ion-col>
+      <ion-col *ngIf="shift.care_home_rated != true">
+        <button ion-button full color="primary" (click)="rate_care_home(shift)">Rate Care Home</button>
+      </ion-col>
+      <ion-col *ngIf="shift.care_home_rated == true">
+        <button ion-button full color="primary" (click)="viewRatings(shift)">View Ratings</button>
+      </ion-col>
+    </ion-row>
+  </div>
+
+  <div *ngIf="shift.can_manage != true">
+    <ion-row>
+      <ion-col *ngIf="shift.payment_status == 'Paid'">
+        <button ion-button full color="primary" (click)="viewPayment(shift)">View Payment</button>
+      </ion-col>
+      <ion-col *ngIf="shift.rated != true">
+        <button ion-button full color="primary" (click)="rate_care_giver(shift)">Rate Care Giver</button>
+      </ion-col>
+      <ion-col *ngIf="shift.rated == true">
+        <button ion-button full color="primary" (click)="viewRatings(shift)">View Ratings</button>
+      </ion-col>
+    </ion-row>
+  </div>
 
 
 </ion-content>

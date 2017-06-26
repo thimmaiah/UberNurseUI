@@ -58,7 +58,7 @@ export class StaffingRequest {
         this.staffingRequests = staffingRequests;
         console.log("Loaded StaffingRequests");
       },
-      error => { this.respUtility.showFailure(error); },
+      error => { this.respUtility.showFailure(error); loader.dismiss(); },
       () => { loader.dismiss(); }
     );
 

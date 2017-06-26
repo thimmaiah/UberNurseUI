@@ -90,6 +90,11 @@ export class ShiftDetails {
     this.navCtrl.push(StaffingRequestDetails, staffingRequest);
   }
 
+  viewPayment(shift) {
+    console.log('View Payment clicked');
+    this.navCtrl.push(PaymentDetails, this.shift.payment);
+  }
+
   makePayment(shift) {
     let payment = {
       staffing_request_id: shift.staffing_request_id,
@@ -126,191 +131,9 @@ export class ShiftDetails {
     this.navCtrl.push(RatingForm, rating);
   }
 
-  care_giver_menus(shift, buttons) {
-
-    console.log("can manage shift");
-    buttons = buttons.concat([
-      {
-        text: 'Show Request',
-        icon: !this.platform.is('ios') ? 'folder' : null,
-        handler: () => {
-          console.log('Show Request clicked');
-          this.showRequest(shift);
-        }
-      }
-
-    ]);
-
-    if (this.shift.response_status != "Accepted") {
-
-      buttons = buttons.concat([
-        {
-          text: 'Accept Shift',
-          icon: !this.platform.is('ios') ? 'checkmark' : null,
-          handler: () => {
-            console.log('Accept clicked');
-            this.acceptResponse(shift);
-          }
-        }
-      ]);
-    } else {
-      buttons = buttons.concat([
-        {
-          text: 'Add Start / End Codes',
-          icon: !this.platform.is('ios') ? 'create' : null,
-          handler: () => {
-            console.log('Edit clicked');
-            this.editShift(shift);
-          }
-        }
-      ]);
-    }
-
-    if (this.shift.response_status != "Rejected") {
-
-      buttons = buttons.concat([
-        {
-          text: 'Reject Shift',
-          role: 'destructive',
-          icon: !this.platform.is('ios') ? 'close-circle' : null,
-          handler: () => {
-            console.log('Reject clicked');
-            this.rejectResponse(shift);
-          }
-        }
-      ]);
-    }
-
-    if (this.shift.payment_status == "Paid") {
-      buttons = buttons.concat([
-        {
-          text: 'View Payment',
-          icon: !this.platform.is('ios') ? 'cash' : null,
-          handler: () => {
-            console.log('View Payment clicked');
-            this.navCtrl.push(PaymentDetails, this.shift.payment)
-          }
-        }
-      ]);
-    }
-
-    if (this.shift.care_home_rated != true) {
-        buttons = buttons.concat([
-          {
-            text: 'Rate Care Home',
-            icon: !this.platform.is('ios') ? 'star' : null,
-            handler: () => {
-              console.log('Rate clicked');
-              this.rate_care_home(shift);
-            }
-          }
-        ]);
-      } else {
-        buttons = buttons.concat([
-          {
-            text: 'View Rating',
-            icon: !this.platform.is('ios') ? 'star' : null,
-            handler: () => {
-              console.log('View Rating clicked');
-              this.navCtrl.push(Rating, {"ratings": this.shift.ratings, "load_ratings": false});
-            }
-          }
-        ]);
-      }
-
-      console.log(`buttons = ${buttons}`);
-      return buttons;
-  }
-
-  care_home_menus(shift, buttons) {
-
-    if (this.shift.response_status == "Accepted") {
-      if (this.shift.payment_status !== "Paid" && this.shift.end_code !== null) {
-        buttons = buttons.concat([
-          {
-            text: 'Make Payment',
-            icon: !this.platform.is('ios') ? 'cash' : null,
-            handler: () => {
-              console.log('Make Payment clicked');
-              this.makePayment(shift);
-            }
-          }
-        ]);
-      } else if (this.shift.payment_status == "Paid") {
-        buttons = buttons.concat([
-          {
-            text: 'View Payment',
-            icon: !this.platform.is('ios') ? 'cash' : null,
-            handler: () => {
-              console.log('View Payment clicked');
-              this.navCtrl.push(PaymentDetails, this.shift.payment)
-            }
-          }
-        ]);
-      }
-
-      if (this.shift.rated != true) {
-        buttons = buttons.concat([
-          {
-            text: 'Rate Care Giver',
-            icon: !this.platform.is('ios') ? 'star' : null,
-            handler: () => {
-              console.log('Rate clicked');
-              this.rate_care_giver(shift);
-            }
-          }
-        ]);
-      } else {
-        buttons = buttons.concat([
-          {
-            text: 'View Rating',
-            icon: !this.platform.is('ios') ? 'star' : null,
-            handler: () => {
-              console.log('View Rating clicked');
-              this.navCtrl.push(Rating, {"ratings": this.shift.ratings, "load_ratings": false});
-            }
-          }
-        ]);
-      }
-
-    }
-
-    console.log(`buttons = ${buttons}`);
-    return buttons;
-  }
-
-  presentActionSheet(shift) {
-    let buttons = [];
-
-    if (shift.can_manage == true) {
-      buttons = this.care_giver_menus(shift, buttons);
-    } else {
-      buttons = this.care_home_menus(shift, buttons);
-    }
-
-    console.log(`buttons = ${buttons}`);
-
-    buttons = buttons.concat([
-      {
-        text: 'Hide Menu',
-        role: 'cancel',
-        icon: !this.platform.is('ios') ? 'close' : null,
-        handler: () => {
-          console.log('Cancel clicked');
-        }
-      }
-    ]);
-
-    let title = buttons.length == 1 ? "No action required" : "Actions";
-
-    console.log(buttons);
-
-    let actionSheet = this.actionSheetCtrl.create({
-      title: title,
-      cssClass: 'action-sheets',
-      buttons: buttons
-    });
-    actionSheet.present();
+  viewRatings(shift) {
+    console.log('View Rating clicked');
+    this.navCtrl.push(Rating, { "ratings": shift.ratings, "load_ratings": false });
   }
 
 }
