@@ -1,6 +1,6 @@
 import { IonicPage, NavController, NavParams, AlertController, ToastController, LoadingController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Component, ViewChild } from '@angular/core';
+import { SimpleChanges, Component, ViewChild } from '@angular/core';
 import { StaffingRequestApi } from '../../providers/staffing-request-api';
 import { ResponseUtility } from '../../providers/response-utility';
 import * as moment from 'moment';
@@ -13,7 +13,8 @@ import * as moment from 'moment';
 })
 export class StaffingRequestForm {
 
-  todayStr: any;
+  minStartDate: any;
+  minEndDate:any;
   staffingRequest: {};
   @ViewChild('signupSlider') signupSlider: any;
 
@@ -30,7 +31,9 @@ export class StaffingRequestForm {
     public respUtility: ResponseUtility) {
 
     this.staffingRequest = this.navParams.data;
-
+    this.minStartDate = new Date().toISOString();
+    this.minEndDate = new Date().toISOString();
+    
 
     this.slideOneForm = formBuilder.group({
 
@@ -56,6 +59,7 @@ export class StaffingRequestForm {
     });
 
   }
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad StaffingRequestsForm');
@@ -85,6 +89,16 @@ export class StaffingRequestForm {
 
   save() {
     this.submitAttempt = true;
+
+    if( moment(this.staffingRequest["start_date"]) > moment(this.staffingRequest["end_date"]) ) {
+      console.log("start date > end date");
+      this.slideOneForm.controls["end_date"].setErrors({notValid:true});
+      return;
+    } else {
+      console.log("start date < end date");
+      this.slideOneForm.controls["end_date"].setErrors(null);      
+    }
+
     //console.log(this.staffingRequest);
     let loader = this.loadingController.create({
       content: 'Saving ...'
