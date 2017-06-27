@@ -17,7 +17,7 @@
 
   <p *ngIf="submitAttempt" class="error-text">Please fill out all details accurately.</p>
 
-  <ion-list no-lines>
+  <ion-list wrap-text no-lines>
 
     <form [formGroup]="slideOneForm">
 
@@ -55,7 +55,7 @@
       </ion-item>
 
       <ion-item *ngIf="!slideOneForm.controls.end_date.valid  && (slideOneForm.controls.end_date.dirty || submitAttempt)">
-        <p class="error-text">Please enter a valid End Date.</p>
+        <p class="error-text">Should be at least 4 hours after Start.</p>
       </ion-item>
       <p class="field-hint">
         Select the end date & time for the temp staff.

@@ -90,7 +90,7 @@ export class StaffingRequestForm {
   save() {
     this.submitAttempt = true;
 
-    if( moment(this.staffingRequest["start_date"]) > moment(this.staffingRequest["end_date"]) ) {
+    if( moment(this.staffingRequest["start_date"]).add(4, 'hours') > moment(this.staffingRequest["end_date"]) ) {
       console.log("start date > end date");
       this.slideOneForm.controls["end_date"].setErrors({notValid:true});
       return;

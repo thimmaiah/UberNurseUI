@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { Nav, Platform, AlertController} from 'ionic-angular';
+import { Nav, Platform, AlertController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
@@ -26,9 +26,9 @@ import { CareHomeBankingDetails } from '../pages/care-homes/care-home-banking-de
 import { Login } from '../pages/login/login';
 import { StaffingRequest } from '../pages/staffing-request/staffing-request';
 import { Shift } from '../pages/shift/shift';
-import {AboutPage} from '../pages/static/about';
-import {TermsPage} from '../pages/static/terms';
-import {ContactPage} from '../pages/static/contact';
+import { AboutPage } from '../pages/static/about';
+import { TermsPage } from '../pages/static/terms';
+import { ContactPage } from '../pages/static/contact';
 
 
 @Component({
@@ -155,25 +155,26 @@ export class MyApp {
           console.log("AppComponent: user:login:success");
           this.currentUser = this.tokenService.currentUserData;
 
-          if (this.currentUser.role == "Admin") {
+          if (this.currentUser.role == "Admin" && this.currentUser.verified) {
             this.pages = [
-              { title: 'Past Shifts', component: Shift, params: {response_status:"Closed"} },
-              { title: 'Payment Redcords', component: Payment, params: {} },
-              { title: 'Ratings', component: Rating, params: {} },
-              { title: 'Banking Details', component: CareHomeBankingDetails, params: {} }
-
-            ];
-            
-            //this.nav.push(StaffingRequest);
-
-          } else {
-            this.pages = [
-              { title: 'Past Shifts', component: Shift, params: {response_status:"Closed"} },
+              { title: 'Past Shifts', component: Shift, params: { response_status: "Closed" } },
               { title: 'Payment Records', component: Payment, params: {} },
               { title: 'Ratings', component: Rating, params: {} },
-              { title: 'Banking Details', component: BankingDetailsPage, params: {} }
+              { title: 'Banking Details', component: CareHomeBankingDetails, params: {} },
+
             ];
-            
+
+            //this.nav.push(StaffingRequest);
+
+          } else if (this.currentUser.role != "Admin" && this.currentUser.verified) {
+            this.pages = [
+              { title: 'Past Shifts', component: Shift, params: { response_status: "Closed" } },
+              { title: 'Payment Records', component: Payment, params: {} },
+              { title: 'Ratings', component: Rating, params: {} },
+              { title: 'Banking Details', component: BankingDetailsPage, params: {} },
+
+            ];
+
             //this.nav.push(Shift);
           }
         });
