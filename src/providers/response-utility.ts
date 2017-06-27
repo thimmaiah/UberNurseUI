@@ -76,9 +76,9 @@ export class ResponseUtility {
     console.log(msg)
   }
 
-  confirmDelete(deleteEntityFn, entity) {
+  confirmDelete(deleteEntityFn, entity, title="Delete") {
     let confirm = this.alertController.create({
-      title: 'Delete',
+      title: title,
       cssClass: 'delete-alert',
       message: 'Are you sure you want to proceed ?',
       buttons: [

@@ -81,7 +81,7 @@ export class ShiftDetails {
   }
 
   confirmDelete(shift) {
-    this.respUtility.confirmDelete(this.deleteShift.bind(this), shift);
+    this.respUtility.confirmDelete(this.deleteShift.bind(this), shift, "Cancel");
   }
 
   showRequest(shift) {

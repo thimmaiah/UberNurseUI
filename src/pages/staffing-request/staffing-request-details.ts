@@ -93,7 +93,7 @@ export class StaffingRequestDetails {
   }
 
   confirmDelete(staffingRequest) {
-    this.respUtility.confirmDelete(this.deleteStaffingRequest.bind(this), staffingRequest);
+    this.respUtility.confirmDelete(this.deleteStaffingRequest.bind(this), staffingRequest, "Cancel");
   }
 
   sendResponse(staffing_request) {
@@ -145,21 +145,7 @@ export class StaffingRequestDetails {
         }
       ]);
     }
-    // else {
-    //   if (!this.hasUserResponded()) {
-    //     buttons = buttons.concat([
-    //       {
-    //         text: 'Apply Now',
-    //         icon: !this.platform.is('ios') ? 'checkmark' : null,
-    //         handler: () => {
-    //           console.log('Apply clicked');
-    //           this.sendResponse(staffingRequest);
-    //         }
-    //       }
-    //     ]);
-    //   }
-    // }
-
+  
     buttons = buttons.concat([
       {
         text: 'Hide Menu',

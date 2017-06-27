@@ -193,6 +193,13 @@
         <button ion-button full color="primary" (click)="viewRatings(shift)">View Ratings</button>
       </ion-col>
     </ion-row>
+
+    <ion-row *ngIf="shift.response_status != 'Pending'">
+      <ion-col>
+        <button ion-button full color="danger" (click)="confirmDelete(shift)">Cancel Shift</button>
+      </ion-col>
+    </ion-row>
+
   </div>
 
   <div *ngIf="shift.can_manage != true">
