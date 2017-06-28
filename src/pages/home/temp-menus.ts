@@ -57,6 +57,17 @@ export class TempMenus extends DocLinks implements Menu {
                 this.respUtility.showWarning("Please enter your Bank details");
             }
         }
+
+        // If the user has request a verification code but not yet verified, 
+        // send him to PhoneVerificationPage
+        if (this.currentUser &&
+            this.currentUser.phone_verified != true &&
+            this.currentUser.sms_verification_code != null) {
+
+            this.navCtrl.push(PhoneVerificationPage);
+
+        }
+
     }
 
     add_banking_details() {

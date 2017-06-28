@@ -27,8 +27,23 @@
         </form>
     </ion-list>
 
-    <button name="send_btn" ion-button full color="primary" (click)="confirmSendVerification()" *ngIf="!verification_code_sent">Send Verification Code</button>
-    <button name="verify_btn" ion-button full color="primary" (click)="verifiy_code()" *ngIf="verification_code_sent">Verifiy Code</button>
+
+    <ion-row>
+
+        <ion-col *ngIf="!verification_code_sent">
+            <button name="send_btn" ion-button full color="primary" (click)="confirmSendVerification()">Send Verification Code</button>
+        </ion-col>
+        <ion-col *ngIf="verification_code_sent" col-6>
+            <button name="resend_btn" ion-button full color="primary" (click)="confirmSendVerification()">Resend Code</button>
+        </ion-col>
+        <ion-col *ngIf="verification_code_sent" col-6>
+            <button name="verify_btn" ion-button full color="success" (click)="verifiy_code()" >Verifiy Code</button>
+        </ion-col>
+
+    </ion-row>
+
+    
+    
 
     <p class="center error-text" *ngIf="error_msg">{{error_msg}}</p>
 

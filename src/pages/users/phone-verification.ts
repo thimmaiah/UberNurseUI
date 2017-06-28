@@ -32,6 +32,7 @@ export class PhoneVerificationPage {
     });
 
     this.current_user = this.tokenService.currentUserData;
+    this.verification_code_sent = this.current_user.sms_verification_code != null;
 
   }
 

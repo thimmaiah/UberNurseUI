@@ -9,8 +9,9 @@ import { Config } from '../../providers/config';
 import { LoginProvider } from '../../providers/login-provider';
 import { Events } from 'ionic-angular';
 import { ContactPage } from '../static/contact';
-import {Menu} from './menus';
+import { Menu } from './menus';
 import { HomeEvents } from '../../providers/home-events';
+
 
 @Component({
   selector: 'page-home',
@@ -29,8 +30,8 @@ export class HomePage implements Menu {
     public homeEvents: HomeEvents,
     private loginProvider: LoginProvider) {
 
-      this.homeEvents.registerMenu(this);
-      
+    this.homeEvents.registerMenu(this);
+
   }
 
   displayMsgs() {

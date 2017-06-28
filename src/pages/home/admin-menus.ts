@@ -83,6 +83,17 @@ export class AdminMenus implements Menu {
 
         }
 
+        // If the user has request a verification code but not yet verified, 
+        // send him to PhoneVerificationPage
+        if (this.currentUser &&
+            this.currentUser.phone_verified != true &&
+            this.currentUser.sms_verification_code != null) {
+
+            this.navCtrl.push(PhoneVerificationPage);
+
+        }
+
+
     }
 
     show_profile() {
