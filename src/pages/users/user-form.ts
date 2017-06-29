@@ -51,7 +51,7 @@ export class UserForm {
       title: [''],
       accept_terms: ['', Validators.compose([Validators.required])],
       phone: ['', Validators.pattern('^\\d+$'),],
-      postcode: ['', Validators.compose([Validators.required, new PostCodeValidator(this.postCodeApi).checkPostCode])],
+      postcode: ['', Validators.compose([Validators.minLength(7), Validators.required, new PostCodeValidator(this.postCodeApi).checkPostCode])],
       pref_commute_distance: ['', Validators.compose([Validators.pattern('^\\d+$'), Validators.required])],
     }, { "validator": this.isMatching });
 

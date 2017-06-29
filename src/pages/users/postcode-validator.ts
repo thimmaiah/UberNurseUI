@@ -19,7 +19,7 @@ export class PostCodeValidator {
       console.log("PostCodeValidator: checkPostCode", control.value);
       //control.markAsPending();
 
-      if (control.value) {
+      if (control.value && control.value.length >= 7) {
         PostCodeValidator.postCodeApi.getPostCodes(control.value).subscribe(
           resp => {
             console.log(resp);
