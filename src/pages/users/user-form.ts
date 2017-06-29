@@ -7,6 +7,8 @@ import { ResponseUtility } from '../../providers/response-utility';
 import { Angular2TokenService } from 'angular2-token';
 import { UserValidator } from './user-validator'
 import { TermsPage } from '../static/terms';
+import {PostCodeValidator} from './postcode-validator';
+import { PostCodeApi } from '../../providers/postcode-api';
 
 @Component({
   selector: 'page-user-form',
@@ -34,7 +36,8 @@ export class UserForm {
     private tokenService: Angular2TokenService,
     private elementRef:ElementRef,
     private renderer:Renderer,
-    private keyboard: Keyboard) {
+    private keyboard: Keyboard,
+    private postCodeApi: PostCodeApi) {
 
     this.user = this.navParams.data;
 
@@ -48,7 +51,7 @@ export class UserForm {
       title: [''],
       accept_terms: ['', Validators.compose([Validators.required])],
       phone: ['', Validators.pattern('^\\d+$'),],
-      postcode: ['', Validators.compose([Validators.required])],
+      postcode: ['', Validators.compose([Validators.required, new PostCodeValidator(this.postCodeApi).checkPostCode])],
       pref_commute_distance: ['', Validators.compose([Validators.pattern('^\\d+$'), Validators.required])],
     }, { "validator": this.isMatching });
 

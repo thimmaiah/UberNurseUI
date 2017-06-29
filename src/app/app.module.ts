@@ -76,6 +76,7 @@ import { ResponseUtility } from '../providers/response-utility'
 import { Push } from '@ionic-native/push';
 import { TitleCasePipe } from '../pipes/title-case/title-case';
 import { LoginProvider } from '../providers/login-provider';
+import { PostCodeApi } from '../providers/postcode-api';
 import { HomeEvents } from '../providers/home-events';
 
 
@@ -172,6 +173,7 @@ import { HomeEvents } from '../providers/home-events';
     RatingApi,
     CareHomeApi,
     CqcRecordApi,
+    PostCodeApi,
     StaffingRequestApi,
     ShiftApi,
     PaymentApi,

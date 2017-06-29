@@ -4,14 +4,10 @@ import { Component, ViewChild } from '@angular/core';
 import { CareHomeApi } from '../../providers/care-home-api';
 import { ResponseUtility } from '../../providers/response-utility';
 import { Events } from 'ionic-angular';
+import {PostCodeValidator} from '../users/postcode-validator';
+import { PostCodeApi } from '../../providers/postcode-api';
 
-/**
- * Generated class for the CareHomesForm page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
-//@IonicPage()
+
 @Component({
   selector: 'page-care-home-form',
   templateUrl: 'care-home-form.html',
@@ -32,6 +28,7 @@ export class CareHomeForm {
     public formBuilder: FormBuilder,
     public loadingController: LoadingController,
     public care_homeApi: CareHomeApi,
+    public postCodeApi: PostCodeApi,
     public respUtility: ResponseUtility) {
 
     this.care_home = this.navParams.data;
@@ -40,7 +37,7 @@ export class CareHomeForm {
        
       name: ['', Validators.compose([Validators.required])],       
       address: ['', Validators.compose([Validators.required])],       
-      postcode: ['', Validators.compose([Validators.maxLength(8), Validators.required])],       
+      postcode: ['', Validators.compose([Validators.required, new PostCodeValidator(this.postCodeApi).checkPostCode])],       
       image_url: ['']  
     });
 
