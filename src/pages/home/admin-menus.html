@@ -55,7 +55,9 @@
               </button>
             </div>
 
+
             <div text-wrap *ngIf="currentUser.phone_verified == true && currentUser.care_home_id != null &&  currentUser.care_home.bank_account != null && currentUser.care_home.verified != true">
+              <ion-item-divider color="light"></ion-item-divider>
               <button ion-item (click)="contact()">
                 <ion-icon name="warning" item-left item-left color="danger"></ion-icon>
                 Pending Verification

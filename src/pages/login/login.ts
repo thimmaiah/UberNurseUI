@@ -10,6 +10,7 @@ import { UserApi } from '../../providers/user-api';
 import { UserForm } from '../users/user-form';
 import { PasswordReset } from './password-reset';
 import { Storage } from '@ionic/storage';
+import { RegisterPage } from '../users/register';
 
 
 @Component({
@@ -56,7 +57,7 @@ export class Login {
   }
 
   register() {
-    this.navCtrl.push(UserForm);
+    this.navCtrl.push(RegisterPage);
   }
 
   forgotPassword() {
