@@ -14,7 +14,9 @@ import * as moment from 'moment';
 export class StaffingRequestForm {
 
   minStartDate: any;
+  maxStartDate: any;
   minEndDate:any;
+  maxEndDate:any;
   staffingRequest: {};
   @ViewChild('signupSlider') signupSlider: any;
 
@@ -32,7 +34,9 @@ export class StaffingRequestForm {
 
     this.staffingRequest = this.navParams.data;
     this.minStartDate = new Date().toISOString();
+    this.maxStartDate = moment().add(1, 'year').toISOString();
     this.minEndDate = new Date().toISOString();
+    this.maxEndDate = moment().add(1, 'year').toISOString();
     
 
     this.slideOneForm = formBuilder.group({
