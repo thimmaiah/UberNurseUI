@@ -5,6 +5,8 @@ import { ResponseUtility } from '../../providers/response-utility';
 import { StaffingRequestDetails } from '../staffing-request/staffing-request-details'
 import { StaffingRequestForm } from '../staffing-request/staffing-request-form'
 import { Angular2TokenService } from 'angular2-token';
+import * as moment from 'moment';
+
 
 /**
  * Generated class for the StaffingRequestss page.
@@ -56,6 +58,12 @@ export class StaffingRequest {
     this.staffingRequestApi.getStaffingRequests().subscribe(
       staffingRequests => {
         this.staffingRequests = staffingRequests;
+        this.staffingRequests.forEach(req => {
+          // This is required as ios misbehvaes with timezones.
+          // We always send the UTC time back
+          req.start_date = moment(req.start_date).utcOffset(0).toISOString();
+          req.end_date = moment(req.end_date).utcOffset(0).toISOString();
+        });
         console.log("Loaded StaffingRequests");
       },
       error => { this.respUtility.showFailure(error); loader.dismiss(); },

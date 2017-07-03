@@ -46,6 +46,8 @@ export class StaffingRequestDetails {
       );
     }
 
+    // This is required as ios misbehvaes with timezones.
+    // We always send the UTC time back
     this.staffingRequest.start_date = moment(this.staffingRequest.start_date).utcOffset(0).toISOString();
     this.staffingRequest.end_date = moment(this.staffingRequest.end_date).utcOffset(0).toISOString();
 
@@ -95,7 +97,7 @@ export class StaffingRequestDetails {
 
 
   showResponses(staffing_request) {
-    this.navCtrl.push(Shift, {staffing_request: staffing_request});
+    this.navCtrl.push(Shift, { staffing_request: staffing_request });
   }
 
   confirmDelete(staffingRequest) {
@@ -151,7 +153,7 @@ export class StaffingRequestDetails {
         }
       ]);
     }
-  
+
     buttons = buttons.concat([
       {
         text: 'Hide Menu',
