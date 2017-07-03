@@ -45,6 +45,12 @@ export class StaffingRequestDetails {
         }
       );
     }
+
+    this.staffingRequest.start_date = moment(this.staffingRequest.start_date).utcOffset(0).toISOString();
+    this.staffingRequest.end_date = moment(this.staffingRequest.end_date).utcOffset(0).toISOString();
+
+    console.log("Request: start_date", this.staffingRequest.start_date);
+    console.log("Request: end_date", this.staffingRequest.end_date);
   }
 
   ionViewDidLoad() {
