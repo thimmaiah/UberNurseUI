@@ -26,6 +26,7 @@ import { Login } from '../pages/login/login';
 import { StaffingRequest } from '../pages/staffing-request/staffing-request';
 import { Shift } from '../pages/shift/shift';
 import { AboutPage } from '../pages/static/about';
+import { HelpPage } from '../pages/static/help';
 import { TermsPage } from '../pages/static/terms';
 import { ContactPage } from '../pages/static/contact';
 
@@ -163,6 +164,7 @@ export class MyApp {
               { title: 'About Us', component: AboutPage, params: {} },
               { title: 'Terms & Conditions', component: TermsPage, params: {} },
               { title: 'Contact Us', component: ContactPage, params: {} },
+              { title: 'Help', component: HelpPage, params: {} },
 
             ];
 
@@ -174,7 +176,7 @@ export class MyApp {
               { title: 'About Us', component: AboutPage, params: {} },
               { title: 'Terms & Conditions', component: TermsPage, params: {} },
               { title: 'Contact Us', component: ContactPage, params: {} },
-
+              { title: 'Help', component: HelpPage, params: {} },
             ];
 
           }
@@ -185,7 +187,7 @@ export class MyApp {
             this.respUtility.showWarning("Our terms have changed. Please read and accept the terms & conditions");
             this.edit_profile();
           }
-          
+
         });
 
         this.events.subscribe('user:logout:success', () => {

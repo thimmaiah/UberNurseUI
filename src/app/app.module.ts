@@ -34,6 +34,7 @@ import { StaffingRequestForm } from '../pages/staffing-request/staffing-request-
 import { StaffingRequestDetails } from '../pages/staffing-request/staffing-request-details';
 
 import {AboutPage} from '../pages/static/about';
+import {HelpPage} from '../pages/static/help';
 import {TermsPage} from '../pages/static/terms';
 import {ContactPage} from '../pages/static/contact';
 
@@ -115,6 +116,7 @@ import { HomeEvents } from '../providers/home-events';
     CareHomeBankingDetails,
     TitleCasePipe,
     AboutPage,
+    HelpPage,
     ContactPage,
     TermsPage
   ],
@@ -161,9 +163,11 @@ import { HomeEvents } from '../providers/home-events';
     CareHomeSearch,
     CareHomeBankingDetails,
     AboutPage,
+    HelpPage,
     ContactPage,
     TermsPage
   ],
+  
   providers: [
     Push,
     Config,
