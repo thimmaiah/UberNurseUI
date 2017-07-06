@@ -21,6 +21,7 @@ import { UserForm } from '../pages/users/user-form';
 import { RegisterPage } from '../pages/users/register';
 
 import { CareHomeSearch } from '../pages/care-homes/care-home-search';
+import { CareHomeDetails } from '../pages/care-homes/care-home-details';
 import { CareHomeBankingDetails } from '../pages/care-homes/care-home-banking-details';
 import { Login } from '../pages/login/login';
 import { StaffingRequest } from '../pages/staffing-request/staffing-request';
@@ -160,7 +161,6 @@ export class MyApp {
               { title: 'Past Shifts', component: Shift, params: { response_status: "Closed" } },
               { title: 'Payment Records', component: Payment, params: {} },
               { title: 'Ratings', component: Rating, params: {} },
-              { title: 'Banking Details', component: CareHomeBankingDetails, params: {} },
               { title: 'About Us', component: AboutPage, params: {} },
               { title: 'Terms & Conditions', component: TermsPage, params: {} },
               { title: 'Contact Us', component: ContactPage, params: {} },
@@ -172,7 +172,6 @@ export class MyApp {
             this.pages = [
               { title: 'Past Shifts', component: Shift, params: { response_status: "Closed" } },
               { title: 'Ratings', component: Rating, params: {} },
-              { title: 'Banking Details', component: BankingDetailsPage, params: {} },
               { title: 'About Us', component: AboutPage, params: {} },
               { title: 'Terms & Conditions', component: TermsPage, params: {} },
               { title: 'Contact Us', component: ContactPage, params: {} },
@@ -227,6 +226,11 @@ export class MyApp {
   show_profile() {
     this.nav.push(UserDetails, this.currentUser);
   }
+
+  show_care_home() {
+    this.nav.push(CareHomeDetails, this.currentUser.care_home);
+  }
+
 
   edit_profile() {
     this.nav.push(UserForm, this.currentUser);

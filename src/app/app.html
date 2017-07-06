@@ -14,6 +14,9 @@
       <button menuClose ion-item (click)="show_profile()">
         Settings
       </button>
+      <button menuClose ion-item (click)="show_care_home()" *ngIf="currentUser.role == 'Admin'">
+        Care Home
+      </button>
       <button menuClose ion-item (click)="logout()">
         Logout
       </button>

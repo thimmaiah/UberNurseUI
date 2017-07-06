@@ -28,6 +28,18 @@
       </ion-row>
     </ion-item>
 
+
+    <ion-item>
+      <ion-row>
+        <ion-col>
+          Phone:
+        </ion-col>
+        <ion-col>
+          <a href="tel:{{care_home.phone}}">{{care_home.phone}}</a>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
     <ion-item>
       <ion-row>
         <ion-col>
@@ -39,16 +51,6 @@
       </ion-row>
     </ion-item>
 
-    <ion-item>
-      <ion-row>
-        <ion-col>
-          Town:
-        </ion-col>
-        <ion-col>
-          {{care_home.town}}
-        </ion-col>
-      </ion-row>
-    </ion-item>
 
     <ion-item>
       <ion-row>
@@ -57,17 +59,6 @@
         </ion-col>
         <ion-col>
           {{care_home.postcode}}
-        </ion-col>
-      </ion-row>
-    </ion-item>
-
-    <ion-item>
-      <ion-row>
-        <ion-col>
-          Base Rate:
-        </ion-col>
-        <ion-col>
-          {{care_home.base_rate | currency : 'GBP' : true}}
         </ion-col>
       </ion-row>
     </ion-item>
@@ -91,7 +82,7 @@
 
   </ion-list>
 
-  <ion-row *ngIf="care_home.can_manage == true">
+  <ion-row>
     <ion-col>
       <button ion-button full color="secondary" (click)="editCareHome(care_home)">Edit</button>
     </ion-col>

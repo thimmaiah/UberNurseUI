@@ -5,6 +5,7 @@ import { CareHomeApi } from '../../providers/care-home-api';
 import { ResponseUtility } from '../../providers/response-utility';
 import { Angular2TokenService } from 'angular2-token';
 import { Events } from 'ionic-angular';
+import { CheckboxValidator } from '../../providers/checkbox-validator';
 
 @Component({
   selector: 'page-bank-details',
@@ -29,7 +30,7 @@ export class CareHomeBankingDetails {
     this.slideOneForm = formBuilder.group({
       bank_account: ['', Validators.compose([Validators.minLength(8), Validators.maxLength(8), Validators.required])],
       sort_code: ['', Validators.compose([Validators.minLength(6), Validators.maxLength(6), Validators.required])],
-      accept_bank_transactions: ['', Validators.compose([Validators.required])],
+      accept_bank_transactions: ['', Validators.compose([CheckboxValidator.isChecked, Validators.required])],
     });
 
     let current_care_home = this.tokenService.currentUserData["care_home"];
@@ -42,7 +43,7 @@ export class CareHomeBankingDetails {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad BankingDetailsPage');
+    console.log('ionViewDidLoad CareHomeBankingDetailsPage');
   }
 
   save() {

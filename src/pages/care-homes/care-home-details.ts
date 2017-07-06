@@ -23,7 +23,9 @@ export class CareHomeDetails {
     public alertController: AlertController,
     public toastController: ToastController,
     public respUtility: ResponseUtility) {
+
     this.care_home = this.navParams.data;
+    
   }
 
   ionViewDidLoad() {

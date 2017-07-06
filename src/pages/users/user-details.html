@@ -62,6 +62,13 @@
       <ion-col>
         <button ion-button full color="secondary" (click)="editUser(user)">Edit User Details</button>
       </ion-col>
+      <ion-col *ngIf="user.role == 'Admin'">
+        <button ion-button full color="secondary" (click)="editCareHomeBankingDetails(user)">Edit Banking Details</button>
+        <button ion-button full color="secondary" (click)="editCareHome(user)">Edit Care Home</button>
+      </ion-col>
+      <ion-col *ngIf="user.role != 'Admin'">
+        <button ion-button full color="secondary" (click)="editUserBankingDetails(user)">Edit Banking Details</button>
+      </ion-col>
 
     </ion-row>
 
