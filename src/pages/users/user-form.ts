@@ -50,7 +50,7 @@ export class UserForm {
       confirm_password: ['', Validators.compose([Validators.required])],
       title: [''],
       accept_terms: ['', Validators.compose([Validators.required])],
-      phone: ['', Validators.pattern('^\\d+$'),],
+      phone: ['', Validators.compose([Validators.minLength(10), Validators.maxLength(10), Validators.pattern('^\\d+$')])],
       postcode: ['', Validators.compose([Validators.minLength(7), Validators.required, new PostCodeValidator(this.postCodeApi).checkPostCode])],
       pref_commute_distance: ['', Validators.compose([Validators.pattern('^\\d+$'), Validators.required])],
     }, { "validator": this.isMatching });

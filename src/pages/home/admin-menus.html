@@ -12,7 +12,8 @@
 
 
               <button ion-item (click)="phone_verification()" >
-                <ion-icon [name]="currentUser.phone_verified != true ? 'call' : 'checkbox'" item-left item-left color="primary"></ion-icon>
+                <ion-icon [name]="currentUser.phone_verified != true ? 'call' : 'checkbox'" item-left item-left 
+                [color]="currentUser.phone_verified != true ? 'primary' : 'secondary'"></ion-icon>
                 Verify Mobile Number
                 <p>
                   Verify your mobile number now.
@@ -20,7 +21,8 @@
               </button>
 
               <button ion-item (click)="add_care_home_banking_details()">
-                <ion-icon [name]="currentUser.care_home_id != null && currentUser.care_home.bank_account == null ? 'cash' : 'checkbox'" item-left item-left color="primary"></ion-icon>
+                <ion-icon [name]="currentUser.care_home_id != null && currentUser.care_home.bank_account == null ? 'cash' : 'checkbox'" item-left item-left 
+                [color]="currentUser.care_home_id != null && currentUser.care_home.bank_account == null ? 'primary' : 'secondary'"></ion-icon>
                 Banking Information
                 <p>
                   Add your banking details.

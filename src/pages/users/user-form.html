@@ -28,8 +28,11 @@
           <ion-option value="Mr" checked="true">Mr</ion-option>
           <ion-option value="Mrs">Mrs</ion-option>
           <ion-option value="Miss">Miss</ion-option>
+          <ion-option value="Ms">Ms</ion-option>
+          <ion-option value="Others">Others</ion-option>
         </ion-select>
       </ion-item>
+
 
       <ion-item>
         <ion-label floating>First Name</ion-label>
@@ -82,7 +85,7 @@
       </ion-item>
 
       <ion-item *ngIf="!slideOneForm.controls.phone.valid  && (slideOneForm.controls.phone.dirty || submitAttempt)">
-        <p class="error-text">Please enter a valid phone.</p>
+        <p class="error-text">Please enter a valid 10 digit phone number.</p>
       </ion-item>
 
 

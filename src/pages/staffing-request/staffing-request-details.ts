@@ -65,14 +65,14 @@ export class StaffingRequestDetails {
 
   deleteStaffingRequest(staffingRequest) {
     let loader = this.loadingController.create({
-      content: 'Deleting Request...'
+      content: 'Cancelling Request...'
     });
 
     loader.present();
 
     this.staffingRequestApi.deleteStaffingRequest(staffingRequest).subscribe(
       response => {
-        this.respUtility.showSuccess("Deleted StaffingRequests");
+        this.respUtility.showSuccess("Cancelled StaffingRequests");
         this.navCtrl.pop();
       },
       error => { this.respUtility.showFailure(error); loader.dismiss(); },
@@ -129,13 +129,6 @@ export class StaffingRequestDetails {
       console.log("can manage staffingRequest");
       buttons = buttons.concat([
         {
-          text: 'Edit',
-          icon: !this.platform.is('ios') ? 'create' : null,
-          handler: () => {
-            console.log('Edit clicked');
-            this.editStaffingRequest(staffingRequest);
-          }
-        }, {
           text: 'Cancel',
           role: 'destructive',
           icon: !this.platform.is('ios') ? 'trash' : null,
@@ -143,14 +136,15 @@ export class StaffingRequestDetails {
             console.log('Cancel clicked');
             this.confirmDelete(staffingRequest);
           }
-        }, {
-          text: 'Show Shifts Assigned',
-          icon: !this.platform.is('ios') ? 'list' : null,
-          handler: () => {
-            console.log('Show Shifts clicked');
-            this.showResponses(staffingRequest);
-          }
         }
+        // , {
+        //   text: 'Show Shifts Assigned',
+        //   icon: !this.platform.is('ios') ? 'list' : null,
+        //   handler: () => {
+        //     console.log('Show Shifts clicked');
+        //     this.showResponses(staffingRequest);
+        //   }
+        // }
       ]);
     }
 

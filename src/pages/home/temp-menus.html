@@ -3,7 +3,7 @@
             <div *ngIf="currentUser.verified == false">
               <button ion-item *ngFor="let doc of currentUser.user_docs" (click)="viewDoc(doc)">
         
-                <ion-icon name="checkbox" item-left color="primary"></ion-icon>
+                <ion-icon name="checkbox" item-left color="secondary"></ion-icon>
                 {{doc.doc_type}}
                 <p>
                   Uploaded: {{doc.created_at | date : 'dd/MM/yyyy' }}
@@ -25,7 +25,8 @@
               </button>
 
               <button ion-item (click)="phone_verification()">
-                <ion-icon [name]="currentUser.phone_verified != true ? 'call' : 'checkbox'" item-left item-left color="primary"></ion-icon>
+                <ion-icon [name]="currentUser.phone_verified != true ? 'call' : 'checkbox'" item-left item-left 
+                  [color]="currentUser.phone_verified != true ? 'primary' : 'secondary'"></ion-icon>
                 Verify Mobile Number
                 <p>
                   Verify your mobile number now.
@@ -33,7 +34,8 @@
               </button>
 
               <button ion-item (click)="add_banking_details()">
-                <ion-icon [name]="currentUser.bank_account == null ? 'cash' : 'checkbox'" item-left item-left color="primary"></ion-icon>
+                <ion-icon [name]="currentUser.bank_account == null ? 'cash' : 'checkbox'" item-left item-left 
+                [color]="currentUser.bank_account == null ? 'primary' : 'secondary'"></ion-icon>
                 Banking Information
                 <p>
                   Add your banking details.

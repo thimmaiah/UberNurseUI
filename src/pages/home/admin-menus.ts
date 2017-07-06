@@ -75,7 +75,7 @@ export class AdminMenus implements Menu {
             } else if (this.currentUser.care_home) {
                 if (!this.currentUser.care_home.verified) {
                     this.registerCareHome = false;
-                    this.respUtility.showWarning("Please call us to get your care home verified at the earliest.");
+                    this.respUtility.showWarning("AS part of our verification process, we will call your care home to verify your details.");
                 } else if (this.currentUser.care_home.bank_account == null) {
                     this.respUtility.showWarning("Please enter your Bank details");
                 }
