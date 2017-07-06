@@ -3,6 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, ViewChild } from '@angular/core';
 import { ShiftApi } from '../../providers/shift-api';
 import { ResponseUtility } from '../../providers/response-utility';
+import { RatingForm } from '../rating/rating-form';
+
+import * as moment from 'moment';
 
 
 @Component({
@@ -50,12 +53,30 @@ export class ShiftForm {
     if (this.shift["start_code"] && this.shift["end_code"] == null) {
       message = "This will start your shift and set the shift start time to now. Start shift now?";
     } else {
-      message = "This will end your shift and set the shift end time to now. End shift now?";
+      let duration = moment.duration(moment().diff(moment(this.shift["start_date"])));
+      if (duration.asHours() > 4) {
+        message = "This will end your shift and set the shift end time to now. End shift now? ";
+      } else {
+        message = "This will end your shift now but set the shift end time to 4 hours from the start time," +
+          "as the minumum shift duration is 4 hours. End shift now? ";
+      }
     }
 
     this.respUtility.confirmAction(this.save.bind(this), null, message);
   }
 
+
+  rate_care_home(shift) {
+    let rating = {
+      staffing_request_id: shift.staffing_request_id,
+      rated_entity_id: shift.care_home_id,
+      rated_entity_type: "CareHome",
+      care_home_id: shift.care_home_id,
+      shift_id: shift.id,
+      comments: "Thank you."
+    }
+    this.navCtrl.push(RatingForm, rating);
+  }
 
   save() {
     this.submitAttempt = true;
@@ -76,12 +97,13 @@ export class ShiftForm {
           console.log(`Shift = ${res}`);
         }).subscribe(
           shift => {
-            if(this.shift["end_code"] != null) {
+            if (this.shift["end_code"] != null) {
               this.respUtility.showSuccess('Code Accepted.Your shift has ended.');
             } else {
               this.respUtility.showSuccess('Code Accepted.Your shift has started.');
             }
             this.navCtrl.pop();
+            this.rate_care_home(this.shift);
           },
           error => {
             if (error.status === 422) {

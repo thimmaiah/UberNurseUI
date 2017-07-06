@@ -20,14 +20,15 @@ export class Payment {
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public loadingController: LoadingController,
     public paymentApi: PaymentApi, public respUtility: ResponseUtility) {
+
+        this.loadPayments(1, null);
+  
   }
 
 
 
   ionViewWillEnter() {
     console.log('ionViewWillEnter Paymentss');
-    this.loadPayments(1, null);
-
   }
 
   loadPayments(page, infiniteScroll: InfiniteScroll) {
@@ -57,8 +58,8 @@ export class Payment {
         }
       },
       error => { this.respUtility.showFailure(error); loader.dismiss(); },
-      () => { 
-        loader.dismiss(); 
+      () => {
+        loader.dismiss();
         if (infiniteScroll) {
           infiniteScroll.complete();
         }
@@ -89,7 +90,7 @@ export class Payment {
     console.log('loadMorepayments, start is currently ' + this.page);
     this.page += 1;
     infiniteScroll.enable(false);
-    this.loadPayments(this.page, infiniteScroll);    
+    this.loadPayments(this.page, infiniteScroll);
   }
 
 }

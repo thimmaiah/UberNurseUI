@@ -17,6 +17,8 @@ import { ActionSheetController, Platform } from 'ionic-angular';
 export class ShiftDetails {
 
   shift: any;
+  show_start_code = false;
+  show_end_code = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public platform: Platform,
@@ -24,7 +26,9 @@ export class ShiftDetails {
     public actionSheetCtrl: ActionSheetController,
     public loadingController: LoadingController,
     public respUtility: ResponseUtility) {
+
     this.shift = this.navParams.data;
+
   }
 
   ionViewDidLoad() {
@@ -40,11 +44,22 @@ export class ShiftDetails {
     shift.response_status = "Accepted"
     this.updateResponse(shift);
   }
+  
   rejectResponse(shift) {
     shift.accepted = false;
     shift.response_status = "Rejected"
     this.updateResponse(shift);
   }
+
+  set_end_code() {
+    this.show_end_code = true;
+    let controller = this;
+    setTimeout(function() { 
+        controller.rate_care_giver(controller.shift);
+        console.log("rate_care_giver called in setTimeout");
+    }, 3000);
+  }
+
   updateResponse(shift) {
 
     let loader = this.loadingController.create({
