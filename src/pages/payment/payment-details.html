@@ -32,8 +32,24 @@
           </ion-col>
         </ion-row>
       </ion-item>
+
+      <ion-item *ngIf="payment.shift">
+        <ion-row>
+          <ion-col>
+            Actual Time Worked: 
+          </ion-col>
+          <ion-col text-wrap>
+            <ion-row>From:
+            {{payment.shift.start_date | date: 'dd/MM/yyyy H:mm'}}
+            </ion-row>
+            <ion-row>To:
+            {{payment.shift.end_date | date: 'dd/MM/yyyy H:mm'}}
+            </ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-item>
        
-      <ion-item *ngIf="payment.user">
+      <ion-item *ngIf="payment.user && payment.user_id != current_user.id">
         <ion-row>
           <ion-col>
             {{payment.user.role}}: 
@@ -65,17 +81,7 @@
           </ion-col>
         </ion-row>
       </ion-item>
-       
-      <ion-item>
-        <ion-row>
-          <ion-col>
-            Notes: 
-          </ion-col>
-          <ion-col text-wrap>
-            {{payment.notes}}
-          </ion-col>
-        </ion-row>
-      </ion-item>
+      
       
       </ion-list>
       

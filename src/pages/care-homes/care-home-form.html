@@ -29,6 +29,14 @@
         <p class="error-text">Please enter a valid name.</p>
       </ion-item>
 
+      <ion-item>
+        <ion-label floating>Phone</ion-label>
+        <ion-input name="phone" formControlName="phone" type="text" [(ngModel)]="care_home.phone" [class.invalid]="!slideOneForm.controls.phone.valid && (slideOneForm.controls.phone.dirty || submitAttempt)"></ion-input>
+      </ion-item>
+
+      <ion-item *ngIf="!slideOneForm.controls.phone.valid  && (slideOneForm.controls.phone.dirty || submitAttempt)">
+        <p class="error-text">Please enter a valid phone.</p>
+      </ion-item>
 
 
       <ion-item>

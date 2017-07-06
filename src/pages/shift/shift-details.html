@@ -40,16 +40,34 @@
 
     </div>
 
-    <ion-item>
-      <ion-row>
-        <ion-col>
-          Care Home:
-        </ion-col>
-        <ion-col>
-          {{shift.care_home.name}}
-        </ion-col>
-      </ion-row>
-    </ion-item>
+    <div *ngIf="shift.can_manage == true">
+
+      <ion-item>
+        <ion-row>
+          <ion-col>
+            Care Home:
+          </ion-col>
+          <ion-col>
+            {{shift.care_home.name}}
+          </ion-col>
+        </ion-row>
+      </ion-item>
+
+      <img [src]="shift.user.image" style="max-height:300px;">
+
+      <ion-item>
+        <ion-row>
+          <ion-col>
+            Phone:
+          </ion-col>
+          <ion-col>
+            <a href="tel:{{shift.care_home.phone}}">{{shift.care_home.phone}}</a>
+          </ion-col>
+        </ion-row>
+      </ion-item>
+
+    </div>
+
 
     <ion-item>
       <ion-row>
@@ -176,10 +194,10 @@
     <div *ngIf="shift.response_status == 'Accepted'">
       <ion-row *ngIf="shift.start_code == null || shift.end_code == null">
         <ion-col *ngIf="shift.start_code == null">
-          <button ion-button full color="primary" (click)="editShift(shift)">Add Start Code</button>
+          <button ion-button full color="primary" (click)="editShift(shift)">Start Shift</button>
         </ion-col>
         <ion-col *ngIf="shift.start_code != null && shift.end_code == null">
-          <button ion-button full color="primary" (click)="editShift(shift)">Add End Code</button>
+          <button ion-button full color="primary" (click)="editShift(shift)">End Shift</button>
         </ion-col>
       </ion-row>
 

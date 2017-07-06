@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-an
 import { PaymentForm } from '../payment/payment-form';
 import { PaymentApi } from '../../providers/payment-api';
 import { ResponseUtility } from '../../providers/response-utility';
-
+import { Angular2TokenService } from 'angular2-token';
 
 @Component({
   selector: 'page-payment-details',
@@ -12,12 +12,17 @@ import { ResponseUtility } from '../../providers/response-utility';
 export class PaymentDetails {
 
   payment: any;
+  current_user: any;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public paymentApi: PaymentApi,
-    public loadingController: LoadingController, 
+    public loadingController: LoadingController,
+    private tokenService: Angular2TokenService,
     public respUtility: ResponseUtility) {
+      
     this.payment = this.navParams.data;
+    this.current_user = this.tokenService.currentUserData;
+
   }
 
   ionViewDidLoad() {
@@ -41,12 +46,12 @@ export class PaymentDetails {
         this.respUtility.showSuccess("Deleted Payments");
         this.navCtrl.pop();
       },
-      error => { this.respUtility.showFailure(error); loader.dismiss();},
+      error => { this.respUtility.showFailure(error); loader.dismiss(); },
       () => { loader.dismiss(); }
     );
   }
 
   confirmDelete(payment) {
-    this.respUtility.confirmDelete(this.deletePayment.bind(this), payment);      
+    this.respUtility.confirmDelete(this.deletePayment.bind(this), payment);
   }
 }

@@ -7,8 +7,9 @@ import { ResponseUtility } from '../../providers/response-utility';
 import { Angular2TokenService } from 'angular2-token';
 import { UserValidator } from './user-validator'
 import { TermsPage } from '../static/terms';
-import {PostCodeValidator} from './postcode-validator';
+import { PostCodeValidator } from './postcode-validator';
 import { PostCodeApi } from '../../providers/postcode-api';
+import { CheckboxValidator } from '../../providers/checkbox-validator';
 
 @Component({
   selector: 'page-user-form',
@@ -34,8 +35,8 @@ export class UserForm {
     public respUtility: ResponseUtility,
     public loadingController: LoadingController,
     private tokenService: Angular2TokenService,
-    private elementRef:ElementRef,
-    private renderer:Renderer,
+    private elementRef: ElementRef,
+    private renderer: Renderer,
     private keyboard: Keyboard,
     private postCodeApi: PostCodeApi) {
 
@@ -49,7 +50,7 @@ export class UserForm {
       password: ['', Validators.compose([Validators.minLength(6), Validators.required])],
       confirm_password: ['', Validators.compose([Validators.required])],
       title: [''],
-      accept_terms: ['', Validators.compose([Validators.required])],
+      accept_terms: ['', Validators.compose([CheckboxValidator.isChecked, Validators.required])],
       phone: ['', Validators.compose([Validators.minLength(10), Validators.maxLength(10), Validators.pattern('^\\d+$')])],
       postcode: ['', Validators.compose([Validators.minLength(7), Validators.required, new PostCodeValidator(this.postCodeApi).checkPostCode])],
       pref_commute_distance: ['', Validators.compose([Validators.pattern('^\\d+$'), Validators.required])],
@@ -63,11 +64,15 @@ export class UserForm {
       this.slideOneForm.controls["password"].clearValidators();
       this.slideOneForm.controls["confirm_password"].disable();
       this.slideOneForm.controls["confirm_password"].clearValidators();
-      this.slideOneForm.controls["accept_terms"].disable();
-      this.slideOneForm.controls["accept_terms"].clearValidators();
       console.log("Disabled password", this.slideOneForm.controls.password.disabled);
     }
 
+  }
+
+  onTermsChecked($event) {
+    if (!$event.checked) {
+      this.slideOneForm.patchValue({ accept_terms: null });
+    }
   }
 
   isMatching(group: FormGroup) {

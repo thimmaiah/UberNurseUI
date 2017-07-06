@@ -2,7 +2,6 @@ import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform, AlertController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-
 import { HomePage } from '../pages/home/home';
 import { Users } from '../pages/users/users';
 import { UserPic } from '../pages/user-pic/user-pic';
@@ -15,7 +14,7 @@ import { Push, PushObject, PushOptions } from '@ionic-native/push';
 import { LoginProvider } from '../providers/login-provider';
 import { Events } from 'ionic-angular';
 
-import { ResponseUtility } from '../../providers/response-utility';
+import { ResponseUtility } from '../providers/response-utility';
 import { UserDetails } from '../pages/users/user-details';
 import { BankingDetailsPage } from '../pages/users/banking-details';
 import { UserForm } from '../pages/users/user-form';
@@ -40,7 +39,7 @@ export class MyApp {
   rootPage: any = HomePage;
   currentUser: any;
 
-  pages: Array<{ title: string, component: any, params: any }>;
+  pages: Array<{ title: string, component: any, params: any }> = [];
 
   constructor(public platform: Platform,
     public statusBar: StatusBar,
@@ -49,6 +48,7 @@ export class MyApp {
     private tokenService: Angular2TokenService,
     private config: Config,
     public events: Events,
+    public respUtility: ResponseUtility,
     private loginProvider: LoginProvider,
     public alertCtrl: AlertController) {
 
@@ -142,8 +142,6 @@ export class MyApp {
         this.splashScreen.hide();
         this.initPushNotification();
 
-
-
         this.tokenService.init({
           apiBase: this.config.props["API_URL"],
           updatePasswordPath: "/auth/password"
@@ -155,28 +153,39 @@ export class MyApp {
           console.log("AppComponent: user:login:success");
           this.currentUser = this.tokenService.currentUserData;
 
+
           if (this.currentUser.role == "Admin" && this.currentUser.verified) {
             this.pages = [
               { title: 'Past Shifts', component: Shift, params: { response_status: "Closed" } },
               { title: 'Payment Records', component: Payment, params: {} },
               { title: 'Ratings', component: Rating, params: {} },
               { title: 'Banking Details', component: CareHomeBankingDetails, params: {} },
+              { title: 'About Us', component: AboutPage, params: {} },
+              { title: 'Terms & Conditions', component: TermsPage, params: {} },
+              { title: 'Contact Us', component: ContactPage, params: {} },
 
             ];
-
-            //this.nav.push(StaffingRequest);
 
           } else if (this.currentUser.role != "Admin" && this.currentUser.verified) {
             this.pages = [
               { title: 'Past Shifts', component: Shift, params: { response_status: "Closed" } },
-              { title: 'Payment Records', component: Payment, params: {} },
               { title: 'Ratings', component: Rating, params: {} },
               { title: 'Banking Details', component: BankingDetailsPage, params: {} },
+              { title: 'About Us', component: AboutPage, params: {} },
+              { title: 'Terms & Conditions', component: TermsPage, params: {} },
+              { title: 'Contact Us', component: ContactPage, params: {} },
 
             ];
 
-            //this.nav.push(Shift);
           }
+
+
+          if (this.currentUser.accept_terms != true) {
+            // The terms have changed - we need to get him to accept the terms again
+            this.respUtility.showWarning("Our terms have changed. Please read and accept the terms & conditions");
+            this.edit_profile();
+          }
+          
         });
 
         this.events.subscribe('user:logout:success', () => {
@@ -215,6 +224,10 @@ export class MyApp {
 
   show_profile() {
     this.nav.push(UserDetails, this.currentUser);
+  }
+
+  edit_profile() {
+    this.nav.push(UserForm, this.currentUser);
   }
 
   login() {

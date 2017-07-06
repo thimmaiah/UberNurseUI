@@ -10,8 +10,8 @@ import { Injectable } from '@angular/core';
 export class Config {
 
   private dev = {
-    API_URL: "http://192.168.1.103:3000",
-    //API_URL: "http://localhost:3000",
+    //API_URL: "http://192.168.1.103:3000",
+    API_URL: "http://localhost:3000",
     ENV: "dev"
   };
 
