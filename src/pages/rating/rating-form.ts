@@ -23,17 +23,14 @@ export class RatingForm {
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public formBuilder: FormBuilder,
-    public loadingController: LoadingController, 
+    public loadingController: LoadingController,
     public ratingApi: RatingApi,
     public respUtility: ResponseUtility) {
 
     this.rating = this.navParams.data;
 
     this.slideOneForm = formBuilder.group({
-       
-      stars: [''],       
-      comments: [''],
-        
+      stars: [''],
     });
 
 
@@ -51,14 +48,14 @@ export class RatingForm {
       content: 'Saving ...'
     });
 
-    
+
     if (!this.slideOneForm.valid) {
     }
-    
+
     else {
       this.submitAttempt = false;
       loader.present();
-  
+
       if (this.rating["id"]) {
         this.ratingApi.updateRating(this.rating).subscribe(
           rating => {

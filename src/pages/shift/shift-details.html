@@ -66,6 +66,28 @@
 
     </div>
 
+    <ion-item>
+      <ion-row>
+        <ion-col>
+          Start:
+        </ion-col>
+        <ion-col>
+          {{shift.staffing_request.start_date | date: 'dd/MM/yyyy H:mm'}}
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+    <ion-item>
+      <ion-row>
+        <ion-col>
+          End:
+        </ion-col>
+        <ion-col>
+          {{shift.staffing_request.end_date | date: 'dd/MM/yyyy H:mm'}}
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
 
     <ion-item>
       <ion-row>

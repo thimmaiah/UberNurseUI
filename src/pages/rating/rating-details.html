@@ -15,29 +15,19 @@
 
 <ion-content padding>
 
-      <ion-list>
-       
-      <ion-item>
-        <ion-row>
-          <ion-col>
-            <rating [(ngModel)]="rating.stars" readOnly="true"></rating>
-          </ion-col>
-        </ion-row>
-      </ion-item>
-       
-      <ion-item>
-        <ion-row>
-          <ion-col>
-            Comments: 
-          </ion-col>
-          <ion-col text-wrap>
-            {{rating.comments}}
-          </ion-col>
-        </ion-row>
-      </ion-item>
-      
-      </ion-list>
-      
+  <ion-list>
+
+    <ion-item>
+      <ion-row>
+        <ion-col>
+          <rating [(ngModel)]="rating.stars" readOnly="true"></rating>
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+
+  </ion-list>
+
   <ion-row *ngIf="rating.created_by_id == current_user.id">
 
     <ion-col>

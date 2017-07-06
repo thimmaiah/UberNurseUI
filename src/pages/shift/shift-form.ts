@@ -99,11 +99,14 @@ export class ShiftForm {
           shift => {
             if (this.shift["end_code"] != null) {
               this.respUtility.showSuccess('Code Accepted.Your shift has ended.');
+              this.navCtrl.pop();
+              this.rate_care_home(this.shift);
             } else {
               this.respUtility.showSuccess('Code Accepted.Your shift has started.');
+              this.navCtrl.pop();
             }
-            this.navCtrl.pop();
-            this.rate_care_home(this.shift);
+
+
           },
           error => {
             if (error.status === 422) {

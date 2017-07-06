@@ -1,13 +1,8 @@
-<!--
-  Generated template for the RatingsForm pemail.
 
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pemails and navigation.
--->
 <ion-header>
 
   <ion-navbar color="primary">
-    <ion-title>Ratings</ion-title>
+    <ion-title>Rating</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -15,40 +10,42 @@
 
 <ion-content padding>
 
-      <p *ngIf="submitAttempt" style="color: #ea6153;">Please fill out all details accurately.</p>
+  <p *ngIf="submitAttempt" style="color: #ea6153;">Please fill out all details accurately.</p>
 
-      <ion-list no-lines>
 
-        <form [formGroup]="slideOneForm">
+  <ion-list no-lines>
 
-            
+    <ion-card>
+      <ion-card-title class="center">
+        Rate Your Experience
+      </ion-card-title>
 
-          <ion-item>
-            <rating id="stars" formControlName="stars"  [(ngModel)]="rating.stars" readOnly="false"></rating>
-          </ion-item>
+      <ion-card-content>
+        <p *ngIf="rating.rated_entity_type == 'CareHome'">
+          Please provide a rating for the Care Home. Tap the stars below.
+        </p>
+        <p *ngIf="rating.rated_entity_type != 'CareHome'">
+          Please provide a rating for the Care Giver. Tap the stars below.
+        </p>
+      </ion-card-content>
+    </ion-card>
 
-          <ion-item *ngIf="!slideOneForm.controls.stars.valid  && (slideOneForm.controls.stars.dirty || submitAttempt)">
-            <p>Please enter a valid Stars.</p>
-          </ion-item>
 
-           
 
-          <ion-item>
-            <ion-label floating>Comments</ion-label>
-            <ion-input formControlName="comments" type="text" 
-            [(ngModel)]="rating.comments"
-            [class.invalid]="!slideOneForm.controls.comments.valid && (slideOneForm.controls.comments.dirty || submitAttempt)"></ion-input>
-          </ion-item>
+    <form [formGroup]="slideOneForm">
 
-          <ion-item *ngIf="!slideOneForm.controls.comments.valid  && (slideOneForm.controls.comments.dirty || submitAttempt)">
-            <p>Please enter a valid Comments.</p>
-          </ion-item>
+      <ion-item>
+        <rating id="stars" formControlName="stars" [(ngModel)]="rating.stars" readOnly="false"></rating>
+      </ion-item>
 
-          
-        </form>
+      <ion-item *ngIf="!slideOneForm.controls.stars.valid  && (slideOneForm.controls.stars.dirty || submitAttempt)">
+        <p>Please enter a valid Stars.</p>
+      </ion-item>
 
-      </ion-list>
+    </form>
 
-      <button ion-button full color="primary" (click)="save()">Save</button>
+  </ion-list>
+
+  <button ion-button full color="primary" (click)="save()">Save</button>
 
 </ion-content>
