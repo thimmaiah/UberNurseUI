@@ -33,7 +33,9 @@
             Phone:
           </ion-col>
           <ion-col>
-            <a href="tel:{{shift.user.phone}}">{{shift.user.phone}}</a>
+            <a icon-right href="tel:{{shift.user.phone}}">{{shift.user.phone}}
+              <ion-icon right name='call'></ion-icon>
+            </a>
           </ion-col>
         </ion-row>
       </ion-item>
@@ -59,7 +61,9 @@
             Phone:
           </ion-col>
           <ion-col>
-            <a href="tel:{{shift.care_home.phone}}">{{shift.care_home.phone}}</a>
+            <a icon-right href="tel:{{shift.care_home.phone}}">{{shift.care_home.phone}}
+              <ion-icon right name='call'></ion-icon>
+            </a>
           </ion-col>
         </ion-row>
       </ion-item>
@@ -237,9 +241,6 @@
         <ion-col *ngIf="shift.care_home_rated != true">
           <button ion-button full color="primary" (click)="rate_care_home(shift)">Rate Care Home</button>
         </ion-col>
-        <ion-col *ngIf="shift.care_home_rated == true">
-          <button ion-button full color="primary" (click)="viewRatings(shift)">View Ratings</button>
-        </ion-col>
       </ion-row>
 
       <ion-row *ngIf="shift.start_code == null">
@@ -258,9 +259,6 @@
       </ion-col>
       <ion-col *ngIf="shift.rated != true">
         <button ion-button full color="primary" (click)="rate_care_giver(shift)">Rate Care Giver</button>
-      </ion-col>
-      <ion-col *ngIf="shift.rated == true">
-        <button ion-button full color="primary" (click)="viewRatings(shift)">View Ratings</button>
       </ion-col>
     </ion-row>
   </div>

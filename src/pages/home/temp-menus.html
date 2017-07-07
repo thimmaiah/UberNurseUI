@@ -28,8 +28,11 @@
                 <ion-icon [name]="currentUser.phone_verified != true ? 'call' : 'checkbox'" item-left item-left 
                   [color]="currentUser.phone_verified != true ? 'primary' : 'secondary'"></ion-icon>
                 Verify Mobile Number
-                <p>
+                <p *ngIf="currentUser.phone_verified != true">
                   Verify your mobile number now.
+                </p>
+                <p *ngIf="currentUser.phone_verified == true">
+                  Thank you for verifying your number.
                 </p>
               </button>
 
@@ -37,8 +40,11 @@
                 <ion-icon [name]="currentUser.bank_account == null ? 'cash' : 'checkbox'" item-left item-left 
                 [color]="currentUser.bank_account == null ? 'primary' : 'secondary'"></ion-icon>
                 Banking Information
-                <p>
-                  Add your banking details.
+                <p *ngIf="currentUser.bank_account == null">
+                  Add your banking details to enable payments to you.
+                </p>
+                <p *ngIf="currentUser.bank_account != null">
+                  Thank you for your banking details.
                 </p>
               </button>
 

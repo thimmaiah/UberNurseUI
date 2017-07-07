@@ -71,6 +71,7 @@ export class ShiftDetails {
     this.shiftApi.updateShift(shift).subscribe(
       shift => {
         this.respUtility.showSuccess('Shift Updated');
+        this.navCtrl.popToRoot();
       },
       error => { this.respUtility.showFailure(error); loader.dismiss(); },
       () => { loader.dismiss(); }

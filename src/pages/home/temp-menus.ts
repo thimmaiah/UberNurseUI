@@ -52,7 +52,7 @@ export class TempMenus extends DocLinks implements Menu {
         if (this.currentUser &&
             (this.currentUser.role == "Care Giver" || this.currentUser.role == "Nurse")) {
             if (this.currentUser.verified !== true) {
-                this.respUtility.showWarning("Please upload your documents for verification");
+                //this.respUtility.showWarning("Please upload your documents for verification");
             } else if (this.currentUser.bank_account == null) {
                 this.respUtility.showWarning("Please enter your Bank details");
             }

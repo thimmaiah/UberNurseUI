@@ -160,7 +160,6 @@ export class MyApp {
             this.pages = [
               { title: 'Past Shifts', component: Shift, params: { response_status: "Closed" } },
               { title: 'Payment Records', component: Payment, params: {} },
-              { title: 'Ratings', component: Rating, params: {} },
               { title: 'About Us', component: AboutPage, params: {} },
               { title: 'Terms & Conditions', component: TermsPage, params: {} },
               { title: 'Contact Us', component: ContactPage, params: {} },
@@ -171,7 +170,6 @@ export class MyApp {
           } else if (this.currentUser.role != "Admin" && this.currentUser.verified) {
             this.pages = [
               { title: 'Past Shifts', component: Shift, params: { response_status: "Closed" } },
-              { title: 'Ratings', component: Rating, params: {} },
               { title: 'About Us', component: AboutPage, params: {} },
               { title: 'Terms & Conditions', component: TermsPage, params: {} },
               { title: 'Contact Us', component: ContactPage, params: {} },
