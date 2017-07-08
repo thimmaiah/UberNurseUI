@@ -25,7 +25,7 @@ export class Config {
     ENV: "prod"
   };
   
-  public props = this.prod;
+  public props = this.test;
 
   constructor() {
     

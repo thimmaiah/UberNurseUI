@@ -220,7 +220,7 @@
         <button ion-button full color="secondary" (click)="acceptResponse(shift)">Accept</button>
       </ion-col>
       <ion-col>
-        <button ion-button full color="primary" (click)="rejectResponse(shift)">Decline</button>
+        <button ion-button full color="danger" (click)="rejectResponse(shift)">Decline</button>
       </ion-col>
     </ion-row>
 
@@ -234,6 +234,15 @@
         </ion-col>
       </ion-row>
 
+      <ion-row *ngIf="shift.start_code == null">
+        <ion-col>
+          <button ion-button full color="danger" (click)="confirmDelete(shift)">Cancel Shift</button>
+        </ion-col>
+      </ion-row>
+    </div>
+
+    <div *ngIf="shift.response_status == 'Closed'">
+
       <ion-row *ngIf="shift.end_code != null">
         <ion-col *ngIf="shift.payment_status == 'Paid'">
           <button ion-button full color="primary" (click)="viewPayment(shift)">View Payment</button>
@@ -243,25 +252,20 @@
         </ion-col>
       </ion-row>
 
-      <ion-row *ngIf="shift.start_code == null">
-        <ion-col>
-          <button ion-button full color="danger" (click)="confirmDelete(shift)">Cancel Shift</button>
+    </div>
+
+    </div>
+
+    <div *ngIf="shift.can_manage != true">
+      <ion-row>
+        <ion-col *ngIf="shift.payment_status == 'Paid'">
+          <button ion-button full color="primary" (click)="viewPayment(shift)">View Payment</button>
+        </ion-col>
+        <ion-col *ngIf="shift.rated != true">
+          <button ion-button full color="primary" (click)="rate_care_giver(shift)">Rate Care Giver</button>
         </ion-col>
       </ion-row>
     </div>
-
-  </div>
-
-  <div *ngIf="shift.can_manage != true">
-    <ion-row>
-      <ion-col *ngIf="shift.payment_status == 'Paid'">
-        <button ion-button full color="primary" (click)="viewPayment(shift)">View Payment</button>
-      </ion-col>
-      <ion-col *ngIf="shift.rated != true">
-        <button ion-button full color="primary" (click)="rate_care_giver(shift)">Rate Care Giver</button>
-      </ion-col>
-    </ion-row>
-  </div>
 
 
 </ion-content>

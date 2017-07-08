@@ -156,7 +156,10 @@ export class MyApp {
           this.currentUser = this.tokenService.currentUserData;
 
 
-          if (this.currentUser.role == "Admin" && this.currentUser.verified) {
+          if (this.currentUser.role == "Admin" &&
+            this.currentUser.care_home != null &&
+            this.currentUser.care_home.verified == true) {
+              
             this.pages = [
               { title: 'Past Shifts', component: Shift, params: { response_status: "Closed" } },
               { title: 'Payment Records', component: Payment, params: {} },

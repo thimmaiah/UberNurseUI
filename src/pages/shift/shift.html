@@ -74,12 +74,12 @@
         <ion-badge
           *ngIf="shift.response_status" 
           item-right [color]="shift.response_status == 'Accepted' ? 'secondary' : 'danger'">
-          {{shift.response_status}}
+          Status: {{shift.response_status}}
         </ion-badge> 
         <ion-badge
           *ngIf="shift.payment_status" 
           item-right [color]="shift.payment_status == 'Paid' ? 'secondary' : 'danger'">
-          {{shift.payment_status}}
+          Payment: {{shift.payment_status}}
         </ion-badge> 
       </p>
     </button>
