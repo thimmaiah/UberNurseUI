@@ -50,9 +50,9 @@ export class UserForm {
       password: ['', Validators.compose([Validators.minLength(6), Validators.required])],
       confirm_password: ['', Validators.compose([Validators.required])],
       title: [''],
-      accept_terms: ['', Validators.compose([CheckboxValidator.isChecked, Validators.required])],
+      accept_terms: [false, Validators.compose([CheckboxValidator.isChecked, Validators.required])],
       phone: ['', Validators.compose([Validators.minLength(10), Validators.maxLength(10), Validators.pattern('^\\d+$')])],
-      postcode: ['', Validators.compose([Validators.minLength(7), Validators.required, new PostCodeValidator(this.postCodeApi).checkPostCode])],
+      postcode: ['', Validators.compose([Validators.minLength(6), Validators.required, new PostCodeValidator(this.postCodeApi).checkPostCode])],
       pref_commute_distance: ['', Validators.compose([Validators.pattern('^\\d+$'), Validators.required])],
     }, { "validator": this.isMatching });
 
@@ -145,6 +145,7 @@ export class UserForm {
         this.userApi.updateUser(this.user).subscribe(
           user => {
             this.respUtility.showSuccess('User saved successfully.');
+            this.navCtrl.pop();
           },
           error => {
             this.respUtility.showFailure(error);

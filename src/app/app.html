@@ -11,11 +11,8 @@
         {{p.title}}
       </button>
       <div *ngIf="currentUser != null">
-      <button menuClose ion-item (click)="show_profile()">
+      <button menuClose ion-item (click)="show_settings()">
         Settings
-      </button>
-      <button menuClose ion-item (click)="show_care_home()" *ngIf="currentUser.role == 'Admin'">
-        Care Home
       </button>
       <button menuClose ion-item (click)="logout()">
         Logout

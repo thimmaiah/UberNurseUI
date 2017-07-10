@@ -15,7 +15,7 @@ import { LoginProvider } from '../providers/login-provider';
 import { Events } from 'ionic-angular';
 
 import { ResponseUtility } from '../providers/response-utility';
-import { UserDetails } from '../pages/users/user-details';
+import { UserTabs } from '../pages/users/user-tabs';
 import { BankingDetailsPage } from '../pages/users/banking-details';
 import { UserForm } from '../pages/users/user-form';
 import { RegisterPage } from '../pages/users/register';
@@ -224,8 +224,8 @@ export class MyApp {
   }
 
 
-  show_profile() {
-    this.nav.push(UserDetails, this.currentUser);
+  show_settings() {
+    this.nav.push(UserTabs, this.currentUser);
   }
 
   show_care_home() {

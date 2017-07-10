@@ -6,9 +6,9 @@ import { UserPic } from '../user-pic/user-pic';
 import { UserApi } from '../../providers/user-api';
 import { ResponseUtility } from '../../providers/response-utility';
 import { UserDoc } from '../user-doc/user-doc';
-import {BankingDetailsPage} from './banking-details';
-import {CareHomeBankingDetails} from '../care-homes/care-home-banking-details';
-import {CareHomeForm} from '../care-homes/care-home-form';
+import { BankingDetailsPage } from './banking-details';
+import { CareHomeBankingDetails } from '../care-homes/care-home-banking-details';
+import { CareHomeForm } from '../care-homes/care-home-form';
 
 import * as _ from 'lodash';
 

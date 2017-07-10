@@ -18,6 +18,7 @@ export class BankingDetailsPage {
   role = null;
   slideOneForm: FormGroup;
   submitAttempt: boolean = false;
+  insideSettingsTab = false;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -40,6 +41,11 @@ export class BankingDetailsPage {
       "sort_code": current_user["sort_code"],
       "accept_bank_transactions": current_user["accept_bank_transactions"]
     };
+
+    if (this.navParams.data["insideSettingsTab"]) {
+      this.insideSettingsTab = true;
+    }
+
   }
 
   ionViewDidLoad() {
@@ -66,7 +72,9 @@ export class BankingDetailsPage {
         user => {
           this.respUtility.showSuccess('Saved successfully.');
           this.events.publish("current_user:reload");
-          this.navCtrl.popToRoot();
+          if (!this.insideSettingsTab) {
+            this.navCtrl.popToRoot();
+          }
         },
         error => {
           this.respUtility.showFailure(error);

@@ -17,6 +17,8 @@ export class CareHomeBankingDetails {
   role = null;
   slideOneForm: FormGroup;
   submitAttempt: boolean = false;
+  insideSettingsTab = false;
+
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -39,6 +41,10 @@ export class CareHomeBankingDetails {
       "bank_account": current_care_home["bank_account"],
       "sort_code": current_care_home["sort_code"],
       "accept_bank_transactions": current_care_home["accept_bank_transactions"]
+    }
+
+    if (this.navParams.data["insideSettingsTab"]) {
+      this.insideSettingsTab = true;
     }
   }
 
@@ -65,8 +71,10 @@ export class CareHomeBankingDetails {
       this.care_homeApi.updateCareHome(this.care_home).subscribe(
         care_home => {
           this.respUtility.showSuccess('Saved successfully.');
-          this.events.publish("care_home:registration:success", care_home);                        
-          this.navCtrl.popToRoot();
+          this.events.publish("care_home:registration:success", care_home);
+          if(!this.insideSettingsTab) {
+            this.navCtrl.popToRoot();
+          }
         },
         error => {
           this.respUtility.showFailure(error);

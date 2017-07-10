@@ -23,6 +23,7 @@ import { Ionic2RatingModule } from 'ionic2-rating';
 import { UserPic } from '../pages/user-pic/user-pic';
 import { UserDoc } from '../pages/user-doc/user-doc';
 import { Users } from '../pages/users/users';
+import { UserTabs } from '../pages/users/user-tabs';
 import { UserForm } from '../pages/users/user-form';
 import { UserDetails } from '../pages/users/user-details';
 import { PhoneVerificationPage } from '../pages/users/phone-verification';
@@ -92,6 +93,7 @@ import { HomeEvents } from '../providers/home-events';
     UserPic,
     UserDoc,
     Users,
+    UserTabs,
     UserForm,
     UserDetails,
     PhoneVerificationPage,
@@ -140,6 +142,7 @@ import { HomeEvents } from '../providers/home-events';
     UserPic,
     UserDoc,
     Users,
+    UserTabs,
     UserForm,
     UserDetails,
     PhoneVerificationPage,

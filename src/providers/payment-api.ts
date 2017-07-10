@@ -27,6 +27,13 @@ export class PaymentApi {
     })
   }
 
+  searchPayments(start_date, end_date) {
+    return this.tokenService.get(`${this.base_url}/search.xls?start_date=${start_date}&end_date=${end_date}`).map(response=>{
+      this.payments = response.json();
+      return this.payments;
+    })
+  }
+
   getPaymentDetails(payment_id) {
     return this.tokenService.get(`${this.base_url}/${payment_id}.json`).map(response=>{
       this.payment = response.json();

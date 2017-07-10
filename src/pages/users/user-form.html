@@ -29,7 +29,7 @@
           <ion-option value="Mrs">Mrs</ion-option>
           <ion-option value="Miss">Miss</ion-option>
           <ion-option value="Ms">Ms</ion-option>
-          <ion-option value="Others">Others</ion-option>
+          <ion-option value="Other">Other</ion-option>
         </ion-select>
       </ion-item>
 
@@ -121,7 +121,8 @@
       <div text-wrap>
         <ion-item>
           <ion-checkbox id="accept_terms" [(ngModel)]="user.accept_terms" 
-          formControlName="accept_terms" type="accept_terms" (ionChange)="onTermsChecked($event)"></ion-checkbox>
+          formControlName="accept_terms" type="accept_terms" 
+          (ionChange)="onTermsChecked($event)"></ion-checkbox>
           <ion-label text-warp>I have read and agree to the Terms & Conditions</ion-label>
         </ion-item>
         <button ion-button full clear color="primary" (click)="show_terms()">Terms & Conditions</button>
