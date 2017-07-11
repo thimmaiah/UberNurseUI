@@ -40,11 +40,22 @@
 
       </ion-row>
 
-      <ion-row>
-        <ion-col>
-          <button ion-button full color="danger" (click)="forgotPassword()">Forgot Password</button>
-        </ion-col>
-      </ion-row>
     </ion-card-content>
+
+    <ion-row no-padding>
+      <ion-col>
+        <button ion-button clear small color="primary" icon-left (click)="forgotPassword()">
+          <ion-icon name='key'></ion-icon>
+          Forgot Password
+        </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button clear small color="primary" icon-left (click)="register()">
+          <ion-icon name='mail'></ion-icon>
+          Resend Confirmation Email
+        </button>
+      </ion-col>
+    </ion-row>
+
   </ion-card>
 </ion-content>

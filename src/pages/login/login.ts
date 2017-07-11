@@ -60,16 +60,43 @@ export class Login {
     this.navCtrl.push(RegisterPage);
   }
 
+  resendConfirmationEmail() {
+    if (this.email != null) {
+      this.userApi.resendConfirmationEmail(this.email).subscribe(
+        res => {
+          console.log(res);
+          if (res["sent"] == true) {
+            this.respUtility.showSuccess("Confirmation email sent. Please check your inbox.");
+          } else {
+            if (res["user_not_found"] == true) {
+              this.respUtility.showWarning("Email specified above was not found in our system. Please register.");
+            } else {
+              this.respUtility.showWarning("Confirmation email not sent. Please contact us.");
+            }
+          }
+        },
+        error => this.respUtility.showFailure(error)
+      );
+    } else {
+      this.respUtility.showWarning("Please enter a valid email above.");
+    }
+
+  }
+
   forgotPassword() {
-    this.tokenService.resetPassword({ email: this.email }).subscribe(
-      res => {
-        console.log(res);
-        let body = JSON.parse(res["_body"]);
-        console.log(body["message"]);
-        this.respUtility.showMsg(body["message"]);
-        this.navCtrl.push(PasswordReset)
-      },
-      error => this.respUtility.showFailure(error)
-    );
+    if (this.email != null) {
+      this.tokenService.resetPassword({ email: this.email }).subscribe(
+        res => {
+          console.log(res);
+          let body = JSON.parse(res["_body"]);
+          console.log(body["message"]);
+          this.respUtility.showMsg(body["message"]);
+          this.navCtrl.push(PasswordReset)
+        },
+        error => this.respUtility.showFailure(error)
+      );
+    } else {
+      this.respUtility.showWarning("Please enter a valid email above.");
+    }
   }
 }

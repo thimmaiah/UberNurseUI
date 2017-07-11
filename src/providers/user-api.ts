@@ -68,4 +68,11 @@ export class UserApi {
     })
   }
 
+  resendConfirmationEmail(email) {
+    return this.tokenService.post(`${this.base_url}/resend_confirmation.json`, {"email":email}).map(response=>{
+      this.user = response.json();
+      return this.user;
+      //return response.status;
+    })
+  }
 }
