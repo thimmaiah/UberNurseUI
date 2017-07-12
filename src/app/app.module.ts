@@ -8,6 +8,8 @@ import { Transfer } from '@ionic-native/transfer';
 import { FilePath } from '@ionic-native/file-path';
 import { Keyboard } from '@ionic-native/keyboard';
 
+import {SentryErrorHandler} from '../services/sentry-errorhandler'
+
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { AdminMenus } from '../pages/home/admin-menus';
@@ -195,7 +197,7 @@ import { HomeEvents } from '../providers/home-events';
     FilePath,
     Transfer,
     HomeEvents,
-    { provide: ErrorHandler, useClass: IonicErrorHandler }
+    { provide: ErrorHandler, useClass: SentryErrorHandler }
   ]
 })
 export class AppModule { }

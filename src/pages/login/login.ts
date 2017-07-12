@@ -61,6 +61,7 @@ export class Login {
   }
 
   resendConfirmationEmail() {
+    
     if (this.email != null) {
       this.userApi.resendConfirmationEmail(this.email).subscribe(
         res => {
