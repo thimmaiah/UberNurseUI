@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AlertController, ToastController, ModalController } from 'ionic-angular';
+import { AlertController, ToastController, ModalController, Toast } from 'ionic-angular';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
@@ -7,6 +7,8 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class ResponseUtility {
+
+  toast: Toast;
 
   constructor(public http: Http,
     public alertController: AlertController,
@@ -16,33 +18,55 @@ export class ResponseUtility {
   }
 
   showMsg(msg) {
-    let toast = this.toastController.create({
+
+    try {
+      this.toast.dismiss();
+    } catch (e) { }
+
+    this.toast = this.toastController.create({
       message: msg,
       duration: 4000,
-      position: 'bottom'
+      position: 'bottom',
+      dismissOnPageChange: false,
+      showCloseButton: false
     });
-    toast.present();
+
+    this.toast.present();
     console.log(msg)
   }
 
 
   showSuccess(msg) {
-    let toast = this.toastController.create({
+    try {
+      this.toast.dismiss();
+    } catch (e) { }
+
+    this.toast = this.toastController.create({
       message: msg,
       duration: 4000, cssClass: "toast-success",
-      position: 'bottom'
+      position: 'bottom',
+      dismissOnPageChange: false,
+      showCloseButton: false
     });
-    toast.present();
+    
+    this.toast.present();
     console.log(msg)
   }
 
   showWarning(msg) {
-    let toast = this.toastController.create({
+    try {
+        this.toast.dismiss();
+    } catch(e) {}
+
+    this.toast = this.toastController.create({
       message: msg,
       duration: 4000, cssClass: "toast-warning",
-      position: 'bottom'
+      position: 'bottom',
+      dismissOnPageChange: false,
+      showCloseButton: false
     });
-    toast.present();
+
+    this.toast.present();
     console.log(msg)
   }
 
@@ -76,7 +100,7 @@ export class ResponseUtility {
     console.log(msg)
   }
 
-  confirmDelete(deleteEntityFn, entity, title="Delete") {
+  confirmDelete(deleteEntityFn, entity, title = "Delete") {
     let confirm = this.alertController.create({
       title: title,
       cssClass: 'delete-alert',
