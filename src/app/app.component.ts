@@ -31,9 +31,10 @@ import { HelpPage } from '../pages/static/help';
 import { TermsPage } from '../pages/static/terms';
 import { ContactPage } from '../pages/static/contact';
 
+import { CodePush, SyncStatus, InstallMode } from '@ionic-native/code-push';
 
 @Component({
-  templateUrl: 'app.html'
+  templateUrl: 'app.html',
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
@@ -43,7 +44,9 @@ export class MyApp {
 
   pages: Array<{ title: string, component: any, params: any }> = [];
 
-  constructor(public platform: Platform,
+  constructor(
+    private codePush: CodePush,
+    public platform: Platform,
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
     public push: Push,
@@ -138,6 +141,9 @@ export class MyApp {
 
     this.platform.ready().then(
       () => {
+
+        this.syncCodePush();
+
         // Okay, so the platform is ready and our plugins are available.
         // Here you can do any higher level native things you might need.
         this.statusBar.styleDefault();
@@ -159,7 +165,7 @@ export class MyApp {
           if (this.currentUser.role == "Admin" &&
             this.currentUser.care_home != null &&
             this.currentUser.care_home.verified == true) {
-              
+
             this.pages = [
               { title: 'Past Shifts', component: Shift, params: { response_status: "Closed" } },
               { title: 'Payment Records', component: Payment, params: {} },
@@ -244,6 +250,73 @@ export class MyApp {
 
   logout() {
     this.loginProvider.logout();
+  }
+
+  syncCodePush() {
+    if (this.platform.is('cordova')) {
+
+      let updateDialogOptions = {
+        updateTitle: "Updated available",
+        optionalUpdateMessage: "A new app update is available. Install?",
+        optionalIgnoreButtonLabel: "Not right now",
+        optionalInstallButtonLabel: "Install Now"
+      };
+
+      const downloadProgress = (progress) => {
+        console.log(`Downloaded ${progress.receivedBytes} of ${progress.totalBytes}`);
+        //this.respUtility.showWarning(`Updating app. Please wait ....`);
+      }
+
+      const onSyncStatusChange = (syncStatus) => {
+        let messageText = null;
+
+          switch (syncStatus) {
+            case SyncStatus.IN_PROGRESS:
+              messageText = 'An update is in progress ..';
+              break;
+
+            case SyncStatus.CHECKING_FOR_UPDATE:
+              messageText = 'Checking for update ..';
+              break;
+
+            case SyncStatus.DOWNLOADING_PACKAGE:
+              messageText = 'Downloading package ..';
+              break;
+
+            case SyncStatus.INSTALLING_UPDATE:
+              messageText = 'Installing update ..';
+              break;
+
+            case SyncStatus.UPDATE_INSTALLED:
+              messageText = 'Installed the update ..';
+              break;
+
+            case SyncStatus.ERROR:
+              messageText = 'An error occurred :( ...';
+              break;
+
+            default:
+              //messageText = 'Update done.';
+              break;
+
+          }
+          if (messageText) {
+            this.respUtility.showSuccess(messageText);
+          }
+
+        }
+  
+      this.codePush.sync({ updateDialog: updateDialogOptions,installMode: InstallMode.IMMEDIATE }, downloadProgress).subscribe(
+        (syncStatus) => {
+          console.log(syncStatus);
+          onSyncStatusChange(syncStatus);
+        });
+
+      console.log("Initializing CodePush");
+    } else {
+      // Cordova not accessible, add mock data if necessary
+      console.log("Not Initializing CodePush, load app on device");
+    }
   }
 }
 

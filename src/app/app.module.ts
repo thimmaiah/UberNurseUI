@@ -9,6 +9,7 @@ import { FilePath } from '@ionic-native/file-path';
 import { Keyboard } from '@ionic-native/keyboard';
 
 import {SentryErrorHandler} from '../services/sentry-errorhandler'
+import { CodePush } from '@ionic-native/code-push';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -175,6 +176,7 @@ import { HomeEvents } from '../providers/home-events';
   
   providers: [
     Push,
+    CodePush,
     Config,
     LoginProvider,
     UserApi,

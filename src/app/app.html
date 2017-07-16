@@ -1,6 +1,6 @@
 <ion-menu [content]="content">
   <ion-header>
-    <ion-toolbar  color="secondary">
+    <ion-toolbar color="secondary">
       <ion-title>Menu</ion-title>
     </ion-toolbar>
   </ion-header>
@@ -11,18 +11,18 @@
         {{p.title}}
       </button>
       <div *ngIf="currentUser != null">
-      <button menuClose ion-item (click)="show_settings()">
-        Settings
-      </button>
-      <button menuClose ion-item (click)="logout()">
-        Logout
-      </button>
+        <button menuClose ion-item (click)="show_settings()">
+          Settings
+        </button>
+          <button menuClose ion-item (click)="logout()">
+          Logout
+        </button>
       </div>
-      
+
     </ion-list>
   </ion-content>
 
 </ion-menu>
 
 <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
-<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false">{{syncStatusMsg}}</ion-nav>
