@@ -39,6 +39,7 @@
         "cordova-android": "6.2.3",
         "cordova-browser": "~4.1.0",
         "cordova-plugin-camera": "^2.1.1",
+        "cordova-plugin-code-push": "~1.9.5-beta",
         "cordova-plugin-compat": "^1.1.0",
         "cordova-plugin-console": "^1.0.5",
         "cordova-plugin-device": "^1.1.4",
@@ -60,9 +61,7 @@
         "rxjs": "5.4.0",
         "shelljs": "^0.7.7",
         "sw-toolbox": "3.6.0",
-        "zone.js": "^0.8.4",
-        "cordova-plugin-code-push": "~1.9.5-beta",
-        "ionic-plugin-deploy": "~0.6.7"
+        "zone.js": "^0.8.4"
     },
     "devDependencies": {
         "@ionic/app-scripts": "1.3.0",
@@ -103,7 +102,6 @@
                 "SENDER_ID": "600472014859"
             },
             "cordova-sqlite-storage": {},
-            "com.mbppower.camerapreview": {},
             "cordova-plugin-code-push": {}
         }
     }
