@@ -58,12 +58,12 @@ export class StaffingRequest {
     this.staffingRequestApi.getStaffingRequests().subscribe(
       staffingRequests => {
         this.staffingRequests = staffingRequests;
-        this.staffingRequests.forEach(req => {
-          // This is required as ios misbehvaes with timezones.
-          // We always send the UTC time back
-          req.start_date = moment(req.start_date).utcOffset(0).toISOString();
-          req.end_date = moment(req.end_date).utcOffset(0).toISOString();
-        });
+        // this.staffingRequests.forEach(req => {
+        //   // This is required as ios misbehvaes with timezones.
+        //   // We always send the UTC time back
+        //   req.start_date = moment(req.start_date).utcOffset(0).toISOString();
+        //   req.end_date = moment(req.end_date).utcOffset(0).toISOString();
+        // });
         console.log("Loaded StaffingRequests");
       },
       error => { this.respUtility.showFailure(error); loader.dismiss(); },

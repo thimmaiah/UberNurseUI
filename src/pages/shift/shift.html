@@ -50,11 +50,13 @@
       <p>
         Care Home: {{shift.care_home.name}}
       </p>
+
       <p>
-        Start: {{shift.staffing_request.start_date | date: 'dd/MM/yyyy H:mm'}}
+        Start: {{shift.staffing_request.start_date | utc_date |  date: 'dd/MM/yyyy H:mm'}}
       </p>
+
       <p>
-        End: {{shift.staffing_request.end_date | date: 'dd/MM/yyyy H:mm'}}
+        End: {{shift.staffing_request.end_date | utc_date | date: 'dd/MM/yyyy H:mm'}}
       </p>
       
       <div *ngIf="shift.can_manage != true">

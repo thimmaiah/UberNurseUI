@@ -30,7 +30,7 @@ export class ShiftDetails {
     public respUtility: ResponseUtility) {
 
     this.shift = this.navParams.data;
-    this.setUTCDates(this.shift);
+    //this.setUTCDates(this.shift);
   }
 
   setUTCDates(shift) {

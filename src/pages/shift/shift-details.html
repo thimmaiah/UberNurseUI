@@ -76,7 +76,7 @@
           Start:
         </ion-col>
         <ion-col>
-          {{shift.staffing_request.start_date | date: 'dd/MM/yyyy H:mm'}}
+          {{shift.staffing_request.start_date | utc_date | date: 'dd/MM/yyyy H:mm'}}
         </ion-col>
       </ion-row>
     </ion-item>
@@ -87,7 +87,7 @@
           End:
         </ion-col>
         <ion-col>
-          {{shift.staffing_request.end_date | date: 'dd/MM/yyyy H:mm'}}
+          {{shift.staffing_request.end_date | utc_date | date: 'dd/MM/yyyy H:mm'}}
         </ion-col>
       </ion-row>
     </ion-item>
@@ -132,7 +132,7 @@
           Start Time:
         </ion-col>
         <ion-col>
-          {{shift.start_date | date: 'dd/MM/yyyy H:mm'}}
+          {{shift.start_date | utc_date | date: 'dd/MM/yyyy H:mm'}}
         </ion-col>
       </ion-row>
     </ion-item>
@@ -154,7 +154,7 @@
           End Time:
         </ion-col>
         <ion-col>
-          {{shift.end_date | date: 'dd/MM/yyyy H:mm'}}
+          {{shift.end_date | utc_date | date: 'dd/MM/yyyy H:mm'}}
         </ion-col>
       </ion-row>
     </ion-item>

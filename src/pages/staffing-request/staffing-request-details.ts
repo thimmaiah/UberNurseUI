@@ -39,15 +39,13 @@ export class StaffingRequestDetails {
       this.staffingRequestApi.getStaffingRequestDetails(this.staffingRequest.id).subscribe(
         staffingRequest => {
           this.staffingRequest = staffingRequest;
-          this.setUTCDates();
+          //this.setUTCDates();
         },
         error => {
           this.respUtility.showFailure(error);
         }
       );
     }
-
-    this.setUTCDates();
 
   }
 

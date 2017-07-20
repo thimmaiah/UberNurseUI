@@ -80,9 +80,11 @@ import { ShiftApi } from '../providers/shift-api'
 import { ResponseUtility } from '../providers/response-utility'
 import { Push } from '@ionic-native/push';
 import { TitleCasePipe } from '../pipes/title-case/title-case';
+import { UtcDatePipe } from '../pipes/utc-date/utc-date';
 import { LoginProvider } from '../providers/login-provider';
 import { PostCodeApi } from '../providers/postcode-api';
 import { HomeEvents } from '../providers/home-events';
+import { UtcDateConverterDirective } from '../directives/utc-date-converter/utc-date-converter';
 
 
 @NgModule({
@@ -120,10 +122,12 @@ import { HomeEvents } from '../providers/home-events';
     CareHomeSearch,
     CareHomeBankingDetails,
     TitleCasePipe,
+    UtcDatePipe,
     AboutPage,
     HelpPage,
     ContactPage,
-    TermsPage
+    TermsPage,
+    UtcDateConverterDirective
   ],
   imports: [
     BrowserModule,

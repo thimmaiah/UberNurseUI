@@ -65,11 +65,11 @@
       </p>
 
       <p>
-        Start: {{staffingRequest.start_date | date: 'dd/MM/yyyy H:mm'}}
+        Start: {{staffingRequest.start_date | utc_date | date: 'dd/MM/yyyy H:mm'}}
       </p>
        
       <p>
-        End: {{staffingRequest.end_date | date: 'dd/MM/yyyy H:mm'}}
+        End: {{staffingRequest.end_date | utc_date | date: 'dd/MM/yyyy H:mm'}}
       </p>
       
       <ion-badge>Estimated Amount: {{staffingRequest.price | currency : "GBP": true}}</ion-badge> 

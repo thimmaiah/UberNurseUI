@@ -89,7 +89,7 @@
           Start Date:
         </ion-col>
         <ion-col>
-          {{staffingRequest.start_date | date: 'dd/MM/yyyy H:mm'}}
+          {{staffingRequest.start_date | utc_date | date: 'dd/MM/yyyy H:mm'}}
         </ion-col>
       </ion-row>
     </ion-item>
@@ -100,7 +100,7 @@
           End Date:
         </ion-col>
         <ion-col>
-          {{staffingRequest.end_date | date: 'dd/MM/yyyy H:mm'}}
+          {{staffingRequest.end_date | utc_date | date: 'dd/MM/yyyy H:mm'}}
         </ion-col>
       </ion-row>
     </ion-item>

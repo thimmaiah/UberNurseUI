@@ -53,9 +53,9 @@ export class Shift {
     this.shiftApi.getShifts(staffing_request_id, this.response_status).subscribe(
       shifts => {
         this.shifts = shifts;
-        this.shifts.forEach(shift => {
-          this.setUTCDates(shift);          
-        });
+        // this.shifts.forEach(shift => {
+        //   this.setUTCDates(shift);          
+        // });
         console.log("Loaded shifts");
       },
       error => { this.respUtility.showFailure(error); loader.dismiss(); },
