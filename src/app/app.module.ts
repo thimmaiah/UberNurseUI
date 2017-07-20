@@ -84,7 +84,6 @@ import { UtcDatePipe } from '../pipes/utc-date/utc-date';
 import { LoginProvider } from '../providers/login-provider';
 import { PostCodeApi } from '../providers/postcode-api';
 import { HomeEvents } from '../providers/home-events';
-import { UtcDateConverterDirective } from '../directives/utc-date-converter/utc-date-converter';
 
 
 @NgModule({
@@ -126,8 +125,7 @@ import { UtcDateConverterDirective } from '../directives/utc-date-converter/utc-
     AboutPage,
     HelpPage,
     ContactPage,
-    TermsPage,
-    UtcDateConverterDirective
+    TermsPage
   ],
   imports: [
     BrowserModule,
