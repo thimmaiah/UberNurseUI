@@ -39,6 +39,7 @@ export class StaffingRequestDetails {
       this.staffingRequestApi.getStaffingRequestDetails(this.staffingRequest.id).subscribe(
         staffingRequest => {
           this.staffingRequest = staffingRequest;
+          this.setUTCDates();
         },
         error => {
           this.respUtility.showFailure(error);
@@ -46,6 +47,11 @@ export class StaffingRequestDetails {
       );
     }
 
+    this.setUTCDates();
+
+  }
+
+  setUTCDates() {
     // This is required as ios misbehvaes with timezones.
     // We always send the UTC time back
     this.staffingRequest.start_date = moment(this.staffingRequest.start_date).utcOffset(0).toISOString();

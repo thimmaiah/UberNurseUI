@@ -4,6 +4,7 @@ import { ShiftApi } from '../../providers/shift-api';
 import { ResponseUtility } from '../../providers/response-utility';
 import { ShiftDetails } from '../shift/shift-details'
 import { Angular2TokenService } from 'angular2-token';
+import * as moment from 'moment';
 
 @Component({
   selector: 'page-shift',
@@ -52,11 +53,31 @@ export class Shift {
     this.shiftApi.getShifts(staffing_request_id, this.response_status).subscribe(
       shifts => {
         this.shifts = shifts;
+        this.shifts.forEach(shift => {
+          this.setUTCDates(shift);          
+        });
         console.log("Loaded shifts");
       },
       error => { this.respUtility.showFailure(error); loader.dismiss(); },
       () => { loader.dismiss(); }
     );
+  }
+
+  setUTCDates(shift) {
+    // This is required as ios misbehvaes with timezones.
+    // We always send the UTC time back
+    shift.staffing_request.start_date = moment(shift.staffing_request.start_date).utcOffset(0).toISOString();
+    shift.staffing_request.end_date = moment(shift.staffing_request.end_date).utcOffset(0).toISOString();
+
+    if(shift.start_date) {
+      shift.start_date = moment(shift.start_date).utcOffset(0).toISOString();
+    }
+    if(shift.end_date) {
+      shift.end_date = moment(shift.end_date).utcOffset(0).toISOString();
+    }
+
+    console.log("Request: start_date", shift.staffing_request.start_date);
+    console.log("Request: end_date", shift.staffing_request.end_date);
   }
 
   ionViewWillEnter() {
