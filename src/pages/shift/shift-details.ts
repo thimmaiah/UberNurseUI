@@ -8,7 +8,6 @@ import { Rating } from '../rating/rating';
 import { StaffingRequestDetails } from '../staffing-request/staffing-request-details';
 import { ShiftApi } from '../../providers/shift-api';
 import { ResponseUtility } from '../../providers/response-utility';
-import { ActionSheetController, Platform } from 'ionic-angular';
 import * as moment from 'moment';
 
 
@@ -23,9 +22,7 @@ export class ShiftDetails {
   show_end_code = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    public platform: Platform,
     public shiftApi: ShiftApi,
-    public actionSheetCtrl: ActionSheetController,
     public loadingController: LoadingController,
     public respUtility: ResponseUtility) {
 
