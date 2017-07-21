@@ -30,25 +30,9 @@ export class ShiftDetails {
     public respUtility: ResponseUtility) {
 
     this.shift = this.navParams.data;
-    //this.setUTCDates(this.shift);
   }
 
-  setUTCDates(shift) {
-    // This is required as ios misbehvaes with timezones.
-    // We always send the UTC time back
-    shift.staffing_request.start_date = moment(shift.staffing_request.start_date).utcOffset(0).toISOString();
-    shift.staffing_request.end_date = moment(shift.staffing_request.end_date).utcOffset(0).toISOString();
-
-    if(shift.start_date) {
-      shift.start_date = moment(shift.start_date).utcOffset(0).toISOString();
-    }
-    if(shift.end_date) {
-      shift.end_date = moment(shift.end_date).utcOffset(0).toISOString();
-    }
-
-    console.log("Request: start_date", shift.staffing_request.start_date);
-    console.log("Request: end_date", shift.staffing_request.end_date);
-  }
+  
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ShiftsDetails');

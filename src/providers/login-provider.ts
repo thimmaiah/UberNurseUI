@@ -6,6 +6,7 @@ import { Config } from './config';
 import { UserApi } from './user-api';
 import { ResponseUtility } from './response-utility';
 import { Events } from 'ionic-angular';
+import Raven from 'raven-js';
 
 /*
   Generated class for the LoginProvider provider.
@@ -80,7 +81,15 @@ export class LoginProvider {
         this.storage.set("push_token", this.config.props["push_token"]);
         // Save the push token now that the user is logged in
         console.log(this.tokenService.currentUserData);
+        
+        // Publish event - so other listners can get the newly logged in user
         this.events.publish('user:login:success');
+
+        // Send this to sentry - so any errors can be logged with this user data
+        Raven.setUserContext({
+          email: email,
+          id: this.tokenService.currentUserData["id"].toString()
+        })
 
         let user = {
           id: this.tokenService.currentUserData.id,
