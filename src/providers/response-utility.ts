@@ -48,15 +48,15 @@ export class ResponseUtility {
       dismissOnPageChange: false,
       showCloseButton: false
     });
-    
+
     this.toast.present();
     console.log(msg)
   }
 
   showWarning(msg) {
     try {
-        this.toast.dismiss();
-    } catch(e) {}
+      this.toast.dismiss();
+    } catch (e) { }
 
     this.toast = this.toastController.create({
       message: msg,
@@ -108,11 +108,20 @@ export class ResponseUtility {
       buttons: [
         {
           text: 'Yes',
-          handler: () => { deleteEntityFn(entity); }
+          role: 'destructive',
+          handler: () => {
+            deleteEntityFn(entity);
+          }
         },
-        { text: 'No' }
+        {
+          text: 'No',
+          role: 'cancel',
+          handler: () => {
+          }
+        }
       ]
     });
+    
     confirm.present();
   }
 

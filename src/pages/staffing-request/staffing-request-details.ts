@@ -6,7 +6,7 @@ import { ResponseUtility } from '../../providers/response-utility';
 import { Shift } from '../shift/shift';
 import { ShiftForm } from '../shift/shift-form';
 import { Angular2TokenService } from 'angular2-token';
-import { ActionSheetController, Platform } from 'ionic-angular';
+import { ActionSheetController, Platform, ActionSheet } from 'ionic-angular';
 
 import * as _ from 'lodash';
 import * as moment from 'moment';
@@ -20,6 +20,7 @@ export class StaffingRequestDetails {
 
   staffingRequest: any;
   current_user = {};
+  actionSheet: ActionSheet;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -39,7 +40,6 @@ export class StaffingRequestDetails {
       this.staffingRequestApi.getStaffingRequestDetails(this.staffingRequest.id).subscribe(
         staffingRequest => {
           this.staffingRequest = staffingRequest;
-          //this.setUTCDates();
         },
         error => {
           this.respUtility.showFailure(error);
@@ -47,16 +47,6 @@ export class StaffingRequestDetails {
       );
     }
 
-  }
-
-  setUTCDates() {
-    // This is required as ios misbehvaes with timezones.
-    // We always send the UTC time back
-    this.staffingRequest.start_date = moment(this.staffingRequest.start_date).utcOffset(0).toISOString();
-    this.staffingRequest.end_date = moment(this.staffingRequest.end_date).utcOffset(0).toISOString();
-
-    console.log("Request: start_date", this.staffingRequest.start_date);
-    console.log("Request: end_date", this.staffingRequest.end_date);
   }
 
   ionViewDidLoad() {
@@ -76,7 +66,7 @@ export class StaffingRequestDetails {
 
     this.staffingRequestApi.deleteStaffingRequest(staffingRequest).subscribe(
       response => {
-        this.respUtility.showSuccess("Cancelled StaffingRequests");
+        this.respUtility.showSuccess("Cancelled Requests");
         this.navCtrl.pop();
       },
       error => { this.respUtility.showFailure(error); loader.dismiss(); },
@@ -138,7 +128,9 @@ export class StaffingRequestDetails {
           icon: !this.platform.is('ios') ? 'trash' : null,
           handler: () => {
             console.log('Cancel clicked');
-            this.confirmDelete(staffingRequest);
+            setTimeout(() => {
+              this.confirmDelete(staffingRequest);
+            }, 400);            
           }
         }
         // , {
@@ -167,11 +159,11 @@ export class StaffingRequestDetails {
 
     console.log(buttons);
 
-    let actionSheet = this.actionSheetCtrl.create({
+    this.actionSheet = this.actionSheetCtrl.create({
       title: title,
       cssClass: 'action-sheets',
       buttons: buttons
     });
-    actionSheet.present();
+    this.actionSheet.present();
   }
 }
