@@ -8,7 +8,7 @@ import { Transfer } from '@ionic-native/transfer';
 import { FilePath } from '@ionic-native/file-path';
 import { Keyboard } from '@ionic-native/keyboard';
 
-import {SentryErrorHandler} from '../services/sentry-errorhandler'
+import { SentryErrorHandler } from '../services/sentry-errorhandler'
 import { CodePush } from '@ionic-native/code-push';
 
 import { MyApp } from './app.component';
@@ -16,7 +16,7 @@ import { HomePage } from '../pages/home/home';
 import { AdminMenus } from '../pages/home/admin-menus';
 import { TempMenus } from '../pages/home/temp-menus';
 import { Login } from '../pages/login/login';
-import {PasswordReset} from '../pages/login/password-reset'
+import { PasswordReset } from '../pages/login/password-reset'
 
 import { IonicStorageModule } from '@ionic/storage';
 import { Angular2TokenService } from 'angular2-token';
@@ -37,10 +37,10 @@ import { StaffingRequest } from '../pages/staffing-request/staffing-request';
 import { StaffingRequestForm } from '../pages/staffing-request/staffing-request-form';
 import { StaffingRequestDetails } from '../pages/staffing-request/staffing-request-details';
 
-import {AboutPage} from '../pages/static/about';
-import {HelpPage} from '../pages/static/help';
-import {TermsPage} from '../pages/static/terms';
-import {ContactPage} from '../pages/static/contact';
+import { AboutPage } from '../pages/static/about';
+import { HelpPage } from '../pages/static/help';
+import { TermsPage } from '../pages/static/terms';
+import { ContactPage } from '../pages/static/contact';
 
 import { Shift } from '../pages/shift/shift';
 import { ShiftDetails } from '../pages/shift/shift-details';
@@ -49,6 +49,11 @@ import { ShiftForm } from '../pages/shift/shift-form';
 import { Payment } from '../pages/payment/payment';
 import { PaymentDetails } from '../pages/payment/payment-details';
 import { PaymentForm } from '../pages/payment/payment-form';
+
+import { ReferralPage } from '../pages/referral/referral';
+import { ReferralDetails } from '../pages/referral/referral-details';
+import { ReferralForm } from '../pages/referral/referral-form';
+
 
 import { Rating } from '../pages/rating/rating';
 import { RatingDetails } from '../pages/rating/rating-details';
@@ -76,6 +81,7 @@ import { PaymentApi } from '../providers/payment-api'
 import { RatingApi } from '../providers/rating-api'
 import { StaffingRequestApi } from '../providers/staffing-request-api'
 import { ShiftApi } from '../providers/shift-api'
+import { ReferralApi } from '../providers/referral-api'
 
 import { ResponseUtility } from '../providers/response-utility'
 import { Push } from '@ionic-native/push';
@@ -106,6 +112,9 @@ import { HomeEvents } from '../providers/home-events';
     Rating,
     RatingForm,
     RatingDetails,
+    ReferralPage,
+    ReferralDetails,
+    ReferralForm,
     Shift,
     ShiftForm,
     ShiftDetails,
@@ -159,6 +168,9 @@ import { HomeEvents } from '../providers/home-events';
     Shift,
     ShiftForm,
     ShiftDetails,
+    ReferralPage,
+    ReferralDetails,
+    ReferralForm,
     Payment,
     PaymentForm,
     PaymentDetails,
@@ -175,7 +187,7 @@ import { HomeEvents } from '../providers/home-events';
     ContactPage,
     TermsPage
   ],
-  
+
   providers: [
     Push,
     CodePush,
@@ -201,6 +213,7 @@ import { HomeEvents } from '../providers/home-events';
     FilePath,
     Transfer,
     HomeEvents,
+    ReferralApi,
     { provide: ErrorHandler, useClass: SentryErrorHandler }
   ]
 })

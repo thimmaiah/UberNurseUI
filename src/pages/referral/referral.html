@@ -1,0 +1,45 @@
+
+
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Referrals</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-card *ngIf="referrals && referrals.length == 0">
+    <ion-card-title class="center">
+      No Referrals Found
+    </ion-card-title>
+
+    <ion-card-content>
+      <p>
+        Sorry there are no Referrals at this time. 
+      </p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-list>
+    <button ion-item *ngFor="let referral of referrals" (click)=getReferralDetails(referral)>
+       
+      <p>
+        First Name: {{referral.first_name}}
+      </p>
+       
+      <p>
+        Last Name: {{referral.last_name}}
+      </p>
+       
+      <p>
+        Email: {{referral.email}}
+      </p>
+      
+      
+    </button>
+  </ion-list>
+
+</ion-content>

@@ -7,6 +7,7 @@ import { Users } from '../pages/users/users';
 import { UserPic } from '../pages/user-pic/user-pic';
 import { CareHomes } from '../pages/care-homes/care-homes';
 import { Payment } from '../pages/payment/payment'
+import { ReferralPage } from '../pages/referral/referral'
 import { Rating } from '../pages/rating/rating'
 import { Angular2TokenService } from 'angular2-token';
 import { Config } from '../providers/config';
@@ -179,6 +180,7 @@ export class MyApp {
           } else if (this.currentUser.role != "Admin" && this.currentUser.verified) {
             this.pages = [
               { title: 'Past Shifts', component: Shift, params: { response_status: "Closed" } },
+              { title: 'Referrals', component: ReferralPage, params: {} },
               { title: 'About Us', component: AboutPage, params: {} },
               { title: 'Terms & Conditions', component: TermsPage, params: {} },
               { title: 'Contact Us', component: ContactPage, params: {} },
