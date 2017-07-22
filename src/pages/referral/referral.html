@@ -11,15 +11,19 @@
 
 <ion-content padding>
 
-  <ion-card *ngIf="referrals && referrals.length == 0">
+  <ion-card>
     <ion-card-title class="center">
-      No Referrals Found
+      Your Referrals
     </ion-card-title>
 
     <ion-card-content>
-      <p>
+      <p *ngIf="referrals && referrals.length == 0">
         Sorry there are no Referrals at this time. 
       </p>
+      <p>
+        You will be given a referral reward once the person joins our network. 
+      </p>
+      <button ion-button full (click)="newReferral()">Refer A Friend Now</button>
     </ion-card-content>
   </ion-card>
 

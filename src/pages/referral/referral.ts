@@ -3,7 +3,8 @@ import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-an
 import { ReferralApi } from '../../providers/referral-api';
 import { ResponseUtility } from '../../providers/response-utility';
 import { Angular2TokenService } from 'angular2-token';
-import {ReferralDetails} from './referral-details'
+import {ReferralDetails} from './referral-details';
+import { ReferralForm } from '../referral/referral-form';
 
 @IonicPage()
 @Component({
@@ -64,5 +65,11 @@ export class ReferralPage {
     );
 
   }
+
+  newReferral() {
+    let referral = {user_id: this.tokenService.currentAuthData["id"]};
+    this.navCtrl.push(ReferralForm, referral);
+  }
+
 
 }
