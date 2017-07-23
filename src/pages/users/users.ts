@@ -27,7 +27,7 @@ export class Users {
 
   ionViewWillEnter() {
     console.log('ionViewWillEnter Users');
-
+    this.respUtility.trackView("Users");
     let loader = this.loadingController.create({
       content: 'Loading Users..'
     });
@@ -46,6 +46,7 @@ export class Users {
   }
 
   getUserDetails(user) {
+    this.respUtility.trackEvent("User", "Details", "click");
     this.navCtrl.push(UserDetails, user);
   }
 }

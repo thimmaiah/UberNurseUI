@@ -28,7 +28,8 @@ export class Payment {
 
 
   ionViewWillEnter() {
-    console.log('ionViewWillEnter Paymentss');
+    console.log('ionViewWillEnter Payments');
+    this.respUtility.trackView("Payments");
   }
 
   loadPayments(page, infiniteScroll: InfiniteScroll) {
@@ -69,6 +70,7 @@ export class Payment {
   }
 
   getPaymentDetails(payment) {
+    this.respUtility.trackEvent("Payment", "Details", "click");
     let loader = this.loadingController.create({
       content: 'Loading Payments...'
     });

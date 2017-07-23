@@ -53,6 +53,7 @@ export class HomePage implements Menu {
 
 
   logout() {
+    this.respUtility.trackEvent("User", "Logout", "click");
     this.loginProvider.logout();
   }
 

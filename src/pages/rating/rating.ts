@@ -37,7 +37,9 @@ export class Rating {
 
 
   ionViewWillEnter() {
-    console.log('ionViewWillEnter Ratingss');
+    console.log('ionViewWillEnter Ratings');
+    this.respUtility.trackView("Ratings");
+    
     if(this.load_ratings) {
       this.loadRatings(1, null);
     }
@@ -81,6 +83,9 @@ export class Rating {
   }
 
   getRatingDetails(rating) {
+
+    this.respUtility.trackEvent("Rating", "Details", "click");
+
     let loader = this.loadingController.create({
       content: 'Loading Ratings...'
     });

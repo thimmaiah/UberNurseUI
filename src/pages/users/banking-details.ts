@@ -49,11 +49,12 @@ export class BankingDetailsPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad RegisterPage');
+    console.log('ionViewDidLoad BankingDetails');
+    this.respUtility.trackView("BankingDetails");
   }
 
   save() {
-
+    this.respUtility.trackEvent("BankingDetails", "Save", "click");
     this.submitAttempt = true;
     //console.log(this.user);
     let loader = this.loadingController.create({

@@ -31,7 +31,8 @@ export class CareHomeSearch {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad CareHomeSearchPage');
+    console.log('ionViewDidLoad CareHomeSearch');
+    this.respUtility.trackView("CareHomeSearch");
   }
 
   loadCareHomes(searchTerm) {
@@ -54,6 +55,7 @@ export class CareHomeSearch {
 
   onSearch(event) {
     if (this.searchTerm) {
+      this.respUtility.trackEvent("CareHome", "Search", "click");
       this.loadCareHomes(this.searchTerm);
     } else {
       this.cqc_records = null;
@@ -73,6 +75,7 @@ export class CareHomeSearch {
         cqc_location: cqc.cqc_location
       };
     }
+    this.respUtility.trackEvent("CareHome", "New", "click");
     this.navCtrl.push(CareHomeForm, care_home);
   }
 }

@@ -47,7 +47,8 @@ export class StaffingRequest {
 
 
   ionViewWillEnter() {
-    console.log('ionViewWillEnter StaffingRequestss');
+    console.log('ionViewWillEnter StaffingRequests');
+    this.respUtility.trackView("StaffingRequests");
 
     let loader = this.loadingController.create({
       content: 'Loading Requests...'
@@ -73,6 +74,7 @@ export class StaffingRequest {
   }
 
   getStaffingRequestDetails(staffingRequest) {
+    this.respUtility.trackEvent("StaffingRequest", "Details", "click");
     let loader = this.loadingController.create({
       content: 'Loading Staffing Requests...'
     });

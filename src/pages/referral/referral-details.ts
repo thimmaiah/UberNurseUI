@@ -25,15 +25,17 @@ export class ReferralDetails {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ReferralsDetails');
+    console.log('ionViewDidLoad ReferralDetails');
+    this.respUtility.trackView("ReferralDetails");
   }
 
   editReferral(referral) {
+    this.respUtility.trackEvent("Referral", "Edit", "click");
     this.navCtrl.push(ReferralForm, referral);
   }
 
   deleteReferral(referral) {
-
+    this.respUtility.trackEvent("Referral", "Delete", "click");
     let loader = this.loadingController.create({
       content: 'Deleting ...'
     });

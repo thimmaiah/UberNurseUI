@@ -33,25 +33,30 @@ export class ShiftDetails {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ShiftsDetails');
+    this.respUtility.trackView("ShiftDetails");
   }
 
   editShift(shift) {
+    this.respUtility.trackEvent("Shift", "Edit", "click");
     this.navCtrl.push(ShiftForm, shift);
   }
 
   acceptResponse(shift) {
+    this.respUtility.trackEvent("Shift", "Accept", "click");
     shift.accepted = true;
     shift.response_status = "Accepted"
     this.updateResponse(shift);
   }
   
   rejectResponse(shift) {
+    this.respUtility.trackEvent("Shift", "Reject", "click");
     shift.accepted = false;
     shift.response_status = "Rejected"
     this.updateResponse(shift);
   }
 
   set_end_code() {
+    this.respUtility.trackEvent("Shift", "EndCode", "click");
     this.show_end_code = true;
     let controller = this;
     setTimeout(function() { 
@@ -80,6 +85,7 @@ export class ShiftDetails {
 
   deleteShift(shift) {
 
+    this.respUtility.trackEvent("Shift", "Delete", "click");
     let loader = this.loadingController.create({
       content: 'Deleting Shift...'
     });
@@ -101,29 +107,21 @@ export class ShiftDetails {
   }
 
   showRequest(shift) {
+    this.respUtility.trackEvent("Shift", "ShowRequest", "click");
     let staffingRequest = {}
     staffingRequest["id"] = shift["staffing_request_id"];
     this.navCtrl.push(StaffingRequestDetails, staffingRequest);
   }
 
   viewPayment(shift) {
+    this.respUtility.trackEvent("Shift", "ViewPayment", "click");
     console.log('View Payment clicked');
     this.navCtrl.push(PaymentDetails, this.shift.payment);
   }
 
-  makePayment(shift) {
-    let payment = {
-      staffing_request_id: shift.staffing_request_id,
-      user_id: shift.user_id,
-      shift_id: shift.id,
-      amount: shift.price,
-      pricing_audit: shift.pricing_audit,
-      notes: "Thank you for your service."
-    }
-    this.navCtrl.push(PaymentForm, payment);
-  }
 
   rate_care_giver(shift) {
+    this.respUtility.trackEvent("Shift", "RateCareGiver", "click");
     let rating = {
       staffing_request_id: shift.staffing_request_id,
       rated_entity_id: shift.user_id,
@@ -136,6 +134,7 @@ export class ShiftDetails {
   }
 
   rate_care_home(shift) {
+    this.respUtility.trackEvent("Shift", "RateCareHome", "click");
     let rating = {
       staffing_request_id: shift.staffing_request_id,
       rated_entity_id: shift.care_home_id,
@@ -148,6 +147,7 @@ export class ShiftDetails {
   }
 
   viewRatings(shift) {
+    this.respUtility.trackEvent("Shift", "ViewRating", "click");
     console.log('View Rating clicked');
     this.navCtrl.push(Rating, { "ratings": shift.ratings, "load_ratings": false });
   }

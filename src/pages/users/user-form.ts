@@ -123,11 +123,12 @@ export class UserForm {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad UserForm');
+    this.respUtility.trackView("UserForm");
   }
 
 
   save() {
-
+    this.respUtility.trackEvent("User", "Save", "click");
     this.submitAttempt = true;
     //console.log(this.user);
     let loader = this.loadingController.create({
@@ -160,6 +161,7 @@ export class UserForm {
   }
 
   register(user, loader) {
+    this.respUtility.trackEvent("User", "Register", "click");
     this.tokenService.registerAccount(user).subscribe(
       res => {
         console.log(res);

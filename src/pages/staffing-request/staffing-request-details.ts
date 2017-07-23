@@ -51,13 +51,16 @@ export class StaffingRequestDetails {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad StaffingRequestsDetails');
+    this.respUtility.trackView("StaffingRequestDetails");
   }
 
   editStaffingRequest(staffingRequest) {
+    this.respUtility.trackEvent("StaffingRequest", "Edit", "click");
     this.navCtrl.push(StaffingRequestForm, staffingRequest);
   }
 
   deleteStaffingRequest(staffingRequest) {
+    this.respUtility.trackEvent("StaffingRequest", "Delete", "click");
     let loader = this.loadingController.create({
       content: 'Cancelling Request...'
     });
@@ -75,6 +78,7 @@ export class StaffingRequestDetails {
   }
 
   updateStaffingRequest(staffingRequest) {
+    this.respUtility.trackEvent("StaffingRequest", "Update", "click");
     let loader = this.loadingController.create({
       content: 'Updating Request...'
     });
@@ -91,6 +95,7 @@ export class StaffingRequestDetails {
 
 
   showResponses(staffing_request) {
+    this.respUtility.trackEvent("StaffingRequest", "ShowResponses", "click");
     this.navCtrl.push(Shift, { staffing_request: staffing_request });
   }
 
@@ -98,12 +103,6 @@ export class StaffingRequestDetails {
     this.respUtility.confirmDelete(this.deleteStaffingRequest.bind(this), staffingRequest, "Cancel");
   }
 
-  sendResponse(staffing_request) {
-    let shift = {};
-    shift["staffing_request_id"] = staffing_request.id;
-    shift["care_home_id"] = staffing_request.care_home_id;
-    this.navCtrl.push(ShiftForm, shift);
-  }
 
   hasUserResponded() {
     let current_user = this.tokenService.currentUserData;

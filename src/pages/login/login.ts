@@ -50,17 +50,21 @@ export class Login {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad Login');
+    this.respUtility.trackView("Login");
   }
 
   login() {
+    this.respUtility.trackEvent("User", "Login", "click");
     this.loginProvider.login(this.email, this.password, this.navCtrl);
   }
 
   register() {
+    this.respUtility.trackEvent("User", "Register", "click");
     this.navCtrl.push(RegisterPage);
   }
 
   resendConfirmationEmail() {
+    this.respUtility.trackEvent("User", "ResendConfirmation", "click");
     if (this.email != null) {
       this.userApi.resendConfirmationEmail(this.email).subscribe(
         res => {
@@ -84,6 +88,7 @@ export class Login {
   }
 
   forgotPassword() {
+    this.respUtility.trackEvent("User", "ForgotPassword", "click");
     if (this.email != null) {
       this.tokenService.resetPassword({ email: this.email }).subscribe(
         res => {

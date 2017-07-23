@@ -44,11 +44,13 @@ export class ReferralPage {
 
 
   ionViewWillEnter() {
-    console.log('ionViewWillEnter Referralss');
+    console.log('ionViewWillEnter Referrals');
+    this.respUtility.trackView("Referrals");
     this.loadAllResponses();
   }
 
   getReferralDetails(referral) {
+    this.respUtility.trackEvent("Referral", "Details", "click");
     let loader = this.loadingController.create({
       content: 'Loading Responses...'
     });

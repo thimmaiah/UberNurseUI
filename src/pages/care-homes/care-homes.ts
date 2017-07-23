@@ -8,12 +8,6 @@ import { CareHomeSearch } from '../care-homes/care-home-search';
 import { Angular2TokenService } from 'angular2-token';
 
 
-/**
- * Generated class for the CareHomes page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
 @IonicPage()
 @Component({
   selector: 'page-CareHome',
@@ -42,6 +36,7 @@ export class CareHomes {
 
   ionViewWillEnter() {
     console.log('ionViewWillEnter CareHomes');
+    this.respUtility.trackView("CareHomes");
     this.loadCareHomes("", 1, null);
   }
 
@@ -77,6 +72,7 @@ export class CareHomes {
   }
 
   getCareHomeDetails(care_home) {
+    this.respUtility.trackEvent("CareHome", "Details", "click");
     let loader = this.loadingController.create({
       content: 'Loading CareHomes...'
     });
@@ -104,11 +100,13 @@ export class CareHomes {
 
   newCareHome() {
     let care_home = {};
+    this.respUtility.trackEvent("CareHome", "New", "click");
     this.navCtrl.push(CareHomeSearch);
   }
 
   onSearch(event) {
     this.care_homes = null;
+    this.respUtility.trackEvent("CareHome", "Search", "click");
     this.loadCareHomes(this.searchTerm, 1, null);
   }
 

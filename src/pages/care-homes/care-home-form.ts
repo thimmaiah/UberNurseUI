@@ -50,10 +50,12 @@ export class CareHomeForm {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CareHomesForm');
+    this.respUtility.trackView("CareHomeForm");
   }
 
 
   save() {
+    this.respUtility.trackEvent("CareHome", "Save", "click");
     this.submitAttempt = true;
     //console.log(this.care_home);
     let loader = this.loadingController.create({

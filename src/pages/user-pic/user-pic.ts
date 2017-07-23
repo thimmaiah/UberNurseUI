@@ -49,10 +49,13 @@ export class UserPic {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad UserPic');
+    this.respUtility.trackView("UserPic");
   }
 
   public takePicture(sourceType) {
     // Create options for the Camera Dialog
+    this.respUtility.trackEvent("UserPic", "TakePic", "click");
+    
 
     let options: CameraOptions = {
       quality: 100,
@@ -146,6 +149,8 @@ export class UserPic {
 
   noDBSFile() {
 
+    this.respUtility.trackEvent("UserPic", "NoDBS", "click");
+    
     let loading = this.loadingCtrl.create({
       content: 'Updating...',
     });
@@ -177,6 +182,8 @@ export class UserPic {
   }
 
   public uploadImage() {
+    this.respUtility.trackEvent("UserPic", "Upload", "click");
+    
     // Destination URL
     let api_url = this.config.props["API_URL"]
     let url = `${api_url}/user_docs`;

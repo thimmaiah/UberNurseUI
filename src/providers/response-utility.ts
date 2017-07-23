@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AlertController, ToastController, ModalController, Toast } from 'ionic-angular';
+import { GoogleAnalytics } from '@ionic-native/google-analytics';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 
@@ -10,7 +11,9 @@ export class ResponseUtility {
 
   toast: Toast;
 
-  constructor(public http: Http,
+  constructor(
+    private ga: GoogleAnalytics,
+    public http: Http,
     public alertController: AlertController,
     public modalController: ModalController,
     public toastController: ToastController) {
@@ -149,5 +152,17 @@ export class ResponseUtility {
       ]
     });
     confirm.present();
+  }
+
+  trackView(view) {
+    this.ga.trackView(view);
+  }
+
+  trackEvent(category, action, label, value=null, newSession=false) {
+    this.ga.trackEvent(category, action, label, value, newSession)
+  }
+
+  trackMetric(key, value) {
+    this.ga.trackMetric(key, value);
   }
 }

@@ -25,15 +25,17 @@ export class RatingDetails {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad RatingsDetails');
+    console.log('ionViewDidLoad RatingDetails');
+    this.respUtility.trackView("RatingDetails");
   }
 
   editRating(rating) {
+    this.respUtility.trackEvent("Rating", "Edit", "click");
     this.navCtrl.push(RatingForm, rating);
   }
 
   deleteRating(rating) {
-
+    this.respUtility.trackEvent("Rating", "Delete", "click");
     let loader = this.loadingController.create({
       content: 'Deleting ...'
     });

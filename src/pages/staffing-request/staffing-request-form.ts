@@ -67,6 +67,8 @@ export class StaffingRequestForm {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad StaffingRequestsForm');
+    this.respUtility.trackView("StaffingRequestForm");
+
     if (this.staffingRequest["start_date"]) {
       // Need to convert back to local time
       this.staffingRequest["start_date"] = moment(this.staffingRequest["start_date"]).format();
@@ -92,6 +94,7 @@ export class StaffingRequestForm {
 
 
   save() {
+    this.respUtility.trackEvent("StaffingRequest", "Save", "click");
     this.submitAttempt = true;
 
     if( moment(this.staffingRequest["start_date"]).add(4, 'hours') > moment(this.staffingRequest["end_date"]) ) {
@@ -144,6 +147,7 @@ export class StaffingRequestForm {
   }
 
   price(staffingRequest) {
+    this.respUtility.trackEvent("StaffingRequest", "Price", "click");
     //console.log(this.staffingRequest);
     let loader = this.loadingController.create({
       content: 'Getting Estimated Price ...'

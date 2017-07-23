@@ -41,7 +41,8 @@ export class ShiftForm {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ShiftsForm');
+    console.log('ionViewDidLoad ShiftForm');
+    this.respUtility.trackView("ShiftForm");
   }
 
   isAcceptedResponse() {
@@ -79,6 +80,7 @@ export class ShiftForm {
   }
 
   save() {
+    
     this.submitAttempt = true;
     //console.log(this.shift);
     let loader = this.loadingController.create({
@@ -98,10 +100,12 @@ export class ShiftForm {
         }).subscribe(
           shift => {
             if (this.shift["end_code"] != null) {
+              this.respUtility.trackEvent("Shift", "Ended", "click");
               this.respUtility.showSuccess('Code Accepted.Your shift has ended.');
               this.navCtrl.pop();
               this.rate_care_home(this.shift);
             } else {
+              this.respUtility.trackEvent("Shift", "Started", "click");
               this.respUtility.showSuccess('Code Accepted.Your shift has started.');
               this.navCtrl.pop();
             }

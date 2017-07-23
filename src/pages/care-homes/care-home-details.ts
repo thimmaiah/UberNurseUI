@@ -29,14 +29,17 @@ export class CareHomeDetails {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad CareHomesDetails');
+    console.log('ionViewDidLoad CareHomeDetails');
+    this.respUtility.trackView("CareHomeDetails");
   }
 
   editCareHome(care_home) {
+    this.respUtility.trackEvent("CareHome", "Edit", "click");
     this.navCtrl.push(CareHomeForm, care_home);
   }
 
   deleteCareHome(care_home) {
+    this.respUtility.trackEvent("CareHome", "Delete", "click");    
     this.care_homeApi.deleteCareHome(care_home).subscribe(
       response => {
         this.respUtility.showSuccess("Deleted CareHomes");

@@ -37,11 +37,13 @@ export class RatingForm {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad RatingsForm');
+    console.log('ionViewDidLoad RatingForm');
+    this.respUtility.trackView("RatingForm");
   }
 
 
   save() {
+    this.respUtility.trackEvent("Rating", "Save", "click");
     this.submitAttempt = true;
     //console.log(this.rating);
     let loader = this.loadingController.create({

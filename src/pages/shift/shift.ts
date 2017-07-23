@@ -62,11 +62,13 @@ export class Shift {
 
 
   ionViewWillEnter() {
-    console.log('ionViewWillEnter Shiftss');
+    console.log('ionViewWillEnter Shifts');
+    this.respUtility.trackView("Shifts");
     this.loadAllResponses();
   }
 
   getShiftDetails(shift) {
+    this.respUtility.trackEvent("Shift", "Details", "click");
     let loader = this.loadingController.create({
       content: 'Loading Responses...'
     });

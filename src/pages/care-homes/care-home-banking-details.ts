@@ -49,11 +49,13 @@ export class CareHomeBankingDetails {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad CareHomeBankingDetailsPage');
+    console.log('ionViewDidLoad CareHomeBankingDetails');
+    this.respUtility.trackView("CareHomeBankingDetails");
   }
 
   save() {
 
+    this.respUtility.trackEvent("User", "CareHomeBankingDetails", "save");
     this.submitAttempt = true;
     //console.log(this.care_home);
     let loader = this.loadingController.create({

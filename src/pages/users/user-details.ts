@@ -35,11 +35,13 @@ export class UserDetails extends DocLinks {
 
   ionViewWillEnter() {
     console.log('ionViewWillEnter UserDetails');
+    this.respUtility.trackView("UserDetails");
     // Always reload the user from the server for a fresh copy
     this.loadUser();
   }
 
   editUser(user) {
+    this.respUtility.trackEvent("User", "Edit", "click");
     this.navCtrl.push(UserForm, user);
   }
 
@@ -64,7 +66,7 @@ export class UserDetails extends DocLinks {
   }
 
   deactivateUser(user) {
-
+    this.respUtility.trackEvent("User", "Deactivate", "click");
     let loader = this.loadingController.create({
       content: 'Deactivating User...'
     });
@@ -90,14 +92,17 @@ export class UserDetails extends DocLinks {
   }
 
   editUserBankingDetails(user) {
+    this.respUtility.trackEvent("User", "EditBankingDetails", "click");
     this.navCtrl.push(BankingDetailsPage, user);
   }
 
   editCareHomeBankingDetails(user) {
+    this.respUtility.trackEvent("User", "EditCareHomeBankingDetails", "click");
     this.navCtrl.push(CareHomeBankingDetails, user.care_home);
   }
 
   editCareHome(user) {
+    this.respUtility.trackEvent("User", "EditCareHome", "click");
     this.navCtrl.push(CareHomeForm, user.care_home);
   }
 

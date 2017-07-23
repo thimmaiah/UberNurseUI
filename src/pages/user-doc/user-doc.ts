@@ -32,13 +32,17 @@ export class UserDoc {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad UserDoc');
+    this.respUtility.trackView("UserDoc");
   }
 
   uploadDocument(document) {
+    this.respUtility.trackEvent("UserDoc", "Upload", "click");
     this.navCtrl.push(UserPic, document);
   }
 
   deleteDocument(document) {
+    
+    this.respUtility.trackEvent("UserDoc", "Delete", "click");
     let loader = this.loadingController.create({
       content: 'Deleting ...'
     });
@@ -64,11 +68,13 @@ export class UserDoc {
 
 
   markVerified(document) {
+    this.respUtility.trackEvent("UserDoc", "Verified", "click");    
     document.verified = true;
     this.save(document);
   }
 
   markRejected(document) {
+    this.respUtility.trackEvent("UserDoc", "Rejected", "click");
     document.verified = false;
     this.save(document);
   }

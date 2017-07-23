@@ -71,7 +71,9 @@ export class MyApp {
     this.ga.startTrackerWithId(this.config.props["GA_ID"])
       .then(() => {
         console.log('Google analytics is ready now');
-        this.ga.trackView('test');
+        this.ga.debugMode();
+        this.ga.setAllowIDFACollection(true);
+        this.ga.trackView('Main');
         // Tracker is ready
         // You can now track pages or set additional information such as AppVersion or UserId
       })

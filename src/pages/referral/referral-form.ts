@@ -39,11 +39,13 @@ export class ReferralForm {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ReferralsForm');
+    console.log('ionViewDidLoad ReferralForm');
+    this.respUtility.trackView("ReferralForm");
   }
 
 
   save() {
+    this.respUtility.trackEvent("Referral", "Save", "click");
     this.submitAttempt = true;
     //console.log(this.referral);
     let loader = this.loadingController.create({

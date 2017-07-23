@@ -37,10 +37,12 @@ export class PhoneVerificationPage {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad RegisterPage');
+    console.log('ionViewDidLoad PhoneVerification');
+    this.respUtility.trackView("PhoneVerification");
   }
 
   send_verification_code() {
+    this.respUtility.trackEvent("PhoneVerification", "SendCode", "click");
     this.verification_code_sent = true;
     let loader = this.loadingController.create({
       content: 'Sending Verification Code ...'
@@ -65,7 +67,7 @@ export class PhoneVerificationPage {
 
 
   verifiy_code() {
-
+    this.respUtility.trackEvent("PhoneVerification", "VerifyCode", "click");
     let loader = this.loadingController.create({
       content: 'Verifiying Code ...'
     });
