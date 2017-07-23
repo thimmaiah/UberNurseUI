@@ -33,6 +33,8 @@ import { TermsPage } from '../pages/static/terms';
 import { ContactPage } from '../pages/static/contact';
 
 import { CodePush, SyncStatus, InstallMode } from '@ionic-native/code-push';
+import { GoogleAnalytics } from '@ionic-native/google-analytics';
+
 
 @Component({
   templateUrl: 'app.html',
@@ -46,6 +48,7 @@ export class MyApp {
   pages: Array<{ title: string, component: any, params: any }> = [];
 
   constructor(
+    private ga: GoogleAnalytics,
     private codePush: CodePush,
     public platform: Platform,
     public statusBar: StatusBar,
@@ -62,6 +65,17 @@ export class MyApp {
     this.initializeApp();
 
 
+  }
+
+  initGA() {
+    this.ga.startTrackerWithId(this.config.props["GA_ID"])
+      .then(() => {
+        console.log('Google analytics is ready now');
+        this.ga.trackView('test');
+        // Tracker is ready
+        // You can now track pages or set additional information such as AppVersion or UserId
+      })
+      .catch(e => console.log('Error starting GoogleAnalytics', e));
   }
 
   initPushNotification() {
@@ -145,6 +159,8 @@ export class MyApp {
 
         this.syncCodePush();
 
+        this.initGA();
+
         // Okay, so the platform is ready and our plugins are available.
         // Here you can do any higher level native things you might need.
         this.statusBar.styleDefault();
@@ -162,6 +178,7 @@ export class MyApp {
           console.log("AppComponent: user:login:success");
           this.currentUser = this.tokenService.currentUserData;
 
+          this.ga.setUserId(this.currentUser["id"]); // Set the user ID using signed-in user_id.
 
           if (this.currentUser.role == "Admin" &&
             this.currentUser.care_home != null &&
@@ -272,43 +289,43 @@ export class MyApp {
       const onSyncStatusChange = (syncStatus) => {
         let messageText = null;
 
-          switch (syncStatus) {
-            case SyncStatus.IN_PROGRESS:
-              messageText = 'An update is in progress ..';
-              break;
+        switch (syncStatus) {
+          case SyncStatus.IN_PROGRESS:
+            messageText = 'An update is in progress ..';
+            break;
 
-            case SyncStatus.CHECKING_FOR_UPDATE:
-              messageText = 'Checking for update ..';
-              break;
+          case SyncStatus.CHECKING_FOR_UPDATE:
+            messageText = 'Checking for update ..';
+            break;
 
-            case SyncStatus.DOWNLOADING_PACKAGE:
-              messageText = 'Downloading package ..';
-              break;
+          case SyncStatus.DOWNLOADING_PACKAGE:
+            messageText = 'Downloading package ..';
+            break;
 
-            case SyncStatus.INSTALLING_UPDATE:
-              messageText = 'Installing update ..';
-              break;
+          case SyncStatus.INSTALLING_UPDATE:
+            messageText = 'Installing update ..';
+            break;
 
-            case SyncStatus.UPDATE_INSTALLED:
-              messageText = 'Installed the update ..';
-              break;
+          case SyncStatus.UPDATE_INSTALLED:
+            messageText = 'Installed the update ..';
+            break;
 
-            case SyncStatus.ERROR:
-              messageText = 'An error occurred :( ...';
-              break;
+          case SyncStatus.ERROR:
+            messageText = 'An error occurred :( ...';
+            break;
 
-            default:
-              //messageText = 'Update done.';
-              break;
-
-          }
-          if (messageText) {
-            this.respUtility.showSuccess(messageText);
-          }
+          default:
+            //messageText = 'Update done.';
+            break;
 
         }
-  
-      this.codePush.sync({ updateDialog: updateDialogOptions,installMode: InstallMode.IMMEDIATE }, downloadProgress).subscribe(
+        if (messageText) {
+          this.respUtility.showSuccess(messageText);
+        }
+
+      }
+
+      this.codePush.sync({ updateDialog: updateDialogOptions, installMode: InstallMode.IMMEDIATE }, downloadProgress).subscribe(
         (syncStatus) => {
           console.log(syncStatus);
           onSyncStatusChange(syncStatus);

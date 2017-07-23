@@ -7,20 +7,23 @@ export class Config {
   private dev = {
     API_URL: "http://192.168.0.8:3000",
     //API_URL: "http://localhost:3000",
-    ENV: "dev"
+    ENV: "dev",
+    GA_ID: 'UA-103042137-1'
   };
 
   private test = {
     API_URL: "http://localhost:3000",
-    ENV: "test"
+    ENV: "test",
+    GA_ID: 'UA-103042137-1'
   };
 
   private prod = {
     API_URL: "http://dev.connuct.co.uk",
-    ENV: "prod"
+    ENV: "prod",
+    GA_ID: 'UA-103042137-1'
   };
   
-  public props = this.test;
+  public props = this.prod;
 
   constructor() {
     

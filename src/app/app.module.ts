@@ -90,6 +90,7 @@ import { UtcDatePipe } from '../pipes/utc-date/utc-date';
 import { LoginProvider } from '../providers/login-provider';
 import { PostCodeApi } from '../providers/postcode-api';
 import { HomeEvents } from '../providers/home-events';
+import { GoogleAnalytics } from '@ionic-native/google-analytics';
 
 
 @NgModule({
@@ -191,6 +192,7 @@ import { HomeEvents } from '../providers/home-events';
   providers: [
     Push,
     CodePush,
+    GoogleAnalytics,
     Config,
     LoginProvider,
     UserApi,
