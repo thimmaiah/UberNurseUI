@@ -71,7 +71,7 @@ export class MyApp {
     this.ga.startTrackerWithId(this.config.props["GA_ID"])
       .then(() => {
         console.log('Google analytics is ready now');
-        this.ga.debugMode();
+        //this.ga.debugMode();
         this.ga.setAllowIDFACollection(true);
         this.ga.trackView('Main');
         // Tracker is ready
