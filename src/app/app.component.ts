@@ -307,7 +307,8 @@ export class MyApp {
             break;
 
           case SyncStatus.INSTALLING_UPDATE:
-            messageText = 'Installing update ..';
+            this.splashScreen.show();
+            messageText = 'Installing update. Please wait ..';
             break;
 
           case SyncStatus.UPDATE_INSTALLED:
