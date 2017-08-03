@@ -31,11 +31,11 @@
 
       <ion-item>
         <ion-label floating>Phone</ion-label>
-        <ion-input name="phone" formControlName="phone" type="text" [(ngModel)]="care_home.phone" [class.invalid]="!slideOneForm.controls.phone.valid && (slideOneForm.controls.phone.dirty || submitAttempt)"></ion-input>
+        <ion-input name="phone" formControlName="phone" type="number" [(ngModel)]="care_home.phone" [class.invalid]="!slideOneForm.controls.phone.valid && (slideOneForm.controls.phone.dirty || submitAttempt)"></ion-input>
       </ion-item>
 
       <ion-item *ngIf="!slideOneForm.controls.phone.valid  && (slideOneForm.controls.phone.dirty || submitAttempt)">
-        <p class="error-text">Please enter a valid phone.</p>
+        <p class="error-text">Enter a valid 11 digit number starting with 0.</p>
       </ion-item>
 
 

@@ -81,11 +81,11 @@
 
       <ion-item>
         <ion-label floating>Phone</ion-label>
-        <ion-input name="phone" formControlName="phone" type="text" [(ngModel)]="user.phone" [class.invalid]="!slideOneForm.controls.phone.valid && (slideOneForm.controls.email.dirty || submitAttempt)"></ion-input>
+        <ion-input name="phone" formControlName="phone" type="number" [(ngModel)]="user.phone" [class.invalid]="!slideOneForm.controls.phone.valid && (slideOneForm.controls.email.dirty || submitAttempt)"></ion-input>
       </ion-item>
 
       <ion-item *ngIf="!slideOneForm.controls.phone.valid  && (slideOneForm.controls.phone.dirty || submitAttempt)">
-        <p class="error-text">Please enter a valid 10 digit phone number.</p>
+        <p class="error-text">Enter a valid 11 digit phone number starting with 0.</p>
       </ion-item>
 
 
@@ -108,7 +108,7 @@
 
         <ion-item>
           <ion-label floating>Pref Commute Distance (in Miles)</ion-label>
-          <ion-input name="pref_commute_distance" formControlName="pref_commute_distance" type="pref_commute_distance" [(ngModel)]="user.pref_commute_distance"
+          <ion-input name="pref_commute_distance" formControlName="pref_commute_distance" type="number" [(ngModel)]="user.pref_commute_distance"
             [class.invalid]="!slideOneForm.controls.pref_commute_distance.valid && (slideOneForm.controls.pref_commute_distance.dirty || submitAttempt)"></ion-input>
         </ion-item>
 
@@ -121,7 +121,7 @@
       <div text-wrap>
         <ion-item>
           <ion-checkbox id="accept_terms" [(ngModel)]="user.accept_terms" 
-          formControlName="accept_terms" type="accept_terms" 
+          formControlName="accept_terms" type="text" 
           (ionChange)="onTermsChecked($event)"></ion-checkbox>
           <ion-label text-warp>I have read and agree to the Terms & Conditions</ion-label>
         </ion-item>

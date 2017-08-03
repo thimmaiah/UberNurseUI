@@ -159,6 +159,8 @@ export class MyApp {
     this.platform.ready().then(
       () => {
 
+        this.hideSplashScreen();
+
         this.syncCodePush();
 
         this.initGA();
@@ -337,6 +339,14 @@ export class MyApp {
     } else {
       // Cordova not accessible, add mock data if necessary
       console.log("Not Initializing CodePush, load app on device");
+    }
+  }
+
+  hideSplashScreen() {
+    if (this.splashScreen) {
+      setTimeout(() => {
+        this.splashScreen.hide();
+      }, 100);
     }
   }
 }
