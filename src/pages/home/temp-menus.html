@@ -5,7 +5,7 @@
         
                 <ion-icon name="checkbox" item-left color="secondary"></ion-icon>
                 {{doc.doc_type}}
-                <p>
+                <p text-wrap>
                   Uploaded: {{doc.created_at | date : 'dd/MM/yyyy' }}
                 </p>
 
@@ -19,7 +19,7 @@
               <button ion-item *ngFor="let doc of pendingDocs(currentUser)" (click)="uploadNow(doc)">
                 <ion-icon name="cloud-upload" item-left color="primary"></ion-icon>
                 {{doc.doc_type}}
-                <p>
+                <p text-wrap>
                   Upload document now.
                 </p>   
               </button>
@@ -28,10 +28,10 @@
                 <ion-icon [name]="currentUser.phone_verified != true ? 'call' : 'checkbox'" item-left item-left 
                   [color]="currentUser.phone_verified != true ? 'primary' : 'secondary'"></ion-icon>
                 Verify Mobile Number
-                <p *ngIf="currentUser.phone_verified != true">
+                <p text-wrap *ngIf="currentUser.phone_verified != true">
                   Verify your mobile number now.
                 </p>
-                <p *ngIf="currentUser.phone_verified == true">
+                <p text-wrap *ngIf="currentUser.phone_verified == true">
                   Thank you for verifying your number.
                 </p>
               </button>
@@ -40,10 +40,10 @@
                 <ion-icon [name]="currentUser.bank_account == null ? 'cash' : 'checkbox'" item-left item-left 
                 [color]="currentUser.bank_account == null ? 'primary' : 'secondary'"></ion-icon>
                 Banking Information
-                <p *ngIf="currentUser.bank_account == null">
+                <p text-wrap *ngIf="currentUser.bank_account == null">
                   Add your banking details to enable payments to you.
                 </p>
-                <p *ngIf="currentUser.bank_account != null">
+                <p text-wrap *ngIf="currentUser.bank_account != null">
                   Thank you for your banking details.
                 </p>
               </button>
@@ -55,7 +55,7 @@
               <button ion-item (click)="show_shifts('Pending')">
                 <ion-icon name="warning" item-left item-left color="danger"></ion-icon>
                 New Shifts Available
-                <p>
+                <p text-wrap>
                   New shifts pending your confirmation.
                 </p>
               </button>
@@ -63,7 +63,7 @@
               <button ion-item (click)="show_shifts('Accepted')">
                 <ion-icon name="list" item-left item-left color="primary"></ion-icon>
                 Confirmed Shifts
-                <p>
+                <p text-wrap>
                   Shifts confirmed by you.
                 </p>
               </button>

@@ -77,7 +77,9 @@
           *ngIf="shift.response_status" 
           item-right [color]="shift.response_status == 'Accepted' ? 'secondary' : 'danger'">
           Status: {{shift.response_status}}
-        </ion-badge> 
+        </ion-badge>
+      </p>
+      <p> 
         <ion-badge
           *ngIf="shift.payment_status" 
           item-right [color]="shift.payment_status == 'Paid' ? 'secondary' : 'danger'">

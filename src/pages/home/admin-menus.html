@@ -5,7 +5,7 @@
               <button ion-item *ngIf="currentUser.care_home_id == null" (click)="register_care_home()">
                 <ion-icon name="home" item-left color="primary"></ion-icon>
                 Register Care Home 
-                <p>
+                <p text-wrap>
                   Register your care home now.
                 </p>
               </button>
@@ -15,7 +15,7 @@
                 <ion-icon [name]="currentUser.phone_verified != true ? 'call' : 'checkbox'" item-left item-left 
                 [color]="currentUser.phone_verified != true ? 'primary' : 'secondary'"></ion-icon>
                 Verify Mobile Number
-                <p>
+                <p text-wrap>
                   Verify your mobile number now.
                 </p>
               </button>
@@ -24,7 +24,7 @@
                 <ion-icon [name]="currentUser.care_home_id != null && currentUser.care_home.bank_account == null ? 'cash' : 'checkbox'" item-left item-left 
                 [color]="currentUser.care_home_id != null && currentUser.care_home.bank_account == null ? 'primary' : 'secondary'"></ion-icon>
                 Banking Information
-                <p>
+                <p text-wrap>
                   Add your banking details.
                 </p>
               </button>
@@ -35,7 +35,7 @@
               <button ion-item (click)="new_staffing_request()">
                 <ion-icon name="add-circle" item-left color="primary"></ion-icon>
                 New Staffing Requests
-                <p>
+                <p text-wrap>
                   Create a request for temp staff.
                 </p>
               </button>
@@ -43,7 +43,7 @@
               <button ion-item (click)="show_staffing_requests()">
                 <ion-icon name="construct" item-left color="primary"></ion-icon>
                 View Staffing Requests
-                <p>
+                <p text-wrap>
                   Staffing Request you have placed.
                 </p>
               </button>
@@ -51,7 +51,7 @@
               <button ion-item (click)="show_shifts('Accepted')">
                 <ion-icon name="list" item-left item-left color="primary"></ion-icon>
                 Confirmed Shifts
-                <p>
+                <p text-wrap>
                   Shifts for your Care Home.
                 </p>
               </button>
@@ -63,7 +63,7 @@
               <button ion-item (click)="contact()">
                 <ion-icon name="warning" item-left item-left color="danger"></ion-icon>
                 Pending Verification
-                <p>
+                <p text-wrap>
                   Verification is pending from our side. Please be patient.
                 </p>
               </button>
