@@ -42,7 +42,6 @@
         "cordova-plugin-camera": "^2.1.1",
         "cordova-plugin-code-push": "~1.9.5-beta",
         "cordova-plugin-compat": "^1.1.0",
-        "cordova-plugin-console": "^1.0.5",
         "cordova-plugin-device": "^1.1.4",
         "cordova-plugin-file": "4.3.3",
         "cordova-plugin-file-transfer": "^1.5.1",
@@ -91,7 +90,6 @@
                 "CAMERA_USAGE_DESCRIPTION": "Use camera to upload images of documents required for verification",
                 "PHOTO_LIBRARY_USAGE_DESCRIPTION": "Use camera to upload images of documents required for verification"
             },
-            "cordova-plugin-console": {},
             "cordova-plugin-device": {},
             "cordova-plugin-file": {},
             "cordova-plugin-file-transfer": {},

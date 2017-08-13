@@ -17,14 +17,19 @@ export class Config {
     GA_ID: 'UA-103042137-1'
   };
 
-  private prod = {
+  private staging = {
     API_URL: "http://dev.connuct.co.uk",
-    //API_URL: "http://35.176.41.207",
+    ENV: "prod",
+    GA_ID: 'UA-103042137-1'
+  };
+
+  private prod = {
+    API_URL: "http://prod.connuct.co.uk",
     ENV: "prod",
     GA_ID: 'UA-103042137-1'
   };
   
-  public props = this.prod;
+  public props = this.staging;
 
   constructor() {
     
