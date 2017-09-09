@@ -24,12 +24,12 @@ export class Config {
   };
 
   private prod = {
-    API_URL: "http://prod.connuct.co.uk",
+    API_URL: "https://production.connuct.co.uk",
     ENV: "prod",
     GA_ID: 'UA-103042137-1'
   };
   
-  public props = this.staging;
+  public props = this.prod;
 
   constructor() {
     
