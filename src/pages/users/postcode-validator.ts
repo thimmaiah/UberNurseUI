@@ -15,7 +15,6 @@ export class PostCodeValidator {
     control.markAsPending();
     return new Promise(resolve => {
 
-      //Fake a slow response from server
       console.log("PostCodeValidator: checkPostCode", control.value);
       //control.markAsPending();
 

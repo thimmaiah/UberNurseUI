@@ -24,10 +24,10 @@
           </ion-col>
           <ion-col text-wrap>
             <ion-row>From:
-            {{payment.staffing_request.start_date | date: 'dd/MM/yyyy H:mm'}}
+            {{payment.staffing_request.start_date | utc_date | date: 'dd/MM/yyyy H:mm'}}
             </ion-row>
             <ion-row>To:
-            {{payment.staffing_request.end_date | date: 'dd/MM/yyyy H:mm'}}
+            {{payment.staffing_request.end_date | utc_date | date: 'dd/MM/yyyy H:mm'}}
             </ion-row>
           </ion-col>
         </ion-row>
@@ -40,10 +40,10 @@
           </ion-col>
           <ion-col text-wrap>
             <ion-row>From:
-            {{payment.shift.start_date | date: 'dd/MM/yyyy H:mm'}}
+            {{payment.shift.start_date | utc_date | date: 'dd/MM/yyyy H:mm'}}
             </ion-row>
             <ion-row>To:
-            {{payment.shift.end_date | date: 'dd/MM/yyyy H:mm'}}
+            {{payment.shift.end_date | utc_date | date: 'dd/MM/yyyy H:mm'}}
             </ion-row>
           </ion-col>
         </ion-row>
