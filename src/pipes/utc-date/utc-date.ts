@@ -12,7 +12,6 @@ export class UtcDatePipe implements PipeTransform {
     if (!input) {
       return '';
     } else {
-
       let utc = moment(input).utcOffset(0).toISOString();
       console.log(`utc_date = ${utc}`);
       return utc;
