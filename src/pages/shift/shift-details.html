@@ -109,8 +109,11 @@
         <ion-col>
           Payment Status:
         </ion-col>
-        <ion-col>
+        <ion-col *ngIf="shift.user_id == current_user.id" >
           {{shift.payment_status}}
+        </ion-col>
+        <ion-col *ngIf="shift.user_id != current_user.id" >
+          {{shift.care_home_payment_status}}
         </ion-col>
       </ion-row>
     </ion-item>

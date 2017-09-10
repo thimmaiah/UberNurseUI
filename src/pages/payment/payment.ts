@@ -49,6 +49,7 @@ export class Payment {
         if (payments.length > 0) {
           this.payments = this.payments.concat(payments);
           console.log("Loaded payments");
+          console.log(this.payments);
           if (infiniteScroll) {
             infiniteScroll.enable(true);
           }

@@ -23,8 +23,7 @@
 
     <ion-card-content>
       <p>
-        Please upload your documents for verification. Post verification you will be assigned shifts
-        at various Care Homes.
+        Please upload your documents for verification. Post verification you will be assigned shifts at various Care Homes.
       </p>
     </ion-card-content>
   </ion-card>
@@ -36,7 +35,7 @@
 
     <ion-card-content>
       <p>
-        Sorry there are no shifts available at this time. 
+        Sorry there are no shifts available at this time.
       </p>
     </ion-card-content>
   </ion-card>
@@ -81,9 +80,15 @@
       </p>
       <p> 
         <ion-badge
-          *ngIf="shift.payment_status" 
+          *ngIf="shift.payment_status && shift.user_id == current_user.id" 
           item-right [color]="shift.payment_status == 'Paid' ? 'secondary' : 'danger'">
           Payment: {{shift.payment_status}}
+        </ion-badge> 
+
+        <ion-badge
+          *ngIf="shift.care_home_payment_status && shift.user_id != current_user.id" 
+          item-right [color]="shift.care_home_payment_status == 'Paid' ? 'secondary' : 'danger'">
+          Payment: {{shift.care_home_payment_status}}
         </ion-badge> 
       </p>
     </button>
