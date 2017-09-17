@@ -3,7 +3,7 @@ import Raven from 'raven-js';
 
 Raven
     .config('https://9500eedd0c51488ab9b3902bf8393c2b@sentry.io/189448', {
-        release: '0.0.1',
+        release: '1.0.0',
         dataCallback: data => {
 
             if (data.culprit) {
