@@ -10,6 +10,7 @@ import { UserDocApi } from '../../providers/user-doc-api';
 import { Config } from '../../providers/config';
 import { Angular2TokenService } from 'angular2-token';
 import { Events } from 'ionic-angular';
+import Raven from 'raven-js';
 
 
 declare var cordova: any;
@@ -85,6 +86,7 @@ export class UserPic {
         //this.copyFileToLocalDir(correctPath, currentName, this.createFileName());
       }
     }, (err) => {
+      Raven.captureException(err);
       console.log(err);
       this.respUtility.showWarning('Error while selecting image.');
     });
@@ -233,7 +235,8 @@ export class UserPic {
       this.events.publish("current_user:reload");
       this.navCtrl.popToRoot();
     }, err => {
-      loading.dismissAll()
+      loading.dismissAll();
+      Raven.captureException(err);
       console.log(err);
       this.respUtility.showWarning('Error while uploading file.');
     });
