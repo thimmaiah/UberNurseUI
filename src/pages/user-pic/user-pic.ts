@@ -74,7 +74,7 @@ export class UserPic {
       // Special handling for Android library
       if (this.platform.is('android') && sourceType === this.camera.PictureSourceType.PHOTOLIBRARY) {
 
-        this.lastImage = "file://" + imagePath;
+        this.lastImage = imagePath;
 
       } else {
         //let currentName = imagePath.substr(imagePath.lastIndexOf('/') + 1);
@@ -194,9 +194,12 @@ export class UserPic {
     let targetPath = this.lastImage;
 
     // File name only
-    this.user_doc["name"] = this.lastImage.substr(this.lastImage.lastIndexOf('/') + 1);
-
-
+    let file_name_tmp = this.lastImage.substr(this.lastImage.lastIndexOf('/') + 1);
+    // Android sometimes gives filename like xxx.jpg?1919991 - remove everything from the ?
+    if(file_name_tmp.indexOf('?') > 0) {
+      file_name_tmp = file_name_tmp.substr(0, file_name_tmp.indexOf('?'));
+    }
+    this.user_doc["name"] = file_name_tmp;
 
     var options = {
       fileKey: "user_doc[doc]",

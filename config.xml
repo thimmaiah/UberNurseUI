@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="uk.co.connuct" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="uk.co.connuct" version="1.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Care Connuct</name>
     <description>Connecting care homes to care givers and nurses</description>
     <author email="admin@connuct.co.uk" href="http://blog.connuct.co.uk">Connuct Team</author>
@@ -84,7 +84,7 @@
         <preference name="CodePushDeploymentKey" value="EQ_RRc-p_aOR3TIWbZkM7O038HeQ4b2ed3e5-0af3-4cbb-a368-b2812d60ae9d" />
     </platform>
     <engine name="android" spec="6.2.3" />
-    <engine name="browser" spec="~4.1.0" />
+    <engine name="browser" spec="~5.0.0" />
     <plugin name="cordova-android-play-services-gradle-release" spec="^1.1.1">
         <variable name="PLAY_SERVICES_VERSION" value="11.+" />
     </plugin>
@@ -92,7 +92,7 @@
         <variable name="CAMERA_USAGE_DESCRIPTION" value="Use camera to upload images of documents required for verification" />
         <variable name="PHOTO_LIBRARY_USAGE_DESCRIPTION" value="Use camera to upload images of documents required for verification" />
     </plugin>
-    <plugin name="cordova-plugin-code-push" spec="~1.9.5-beta" />
+    <plugin name="cordova-plugin-code-push" spec="~1.9.8-beta" />
     <plugin name="cordova-plugin-device" spec="^1.1.4" />
     <plugin name="cordova-plugin-file" spec="4.3.3" />
     <plugin name="cordova-plugin-file-transfer" spec="^1.5.1" />
