@@ -29,7 +29,7 @@ export class Config {
     GA_ID: 'UA-103042137-1'
   };
   
-  public props = this.prod;
+  public props = this.dev;
 
   constructor() {
     
