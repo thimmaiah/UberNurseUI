@@ -18,7 +18,7 @@ export class PostCodeValidator {
       console.log("PostCodeValidator: checkPostCode", control.value);
       //control.markAsPending();
 
-      if (control.value && control.value.length >= 5) {
+      if (control.value && control.value.replace(/\s/g, '').length >= 5) {
         PostCodeValidator.postCodeApi.getPostCodes(control.value).subscribe(
           resp => {
             console.log(resp);

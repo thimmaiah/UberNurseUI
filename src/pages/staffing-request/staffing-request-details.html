@@ -58,6 +58,28 @@
       </ion-row>
     </ion-item>
 
+    <ion-item *ngIf="staffingRequest.price">
+      <ion-row>
+        <ion-col>
+          VAT:
+        </ion-col>
+        <ion-col text-wrap>
+          {{staffingRequest.vat | currency : "GBP": true }}
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
+    <ion-item *ngIf="staffingRequest.price">
+      <ion-row>
+        <ion-col>
+          Total:
+        </ion-col>
+        <ion-col text-wrap>
+          {{staffingRequest.total_price | currency : "GBP": true }}
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
 
 
     <ion-item>
