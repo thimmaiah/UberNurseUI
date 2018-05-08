@@ -347,7 +347,7 @@ export class MyApp {
     if (this.splashScreen) {
       setTimeout(() => {
         this.splashScreen.hide();
-      }, 50);
+      }, 5);
     }
   }
 }
