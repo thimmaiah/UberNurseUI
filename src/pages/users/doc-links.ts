@@ -14,7 +14,7 @@ export class DocLinks {
     console.log(`user.user_docs`);
     console.log(user.user_docs);
 
-    let required = ["Profile Pic", "ID Card", "Qualifying Certificate", "Address Proof", "DBS"]
+    let required = ["Profile Pic", "ID Card", "Qualification Certificate", "Address Proof", "DBS"]
     let pending = _.filter(required, (required_type) => {
       console.log(`Finding doc_type = ${required_type}`);
       let found = _.find(user.user_docs, function (doc) { return doc.doc_type == required_type; });

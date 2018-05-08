@@ -61,9 +61,7 @@
             Address:
           </ion-col>
           <ion-col text-wrap>
-            {{shift.care_home.address}},
-            {{shift.care_home.town}},
-            {{shift.care_home.postcode}}
+            {{shift.care_home.address}}, {{shift.care_home.town}}, {{shift.care_home.postcode}}
           </ion-col>
         </ion-row>
       </ion-item>
@@ -122,10 +120,10 @@
         <ion-col>
           Payment Status:
         </ion-col>
-        <ion-col *ngIf="shift.user_id == current_user.id" >
+        <ion-col *ngIf="shift.user_id == current_user.id">
           {{shift.payment_status}}
         </ion-col>
-        <ion-col *ngIf="shift.user_id != current_user.id" >
+        <ion-col *ngIf="shift.user_id != current_user.id">
           {{shift.care_home_payment_status}}
         </ion-col>
       </ion-row>
@@ -186,18 +184,59 @@
       </ion-row>
     </ion-item>
 
-    <ion-item *ngIf="shift.end_code">
-      <ion-row>
-        <ion-col>
-          Amount:
-        </ion-col>
-        <ion-col>
-          {{shift.total_price | currency : 'GBP' : true}}
-        </ion-col>
-      </ion-row>
-    </ion-item>
+    <div *ngIf="shift.end_code && shift.can_manage == true">
+      <ion-item>
+        <ion-row>
+          <ion-col>
+            Amount:
+          </ion-col>
+          <ion-col>
+            {{shift.price | currency : 'GBP' : true}}
+          </ion-col>
+        </ion-row>
+      </ion-item>
+    </div>
+
+    <div *ngIf="shift.end_code && shift.can_manage == false">
+      <ion-item>
+        <ion-row>
+          <ion-col>
+            Billing:
+          </ion-col>
+          <ion-col>
+            {{shift.billing | currency : 'GBP' : true}}
+          </ion-col>
+        </ion-row>
+      </ion-item>
+
+      <ion-item>
+        <ion-row>
+          <ion-col>
+            Vat:
+          </ion-col>
+          <ion-col>
+            {{shift.vat | currency : 'GBP' : true}}
+          </ion-col>
+        </ion-row>
+      </ion-item>
+
+      <ion-item>
+        <ion-row>
+          <ion-col>
+            Amount:
+          </ion-col>
+          <ion-col>
+            {{shift.total_price | currency : 'GBP' : true}}
+          </ion-col>
+        </ion-row>
+      </ion-item>
+
+    </div>
+
 
     <div *ngIf="shift.can_manage == false">
+
+
       <ion-item *ngIf="shift.start_code == nil">
         <ion-row>
           <ion-col>
@@ -270,18 +309,18 @@
 
     </div>
 
-    </div>
+  </div>
 
-    <div *ngIf="shift.can_manage != true">
-      <ion-row>
-        <ion-col *ngIf="shift.payment_status == 'Paid'">
-          <button ion-button full color="primary" (click)="viewPayment(shift)">View Payment</button>
-        </ion-col>
-        <ion-col *ngIf="shift.rated != true">
-          <button ion-button full color="primary" (click)="rate_care_giver(shift)">Rate Care Giver</button>
-        </ion-col>
-      </ion-row>
-    </div>
+  <div *ngIf="shift.can_manage != true">
+    <ion-row>
+      <ion-col *ngIf="shift.payment_status == 'Paid'">
+        <button ion-button full color="primary" (click)="viewPayment(shift)">View Payment</button>
+      </ion-col>
+      <ion-col *ngIf="shift.rated != true">
+        <button ion-button full color="primary" (click)="rate_care_giver(shift)">Rate Care Giver</button>
+      </ion-col>
+    </ion-row>
+  </div>
 
 
 </ion-content>

@@ -18,7 +18,7 @@ export class Config {
   };
 
   private staging = {
-    API_URL: "https://staging.connuct.co.uk",
+    API_URL: "http://dev.connuct.co.uk",
     ENV: "prod",
     GA_ID: 'UA-103042137-1'
   };
