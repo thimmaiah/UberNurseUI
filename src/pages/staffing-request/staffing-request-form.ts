@@ -157,15 +157,15 @@ export class StaffingRequestForm {
 
     this.staffingRequestApi.price(this.staffingRequest).subscribe(
       staffingRequest => {
-        console.log(`price=${staffingRequest["price"]}, audit=${staffingRequest["pricing_audit"]}`);
-        this.staffingRequest["price"] = staffingRequest["price"]
+        console.log(`care_home_base=${staffingRequest["care_home_base"]}, audit=${staffingRequest["pricing_audit"]}`);
+        this.staffingRequest["care_home_base"] = staffingRequest["care_home_base"]
         this.staffingRequest["pricing_audit"] = staffingRequest["pricing_audit"];
 
         // let msg = "";
         // for (var propt in staffingRequest["pricing_audit"]) {
         //   msg += propt.split('_').join(' ') + ' = ' + staffingRequest["pricing_audit"][propt] + ",";
         // }
-        this.respUtility.popup("Pricing", `Estimated price: GBP ${staffingRequest["price"]}`);
+        this.respUtility.popup("Pricing", `Estimated price: GBP ${staffingRequest["care_home_total_amount"]}`);
       },
       error => {
         this.respUtility.showFailure(error);

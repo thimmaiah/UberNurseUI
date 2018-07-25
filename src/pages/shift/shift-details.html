@@ -191,7 +191,7 @@
             Amount:
           </ion-col>
           <ion-col>
-            {{shift.price | currency : 'GBP' : true}}
+            {{shift.carer_base | currency : 'GBP' : true}}
           </ion-col>
         </ion-row>
       </ion-item>
@@ -204,7 +204,7 @@
             Billing:
           </ion-col>
           <ion-col>
-            {{shift.billing | currency : 'GBP' : true}}
+            {{shift.care_home_base | currency : 'GBP' : true}}
           </ion-col>
         </ion-row>
       </ion-item>
@@ -226,7 +226,7 @@
             Amount:
           </ion-col>
           <ion-col>
-            {{shift.total_price | currency : 'GBP' : true}}
+            {{shift.care_home_total_amount | currency : 'GBP' : true}}
           </ion-col>
         </ion-row>
       </ion-item>

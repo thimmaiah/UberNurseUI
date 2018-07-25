@@ -47,18 +47,18 @@
     </ion-item>
 
 
-    <ion-item *ngIf="staffingRequest.price">
+    <ion-item *ngIf="staffingRequest.care_home_base">
       <ion-row>
         <ion-col>
           Estimated Price:
         </ion-col>
         <ion-col text-wrap>
-          {{staffingRequest.price | currency : "GBP": true }}
+          {{staffingRequest.care_home_base | currency : "GBP": true }}
         </ion-col>
       </ion-row>
     </ion-item>
 
-    <ion-item *ngIf="staffingRequest.price">
+    <ion-item *ngIf="staffingRequest.care_home_base">
       <ion-row>
         <ion-col>
           VAT:
@@ -69,13 +69,13 @@
       </ion-row>
     </ion-item>
 
-    <ion-item *ngIf="staffingRequest.price">
+    <ion-item *ngIf="staffingRequest.care_home_base">
       <ion-row>
         <ion-col>
           Total:
         </ion-col>
         <ion-col text-wrap>
-          {{staffingRequest.total_price | currency : "GBP": true }}
+          {{staffingRequest.care_home_total_amount | currency : "GBP": true }}
         </ion-col>
       </ion-row>
     </ion-item>
