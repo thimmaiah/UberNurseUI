@@ -1,1 +1,2 @@
  code-push release-cordova CareConnect-android android -m --description "Release 1.3" --deploymentName Production
+ code-push release-cordova CareConnect-ios ios -m --description "Release 1.3.3" --deploymentName Production
