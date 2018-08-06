@@ -106,10 +106,18 @@
 
 
 
-        <ion-item>
+        <ion-item id="pref_commute_distance">
           <ion-label floating>Pref Commute Distance (in Miles)</ion-label>
-          <ion-input name="pref_commute_distance" formControlName="pref_commute_distance" type="number" [(ngModel)]="user.pref_commute_distance"
-            [class.invalid]="!slideOneForm.controls.pref_commute_distance.valid && (slideOneForm.controls.pref_commute_distance.dirty || submitAttempt)"></ion-input>
+          
+          <ion-select name="pref_commute_distance" [(ngModel)]="user.pref_commute_distance" [class.invalid]="!slideOneForm.controls.pref_commute_distance.valid && (slideOneForm.controls.pref_commute_distance.dirty || submitAttempt)"
+            formControlName="pref_commute_distance">
+            <ion-option value="10" checked="true">10 Miles</ion-option>
+            <ion-option value="15">15 Miles</ion-option>
+            <ion-option value="20">20 Miles</ion-option>
+            <ion-option value="25">25 Miles</ion-option>
+            <ion-option value="100">30 Miles and above</ion-option>
+          </ion-select>
+  
         </ion-item>
 
         <ion-item *ngIf="!slideOneForm.controls.pref_commute_distance.valid  && (slideOneForm.controls.pref_commute_distance.dirty || submitAttempt)">
