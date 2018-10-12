@@ -24,6 +24,14 @@
                 </p>   
               </button>
 
+              <button ion-item (click)="uploadNow(null)">
+                <ion-icon name="cloud-upload" item-left color="primary"></ion-icon>
+                Additional Document
+                <p text-wrap>
+                  Upload document now.
+                </p>
+              </button>
+
               <button ion-item (click)="phone_verification()">
                 <ion-icon [name]="currentUser.phone_verified != true ? 'call' : 'checkbox'" item-left item-left 
                   [color]="currentUser.phone_verified != true ? 'primary' : 'secondary'"></ion-icon>
