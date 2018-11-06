@@ -43,7 +43,7 @@
     <button ion-item id="shift-{{shift.id}}-item" *ngFor="let shift of shifts" (click)=getShiftDetails(shift)>
 
       <ion-thumbnail item-left *ngIf="shift.can_manage != true">
-        <img [src]="shift.user.image">
+        <img [src]="shift.user.image" class="shift-image">
       </ion-thumbnail> 
       
       <p>
