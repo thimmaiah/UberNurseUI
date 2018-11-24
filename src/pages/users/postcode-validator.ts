@@ -12,7 +12,7 @@ export class PostCodeValidator {
 
   checkPostCode(control: FormControl): any {
 
-    control.markAsPending();
+    //control.markAsPending();
     return new Promise(resolve => {
 
       console.log("PostCodeValidator: checkPostCode", control.value);
