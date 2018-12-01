@@ -58,7 +58,7 @@
   <ion-list>
     <button ion-item id="StaffingRequest-{{staffingRequest.id}}-item" *ngFor="let staffingRequest of staffingRequests" (click)=getStaffingRequestDetails(staffingRequest)>
        
-      <p>
+      <p text-wrap>
         Care Home: {{staffingRequest.care_home.name}}
       </p>
 
