@@ -21,6 +21,19 @@
 
     <form [formGroup]="slideOneForm">
 
+      <ion-item id="care_home_id" *ngIf="current_user.sister_care_homes">
+        <ion-label floating>Care Home</ion-label>
+        <ion-select name="care_home_id" [(ngModel)]="staffingRequest.care_home_id" [class.invalid]="!slideOneForm.controls.care_home_id.valid && (slideOneForm.controls.care_home_id.dirty || submitAttempt)"
+          formControlName="care_home_id">
+          <ion-option *ngFor="let care_home of current_user.sister_care_homes" value="{{care_home.id}}">
+              {{care_home.name}}
+          </ion-option>
+        </ion-select>
+      </ion-item>
+      <p class="field-hint" *ngIf="current_user.sister_care_homes">
+        Select the care home you are booking for
+      </p>
+
       <ion-item id="role">
         <ion-label floating>Staff Type</ion-label>
         <ion-select name="role" [(ngModel)]="staffingRequest.role" [class.invalid]="!slideOneForm.controls.role.valid && (slideOneForm.controls.role.dirty || submitAttempt)"

@@ -4,7 +4,7 @@ import { SimpleChanges, Component, ViewChild } from '@angular/core';
 import { StaffingRequestApi } from '../../providers/staffing-request-api';
 import { ResponseUtility } from '../../providers/response-utility';
 import * as moment from 'moment';
-
+import { Angular2TokenService } from 'angular2-token';
 
 //@IonicPage()
 @Component({
@@ -18,6 +18,8 @@ export class StaffingRequestForm {
   minEndDate:any;
   maxEndDate:any;
   staffingRequest: {};
+  current_user: {};
+
   @ViewChild('signupSlider') signupSlider: any;
 
   slideOneForm: FormGroup;
@@ -26,12 +28,14 @@ export class StaffingRequestForm {
   submitAttempt: boolean = false;
 
   constructor(public navCtrl: NavController,
+    private tokenService: Angular2TokenService,
     public navParams: NavParams,
     public formBuilder: FormBuilder,
     public loadingController: LoadingController,
     public staffingRequestApi: StaffingRequestApi,
     public respUtility: ResponseUtility) {
 
+    this.current_user = tokenService.currentUserData;  
     this.staffingRequest = this.navParams.data;
     this.minStartDate = new Date().toISOString();
     this.maxStartDate = moment().add(1, 'year').toISOString();
@@ -40,6 +44,8 @@ export class StaffingRequestForm {
     
 
     this.slideOneForm = formBuilder.group({
+
+      care_home_id: ['', Validators.compose([])],
 
       role: ['', Validators.compose([Validators.required])],
 
@@ -88,6 +94,10 @@ export class StaffingRequestForm {
 
     if(this.staffingRequest["end_code"] == null) {
       this.staffingRequest["end_code"] = Math.floor(1000 + Math.random()*9000);
+    }
+
+    if(this.current_user["sister_care_homes"] != null) {
+      this.staffingRequest["care_home_id"] = this.current_user["care_home_id"]
     }
 
   }
