@@ -55,6 +55,18 @@
         </ion-row>
       </ion-item>
 
+      <ion-item *ngIf="shift.staffing_request.notes">
+        <ion-row>
+          <ion-col>
+            Notes:
+          </ion-col>
+          <ion-col text-wrap>
+            {{shift.staffing_request.notes}}
+          </ion-col>
+        </ion-row>
+      </ion-item>
+
+
       <ion-item>
         <ion-row>
           <ion-col>

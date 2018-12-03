@@ -61,6 +61,8 @@ export class StaffingRequestForm {
 
       end_code: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('^\\d+$'), Validators.required])],
 
+      notes: ['', Validators.compose([])],
+
     });
 
     this.slideTwoForm = formBuilder.group({

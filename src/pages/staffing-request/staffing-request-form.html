@@ -74,6 +74,17 @@
         Select the end date & time for the temp staff.
       </p>
 
+
+      <ion-item>
+        <ion-label floating>Notes</ion-label>
+        <ion-textarea formControlName="notes" [(ngModel)]="staffingRequest.notes"
+          [class.invalid]="!slideOneForm.controls.notes.valid && (slideOneForm.controls.notes.dirty || submitAttempt)"></ion-textarea>
+      </ion-item>
+
+      <p class="field-hint">
+        Additional notes for the carer
+      </p>
+
       <ion-item>
         <ion-label floating>Start Code</ion-label>
         <ion-input name="start_code" formControlName="start_code" type="number" [(ngModel)]="staffingRequest.start_code" [class.invalid]="!slideOneForm.controls.start_code.valid && (slideOneForm.controls.start_code.dirty || submitAttempt)"></ion-input>

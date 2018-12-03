@@ -127,6 +127,17 @@
       </ion-row>
     </ion-item>
 
+    <ion-item *ngIf="staffingRequest.notes">
+      <ion-row>
+        <ion-col>
+          Notes:
+        </ion-col>
+        <ion-col text-wrap>
+          {{staffingRequest.notes}}
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
     <ion-item>
       <ion-row>
         <ion-col>
