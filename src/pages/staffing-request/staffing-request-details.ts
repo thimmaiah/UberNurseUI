@@ -22,6 +22,10 @@ export class StaffingRequestDetails {
   current_user = {};
   actionSheet: ActionSheet;
 
+  show_start_code = false;
+  show_end_code = false;
+  
+
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public loadingController: LoadingController,

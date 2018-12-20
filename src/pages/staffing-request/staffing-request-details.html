@@ -127,6 +127,39 @@
       </ion-row>
     </ion-item>
 
+    <div *ngIf="staffingRequest.can_manage == true">
+
+
+      <ion-item>
+        <ion-row>
+          <ion-col>
+            Start Code:
+          </ion-col>
+          <ion-col *ngIf="show_start_code">
+            {{staffingRequest.start_code}}
+          </ion-col>
+          <ion-col *ngIf="!show_start_code">
+            <a (click)="show_start_code = true">Show Start Code</a>
+          </ion-col>
+        </ion-row>
+      </ion-item>
+
+      <ion-item>
+        <ion-row>
+          <ion-col>
+            End Code:
+          </ion-col>
+          <ion-col *ngIf="show_end_code">
+            {{staffingRequest.end_code}}
+          </ion-col>
+          <ion-col *ngIf="!show_end_code">
+            <a (click)="show_end_code = true">Show End Code</a>
+          </ion-col>
+        </ion-row>
+      </ion-item>
+
+    </div>
+
     <ion-item *ngIf="staffingRequest.notes">
       <ion-row>
         <ion-col>

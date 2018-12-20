@@ -48,7 +48,7 @@
 
       <div *ngIf="!start_code_present">
         <ion-item>
-          <ion-label floating>Start Code</ion-label>
+          <ion-label floating>Enter Start Code</ion-label>
           <ion-input name="start_code" formControlName="start_code" type="text" [(ngModel)]="shift.start_code" [class.invalid]="!slideOneForm.controls.start_code.valid && (slideOneForm.controls.start_code.dirty || submitAttempt)"></ion-input>
         </ion-item>
 
@@ -60,7 +60,7 @@
 
       <div *ngIf="start_code_present">
         <ion-item>
-          <ion-label floating>End Code</ion-label>
+          <ion-label floating>Enter End Code</ion-label>
           <ion-input name="end_code" formControlName="end_code" type="text" [(ngModel)]="shift.end_code" [class.invalid]="!slideOneForm.controls.end_code.valid && (slideOneForm.controls.end_code.dirty || submitAttempt)"></ion-input>
         </ion-item>
 
@@ -74,6 +74,18 @@
   </ion-list>
 
   <button ion-button full color="primary" (click)="confirmSave()">Submit</button>
-  <button ion-button full color="primary" (click)="scan()">Scan Code</button>
+
+  <ion-card *ngIf="shift.start_code == null">
+    <ion-card-title class="center success-text">
+      Alternatively
+    </ion-card-title>
+
+    <ion-card-content>
+      <p>
+        Please scan the QR code visible at {{shift.care_home.name}} to start / end the shift.
+      </p>
+    </ion-card-content>
+  </ion-card>
+  <button ion-button full color="primary" (click)="scan()">Click To Scan QR Code</button>
 
 </ion-content>
