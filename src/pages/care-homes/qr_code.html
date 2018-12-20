@@ -1,0 +1,23 @@
+<ion-header>
+
+    <ion-navbar color="primary">
+        <ion-title>QR Code</ion-title>
+    </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+    <ion-card>
+        <img *ngIf="displayQrCode()" [src]="qr_code" />
+        
+        <ion-card-content>
+            <p>
+                Print this QR code for your carers to scan to start and end shifts.
+            </p>
+            <button ion-button full color="primary" (click)="generateQRCode()">Generate New Code</button>
+        </ion-card-content>
+    </ion-card>
+
+</ion-content>

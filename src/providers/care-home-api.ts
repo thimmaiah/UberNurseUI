@@ -30,6 +30,13 @@ export class CareHomeApi {
     })
   }
 
+  generateQRCode() {
+    return this.tokenService.get(`${this.base_url}/new_qr_code.json`).map(response=>{
+      this.care_home = response.json();
+      return this.care_home;
+    })
+  }
+
   createCareHome(care_home) {
     return this.tokenService.post(`${this.base_url}.json`, care_home).map(response=>{
       this.care_home = response.json();

@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, AlertController, ToastController }
 import { CareHomeForm } from '../care-homes/care-home-form';
 import { CareHomeApi } from '../../providers/care-home-api';
 import { ResponseUtility } from '../../providers/response-utility';
+
 /**
  * Generated class for the CareHomesDetails page.
  *
@@ -27,6 +28,7 @@ export class CareHomeDetails {
     this.care_home = this.navParams.data;
     
   }
+
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CareHomeDetails');

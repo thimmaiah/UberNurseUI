@@ -56,7 +56,7 @@ export class ShiftForm {
       });
       loader.present();
 
-      this.shiftApi.startEndShift(this.shift["id"], qr_code).map(res => {
+      this.shiftApi.startEndShift(this.shift["id"], qr_code.text).map(res => {
         console.log(`Shift = ${res}`);
         this.shift = res;
       }).subscribe(

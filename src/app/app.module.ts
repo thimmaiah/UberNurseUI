@@ -62,6 +62,7 @@ import { RatingForm } from '../pages/rating/rating-form';
 
 
 import { CareHomes } from '../pages/care-homes/care-homes';
+import { QrCode } from '../pages/care-homes/qr_code';
 import { CareHomeSearch } from '../pages/care-homes/care-home-search';
 import { CareHomeForm } from '../pages/care-homes/care-home-form';
 import { CareHomeDetails } from '../pages/care-homes/care-home-details';
@@ -131,6 +132,7 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
     CareHomeDetails,
     CareHomeSearch,
     CareHomeBankingDetails,
+    QrCode,
     TitleCasePipe,
     UtcDatePipe,
     AboutPage,
@@ -184,6 +186,7 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
     CareHomeDetails,
     CareHomeSearch,
     CareHomeBankingDetails,
+    QrCode,
     AboutPage,
     HelpPage,
     ContactPage,

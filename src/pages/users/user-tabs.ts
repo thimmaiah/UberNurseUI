@@ -7,6 +7,7 @@ import { ResponseUtility } from '../../providers/response-utility';
 import { BankingDetailsPage } from './banking-details';
 import { CareHomeBankingDetails } from '../care-homes/care-home-banking-details';
 import { CareHomeDetails } from '../care-homes/care-home-details';
+import { QrCode } from '../care-homes/qr_code';
 
 import * as _ from 'lodash';
 
@@ -22,6 +23,7 @@ export class UserTabs  {
   tab1Root = UserDetails;
   tab2Root: any; 
   tab3Root: any;
+  tab4Root: any;
   tabIndex = 0;
   params = {};
 
@@ -37,6 +39,7 @@ export class UserTabs  {
     if(this.user.role == "Admin") {
       this.tab2Root = CareHomeBankingDetails;
       this.tab3Root = CareHomeDetails;
+      this.tab4Root = QrCode;
     } else {
       this.tab2Root = BankingDetailsPage;
     }
