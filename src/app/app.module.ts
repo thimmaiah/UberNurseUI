@@ -92,6 +92,7 @@ import { PostCodeApi } from '../providers/postcode-api';
 import { HomeEvents } from '../providers/home-events';
 import { GoogleAnalytics } from '@ionic-native/google-analytics';
 
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 
 @NgModule({
   declarations: [
@@ -216,6 +217,7 @@ import { GoogleAnalytics } from '@ionic-native/google-analytics';
     Transfer,
     HomeEvents,
     ReferralApi,
+    BarcodeScanner, 
     { provide: ErrorHandler, useClass: SentryErrorHandler }
   ]
 })

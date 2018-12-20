@@ -4,7 +4,7 @@ import { Component, ViewChild } from '@angular/core';
 import { ShiftApi } from '../../providers/shift-api';
 import { ResponseUtility } from '../../providers/response-utility';
 import { RatingForm } from '../rating/rating-form';
-
+import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import * as moment from 'moment';
 
 
@@ -26,7 +26,8 @@ export class ShiftForm {
     public formBuilder: FormBuilder,
     public loadingController: LoadingController,
     public shiftApi: ShiftApi,
-    public respUtility: ResponseUtility) {
+    public respUtility: ResponseUtility,
+    private barcodeScanner: BarcodeScanner) {
 
     this.shift = this.navParams.data;
     this.start_code_present = this.shift["start_code"] != null
@@ -43,6 +44,53 @@ export class ShiftForm {
   ionViewDidLoad() {
     console.log('ionViewDidLoad ShiftForm');
     this.respUtility.trackView("ShiftForm");
+  }
+
+  scan() {
+    console.log('Scan called');
+    this.barcodeScanner.scan().then(qr_code => {
+       console.log('qr_code', qr_code);
+
+      let loader = this.loadingController.create({
+        content: 'Saving ...'
+      });
+      loader.present();
+
+      this.shiftApi.startEndShift(this.shift["id"], qr_code).map(res => {
+        console.log(`Shift = ${res}`);
+        this.shift = res;
+      }).subscribe(
+        shift => {          
+          if (this.shift["end_code"] != null) {
+            this.respUtility.showSuccess('Code Accepted.Your shift has ended.');
+            this.navCtrl.pop();
+            this.rate_care_home(this.shift);
+          } else {
+            this.respUtility.showSuccess('Code Accepted.Your shift has started.');
+            this.navCtrl.pop();
+          }
+        },
+        error => {
+          if (error.status === 422) {
+            let error_response = JSON.parse(error._body);
+            let msg = "";
+            for (var key in error_response) {
+              msg += error_response[key] + ". ";
+            }
+            this.respUtility.showWarning(msg);
+            loader.dismiss();
+          }
+          else {
+            this.respUtility.showFailure(error);
+            loader.dismiss();
+          }
+        },
+        () => { loader.dismiss(); }
+      );
+
+    }).catch(err => {
+      console.log('Error', err);
+    });
   }
 
   isAcceptedResponse() {
@@ -80,7 +128,7 @@ export class ShiftForm {
   }
 
   save() {
-    
+
     this.submitAttempt = true;
     //console.log(this.shift);
     let loader = this.loadingController.create({
@@ -97,6 +145,7 @@ export class ShiftForm {
       if (this.shift["id"]) {
         this.shiftApi.updateShift(this.shift).map(res => {
           console.log(`Shift = ${res}`);
+          this.shift = res;
         }).subscribe(
           shift => {
             if (this.shift["end_code"] != null) {
@@ -128,7 +177,7 @@ export class ShiftForm {
             }
           },
           () => { loader.dismiss(); }
-          );
+        );
       } else {
         this.shiftApi.createShift(this.shift).subscribe(
           shift => {

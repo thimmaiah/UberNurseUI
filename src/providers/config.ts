@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 export class Config {
 
   private dev = {
-    API_URL: "http://192.168.0.10:3000",
+    API_URL: "http://192.168.43.33:3000",
     //API_URL: "http://localhost:3000",
     ENV: "dev",
     GA_ID: 'UA-103042137-1'
@@ -29,7 +29,7 @@ export class Config {
     GA_ID: 'UA-103042137-1'
   };
   
-  public props = this.prod;
+  public props = this.dev;
 
   constructor() {
     

@@ -43,6 +43,13 @@ export class ShiftApi {
     })
   }
 
+  startEndShift(shift_id, qr_code) {
+    return this.tokenService.get(`${this.base_url}/${shift_id}/start_end_shift.json?qr_code=${qr_code}`).map(response=>{
+      this.shift = response.json();
+      return this.shift;
+    })
+  }
+
   updateShift(shift) {
     console.log(`ShiftApi: Updating shift`)
     console.log(shift);
