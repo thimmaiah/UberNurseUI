@@ -22,13 +22,13 @@
 
     <ion-card-content>
       <p>
-        Please request your care home to provide you with the start code at the start of your shift.
+        Please request your care home to provide you with the start code at the start of your shift and enter it below.
       </p>
     </ion-card-content>
   </ion-card>
 
   <ion-card *ngIf="start_code_present && shift.end_code == null">
-    <ion-card-title class="center error-text">
+    <ion-card-title class="center">
       Enter End Code
     </ion-card-title>
 
@@ -71,21 +71,24 @@
 
     </form>
 
+    <button ion-button full color="primary" (click)="confirmSave()">Submit</button>
+
   </ion-list>
+  
+  
 
-  <button ion-button full color="primary" (click)="confirmSave()">Submit</button>
-
-  <ion-card>
+  <ion-card style="margin-top: 10px;">
     <ion-card-title class="center success-text">
       Alternatively
     </ion-card-title>
 
     <ion-card-content>
       <p>
-        Please scan the QR code visible at {{shift.care_home.name}} to start / end the shift.
+        Please scan the QR code visible at {{shift.care_home.name}} to start / end the shift.         
       </p>
     </ion-card-content>
   </ion-card>
   <button ion-button full color="primary" (click)="scan()">Click To Scan QR Code</button>
+  <p class="center error-text">Ensure the QR code is comfortably inside the camera finder.</p>
 
 </ion-content>
