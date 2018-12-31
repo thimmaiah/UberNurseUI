@@ -25,6 +25,7 @@
     "@ionic-native/camera": "^4.2.0",
     "@ionic-native/code-push": "^4.18.0",
     "@ionic-native/core": "^4.2.1",
+    "@ionic-native/deeplinks": "^4.18.0",
     "@ionic-native/diagnostic": "^4.2.1",
     "@ionic-native/file": "^4.2.1",
     "@ionic-native/file-path": "^4.2.1",
@@ -60,6 +61,7 @@
     "cordova-plugin-zip": "^3.1.0",
     "cordova-sqlite-storage": "2.5.2",
     "ionic-angular": "3.9.2",
+    "ionic-plugin-deeplinks": "^1.0.17",
     "ionic2-rating": "^1.2.2",
     "ionicons": "4.3.0",
     "lodash": "^4.17.4",
@@ -120,6 +122,24 @@
       "cordova-plugin-compat": {},
       "phonegap-plugin-barcodescanner": {
         "ANDROID_SUPPORT_V4_VERSION": "27.+"
+      },
+      "ionic-plugin-deeplinks": {
+        "URL_SCHEME": "connuct",
+        "DEEPLINK_SCHEME": "https",
+        "DEEPLINK_HOST": "production.connuct.co.uk",
+        "ANDROID_PATH_PREFIX": "/",
+        "ANDROID_2_PATH_PREFIX": "/",
+        "ANDROID_3_PATH_PREFIX": "/",
+        "ANDROID_4_PATH_PREFIX": "/",
+        "ANDROID_5_PATH_PREFIX": "/",
+        "DEEPLINK_2_SCHEME": " ",
+        "DEEPLINK_2_HOST": " ",
+        "DEEPLINK_3_SCHEME": " ",
+        "DEEPLINK_3_HOST": " ",
+        "DEEPLINK_4_SCHEME": " ",
+        "DEEPLINK_4_HOST": " ",
+        "DEEPLINK_5_SCHEME": " ",
+        "DEEPLINK_5_HOST": " "
       }
     }
   }

@@ -29,7 +29,12 @@ export class ShiftDetails {
     public loadingController: LoadingController,
     public respUtility: ResponseUtility) {
 
-    this.shift = this.navParams.data;
+    if(this.navParams.data["shiftId"] != null) {
+      this.getShiftDetails(this.navParams.data["shiftId"]);
+    } else {
+      this.shift = this.navParams.data;
+    }
+
     this.current_user = tokenService.currentUserData;
     
   }
@@ -82,6 +87,24 @@ export class ShiftDetails {
       shift => {
         this.respUtility.showSuccess('Shift Updated');
         this.navCtrl.popToRoot();
+      },
+      error => { this.respUtility.showFailure(error); loader.dismiss(); },
+      () => { loader.dismiss(); }
+    );
+  }
+
+  getShiftDetails(shiftId) {
+
+    let loader = this.loadingController.create({
+      content: 'Loading Shift...'
+    });
+
+    loader.present();
+
+    this.shiftApi.getShiftDetails(shiftId).subscribe(
+      shift => {
+        this.respUtility.showSuccess('Shift Loaded');
+        this.shift = shift;
       },
       error => { this.respUtility.showFailure(error); loader.dismiss(); },
       () => { loader.dismiss(); }

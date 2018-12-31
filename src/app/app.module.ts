@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { IonicApp, IonicErrorHandler, IonicModule, NavController } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { File } from '@ionic-native/file';
 import { Transfer } from '@ionic-native/transfer';
@@ -94,6 +94,7 @@ import { HomeEvents } from '../providers/home-events';
 import { GoogleAnalytics } from '@ionic-native/google-analytics';
 
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import { Deeplinks } from '@ionic-native/deeplinks';
 
 @NgModule({
   declarations: [
@@ -221,6 +222,7 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner';
     HomeEvents,
     ReferralApi,
     BarcodeScanner, 
+    Deeplinks,
     { provide: ErrorHandler, useClass: SentryErrorHandler }
   ]
 })

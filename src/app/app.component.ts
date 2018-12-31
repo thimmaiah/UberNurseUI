@@ -34,6 +34,8 @@ import { ContactPage } from '../pages/static/contact';
 
 import { CodePush, SyncStatus, InstallMode } from '@ionic-native/code-push';
 import { GoogleAnalytics } from '@ionic-native/google-analytics';
+import { Deeplinks } from '@ionic-native/deeplinks';
+import { ShiftDetails } from '../pages/shift/shift-details';
 
 
 @Component({
@@ -48,6 +50,7 @@ export class MyApp {
   pages: Array<{ title: string, component: any, params: any }> = [];
 
   constructor(
+    protected deeplinks: Deeplinks,
     private ga: GoogleAnalytics,
     private codePush: CodePush,
     public platform: Platform,
@@ -70,6 +73,13 @@ export class MyApp {
   initGA() {
     this.ga.startTrackerWithId(this.config.props["GA_ID"])
       .then(() => {
+
+        this.ga.enableUncaughtExceptionReporting(true)
+          .then((_success) => {
+            console.log("GoogleAnalytics success: " + _success);
+          }).catch((_error) => {
+            console.log("GoogleAnalytics error: " + _error);
+          });
         console.log('Google analytics is ready now');
         //this.ga.debugMode();
         this.ga.setAllowIDFACollection(true);
@@ -164,6 +174,8 @@ export class MyApp {
         this.syncCodePush();
 
         this.initGA();
+
+        this.initDeeplinks();
 
         // Okay, so the platform is ready and our plugins are available.
         // Here you can do any higher level native things you might need.
@@ -350,5 +362,58 @@ export class MyApp {
       }, 5);
     }
   }
+
+  initDeeplinks() {
+    this.deeplinks.route({
+      '/terms': TermsPage,
+      '/about': AboutPage,
+      '/shifts': ShiftDetails
+    }).subscribe((match) => {
+      // match.$route - the route we matched, which is the matched entry from the arguments to route()
+      // match.$args - the args passed in the link
+      // match.$link - the full link data
+      console.log('Successfully matched route', match);
+      switch (match.$route) {
+        case TermsPage: {
+          console.log("Deep link : Terms");
+          this.nav.push(TermsPage);
+          break;
+        }
+        case AboutPage: {
+          console.log("Deep link : About");
+          this.nav.push(AboutPage);
+          break;
+        }
+        case ShiftDetails: {
+          console.log("Deep link : Shift");
+          if(this.currentUser !== null) {
+            this.nav.push(Shift, {response_status: "Pending"});
+          } else {
+            // Wait for the login
+              
+          }
+          break;
+        }
+        default: {
+          console.log("Deep link : Default ${match.$route} ${match.$args}");
+          break;
+        }
+      }
+
+
+    },
+      (nomatch) => {
+        // nomatch.$link - the full link data
+        console.error('Got a deeplink that didn\'t match', nomatch);
+      });
+  }
+
+
+  showShifts() {
+    if(this.currentUser !== null) {
+      this.nav.push(Shift, {response_status: "Pending"});
+    }
+  }
+
 }
 
