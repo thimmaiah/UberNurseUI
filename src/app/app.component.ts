@@ -177,6 +177,7 @@ export class MyApp {
 
         this.initDeeplinks();
 
+        // https://github.com/neroniaky/angular-token/issues/475
         (this.tokenService as any).options.apiBase = this.config.props["API_URL"];
 
         // Okay, so the platform is ready and our plugins are available.
