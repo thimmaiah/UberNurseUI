@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { IonicApp, IonicErrorHandler, IonicModule, NavController } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { File } from '@ionic-native/file';
-import { Transfer } from '@ionic-native/transfer';
+import { FileTransfer } from '@ionic-native/file-transfer';
 import { FilePath } from '@ionic-native/file-path';
 import { Keyboard } from '@ionic-native/keyboard';
 
@@ -223,7 +223,7 @@ import { HttpClientModule } from '@angular/common/http';
     Diagnostic,
     File,
     FilePath,
-    Transfer,
+    FileTransfer,
     HomeEvents,
     ReferralApi,
     BarcodeScanner, 

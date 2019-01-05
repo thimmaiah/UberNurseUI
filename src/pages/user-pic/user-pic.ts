@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, Platform, NavController, NavParams, ActionSheetController, ToastController, LoadingController } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { File } from '@ionic-native/file';
-import { Transfer } from '@ionic-native/transfer';
+import { FileTransfer } from '@ionic-native/file-transfer';
 import { FilePath } from '@ionic-native/file-path';
 import { Diagnostic } from '@ionic-native/diagnostic';
 import { ResponseUtility } from '../../providers/response-utility';
@@ -37,7 +37,7 @@ export class UserPic {
     private camera: Camera,
     private filePath: FilePath,
     private file: File,
-    private transfer: Transfer,
+    private transfer: FileTransfer,
     private config: Config,
     private userDocApi: UserDocApi,
     private tokenService: AngularTokenService,
