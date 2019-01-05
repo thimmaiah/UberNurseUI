@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { Config } from '../../providers/config';
-import { Angular2TokenService } from 'angular2-token';
+import { AngularTokenService } from 'angular-token';
 import { UserDocApi } from '../../providers/user-doc-api';
 import { ResponseUtility } from '../../providers/response-utility';
 import { UserPic } from '../user-pic/user-pic';
@@ -18,7 +18,7 @@ export class UserDoc {
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private config: Config,
-    private tokenService: Angular2TokenService,
+    private tokenService: AngularTokenService,
     private userDocApi: UserDocApi,
     private loadingController: LoadingController,
     private respUtility: ResponseUtility,

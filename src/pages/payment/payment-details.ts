@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-an
 import { PaymentForm } from '../payment/payment-form';
 import { PaymentApi } from '../../providers/payment-api';
 import { ResponseUtility } from '../../providers/response-utility';
-import { Angular2TokenService } from 'angular2-token';
+import { AngularTokenService } from 'angular-token';
 
 @Component({
   selector: 'page-payment-details',
@@ -17,7 +17,7 @@ export class PaymentDetails {
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public paymentApi: PaymentApi,
     public loadingController: LoadingController,
-    private tokenService: Angular2TokenService,
+    private tokenService: AngularTokenService,
     public respUtility: ResponseUtility) {
       
     this.payment = this.navParams.data;

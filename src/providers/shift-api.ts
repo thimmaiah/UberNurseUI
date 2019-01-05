@@ -1,18 +1,20 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import 'rxjs/add/operator/map';
-import { Angular2TokenService } from 'angular2-token';
+import { AngularTokenService } from 'angular-token';
+import { Config } from './config';
 
 @Injectable()
 export class ShiftApi {
 
   private base_url = "shifts";
-  shifts = [];
+  shifts: any;
   shift = {};
   
 
-  constructor(public http: Http, private tokenService: Angular2TokenService) {
+  constructor(public http: HttpClient, private config: Config) {
     console.log('ShiftApi Provider Created');
+    this.base_url = this.config.props["API_URL"] + "/shifts";
   }
 
   getShifts(staffing_request_id, response_status=null) {
@@ -20,8 +22,8 @@ export class ShiftApi {
     if(staffing_request_id) {
       url = `${this.base_url}.json?response_status=${response_status}&staffing_request_id=${staffing_request_id}`;
     }
-    return this.tokenService.get(url).map(response=>{
-      this.shifts = response.json();
+    return this.http.get(url).map(response=>{
+      this.shifts = response;
       return this.shifts;
     })
   }
@@ -29,23 +31,23 @@ export class ShiftApi {
   
 
   getShiftDetails(shift_id) {
-    return this.tokenService.get(`${this.base_url}/${shift_id}.json`).map(response=>{
-      this.shift = response.json();
+    return this.http.get(`${this.base_url}/${shift_id}.json`).map(response=>{
+      this.shift = response;
       return this.shift;
     })
   }
 
   createShift(shift) {
-    return this.tokenService.post(`${this.base_url}.json`, shift).map(response=>{
-      this.shift = response.json();
+    return this.http.post(`${this.base_url}.json`, shift).map(response=>{
+      this.shift = response;
       return this.shift;
       //return response.status;
     })
   }
 
   startEndShift(shift_id, qr_code) {
-    return this.tokenService.get(`${this.base_url}/${shift_id}/start_end_shift.json?qr_code=${qr_code}`).map(response=>{
-      this.shift = response.json();
+    return this.http.get(`${this.base_url}/${shift_id}/start_end_shift.json?qr_code=${qr_code}`).map(response=>{
+      this.shift = response;
       return this.shift;
     })
   }
@@ -53,15 +55,15 @@ export class ShiftApi {
   updateShift(shift) {
     console.log(`ShiftApi: Updating shift`)
     console.log(shift);
-    return this.tokenService.put(`${this.base_url}/${shift.id}.json`, shift).map(response=>{
-      this.shift = response.json();
+    return this.http.put(`${this.base_url}/${shift.id}.json`, shift).map(response=>{
+      this.shift = response;
       return this.shift;
     })
   }
 
   deleteShift(shift) {
-    return this.tokenService.delete(`${this.base_url}/${shift.id}.json`).map(response=>{
-      return response.status;
+    return this.http.delete(`${this.base_url}/${shift.id}.json`).map(response=>{
+      return response;
     })
   }
 

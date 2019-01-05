@@ -1,44 +1,46 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import 'rxjs/add/operator/map';
-import { Angular2TokenService } from 'angular2-token';
+import { AngularTokenService } from 'angular-token';
+import { Config } from './config';
 
 @Injectable()
 export class StaffingRequestApi {
 
   private base_url = "staffing_requests";
-  staffingRequests = [];
+  staffingRequests: any;
   staffingRequest = {};
 
-  constructor(public http: Http, private tokenService: Angular2TokenService) {
+  constructor(public http: HttpClient, private config: Config) {
     console.log('StaffingRequestApi Provider Created');
+    this.base_url = this.config.props["API_URL"] + "/staffing_requests";
   }
 
   getStaffingRequests() {
-    return this.tokenService.get(`${this.base_url}.json`).map(response=>{
-      this.staffingRequests = response.json();
+    return this.http.get(`${this.base_url}.json`).map(response=>{
+      this.staffingRequests = response;
       return this.staffingRequests;
     })
   }
 
   price(staffingRequest) {
-    return this.tokenService.post(`${this.base_url}/price.json`, staffingRequest).map(response=>{
-      this.staffingRequest = response.json();
+    return this.http.post(`${this.base_url}/price.json`, staffingRequest).map(response=>{
+      this.staffingRequest = response;
       return this.staffingRequest;
       //return response.status;
     })
   }
 
   getStaffingRequestDetails(staffingRequest_id) {
-    return this.tokenService.get(`${this.base_url}/${staffingRequest_id}.json`).map(response=>{
-      this.staffingRequest = response.json();
+    return this.http.get(`${this.base_url}/${staffingRequest_id}.json`).map(response=>{
+      this.staffingRequest = response;
       return this.staffingRequest;
     })
   }
 
   createStaffingRequest(staffingRequest) {
-    return this.tokenService.post(`${this.base_url}.json`, staffingRequest).map(response=>{
-      this.staffingRequest = response.json();
+    return this.http.post(`${this.base_url}.json`, staffingRequest).map(response=>{
+      this.staffingRequest = response;
       return this.staffingRequest;
       //return response.status;
     })
@@ -47,15 +49,15 @@ export class StaffingRequestApi {
   updateStaffingRequest(staffingRequest) {
     console.log(`StaffingRequestApi: Updating staffingRequest`)
     console.log(staffingRequest);
-    return this.tokenService.put(`${this.base_url}/${staffingRequest.id}.json`, staffingRequest).map(response=>{
-      this.staffingRequest = response.json();
+    return this.http.put(`${this.base_url}/${staffingRequest.id}.json`, staffingRequest).map(response=>{
+      this.staffingRequest = response;
       return this.staffingRequest;
     })
   }
 
   deleteStaffingRequest(staffingRequest) {
-    return this.tokenService.delete(`${this.base_url}/${staffingRequest.id}.json`).map(response=>{
-      return response.status;
+    return this.http.delete(`${this.base_url}/${staffingRequest.id}.json`).map(response=>{
+      return response;
     })
   }
 

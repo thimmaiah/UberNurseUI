@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, ViewChild } from '@angular/core';
 import { CareHomeApi } from '../../providers/care-home-api';
 import { ResponseUtility } from '../../providers/response-utility';
-import { Angular2TokenService } from 'angular2-token';
+import { AngularTokenService } from 'angular-token';
 import { Events } from 'ionic-angular';
 import { CheckboxValidator } from '../../providers/checkbox-validator';
 
@@ -26,7 +26,7 @@ export class CareHomeBankingDetails {
     public care_homeApi: CareHomeApi,
     public respUtility: ResponseUtility,
     public loadingController: LoadingController,
-    private tokenService: Angular2TokenService,
+    private tokenService: AngularTokenService,
     public events: Events) {
 
     this.slideOneForm = formBuilder.group({

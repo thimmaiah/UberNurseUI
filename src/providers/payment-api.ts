@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import 'rxjs/add/operator/map';
-import { Angular2TokenService } from 'angular2-token';
+import { AngularTokenService } from 'angular-token';
+import { Config } from './config';
 
 /*
   Generated class for the PaymentApi provider.
@@ -13,37 +14,38 @@ import { Angular2TokenService } from 'angular2-token';
 export class PaymentApi {
 
   private base_url = "payments";
-  payments = [];
+  payments: any;
   payment = {};
 
-  constructor(public http: Http, private tokenService: Angular2TokenService) {
+  constructor(public http: HttpClient, private config: Config) {
     console.log('PaymentApi Provider Created');
+    this.base_url = this.config.props["API_URL"] + "/payments";
   }
 
   getPayments(page) {
-    return this.tokenService.get(`${this.base_url}.json?page=${page}`).map(response=>{
-      this.payments = response.json();
+    return this.http.get(`${this.base_url}.json?page=${page}`).map(response=>{
+      this.payments = response;
       return this.payments;
     })
   }
 
   searchPayments(start_date, end_date) {
-    return this.tokenService.get(`${this.base_url}/search.xls?start_date=${start_date}&end_date=${end_date}`).map(response=>{
-      this.payments = response.json();
+    return this.http.get(`${this.base_url}/search.xls?start_date=${start_date}&end_date=${end_date}`).map(response=>{
+      this.payments = response;
       return this.payments;
     })
   }
 
   getPaymentDetails(payment_id) {
-    return this.tokenService.get(`${this.base_url}/${payment_id}.json`).map(response=>{
-      this.payment = response.json();
+    return this.http.get(`${this.base_url}/${payment_id}.json`).map(response=>{
+      this.payment = response;
       return this.payment;
     })
   }
 
   createPayment(payment) {
-    return this.tokenService.post(`${this.base_url}.json`, payment).map(response=>{
-      this.payment = response.json();
+    return this.http.post(`${this.base_url}.json`, payment).map(response=>{
+      this.payment = response;
       return this.payment;
       //return response.status;
     })
@@ -52,15 +54,15 @@ export class PaymentApi {
   updatePayment(payment) {
     console.log(`PaymentApi: Updating payment`)
     console.log(payment);
-    return this.tokenService.put(`${this.base_url}/${payment.id}.json`, payment).map(response=>{
-      this.payment = response.json();
+    return this.http.put(`${this.base_url}/${payment.id}.json`, payment).map(response=>{
+      this.payment = response;
       return this.payment;
     })
   }
 
   deletePayment(payment) {
-    return this.tokenService.delete(`${this.base_url}/${payment.id}.json`).map(response=>{
-      return response.status;
+    return this.http.delete(`${this.base_url}/${payment.id}.json`).map(response=>{
+      return response;
     })
   }
 

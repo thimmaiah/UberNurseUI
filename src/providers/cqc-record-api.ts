@@ -1,38 +1,40 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import 'rxjs/add/operator/map';
-import { Angular2TokenService } from 'angular2-token';
+import { AngularTokenService } from 'angular-token';
+import { Config } from './config';
 
 
 @Injectable()
 export class CqcRecordApi {
 
   private base_url = "cqc_records";
-  cqc_records = [];
+  cqc_records: any;
   cqc_record = {};
 
-  constructor(public http: Http, private tokenService: Angular2TokenService) {
+  constructor(public http: HttpClient, private config: Config) {
     console.log('CqcRecordApi Provider Created');
+    this.base_url = this.config.props["API_URL"] + "/cqc_records";
   }
 
   getCqcRecords(searchTerm) {
     let endpoint = `${this.base_url}.json?search=${searchTerm}`;
-    return this.tokenService.get(endpoint).map(response=>{
-      this.cqc_records = response.json();
+    return this.http.get(endpoint).map(response=>{
+      this.cqc_records = response;
       return this.cqc_records;
     })
   }
 
   getCqcRecordDetails(cqc_record_id) {
-    return this.tokenService.get(`${this.base_url}/${cqc_record_id}.json`).map(response=>{
-      this.cqc_record = response.json();
+    return this.http.get(`${this.base_url}/${cqc_record_id}.json`).map(response=>{
+      this.cqc_record = response;
       return this.cqc_record;
     })
   }
 
   createCqcRecord(cqc_record) {
-    return this.tokenService.post(`${this.base_url}.json`, cqc_record).map(response=>{
-      this.cqc_record = response.json();
+    return this.http.post(`${this.base_url}.json`, cqc_record).map(response=>{
+      this.cqc_record = response;
       return this.cqc_record;
       //return response.status;
     })
@@ -41,15 +43,15 @@ export class CqcRecordApi {
   updateCqcRecord(cqc_record) {
     console.log(`CqcRecordApi: Updating cqc_record`)
     console.log(cqc_record);
-    return this.tokenService.put(`${this.base_url}/${cqc_record.id}.json`, cqc_record).map(response=>{
-      this.cqc_record = response.json();
+    return this.http.put(`${this.base_url}/${cqc_record.id}.json`, cqc_record).map(response=>{
+      this.cqc_record = response;
       return this.cqc_record;
     })
   }
 
   deleteCqcRecord(cqc_record) {
-    return this.tokenService.delete(`${this.base_url}/${cqc_record.id}.json`).map(response=>{
-      return response.status;
+    return this.http.delete(`${this.base_url}/${cqc_record.id}.json`).map(response=>{
+      return response;
     })
   }
 

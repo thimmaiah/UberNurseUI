@@ -1,38 +1,40 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import 'rxjs/add/operator/map';
-import { Angular2TokenService } from 'angular2-token';
+import { AngularTokenService } from 'angular-token';
+import { Config } from './config';
 
 
 @Injectable()
 export class ReferralApi {
 
   private base_url = "referrals";
-  referrals = [];
+  referrals: any;
   referral = {};
 
-  constructor(public http: Http, private tokenService: Angular2TokenService) {
+  constructor(public http: HttpClient, private config: Config) {
     console.log('ReferralApi Provider Created');
+    this.base_url = this.config.props["API_URL"] + "/referrals";
   }
 
   getReferrals() {
     let endpoint = `${this.base_url}.json?`;
-    return this.tokenService.get(endpoint).map(response=>{
-      this.referrals = response.json();
+    return this.http.get(endpoint).map(response=>{
+      this.referrals = response;
       return this.referrals;
     })
   }
 
   getReferralDetails(referral_id) {
-    return this.tokenService.get(`${this.base_url}/${referral_id}.json`).map(response=>{
-      this.referral = response.json();
+    return this.http.get(`${this.base_url}/${referral_id}.json`).map(response=>{
+      this.referral = response;
       return this.referral;
     })
   }
 
   createReferral(referral) {
-    return this.tokenService.post(`${this.base_url}.json`, referral).map(response=>{
-      this.referral = response.json();
+    return this.http.post(`${this.base_url}.json`, referral).map(response=>{
+      this.referral = response;
       return this.referral;
       //return response.status;
     })
@@ -41,15 +43,15 @@ export class ReferralApi {
   updateReferral(referral) {
     console.log(`ReferralApi: Updating referral`)
     console.log(referral);
-    return this.tokenService.put(`${this.base_url}/${referral.id}.json`, referral).map(response=>{
-      this.referral = response.json();
+    return this.http.put(`${this.base_url}/${referral.id}.json`, referral).map(response=>{
+      this.referral = response;
       return this.referral;
     })
   }
 
   deleteReferral(referral) {
-    return this.tokenService.delete(`${this.base_url}/${referral.id}.json`).map(response=>{
-      return response.status;
+    return this.http.delete(`${this.base_url}/${referral.id}.json`).map(response=>{
+      return response;
     })
   }
 

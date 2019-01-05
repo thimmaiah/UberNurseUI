@@ -8,7 +8,7 @@ import { Rating } from '../rating/rating';
 import { StaffingRequestDetails } from '../staffing-request/staffing-request-details';
 import { ShiftApi } from '../../providers/shift-api';
 import { ResponseUtility } from '../../providers/response-utility';
-import { Angular2TokenService } from 'angular2-token';
+import { AngularTokenService } from 'angular-token';
 import * as moment from 'moment';
 
 
@@ -24,7 +24,7 @@ export class ShiftDetails {
   current_user: {};
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    private tokenService: Angular2TokenService,
+    private tokenService: AngularTokenService,
     public shiftApi: ShiftApi,
     public loadingController: LoadingController,
     public respUtility: ResponseUtility) {

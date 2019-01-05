@@ -4,7 +4,7 @@ import { Component, ViewChild, ElementRef, Renderer } from '@angular/core';
 import { Keyboard } from '@ionic-native/keyboard';
 import { UserApi } from '../../providers/user-api';
 import { ResponseUtility } from '../../providers/response-utility';
-import { Angular2TokenService } from 'angular2-token';
+import { AngularTokenService } from 'angular-token';
 import { UserValidator } from './user-validator'
 import { TermsPage } from '../static/terms';
 import { PostCodeValidator } from './postcode-validator';
@@ -34,7 +34,7 @@ export class UserForm {
     public userApi: UserApi,
     public respUtility: ResponseUtility,
     public loadingController: LoadingController,
-    private tokenService: Angular2TokenService,
+    private tokenService: AngularTokenService,
     private elementRef: ElementRef,
     private renderer: Renderer,
     private keyboard: Keyboard,
@@ -162,6 +162,8 @@ export class UserForm {
 
   register(user, loader) {
     this.respUtility.trackEvent("User", "Register", "click");
+    user.login = user.email;
+    console.log(user);
     this.tokenService.registerAccount(user).subscribe(
       res => {
         console.log(res);
@@ -171,8 +173,7 @@ export class UserForm {
       error => {
         console.log(error);
         if (error.status == 401) {
-          let body = JSON.parse(error._body);
-          this.respUtility.showWarning(body.errors);
+          this.respUtility.showWarning(error);
         } else {
           this.respUtility.showFailure(error);
           loader.dismiss();

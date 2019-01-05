@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-an
 import { RatingForm } from '../rating/rating-form';
 import { RatingApi } from '../../providers/rating-api';
 import { ResponseUtility } from '../../providers/response-utility';
-import { Angular2TokenService } from 'angular2-token';
+import { AngularTokenService } from 'angular-token';
 
 @Component({
   selector: 'page-rating-details',
@@ -18,7 +18,7 @@ export class RatingDetails {
     public ratingApi: RatingApi,
     public loadingController: LoadingController, 
     public respUtility: ResponseUtility,
-    public tokenService: Angular2TokenService) {
+    public tokenService: AngularTokenService) {
     
     this.rating = this.navParams.data;
     this.current_user = tokenService.currentUserData;

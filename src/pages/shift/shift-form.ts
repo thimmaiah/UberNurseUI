@@ -74,7 +74,7 @@ export class ShiftForm {
         },
         error => {
           if (error.status === 422) {
-            let error_response = JSON.parse(error._body);
+            let error_response = error.error;
             let msg = "";
             for (var key in error_response) {
               msg += error_response[key] + ". ";
@@ -165,7 +165,7 @@ export class ShiftForm {
           },
           error => {
             if (error.status === 422) {
-              let error_response = JSON.parse(error._body);
+              let error_response = error.error;
               let msg = "";
               for (var key in error_response) {
                 msg += error_response[key] + ". ";

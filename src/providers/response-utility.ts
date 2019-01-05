@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AlertController, ToastController, ModalController, Toast } from 'ionic-angular';
 import { GoogleAnalytics } from '@ionic-native/google-analytics';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import 'rxjs/add/operator/map';
-
 
 
 @Injectable()
@@ -13,7 +12,7 @@ export class ResponseUtility {
 
   constructor(
     private ga: GoogleAnalytics,
-    public http: Http,
+    public http: HttpClient,
     public alertController: AlertController,
     public modalController: ModalController,
     public toastController: ToastController) {
@@ -74,12 +73,19 @@ export class ResponseUtility {
   }
 
   showFailure(error, msg = null) {
+    console.log(error);
     if (error.status == 401) {
-      let body = JSON.parse(error._body);
-      this.showWarning(body.errors);
+      if(error.error.errors) {
+        this.showWarning(error.error.errors);
+      } else {
+        this.showWarning(error.message);
+      }
     } else if (error.status == 422) {
-      let body = JSON.parse(error._body);
-      this.showWarning(body.errors.full_messages);
+      if(error.error.errors.full_messages) {
+        this.showWarning(error.error.errors.full_messages);
+      } else {
+        this.showWarning(error.message);
+      }
     } else {
       this.showFailureAlert(error, msg);
     }

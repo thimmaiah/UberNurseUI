@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-an
 import { ReferralForm } from '../referral/referral-form';
 import { ReferralApi } from '../../providers/referral-api';
 import { ResponseUtility } from '../../providers/response-utility';
-import { Angular2TokenService } from 'angular2-token';
+import { AngularTokenService } from 'angular-token';
 
 @Component({
   selector: 'page-referral-details',
@@ -18,7 +18,7 @@ export class ReferralDetails {
     public referralApi: ReferralApi,
     public loadingController: LoadingController, 
     public respUtility: ResponseUtility,
-    public tokenService: Angular2TokenService) {
+    public tokenService: AngularTokenService) {
     
     this.referral = this.navParams.data;
     this.current_user = tokenService.currentUserData;

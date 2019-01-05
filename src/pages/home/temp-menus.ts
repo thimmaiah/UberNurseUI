@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { Angular2TokenService } from 'angular2-token';
+import { AngularTokenService } from 'angular-token';
 import { ResponseUtility } from '../../providers/response-utility';
 import { Shift } from '../shift/shift';
 import { UserDetails } from '../users/user-details';
@@ -25,7 +25,7 @@ export class TempMenus extends DocLinks implements Menu {
 
     constructor(public navCtrl: NavController,
         public respUtility: ResponseUtility,
-        private tokenService: Angular2TokenService,
+        private tokenService: AngularTokenService,
         private config: Config,
         public events: Events,
         public homeEvents: HomeEvents,

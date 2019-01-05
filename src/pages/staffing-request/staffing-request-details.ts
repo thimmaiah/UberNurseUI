@@ -5,7 +5,7 @@ import { StaffingRequestApi } from '../../providers/staffing-request-api';
 import { ResponseUtility } from '../../providers/response-utility';
 import { Shift } from '../shift/shift';
 import { ShiftForm } from '../shift/shift-form';
-import { Angular2TokenService } from 'angular2-token';
+import { AngularTokenService } from 'angular-token';
 import { ActionSheetController, Platform, ActionSheet } from 'ionic-angular';
 
 import * as _ from 'lodash';
@@ -30,7 +30,7 @@ export class StaffingRequestDetails {
     public navParams: NavParams,
     public loadingController: LoadingController,
     public platform: Platform,
-    private tokenService: Angular2TokenService,
+    private tokenService: AngularTokenService,
     public staffingRequestApi: StaffingRequestApi,
     public actionSheetCtrl: ActionSheetController,
     public respUtility: ResponseUtility) {

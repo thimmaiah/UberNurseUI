@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Component } from '@angular/core';
-import { Angular2TokenService } from 'angular2-token';
+import { AngularTokenService } from 'angular-token';
 import { ResponseUtility } from './response-utility';
 import { Config } from './config';
 import { Events } from 'ionic-angular';
@@ -13,7 +13,7 @@ export class HomeEvents {
 
     constructor(
         public respUtility: ResponseUtility,
-        public tokenService: Angular2TokenService,
+        public tokenService: AngularTokenService,
         public config: Config,
         public events: Events) {
 
@@ -40,9 +40,8 @@ export class HomeEvents {
             this.tokenService.validateToken().subscribe(
                 resp => {
                     console.log(resp);
-                    let body = JSON.parse(resp["_body"]);
                     for (let menu of this.menus) {
-                        menu.currentUser = body["data"];
+                        menu.currentUser = resp.data;
                         menu.displayMsgs();
                     }
                 },

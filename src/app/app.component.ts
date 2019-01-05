@@ -9,7 +9,7 @@ import { CareHomes } from '../pages/care-homes/care-homes';
 import { Payment } from '../pages/payment/payment'
 import { ReferralPage } from '../pages/referral/referral'
 import { Rating } from '../pages/rating/rating'
-import { Angular2TokenService } from 'angular2-token';
+import { AngularTokenService } from 'angular-token';
 import { Config } from '../providers/config';
 import { Push, PushObject, PushOptions } from '@ionic-native/push';
 import { LoginProvider } from '../providers/login-provider';
@@ -57,7 +57,7 @@ export class MyApp {
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
     public push: Push,
-    private tokenService: Angular2TokenService,
+    private tokenService: AngularTokenService,
     private config: Config,
     public events: Events,
     public respUtility: ResponseUtility,
@@ -177,16 +177,13 @@ export class MyApp {
 
         this.initDeeplinks();
 
+        (this.tokenService as any).options.apiBase = this.config.props["API_URL"];
+
         // Okay, so the platform is ready and our plugins are available.
         // Here you can do any higher level native things you might need.
         this.statusBar.styleDefault();
         this.splashScreen.hide();
         this.initPushNotification();
-
-        this.tokenService.init({
-          apiBase: this.config.props["API_URL"],
-          updatePasswordPath: "/auth/password"
-        });
 
         this.currentUser = this.tokenService.currentUserData;
 

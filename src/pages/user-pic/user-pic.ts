@@ -8,7 +8,7 @@ import { Diagnostic } from '@ionic-native/diagnostic';
 import { ResponseUtility } from '../../providers/response-utility';
 import { UserDocApi } from '../../providers/user-doc-api';
 import { Config } from '../../providers/config';
-import { Angular2TokenService } from 'angular2-token';
+import { AngularTokenService } from 'angular-token';
 import { Events } from 'ionic-angular';
 import Raven from 'raven-js';
 
@@ -40,7 +40,7 @@ export class UserPic {
     private transfer: Transfer,
     private config: Config,
     private userDocApi: UserDocApi,
-    private tokenService: Angular2TokenService,
+    private tokenService: AngularTokenService,
     public events: Events) {
 
     this.current_user = tokenService.currentUserData;

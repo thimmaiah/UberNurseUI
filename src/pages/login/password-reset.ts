@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TokenService } from '../../providers/token-service';
-import { Angular2TokenService } from 'angular2-token';
+import { AngularTokenService } from 'angular-token';
 import { ResponseUtility } from '../../providers/response-utility';
 import { Config } from '../../providers/config';
 import { Http, RequestOptions, Headers } from '@angular/http';
@@ -25,7 +25,7 @@ export class PasswordReset {
     public formBuilder: FormBuilder,
     public respUtility: ResponseUtility,
     public loadingController: LoadingController,
-    private tokenService: Angular2TokenService,
+    private tokenService: AngularTokenService,
     private config: Config,
     private http: Http) {
 
@@ -48,7 +48,7 @@ export class PasswordReset {
     });
 
     loader.present();
-    this.tokenService.get(`auth/password/edit?reset_password_token=${this.token}&redirect_url=auth/password`).subscribe(
+    this.http.get(`auth/password/edit?reset_password_token=${this.token}&redirect_url=auth/password`).subscribe(
       res => {
         console.log(res);
         this.headerInfo = res.json();

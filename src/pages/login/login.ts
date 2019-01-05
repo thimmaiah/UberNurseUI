@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TokenService } from '../../providers/token-service';
-import { Angular2TokenService } from 'angular2-token';
+import { AngularTokenService } from 'angular-token';
 import { ResponseUtility } from '../../providers/response-utility';
 import { Config } from '../../providers/config';
 import { LoginProvider } from '../../providers/login-provider';
@@ -35,7 +35,7 @@ export class Login {
     public formBuilder: FormBuilder,
     public respUtility: ResponseUtility,
     public loadingController: LoadingController,
-    private tokenService: Angular2TokenService,
+    private tokenService: AngularTokenService,
     private config: Config,
     private loginProvider: LoginProvider,
     private userApi: UserApi,
@@ -90,12 +90,10 @@ export class Login {
   forgotPassword() {
     this.respUtility.trackEvent("User", "ForgotPassword", "click");
     if (this.email != null) {
-      this.tokenService.resetPassword({ email: this.email }).subscribe(
+      this.tokenService.resetPassword({ login: this.email }).subscribe(
         res => {
           console.log(res);
-          let body = JSON.parse(res["_body"]);
-          console.log(body["message"]);
-          this.respUtility.showMsg(body["message"]);
+          this.respUtility.showMsg(res.message);
           this.navCtrl.push(PasswordReset)
         },
         error => this.respUtility.showFailure(error)

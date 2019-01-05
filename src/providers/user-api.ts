@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 import 'rxjs/add/operator/map';
-import { Angular2TokenService } from 'angular2-token';
+import { AngularTokenService } from 'angular-token';
+import { Config } from './config';
 
 
 @Injectable()
@@ -9,45 +10,46 @@ export class UserApi {
 
   private base_url = "users";
   private remoteEndpoint;
-  users = [];
+  users:any;
   user = {};
 
-  constructor(public http: Http, private tokenService: Angular2TokenService) {
+  constructor(public http: HttpClient, private config: Config) {
     console.log('UserApi Provider Created');
+    this.base_url = this.config.props["API_URL"] + "/users";
   }
 
   getUsers() {
     
-    return this.tokenService.get(`${this.base_url}.json`).map(response=>{
-      this.users = response.json();
+    return this.http.get(`${this.base_url}.json`).map(response=>{
+      this.users = response;
       return this.users;      
     })
   }
 
   getUserDetails(user_id) {
-    return this.tokenService.get(`${this.base_url}/${user_id}.json`).map(response=>{
-      this.user = response.json();
+    return this.http.get(`${this.base_url}/${user_id}.json`).map(response=>{
+      this.user = response;
       return this.user;
     })
   }
 
   sendVerificationCode() {
-    return this.tokenService.post(`${this.base_url}/send_sms_verification.json`, {}).map(response=>{
-      let resp = response.json();
+    return this.http.post(`${this.base_url}/send_sms_verification.json`, {}).map(response=>{
+      let resp = response;
       return resp;
     })
   }
 
   confirmVerificationCode(code) {
-    return this.tokenService.post(`${this.base_url}/verify_sms_verification.json`, {"code": code}).map(response=>{
-      let resp = response.json();
+    return this.http.post(`${this.base_url}/verify_sms_verification.json`, {"code": code}).map(response=>{
+      let resp = response;
       return resp;
     })
   }
 
   createUser(user) {
-    return this.tokenService.post(`${this.base_url}.json`, user).map(response=>{
-      this.user = response.json();
+    return this.http.post(`${this.base_url}.json`, user).map(response=>{
+      this.user = response;
       return this.user;
       //return response.status;
     })
@@ -56,21 +58,21 @@ export class UserApi {
   updateUser(user) {
     console.log(`UserApi: Updating user`)
     console.log(user);
-    return this.tokenService.put(`${this.base_url}/${user.id}.json`, user).map(response=>{
-      this.user = response.json();
+    return this.http.put(`${this.base_url}/${user.id}.json`, user).map(response=>{
+      this.user = response;
       return this.user;
     })
   }
 
   deleteUser(user) {
-    return this.tokenService.delete(`${this.base_url}/${user.id}.json`).map(response=>{
-      return response.status;
+    return this.http.delete(`${this.base_url}/${user.id}.json`).map(response=>{
+      return response;
     })
   }
 
   resendConfirmationEmail(email) {
-    return this.tokenService.post(`${this.base_url}/resend_confirmation.json`, {"email":email}).map(response=>{
-      this.user = response.json();
+    return this.http.post(`${this.base_url}/resend_confirmation.json`, {"email":email}).map(response=>{
+      this.user = response;
       return this.user;
       //return response.status;
     })

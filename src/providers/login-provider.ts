@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { IonicPage, NavParams, LoadingController } from 'ionic-angular';
-import { Angular2TokenService } from 'angular2-token';
+import { AngularTokenService } from 'angular-token';
 import { Storage } from '@ionic/storage';
 import { Config } from './config';
 import { UserApi } from './user-api';
@@ -17,7 +17,7 @@ import Raven from 'raven-js';
 @Injectable()
 export class LoginProvider {
 
-  constructor(public tokenService: Angular2TokenService,
+  constructor(public tokenService: AngularTokenService,
     public loadingController: LoadingController,
     public storage: Storage,
     public events: Events,
@@ -73,7 +73,7 @@ export class LoginProvider {
 
     loader.present();
 
-    this.tokenService.signIn({ email: email, password: password }).subscribe(
+    this.tokenService.signIn({ login: email, password: password }).subscribe(
       res => {
         console.log(res);
         this.storage.set("email", email);

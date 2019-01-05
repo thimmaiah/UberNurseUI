@@ -4,7 +4,7 @@ import { SimpleChanges, Component, ViewChild } from '@angular/core';
 import { StaffingRequestApi } from '../../providers/staffing-request-api';
 import { ResponseUtility } from '../../providers/response-utility';
 import * as moment from 'moment';
-import { Angular2TokenService } from 'angular2-token';
+import { AngularTokenService } from 'angular-token';
 
 //@IonicPage()
 @Component({
@@ -28,7 +28,7 @@ export class StaffingRequestForm {
   submitAttempt: boolean = false;
 
   constructor(public navCtrl: NavController,
-    private tokenService: Angular2TokenService,
+    private tokenService: AngularTokenService,
     public navParams: NavParams,
     public formBuilder: FormBuilder,
     public loadingController: LoadingController,

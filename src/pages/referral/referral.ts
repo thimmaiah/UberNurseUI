@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { ReferralApi } from '../../providers/referral-api';
 import { ResponseUtility } from '../../providers/response-utility';
-import { Angular2TokenService } from 'angular2-token';
+import { AngularTokenService } from 'angular-token';
 import {ReferralDetails} from './referral-details';
 import { ReferralForm } from '../referral/referral-form';
 
@@ -18,7 +18,7 @@ export class ReferralPage {
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
-    private tokenService: Angular2TokenService,
+    private tokenService: AngularTokenService,
     public loadingController: LoadingController,
     public referralApi: ReferralApi, 
     public respUtility: ResponseUtility) {

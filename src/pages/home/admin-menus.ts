@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { Angular2TokenService } from 'angular2-token';
+import { AngularTokenService } from 'angular-token';
 import { Login } from '../login/login';
 import { ResponseUtility } from '../../providers/response-utility';
 import { Shift } from '../shift/shift';
@@ -33,7 +33,7 @@ export class AdminMenus implements Menu {
 
     constructor(public navCtrl: NavController,
         public respUtility: ResponseUtility,
-        public tokenService: Angular2TokenService,
+        public tokenService: AngularTokenService,
         public config: Config,
         public events: Events,
         public homeEvents: HomeEvents,

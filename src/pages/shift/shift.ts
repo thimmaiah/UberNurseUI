@@ -3,7 +3,7 @@ import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-an
 import { ShiftApi } from '../../providers/shift-api';
 import { ResponseUtility } from '../../providers/response-utility';
 import { ShiftDetails } from '../shift/shift-details'
-import { Angular2TokenService } from 'angular2-token';
+import { AngularTokenService } from 'angular-token';
 import * as moment from 'moment';
 
 @Component({
@@ -21,7 +21,7 @@ export class Shift {
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
-    private tokenService: Angular2TokenService,
+    private tokenService: AngularTokenService,
     public loadingController: LoadingController,
     public shiftApi: ShiftApi, 
     public respUtility: ResponseUtility) {

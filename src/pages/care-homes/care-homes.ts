@@ -5,7 +5,7 @@ import { ResponseUtility } from '../../providers/response-utility';
 import { CareHomeDetails } from '../care-homes/care-home-details';
 import { CareHomeForm } from '../care-homes/care-home-form';
 import { CareHomeSearch } from '../care-homes/care-home-search';
-import { Angular2TokenService } from 'angular2-token';
+import { AngularTokenService } from 'angular-token';
 
 
 @IonicPage()
@@ -25,7 +25,7 @@ export class CareHomes {
     public navParams: NavParams,
     public loadingController: LoadingController,
     public care_homeApi: CareHomeApi,
-    private tokenService: Angular2TokenService,
+    private tokenService: AngularTokenService,
     public respUtility: ResponseUtility) {
 
       this.current_user = tokenService.currentUserData;

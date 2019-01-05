@@ -19,7 +19,7 @@ import { Login } from '../pages/login/login';
 import { PasswordReset } from '../pages/login/password-reset'
 
 import { IonicStorageModule } from '@ionic/storage';
-import { Angular2TokenService } from 'angular2-token';
+import { AngularTokenService, AngularTokenModule } from 'angular-token';
 // Import ionic2-rating module
 import { Ionic2RatingModule } from 'ionic2-rating';
 
@@ -71,8 +71,8 @@ import { CareHomeBankingDetails } from '../pages/care-homes/care-home-banking-de
 import { Diagnostic } from '@ionic-native/diagnostic';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { HttpModule } from '@angular/http';
-import { MomentModule } from 'angular2-moment';
+import { HttpModule, Http } from '@angular/http';
+import { MomentModule } from 'ngx-moment';
 import { UserApi } from '../providers/user-api'
 import { UserDocApi } from '../providers/user-doc-api'
 import { Config } from '../providers/config'
@@ -95,6 +95,7 @@ import { GoogleAnalytics } from '@ionic-native/google-analytics';
 
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { Deeplinks } from '@ionic-native/deeplinks';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -144,11 +145,15 @@ import { Deeplinks } from '@ionic-native/deeplinks';
   imports: [
     BrowserModule,
     HttpModule,
+    HttpClientModule,
     RouterModule,
     MomentModule,
     Ionic2RatingModule,
     IonicModule.forRoot(MyApp),
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    AngularTokenModule.forRoot({
+      updatePasswordPath: "/auth/password"
+    })
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -213,7 +218,7 @@ import { Deeplinks } from '@ionic-native/deeplinks';
     StatusBar,
     SplashScreen,
     Keyboard,
-    Angular2TokenService,
+    AngularTokenModule,
     Camera,
     Diagnostic,
     File,
