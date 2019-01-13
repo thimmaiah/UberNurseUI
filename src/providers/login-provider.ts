@@ -51,11 +51,11 @@ export class LoginProvider {
     this.storage
       .get("email").then((emailval) => {
         email = emailval;
-        if (email) {
+        if (email && email != "") {
           this.storage
             .get("password").then((pval) => {
               password = pval;
-              if (password) {
+              if (password && password != "") {
                 console.log(`auto_login: email = ${email}, password = ${password}`);
                 this.login(email, password, navCtrl);
               }

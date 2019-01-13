@@ -34,6 +34,19 @@
         Select the care home you are booking for
       </p>
 
+      <ion-item id="agency_id" *ngIf="current_user.care_home_agencies">
+        <ion-label floating>Agency</ion-label>
+        <ion-select text-wrap name="agency_id" [(ngModel)]="staffingRequest.agency_id" [class.invalid]="!slideOneForm.controls.agency_id.valid && (slideOneForm.controls.agency_id.dirty || submitAttempt)"
+          formControlName="agency_id" class="item-select-custom">
+          <ion-option  text-wrap *ngFor="let agency of current_user.care_home_agencies" value="{{agency.id}}">
+              {{agency.name}}
+          </ion-option>
+        </ion-select>
+      </ion-item>
+      <p class="field-hint" *ngIf="current_user.sister_care_homes">
+        Select the care home you are booking for
+      </p>
+
       <ion-item id="role">
         <ion-label floating>Staff Type</ion-label>
         <ion-select name="role" [(ngModel)]="staffingRequest.role" [class.invalid]="!slideOneForm.controls.role.valid && (slideOneForm.controls.role.dirty || submitAttempt)"

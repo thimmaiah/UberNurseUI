@@ -47,6 +47,8 @@ export class StaffingRequestForm {
 
       care_home_id: ['', Validators.compose([])],
 
+      agency_id: ['', Validators.compose([Validators.required])],
+
       role: ['', Validators.compose([Validators.required])],
 
       start_date: ['', Validators.compose([Validators.required])],
@@ -100,6 +102,10 @@ export class StaffingRequestForm {
 
     if(this.current_user["sister_care_homes"] != null) {
       this.staffingRequest["care_home_id"] = this.current_user["care_home_id"]
+    }
+
+    if(this.current_user["care_home_agencies"] != null) {
+      this.staffingRequest["agency_id"] = this.current_user["care_home_agencies"][0]["id"];
     }
 
   }

@@ -11,6 +11,17 @@
 
   <ion-list>
 
+    <ion-item>
+      <ion-row>
+        <ion-col>
+          Agency:
+        </ion-col>
+        <ion-col text-wrap>
+          {{shift.agency.name}}
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
     <div *ngIf="shift.can_manage != true">
       <img [src]="shift.user.image" style="max-height:300px;" class="center-image">
 
