@@ -41,7 +41,7 @@
               </button>
 
               <button ion-item (click)="show_staffing_requests()">
-                <ion-icon name="construct" item-left color="primary"></ion-icon>
+                <ion-icon name="filing" item-left color="primary"></ion-icon>
                 View Staffing Requests
                 <p text-wrap>
                   Staffing Request you have placed.
@@ -49,12 +49,22 @@
               </button>
 
               <button ion-item (click)="show_shifts('Accepted')">
-                <ion-icon name="list" item-left item-left color="primary"></ion-icon>
+                <ion-icon name="person" item-left item-left color="primary"></ion-icon>
                 Confirmed Shifts
                 <p text-wrap>
                   Shifts for your Care Home.
                 </p>
               </button>
+
+              <button ion-item (click)="show_agencies()" *ngIf="initData && initData.agencies_pending_accept > 0">
+                <ion-badge item-right color="danger" >{{initData.agencies_pending_accept}}</ion-badge>
+                <ion-icon name="contacts" item-left item-left color="primary"></ion-icon>
+                Accept Agency 
+                <p text-wrap>
+                  Agency that you need to approve to be a part of.
+                </p>
+              </button>
+  
             </div>
 
 
@@ -69,4 +79,5 @@
               </button>
             </div>
 
+            
           </div>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AngularTokenService } from 'angular-token';
 import { ResponseUtility } from '../../providers/response-utility';
@@ -14,6 +14,8 @@ import { DocLinks } from '../users/doc-links';
 import { Menu } from './menus';
 import { HomeEvents } from '../../providers/home-events';
 import { PhoneVerificationPage } from '../users/phone-verification';
+import { UserApi } from '../../providers/user-api';
+import { Agency } from '../agency/agency';
 
 @Component({
     selector: 'temp-menus',
@@ -22,6 +24,8 @@ import { PhoneVerificationPage } from '../users/phone-verification';
 export class TempMenus extends DocLinks implements Menu {
 
     currentUser: any;
+    @Input() initData: any;
+
 
     constructor(public navCtrl: NavController,
         public respUtility: ResponseUtility,
@@ -83,9 +87,14 @@ export class TempMenus extends DocLinks implements Menu {
         this.navCtrl.push(UserDetails, this.currentUser);
     }
 
+    show_agencies() {
+        this.navCtrl.push(Agency);
+    }
+
     phone_verification() {
         this.navCtrl.push(PhoneVerificationPage);
     }
+
 
 
 }

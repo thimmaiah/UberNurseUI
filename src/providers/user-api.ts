@@ -26,6 +26,13 @@ export class UserApi {
     })
   }
 
+  getInitialData() {
+    
+    return this.http.get(`${this.base_url}/get_initial_data.json`).map(response=>{
+      return response;      
+    })
+  }
+
   getUserDetails(user_id) {
     return this.http.get(`${this.base_url}/${user_id}.json`).map(response=>{
       this.user = response;

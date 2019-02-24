@@ -58,21 +58,33 @@
 
             </div>
 
-            <div *ngIf="currentUser.verified == true">
+            <div *ngIf="currentUser.verified == true && initData" >
               
-              <button ion-item (click)="show_shifts('Pending')">
-                <ion-icon name="warning" item-left item-left color="danger"></ion-icon>
+              <button ion-item (click)="show_shifts('Pending')">                
+                <ion-badge item-right [color]="initData.pending > 0 ? 'danger' : 'success'" >{{initData.pending}}</ion-badge>                
+                <ion-icon name="filing" item-left item-left color="primary"></ion-icon>
                 Pending Shifts
                 <p text-wrap>
                   New shifts pending your confirmation.
                 </p>
               </button>
+              
 
               <button ion-item (click)="show_shifts('Accepted')">
-                <ion-icon name="list" item-left item-left color="primary"></ion-icon>
+                <ion-badge item-right >{{initData.accepted}}</ion-badge>
+                <ion-icon name="copy" item-left item-left color="success"></ion-icon>
                 Confirmed Shifts
                 <p text-wrap>
                   Shifts confirmed by you.
+                </p>
+              </button>
+
+              <button ion-item (click)="show_agencies()" *ngIf="initData.agencies_pending_accept > 0">
+                <ion-badge item-right color="danger" >{{initData.agencies_pending_accept}}</ion-badge>
+                <ion-icon name="contacts" item-left item-left color="primary"></ion-icon>
+                Accept Agency 
+                <p text-wrap>
+                  Agency that you need to approve to be a part of.
                 </p>
               </button>
 

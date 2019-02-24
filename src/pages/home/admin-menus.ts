@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AngularTokenService } from 'angular-token';
 import { Login } from '../login/login';
@@ -21,6 +21,7 @@ import { DocLinks } from '../users/doc-links';
 import { PhoneVerificationPage } from '../users/phone-verification';
 import { Menu } from './menus';
 import { HomeEvents } from '../../providers/home-events';
+import { Agency } from '../agency/agency';
 
 @Component({
     selector: 'admin-menus',
@@ -30,6 +31,7 @@ export class AdminMenus implements Menu {
 
     currentUser: any;
     registerCareHome = false;
+    @Input() initData: any;
 
     constructor(public navCtrl: NavController,
         public respUtility: ResponseUtility,
@@ -94,6 +96,11 @@ export class AdminMenus implements Menu {
         }
 
 
+    }
+
+
+    show_agencies() {
+        this.navCtrl.push(Agency);
     }
 
     show_profile() {

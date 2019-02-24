@@ -11,6 +11,7 @@ import { Events } from 'ionic-angular';
 import { ContactPage } from '../static/contact';
 import { Menu } from './menus';
 import { HomeEvents } from '../../providers/home-events';
+import { UserApi } from '../../providers/user-api';
 
 
 @Component({
@@ -21,17 +22,19 @@ export class HomePage implements Menu {
 
   currentUser: any;
   registerCareHome = false;
-
+  initData: any;
+  
   constructor(public navCtrl: NavController,
     public respUtility: ResponseUtility,
     public tokenService: AngularTokenService,
     public config: Config,
     public events: Events,
+    public userApi: UserApi,
     public homeEvents: HomeEvents,
     private loginProvider: LoginProvider) {
 
     this.homeEvents.registerMenu(this);
-
+    
   }
 
   displayMsgs() {
@@ -41,6 +44,7 @@ export class HomePage implements Menu {
   ionViewWillEnter() {
     console.log('ionViewWillEnter HomePage ');
     this.currentUser = this.tokenService.currentUserData;
+    this.getInitialData();
   }
 
   show_payments() {
@@ -64,5 +68,20 @@ export class HomePage implements Menu {
   contact() {
     this.navCtrl.push(ContactPage);
   }
+
+
+  getInitialData() {
+    this.userApi.getInitialData().subscribe(
+        response => {
+            console.log("Loaded initData: ");
+            this.initData = response;
+            console.log(this.initData);
+        },
+        error => {
+            this.respUtility.showFailure(error);
+        }
+    );
+}
+
 
 }
