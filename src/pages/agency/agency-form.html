@@ -1,0 +1,81 @@
+<!--
+  Generated template for the AgenciesForm pemail.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pemails and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Agencies</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <p *ngIf="submitAttempt" style="color: #ea6153;">Please fill out all details accurately.</p>
+
+  <ion-list no-lines>
+
+    <form [formGroup]="slideOneForm">
+
+
+
+      <ion-item>
+        <ion-label floating>Name</ion-label>
+        <ion-input [readonly]="true" formControlName="name" type="text" [(ngModel)]="agency.name" [class.invalid]="!slideOneForm.controls.name.valid && (slideOneForm.controls.name.dirty || submitAttempt)"></ion-input>
+      </ion-item>
+
+      <ion-item *ngIf="!slideOneForm.controls.name.valid  && (slideOneForm.controls.name.dirty || submitAttempt)">
+        <p>Please enter a valid Amount.</p>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Phone</ion-label>
+        <ion-input [readonly]="true" formControlName="phone" type="text" [(ngModel)]="agency.phone" [class.invalid]="!slideOneForm.controls.phone.valid && (slideOneForm.controls.phone.dirty || submitAttempt)"></ion-input>
+      </ion-item>
+
+      <ion-item *ngIf="!slideOneForm.controls.phone.valid  && (slideOneForm.controls.phone.dirty || submitAttempt)">
+        <p>Please enter a valid Amount.</p>
+      </ion-item>
+
+
+      <ion-item>
+        <ion-label floating>Address</ion-label>
+        <ion-input formControlName="address" type="text" [(ngModel)]="agency.address" [class.invalid]="!slideOneForm.controls.address.valid && (slideOneForm.controls.address.dirty || submitAttempt)"></ion-input>
+      </ion-item>
+
+      <ion-item *ngIf="!slideOneForm.controls.address.valid  && (slideOneForm.controls.address.dirty || submitAttempt)">
+        <p>Please enter a valid Notes.</p>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Broadcast Group</ion-label>
+        <ion-input formControlName="broadcast_group" type="text" [(ngModel)]="agency.broadcast_group" [class.invalid]="!slideOneForm.controls.broadcast_group.valid && (slideOneForm.controls.broadcast_group.dirty || submitAttempt)"></ion-input>
+      </ion-item>
+
+      <ion-item *ngIf="!slideOneForm.controls.broadcast_group.valid  && (slideOneForm.controls.broadcast_group.dirty || submitAttempt)">
+        <p>Please enter a valid Notes.</p>
+      </ion-item>
+
+    </form>
+
+  </ion-list>
+
+  <button ion-button full color="primary" (click)="save()">Save</button>
+
+  <ion-card class="pricing_audit" *ngIf="agency.pricing_audit">
+
+    <ion-list>
+      <ion-list-header>
+        Price computation rules
+      </ion-list-header>
+      <button ion-item *ngFor="let key of pricing_audit_keys">
+          {{key | titlecase}} = {{agency.pricing_audit[key]}}
+        </button>
+    </ion-list>
+  </ion-card>
+
+</ion-content>

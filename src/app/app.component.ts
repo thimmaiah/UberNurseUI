@@ -36,6 +36,7 @@ import { CodePush, SyncStatus, InstallMode } from '@ionic-native/code-push';
 import { GoogleAnalytics } from '@ionic-native/google-analytics';
 import { Deeplinks } from '@ionic-native/deeplinks';
 import { ShiftDetails } from '../pages/shift/shift-details';
+import { Agency } from '../pages/agency/agency';
 
 
 @Component({
@@ -199,6 +200,7 @@ export class MyApp {
             this.currentUser.care_home.verified == true) {
 
             this.pages = [
+              { title: 'Agencies', component: Agency, params: {} },
               { title: 'Past Shifts', component: Shift, params: { response_status: "Closed" } },
               { title: 'Payment Records', component: Payment, params: {} },
               { title: 'About Us', component: AboutPage, params: {} },
@@ -210,6 +212,7 @@ export class MyApp {
 
           } else if (this.currentUser.role != "Admin" && this.currentUser.verified) {
             this.pages = [
+              { title: 'Agencies', component: Agency, params: {} },
               { title: 'Past Shifts', component: Shift, params: { response_status: "Closed" } },
               { title: 'Referrals', component: ReferralPage, params: {} },
               { title: 'About Us', component: AboutPage, params: {} },

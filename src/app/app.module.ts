@@ -96,6 +96,12 @@ import { GoogleAnalytics } from '@ionic-native/google-analytics';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
 import { Deeplinks } from '@ionic-native/deeplinks';
 import { HttpClientModule } from '@angular/common/http';
+import { Agency } from '../pages/agency/agency';
+import { AgencyForm } from '../pages/agency/agency-form';
+import { AgencyDetails } from '../pages/agency/agency-details';
+import { AgencyApi } from '../providers/agency-api';
+import { AgencyUserMappingApi } from '../providers/agency-user-mapping-api';
+import { AgencyCareHomeMappingApi } from '../providers/agency-care-home-mapping-api';
 
 @NgModule({
   declarations: [
@@ -129,6 +135,9 @@ import { HttpClientModule } from '@angular/common/http';
     StaffingRequest,
     StaffingRequestForm,
     StaffingRequestDetails,
+    Agency,
+    AgencyForm,
+    AgencyDetails,
     CareHomes,
     CareHomeForm,
     CareHomeDetails,
@@ -187,6 +196,9 @@ import { HttpClientModule } from '@angular/common/http';
     StaffingRequest,
     StaffingRequestForm,
     StaffingRequestDetails,
+    Agency,
+    AgencyForm,
+    AgencyDetails,
     CareHomes,
     CareHomeForm,
     CareHomeDetails,
@@ -208,6 +220,9 @@ import { HttpClientModule } from '@angular/common/http';
     UserApi,
     UserDocApi,
     RatingApi,
+    AgencyApi,
+    AgencyUserMappingApi,
+    AgencyCareHomeMappingApi,
     CareHomeApi,
     CqcRecordApi,
     PostCodeApi,

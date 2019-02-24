@@ -1,0 +1,52 @@
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>Agency Records</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+
+  <ion-card *ngIf="mappings && mappings.length == 0">
+    <ion-card-title class="center">
+      No Agencies Found
+    </ion-card-title>
+
+    <ion-card-content>
+      <p>
+        Sorry there are no Agencies associated with this account at this time. Please check back later.
+      </p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-list>
+    <button ion-item *ngFor="let mapping of mappings" (click)=getAgencyDetails(mapping)>
+       
+      <p>
+        Name: {{mapping.agency.name}}
+      </p>
+       
+      <p>
+        Address: {{mapping.agency.address}}
+      </p>
+              
+      <p>
+        Phone: {{mapping.agency.phone}}
+      </p>
+
+      <p>
+        <ion-badge *ngIf="mapping.accepted != true" item-right color="danger">
+          Not Accepted
+        </ion-badge>
+        <ion-badge *ngIf="mapping.accepted == true" item-right color="secondary">
+          Accepted
+        </ion-badge>
+      </p>
+       
+      
+    </button>
+  </ion-list>
+
+</ion-content>
