@@ -18,7 +18,7 @@ import * as moment from 'moment';
 })
 export class ShiftDetails {
 
-  shift: any;
+  shift: any = {user: "", agency: "", staffing_request: ""};
   show_start_code = false;
   show_end_code = false;
   current_user: {};
@@ -77,6 +77,7 @@ export class ShiftDetails {
 
   updateResponse(shift) {
 
+    let success = false;
     let loader = this.loadingController.create({
       content: 'Updating Responses...'
     });
@@ -84,12 +85,16 @@ export class ShiftDetails {
     loader.present();
 
     this.shiftApi.updateShift(shift).subscribe(
-      shift => {
-        this.respUtility.showSuccess('Shift Updated');
+      shift => {        
         this.navCtrl.popToRoot();
+        setTimeout( () => {
+          this.respUtility.showSuccess('Shift Updated');
+        }, 1000);
       },
       error => { this.respUtility.showFailure(error); loader.dismiss(); },
-      () => { loader.dismiss(); }
+      () => { 
+        loader.dismiss();
+      }
     );
   }
 

@@ -10,6 +10,7 @@ import { ActionSheetController, Platform, ActionSheet } from 'ionic-angular';
 
 import * as _ from 'lodash';
 import * as moment from 'moment';
+import { ShiftDetails } from '../shift/shift-details';
 
 //@IonicPage()
 @Component({
@@ -97,6 +98,9 @@ export class StaffingRequestDetails {
     );
   }
 
+  viewShift(shift) {
+    this.navCtrl.push(ShiftDetails, {shiftId: shift.id});
+  }
 
   showResponses(staffing_request) {
     this.respUtility.trackEvent("StaffingRequest", "ShowResponses", "click");

@@ -229,5 +229,13 @@
 
   </ion-list>
 
+  <div *ngIf="staffingRequest.can_manage == true">
+    <ion-row>
+      <ion-col *ngIf="staffingRequest.accepted_shift">
+        <button ion-button full color="primary" (click)="viewShift(staffingRequest.accepted_shift)">View Shift</button>
+      </ion-col>
+    </ion-row>
+  </div>
+
 
 </ion-content>

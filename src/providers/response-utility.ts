@@ -40,7 +40,10 @@ export class ResponseUtility {
 
   showSuccess(msg) {
     try {
-      this.toast.dismiss();
+      if(this.toast) {
+         this.toast.dismiss();
+         this.toast = null;
+      }
     } catch (e) { }
 
     this.toast = this.toastController.create({
