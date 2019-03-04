@@ -1,4 +1,3 @@
-
 <ion-header>
 
   <ion-navbar color="primary">
@@ -42,6 +41,15 @@
         <p>Please enter a valid Stars.</p>
       </ion-item>
 
+      <ion-item>
+        <ion-textarea formControlName="comments" [(ngModel)]="rating.comments"
+          [class.invalid]="!slideOneForm.controls.comments.valid && (slideOneForm.controls.comments.dirty || submitAttempt)">
+        </ion-textarea>
+      </ion-item>
+
+      <p class="field-hint">
+        Additional comments
+      </p>
     </form>
 
   </ion-list>
