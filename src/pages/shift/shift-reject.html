@@ -18,7 +18,7 @@
   
         <ion-item *ngIf="cancel_or_reject == 'Reject'">
           <ion-label floating>Reason</ion-label>
-          <ion-select #reason  name="reason" [(ngModel)]="shift.reason" [class.invalid]="!slideOneForm.controls.reason.valid && (slideOneForm.controls.reason.dirty || submitAttempt)"
+          <ion-select #reason  name="reason" id="reason" [(ngModel)]="shift.reason" [class.invalid]="!slideOneForm.controls.reason.valid && (slideOneForm.controls.reason.dirty || submitAttempt)"
             formControlName="reason">
             <ion-option value="Commute too far" checked="true">Commute too far</ion-option>
             <ion-option value="Commitments">Commitments</ion-option>
@@ -30,7 +30,7 @@
 
         <ion-item *ngIf="cancel_or_reject == 'Cancel'">
             <ion-label floating>Reason</ion-label>
-            <ion-select #reason name="reason" [(ngModel)]="shift.reason" [class.invalid]="!slideOneForm.controls.reason.valid && (slideOneForm.controls.reason.dirty || submitAttempt)"
+            <ion-select #reason name="reason" id="reason" [(ngModel)]="shift.reason" [class.invalid]="!slideOneForm.controls.reason.valid && (slideOneForm.controls.reason.dirty || submitAttempt)"
                 formControlName="reason">
                 <ion-option value="Emergency" checked="true">Emergency</ion-option>
                 <ion-option value="Appointment">Appointment</ion-option>

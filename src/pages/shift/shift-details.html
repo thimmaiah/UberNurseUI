@@ -345,13 +345,5 @@
     </ion-row>
   </div>
 
-  <div *ngIf="shift.can_manage == true">
-    <ion-row>
-      <ion-col *ngIf="shift.rated != true">
-        <button ion-button full color="primary" (click)="rate_care_home(shift)">Rate Care Home</button>
-      </ion-col>
-    </ion-row>
-  </div>
-
 
 </ion-content>
