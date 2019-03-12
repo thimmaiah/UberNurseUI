@@ -298,7 +298,7 @@
         <button ion-button full color="secondary" (click)="acceptResponse(shift)">Accept</button>
       </ion-col>
       <ion-col>
-        <button ion-button full color="danger" (click)="rejectResponse(shift)">Decline</button>
+        <button ion-button full color="danger" (click)="rejectShift(shift)">Decline</button>
       </ion-col>
     </ion-row>
 
@@ -314,7 +314,7 @@
 
       <ion-row *ngIf="shift.start_code == null">
         <ion-col>
-          <button ion-button full color="danger" (click)="confirmDelete(shift)">Cancel Shift</button>
+          <button ion-button full color="danger" (click)="cancelShift(shift)">Cancel Shift</button>
         </ion-col>
       </ion-row>
     </div>

@@ -10,6 +10,7 @@ import { ShiftApi } from '../../providers/shift-api';
 import { ResponseUtility } from '../../providers/response-utility';
 import { AngularTokenService } from 'angular-token';
 import * as moment from 'moment';
+import { ShiftReject } from './shift-reject';
 
 
 @Component({
@@ -58,11 +59,12 @@ export class ShiftDetails {
     this.updateResponse(shift);
   }
   
-  rejectResponse(shift) {
-    this.respUtility.trackEvent("Shift", "Reject", "click");
-    shift.accepted = false;
-    shift.response_status = "Rejected"
-    this.updateResponse(shift);
+  cancelShift(shift) {
+    this.navCtrl.push(ShiftReject, {"shift": shift, "cancel_or_reject": "Cancel"})
+  }
+
+  rejectShift(shift) {
+    this.navCtrl.push(ShiftReject, {"shift": shift, "cancel_or_reject": "Reject"})
   }
 
   set_end_code() {
@@ -116,29 +118,7 @@ export class ShiftDetails {
     );
   }
 
-  deleteShift(shift) {
-
-    this.respUtility.trackEvent("Shift", "Delete", "click");
-    let loader = this.loadingController.create({
-      content: 'Deleting Shift...'
-    });
-
-    loader.present();
-
-    this.shiftApi.deleteShift(shift).subscribe(
-      response => {
-        this.respUtility.showSuccess("Deleted Shift");
-        this.navCtrl.pop();
-      },
-      error => { this.respUtility.showFailure(error); loader.dismiss(); },
-      () => { loader.dismiss(); }
-    );
-  }
-
-  confirmDelete(shift) {
-    this.respUtility.confirmDelete(this.deleteShift.bind(this), shift, "Cancel");
-  }
-
+  
   showRequest(shift) {
     this.respUtility.trackEvent("Shift", "ShowRequest", "click");
     let staffingRequest = {}

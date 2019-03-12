@@ -102,6 +102,7 @@ import { AgencyDetails } from '../pages/agency/agency-details';
 import { AgencyApi } from '../providers/agency-api';
 import { AgencyUserMappingApi } from '../providers/agency-user-mapping-api';
 import { AgencyCareHomeMappingApi } from '../providers/agency-care-home-mapping-api';
+import { ShiftReject } from '../pages/shift/shift-reject';
 
 @NgModule({
   declarations: [
@@ -129,6 +130,7 @@ import { AgencyCareHomeMappingApi } from '../providers/agency-care-home-mapping-
     Shift,
     ShiftForm,
     ShiftDetails,
+    ShiftReject,
     Payment,
     PaymentForm,
     PaymentDetails,
@@ -187,6 +189,7 @@ import { AgencyCareHomeMappingApi } from '../providers/agency-care-home-mapping-
     Shift,
     ShiftForm,
     ShiftDetails,
+    ShiftReject,
     ReferralPage,
     ReferralDetails,
     ReferralForm,
