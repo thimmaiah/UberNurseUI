@@ -31,11 +31,14 @@ export class CareHomeBankingDetails {
 
     this.slideOneForm = formBuilder.group({
       bank_account: ['', Validators.compose([Validators.minLength(8), Validators.maxLength(8), Validators.required])],
-      sort_code: ['', Validators.compose([Validators.minLength(6), Validators.maxLength(6), Validators.required])],
-      accept_bank_transactions: ['', Validators.compose([CheckboxValidator.isChecked, Validators.required])],
+      sort_code: ['', Validators.compose([Validators.minLength(6), Validators.maxLength(6), Validators.required])]
     });
 
     let current_care_home = this.tokenService.currentUserData["care_home"];
+    // This is a hack. We may need to display accept bank transactions in UI at some point
+    // For now banking details are not used so.
+    current_care_home.accept_bank_transactions = true;
+
     this.care_home = {
       "id": current_care_home.id,
       "bank_account": current_care_home["bank_account"],
