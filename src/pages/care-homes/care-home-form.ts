@@ -37,6 +37,7 @@ export class CareHomeForm {
        
       name: ['', Validators.compose([Validators.required])],       
       address: ['', Validators.compose([Validators.required])], 
+      carer_break_mins: [0], 
       phone: ['', Validators.compose([Validators.minLength(10), Validators.maxLength(11), Validators.pattern('^\\d+$')])],            
       postcode: ['', Validators.compose([Validators.minLength(7), Validators.required, new PostCodeValidator(this.postCodeApi).checkPostCode])],       
       image_url: ['']  

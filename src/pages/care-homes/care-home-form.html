@@ -58,6 +58,16 @@
       </ion-item>
 
       <ion-item>
+        <ion-label floating>Break for Carers in Minutes</ion-label>
+        <ion-input name="carer_break_mins" formControlName="carer_break_mins" type="text" [(ngModel)]="care_home.carer_break_mins" 
+        [class.invalid]="!slideOneForm.controls.carer_break_mins.valid && (slideOneForm.controls.carer_break_mins.dirty || submitAttempt)"></ion-input>
+      </ion-item>
+
+      <ion-item *ngIf="!slideOneForm.controls.carer_break_mins.valid  && (slideOneForm.controls.carer_break_mins.dirty || submitAttempt)">
+        <p class="error-text">Please enter valid break time in mins for carers.</p>
+      </ion-item>
+
+      <ion-item>
         <ion-label floating>Image URL</ion-label>
         <ion-input name="image_url" formControlName="image_url" type="text" [(ngModel)]="care_home.image_url" [class.invalid]="!slideOneForm.controls.image_url.valid && (slideOneForm.controls.image_url.dirty || submitAttempt)"></ion-input>
       </ion-item>

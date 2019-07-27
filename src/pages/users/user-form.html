@@ -66,7 +66,7 @@
         <ion-input name="password" formControlName="password" type="password" [(ngModel)]="user.password" [class.invalid]="!slideOneForm.controls.password.valid && (slideOneForm.controls.password.dirty || submitAttempt)"></ion-input>
       </ion-item>
       <ion-item *ngIf="!slideOneForm.controls.password.valid && (slideOneForm.controls.password.dirty || submitAttempt)">
-        <p class="error-text">Must be min 6 chars long.</p>
+        <p text-wrap class="text-wrap error-text">Length should be 8-70 characters and include: 1 uppercase, 1 lowercase, 1 digit and 1 special character.</p>
       </ion-item>
 
 
