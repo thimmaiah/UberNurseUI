@@ -32,7 +32,7 @@ export class PasswordReset {
 
     this.slideOneForm = formBuilder.group({
       token: ['', Validators.compose([Validators.required])],
-      password: ['', Validators.compose([Validators.required])],
+      password: ['', Validators.compose([Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,70}$'), Validators.minLength(8), Validators.required])],
       confirm_password: ['', Validators.compose([Validators.required])],
     });
   }
