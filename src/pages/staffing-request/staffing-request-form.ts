@@ -61,9 +61,9 @@ export class StaffingRequestForm {
 
       payment_status: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*')])],
 
-      start_code: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('^\\d+$'), Validators.required])],
+      start_code: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('^\\d+$')])],
 
-      end_code: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('^\\d+$'), Validators.required])],
+      end_code: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('^\\d+$')])],
 
       notes: ['', Validators.compose([])],
 
