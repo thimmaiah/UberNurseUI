@@ -19,6 +19,7 @@ export class StaffingRequestForm {
   maxEndDate:any;
   staffingRequest: {};
   current_user: {};
+  care_home: {};
 
   @ViewChild('signupSlider') signupSlider: any;
 
@@ -36,6 +37,7 @@ export class StaffingRequestForm {
     public respUtility: ResponseUtility) {
 
     this.current_user = tokenService.currentUserData;  
+    this.care_home = this.current_user["care_home"];
     this.staffingRequest = this.navParams.data;
     this.minStartDate = new Date().toISOString();
     this.maxStartDate = moment().add(1, 'year').toISOString();
@@ -110,6 +112,9 @@ export class StaffingRequestForm {
 
   }
 
+  confirmSave() {
+    this.respUtility.confirmAction(this.save.bind(this), null, "Cancellation of the shift once confirmed, will cause a fee to be charged. Proceed?");
+  }
 
   save() {
     this.respUtility.trackEvent("StaffingRequest", "Save", "click");

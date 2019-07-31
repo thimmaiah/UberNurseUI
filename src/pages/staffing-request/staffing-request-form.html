@@ -98,33 +98,37 @@
         Additional notes for the carer
       </p>
 
-      <ion-item>
-        <ion-label floating>Start Code</ion-label>
-        <ion-input name="start_code" formControlName="start_code" type="number" [(ngModel)]="staffingRequest.start_code" [class.invalid]="!slideOneForm.controls.start_code.valid && (slideOneForm.controls.start_code.dirty || submitAttempt)"></ion-input>
-      </ion-item>
+      <div *ngIf="care_home.qr_code == null">
 
-      <ion-item *ngIf="!slideOneForm.controls.start_code.valid  && (slideOneForm.controls.start_code.dirty || submitAttempt)">
-        <p>Please enter a valid Start Code.</p>
-      </ion-item>
+        <ion-item>
+          <ion-label floating>Start Code</ion-label>
+          <ion-input name="start_code" formControlName="start_code" type="number" [(ngModel)]="staffingRequest.start_code" [class.invalid]="!slideOneForm.controls.start_code.valid && (slideOneForm.controls.start_code.dirty || submitAttempt)"></ion-input>
+        </ion-item>
 
-      <p class="field-hint">
-        Select the start code your temp needs to enter upon arrival.
-      </p>
+        <ion-item *ngIf="!slideOneForm.controls.start_code.valid  && (slideOneForm.controls.start_code.dirty || submitAttempt)">
+          <p>Please enter a valid Start Code.</p>
+        </ion-item>
+
+        <p class="field-hint">
+          Select the start code your temp needs to enter upon arrival.
+        </p>
 
 
 
-      <ion-item>
-        <ion-label floating>End Code</ion-label>
-        <ion-input name="end_code" formControlName="end_code" type="number" [(ngModel)]="staffingRequest.end_code" [class.invalid]="!slideOneForm.controls.end_code.valid && (slideOneForm.controls.end_code.dirty || submitAttempt)"></ion-input>
-      </ion-item>
+        <ion-item>
+          <ion-label floating>End Code</ion-label>
+          <ion-input name="end_code" formControlName="end_code" type="number" [(ngModel)]="staffingRequest.end_code" [class.invalid]="!slideOneForm.controls.end_code.valid && (slideOneForm.controls.end_code.dirty || submitAttempt)"></ion-input>
+        </ion-item>
 
-      <ion-item *ngIf="!slideOneForm.controls.end_code.valid  && (slideOneForm.controls.end_code.dirty || submitAttempt)">
-        <p>Please enter a valid End Code.</p>
-      </ion-item>
+        <ion-item *ngIf="!slideOneForm.controls.end_code.valid  && (slideOneForm.controls.end_code.dirty || submitAttempt)">
+          <p>Please enter a valid End Code.</p>
+        </ion-item>
 
-      <p class="field-hint">
-        Select the end code your temp needs to enter upon completion of the shift.
-      </p>
+        <p class="field-hint">
+          Select the end code your temp needs to enter upon completion of the shift.
+        </p>
+
+      </div>
 
     </form>
 
@@ -132,7 +136,7 @@
 
   <ion-row>
     <ion-col>
-      <button ion-button full color="primary" (click)="save()">Save</button>
+      <button ion-button full color="primary" (click)="confirmSave()">Save</button>
     </ion-col>
   </ion-row>
 </ion-content>

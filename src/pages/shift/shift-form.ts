@@ -15,6 +15,7 @@ import * as moment from 'moment';
 export class ShiftForm {
 
   shift: {};
+  care_home: {};
   @ViewChild('signupSlider') signupSlider: any;
 
   slideOneForm: FormGroup;
@@ -30,6 +31,8 @@ export class ShiftForm {
     private barcodeScanner: BarcodeScanner) {
 
     this.shift = this.navParams.data;
+    this.care_home = this.shift["care_home"];
+    console.log(this.shift);
     this.start_code_present = this.shift["start_code"] != null
 
     this.slideOneForm = formBuilder.group({
