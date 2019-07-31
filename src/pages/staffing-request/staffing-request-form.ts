@@ -113,7 +113,7 @@ export class StaffingRequestForm {
   }
 
   confirmSave() {
-    this.respUtility.confirmAction(this.save.bind(this), null, "Cancellation of the shift once confirmed, will cause a fee to be charged. Proceed?");
+    this.respUtility.confirmAction(this.save.bind(this), null, "Cancellation of the shift within 24 hrs of the shift starting, will cause the full fee to be charged. Proceed?");
   }
 
   save() {
