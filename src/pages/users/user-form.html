@@ -124,6 +124,39 @@
           <p class="error-text">Enter a valid distance in miles.</p>
         </ion-item>
 
+        <p text-wrap class="">Work Preferences.</p>
+
+        <ion-item>
+          <ion-checkbox id="work_weekdays" [(ngModel)]="user.work_weekdays" formControlName="work_weekdays" type="text"></ion-checkbox>
+          <ion-label text-warp>Work Weekdays</ion-label>
+        </ion-item>
+
+
+        <ion-item>
+          <ion-checkbox id="work_weeknights" [(ngModel)]="user.work_weeknights" formControlName="work_weeknights" type="text"></ion-checkbox>
+          <ion-label text-warp>Work Weeknights</ion-label>
+        </ion-item>
+
+
+        <ion-item>
+          <ion-checkbox id="work_weekends" [(ngModel)]="user.work_weekends" formControlName="work_weekends" type="text"></ion-checkbox>
+          <ion-label text-warp>Work Weekends</ion-label>
+        </ion-item>
+
+
+        <ion-item>
+          <ion-checkbox id="work_weekend_nights" [(ngModel)]="user.work_weekend_nights" formControlName="work_weekend_nights" type="text"></ion-checkbox>
+          <ion-label text-warp>Work Weekend Nights</ion-label>
+        </ion-item>
+
+        
+        <ion-item>
+          <ion-checkbox id="pause_shifts" [(ngModel)]="user.pause_shifts" formControlName="pause_shifts" type="text"></ion-checkbox>
+          <ion-label text-warp>Pause Shifts</ion-label>
+        </ion-item>
+        <p *ngIf="!user.pause_shifts" text-wrap class="field-hint">Temporarily pause shifts. You can turn shifts off by checking above.</p>
+        <p *ngIf="user.pause_shifts" text-wrap class="field-hint">Restart shifts. You can turn shifts back by unchecking above.</p>
+       
       </div>
 
       <div text-wrap>

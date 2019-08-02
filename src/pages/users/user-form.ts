@@ -54,6 +54,11 @@ export class UserForm {
       phone: ['', Validators.compose([Validators.minLength(10), Validators.maxLength(11), Validators.pattern('^\\d+$')])],
       postcode: ['', Validators.compose([Validators.minLength(6), Validators.required, new PostCodeValidator(this.postCodeApi).checkPostCode])],
       pref_commute_distance: ['', Validators.compose([Validators.pattern('^\\d+$'), Validators.required])],
+      work_weekdays: [''],
+      work_weeknights: [''],
+      work_weekends: [''],
+      work_weekend_nights: [''],
+      pause_shifts: [''],
     }, { "validator": this.isMatching });
 
     this.onRoleChange(this.user["role"]);
