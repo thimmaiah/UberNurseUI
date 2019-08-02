@@ -24,6 +24,7 @@ export class UserPic {
   lastImage: string = null;
   current_user = null;
   user_doc: {};
+  ack_valid_doc: false;
 
 
   constructor(public navCtrl: NavController,

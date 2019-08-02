@@ -65,8 +65,8 @@ export class UserDetails extends DocLinks {
     );
   }
 
-  deactivateUser(user) {
-    this.respUtility.trackEvent("User", "Deactivate", "click");
+  deleteRequested(user) {
+    this.respUtility.trackEvent("User", "deleteRequested", "click");
     let loader = this.loadingController.create({
       content: 'Deactivating User...'
     });
@@ -74,10 +74,10 @@ export class UserDetails extends DocLinks {
     user.active = false;
     loader.present();
 
-    this.userApi.updateUser(user).subscribe(
+    this.userApi.deleteRequested(user).subscribe(
       response => {
         this.respUtility.showSuccess("Deactivated User");
-        this.navCtrl.pop();
+        this.navCtrl.popToRoot();
       },
       error => {
         this.respUtility.showFailure(error);
@@ -87,8 +87,8 @@ export class UserDetails extends DocLinks {
     );
   }
 
-  confirmDeactivate(user) {
-    this.respUtility.confirmAction(this.deactivateUser.bind(this), user, "Deactivate User. Confirm?");
+  confirmDeleteRequested(user) {
+    this.respUtility.confirmAction(this.deleteRequested.bind(this), user, "Delete your details from our database? It will take 1 day for us to complete this request. Confirm?");
   }
 
   editUserBankingDetails(user) {

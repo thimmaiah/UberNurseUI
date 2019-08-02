@@ -62,6 +62,14 @@ export class UserApi {
     })
   }
 
+  deleteRequested(user) {
+    return this.http.post(`${this.base_url}/${user.id}/delete_requested.json`, user).map(response=>{
+      this.user = response;
+      return this.user;
+      //return response.status;
+    })
+  }
+
   updateUser(user) {
     console.log(`UserApi: Updating user`)
     console.log(user);

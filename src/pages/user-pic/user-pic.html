@@ -7,10 +7,18 @@
 </ion-header>
 
 <ion-content padding>
+  
   <img src="{{lastImage}}" style="width: 100%" [hidden]="lastImage === null">
+  
   <button ion-button full icon-left (click)="noDBSFile()" *ngIf="lastImage === null && user_doc.doc_type == 'DBS'">
     I do not have DBS.
   </button>
+
+  <ion-item text-warp>
+    <ion-checkbox id="ack_valid_doc" [(ngModel)]="ack_valid_doc" type="text" ></ion-checkbox>
+    <ion-label text-wrap>I acknowledge that the document Im providing is original, valid and real.</ion-label>
+  </ion-item>
+
 </ion-content>
 
 <ion-footer>
@@ -22,7 +30,7 @@
       <button ion-button icon-left (click)="presentActionSheet()" *ngIf="lastImage !== null">
         <ion-icon name="camera"></ion-icon>Change Image
       </button>
-      <button ion-button icon-left (click)="uploadImage()" [disabled]="lastImage === null">
+      <button ion-button icon-left (click)="uploadImage()" [disabled]="lastImage === null || !ack_valid_doc">
         <ion-icon name="cloud-upload"></ion-icon>Upload
       </button>
     </ion-buttons>
