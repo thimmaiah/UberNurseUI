@@ -14,9 +14,15 @@
         
         <ion-card-content>
             <p>
-                Print this QR code for your carers to scan to start and end shifts.
+                Print this QR code which will be sent by email to you, for your carers to scan to start and end shifts.
             </p>
-            <button ion-button full color="primary" (click)="generateQRCode()">Generate New Code</button>
+
+            <ion-item>
+                <ion-checkbox id="have_printer" [(ngModel)]="have_printer" type="text"></ion-checkbox>
+                <ion-label text-warp>I have a printer</ion-label>
+            </ion-item>
+
+            <button [disabled]="!have_printer" ion-button full color="primary" (click)="generateQRCode()">Generate New Code</button>
         </ion-card-content>
     </ion-card>
 

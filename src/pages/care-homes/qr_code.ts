@@ -21,6 +21,7 @@ export class QrCode {
 
   care_home: any;
   qr_code = '';
+  have_printer = false;
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public care_homeApi: CareHomeApi,
