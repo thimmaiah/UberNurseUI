@@ -22,6 +22,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { AngularTokenService, AngularTokenModule } from 'angular-token';
 // Import ionic2-rating module
 import { Ionic2RatingModule } from 'ionic2-rating';
+import {EmailVerificationPage} from '../pages/users/email-verification';
 
 import { UserPic } from '../pages/user-pic/user-pic';
 import { UserDoc } from '../pages/user-doc/user-doc';
@@ -94,7 +95,6 @@ import { HomeEvents } from '../providers/home-events';
 import { GoogleAnalytics } from '@ionic-native/google-analytics';
 
 import { BarcodeScanner } from '@ionic-native/barcode-scanner';
-import { Deeplinks } from '@ionic-native/deeplinks';
 import { HttpClientModule } from '@angular/common/http';
 import { Agency } from '../pages/agency/agency';
 import { AgencyForm } from '../pages/agency/agency-form';
@@ -119,6 +119,7 @@ import { ShiftReject } from '../pages/shift/shift-reject';
     UserForm,
     UserDetails,
     PhoneVerificationPage,
+    EmailVerificationPage,
     BankingDetailsPage,
     RegisterPage,
     Rating,
@@ -181,6 +182,7 @@ import { ShiftReject } from '../pages/shift/shift-reject';
     UserForm,
     UserDetails,
     PhoneVerificationPage,
+    EmailVerificationPage,
     BankingDetailsPage,
     RegisterPage,
     Rating,
@@ -245,7 +247,6 @@ import { ShiftReject } from '../pages/shift/shift-reject';
     HomeEvents,
     ReferralApi,
     BarcodeScanner, 
-    Deeplinks,
     { provide: ErrorHandler, useClass: SentryErrorHandler }
   ]
 })

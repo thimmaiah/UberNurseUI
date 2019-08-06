@@ -18,6 +18,11 @@ export class UserApi {
     this.base_url = this.config.props["API_URL"] + "/users";
   }
 
+  verifyEmail(token) {
+    return this.http.get(`/auth/confirmation?confirmation_token=${token}.json`).map(response=>{
+      return response;      
+    })
+  }
   getUsers() {
     
     return this.http.get(`${this.base_url}.json`).map(response=>{
