@@ -68,13 +68,12 @@
               {{user.pause_shifts ? "Shifts Paused" : "Available for Shifts"}}
         </ion-badge>
 
+        <ion-badge *ngIf="user.verified != true" item-right color="danger">
+          Not
+          Verified
+        </ion-badge>
+
       </ion-item>
-
-
-      <ion-badge *ngIf="user.verified != true" item-right color="danger">
-        Not
-        Verified
-      </ion-badge>
 
 
       <ion-row>
