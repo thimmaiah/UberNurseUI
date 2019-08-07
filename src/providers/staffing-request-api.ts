@@ -16,6 +16,13 @@ export class StaffingRequestApi {
     this.base_url = this.config.props["API_URL"] + "/staffing_requests";
   }
 
+  getCares(staffingRequest) {
+    let endpoint = `${this.base_url}/get_carers.json`;
+    return this.http.post(endpoint, staffingRequest).map(response=>{
+      return response;
+    })
+  }
+
   getStaffingRequests() {
     return this.http.get(`${this.base_url}.json`).map(response=>{
       this.staffingRequests = response;

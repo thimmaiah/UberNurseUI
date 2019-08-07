@@ -20,6 +20,7 @@ export class StaffingRequestForm {
   staffingRequest: {};
   current_user: {};
   care_home: {};
+  carers: {};
 
   @ViewChild('signupSlider') signupSlider: any;
 
@@ -38,7 +39,10 @@ export class StaffingRequestForm {
 
     this.current_user = tokenService.currentUserData;  
     this.care_home = this.current_user["care_home"];
+    
     this.staffingRequest = this.navParams.data;
+    this.staffingRequest["care_home_id"] = this.current_user["care_home_id"];
+       
     this.minStartDate = new Date().toISOString();
     this.maxStartDate = moment().add(1, 'year').toISOString();
     this.minEndDate = new Date().toISOString();
@@ -67,6 +71,8 @@ export class StaffingRequestForm {
 
       notes: ['', Validators.compose([])],
 
+      preferred_carer_id: ['', Validators.compose([])],
+
     });
 
     this.slideTwoForm = formBuilder.group({
@@ -76,6 +82,17 @@ export class StaffingRequestForm {
 
   }
 
+
+  getCarers() {
+    console.log("getCarers Called");
+    if(this.staffingRequest["role"] && this.staffingRequest["agency_id"]) {
+      this.staffingRequestApi.getCares(this.staffingRequest).subscribe(
+        carers => {
+          this.carers = carers;
+        }
+      )
+    }
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad StaffingRequestsForm');

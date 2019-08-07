@@ -36,7 +36,8 @@
 
       <ion-item id="agency_id" *ngIf="current_user.care_home_agencies">
         <ion-label floating>Agency</ion-label>
-        <ion-select text-wrap name="agency_id" [(ngModel)]="staffingRequest.agency_id" [class.invalid]="!slideOneForm.controls.agency_id.valid && (slideOneForm.controls.agency_id.dirty || submitAttempt)"
+        <ion-select text-wrap name="agency_id" [(ngModel)]="staffingRequest.agency_id"   (ionChange)="getCarers()"
+                    [class.invalid]="!slideOneForm.controls.agency_id.valid && (slideOneForm.controls.agency_id.dirty || submitAttempt)"
           formControlName="agency_id" class="item-select-custom">
           <ion-option  text-wrap *ngFor="let agency of current_user.care_home_agencies" value="{{agency.id}}">
               {{agency.name}}
@@ -49,7 +50,8 @@
 
       <ion-item id="role">
         <ion-label floating>Staff Type</ion-label>
-        <ion-select name="role" [(ngModel)]="staffingRequest.role" [class.invalid]="!slideOneForm.controls.role.valid && (slideOneForm.controls.role.dirty || submitAttempt)"
+        <ion-select name="role" [(ngModel)]="staffingRequest.role" (ionChange)="getCarers()"
+                    [class.invalid]="!slideOneForm.controls.role.valid && (slideOneForm.controls.role.dirty || submitAttempt)"
           formControlName="role">
           <ion-option value="Care Giver" checked="true">Care Giver</ion-option>
           <ion-option value="Nurse">Nurse</ion-option>
@@ -85,6 +87,19 @@
       </ion-item>
       <p class="field-hint">
         Select the end date & time for the temp staff.
+      </p>
+
+
+      <ion-item id="preferred_carer_id">
+        <ion-label floating>Staff (Optional)</ion-label>
+        <ion-select name="preferred_carer_id" [(ngModel)]="staffingRequest.preferred_carer_id" 
+                    [class.invalid]="!slideOneForm.controls.preferred_carer_id.valid && (slideOneForm.controls.preferred_carer_id.dirty || submitAttempt)"
+                    formControlName="preferred_carer_id">
+          <ion-option *ngFor="let carer of carers" [value] = "carer.id">{{carer.first_name}} {{carer.last_name}}</ion-option> 
+        </ion-select>
+      </ion-item>
+      <p class="field-hint">
+        Leave this blank to get a carer selected by us specially for you or select the temp staff you prefer.
       </p>
 
 
