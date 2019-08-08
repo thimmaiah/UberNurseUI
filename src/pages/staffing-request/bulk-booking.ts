@@ -1,0 +1,217 @@
+import { IonicPage, NavController, NavParams, AlertController, ToastController, LoadingController } from 'ionic-angular';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { SimpleChanges, Component, ViewChild } from '@angular/core';
+import { RecurringRequestApi } from '../../providers/recurring-request-api';
+import { ResponseUtility } from '../../providers/response-utility';
+import * as moment from 'moment';
+import { AngularTokenService } from 'angular-token';
+import { CalendarComponentOptions } from 'ion2-calendar'
+
+//@IonicPage()
+@Component({
+  selector: 'bulk-booking',
+  templateUrl: 'bulk-booking.html',
+})
+export class BulkBooking {
+
+  recurringRequest: {};
+  current_user: {};
+  care_home: {};
+  carers: {};
+  
+  dateMulti: string[];
+  type: 'string'; 
+  optionsMulti: CalendarComponentOptions = {
+    pickMode: 'multi'
+  };
+
+  @ViewChild('signupSlider') signupSlider: any;
+
+  slideOneForm: FormGroup;
+  slideTwoForm: FormGroup;
+
+  submitAttempt: boolean = false;
+
+  constructor(public navCtrl: NavController,
+    private tokenService: AngularTokenService,
+    public navParams: NavParams,
+    public formBuilder: FormBuilder,
+    public loadingController: LoadingController,
+    public recurringRequestApi: RecurringRequestApi,
+    public respUtility: ResponseUtility) {
+
+    this.current_user = tokenService.currentUserData;  
+    this.care_home = this.current_user["care_home"];
+    
+    this.recurringRequest = this.navParams.data;
+    this.recurringRequest["care_home_id"] = this.current_user["care_home_id"];
+           
+
+    this.slideOneForm = formBuilder.group({
+
+      care_home_id: ['', Validators.compose([])],
+
+      agency_id: ['', Validators.compose([Validators.required])],
+
+      role: ['', Validators.compose([Validators.required])],
+
+      start_date: ['', Validators.compose([Validators.required])],
+
+      end_date: ['', Validators.compose([Validators.required])],
+
+      request_status: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*')])],
+
+      payment_status: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('[a-zA-Z ]*')])],
+
+      start_code: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('^\\d+$')])],
+
+      end_code: ['', Validators.compose([Validators.maxLength(30), Validators.pattern('^\\d+$')])],
+
+      notes: ['', Validators.compose([])],
+
+      preferred_carer_id: ['', Validators.compose([Validators.required])],
+
+    });
+
+    this.slideTwoForm = formBuilder.group({
+
+
+    });
+
+  }
+
+
+  getCarers() {
+    console.log("getCarers Called");
+    if(this.recurringRequest["role"] && this.recurringRequest["agency_id"]) {
+      this.recurringRequestApi.getCares(this.recurringRequest).subscribe(
+        carers => {
+          this.carers = carers;
+        }
+      )
+    }
+  }
+
+  ionViewDidLoad() {
+    console.log('ionViewDidLoad RecurringRequestsForm');
+    this.respUtility.trackView("BulkBooking");
+
+    if (this.recurringRequest["start_date"]) {
+      // Need to convert back to local time
+      this.recurringRequest["start_date"] = moment(this.recurringRequest["start_date"]).format();
+      this.recurringRequest["end_date"] = moment(this.recurringRequest["end_date"]).format();
+    }
+    else {
+      let start_of_day = moment().add(1, 'day').hour(8).minute(0);
+      this.recurringRequest["start_date"] = start_of_day.format();;
+      let end_date = start_of_day.add(8, 'hours').format();
+      this.recurringRequest["end_date"] = end_date;
+      console.log(`end date = ${end_date}`);
+    }
+
+    if(this.recurringRequest["start_code"] == null) {
+      this.recurringRequest["start_code"] = Math.floor(1000 + Math.random()*9000);
+    }
+
+    if(this.recurringRequest["end_code"] == null) {
+      this.recurringRequest["end_code"] = Math.floor(1000 + Math.random()*9000);
+    }
+
+    if(this.current_user["sister_care_homes"] != null) {
+      this.recurringRequest["care_home_id"] = this.current_user["care_home_id"]
+    }
+
+    if(this.current_user["care_home_agencies"] != null) {
+      this.recurringRequest["agency_id"] = this.current_user["care_home_agencies"][0]["id"];
+    }
+
+  }
+
+  confirmSave() {
+    this.respUtility.confirmAction(this.save.bind(this), null, "Please confirm all the details before submitting this request as it will book multiple shifts once confirmed by you. Proceed?");
+  }
+
+  save() {
+    this.respUtility.trackEvent("RecurringRequest", "Save", "click");
+    this.submitAttempt = true;
+    this.recurringRequest["dates"] = this.dateMulti;
+
+    if( moment(this.recurringRequest["start_date"]).add(4, 'hours') > moment(this.recurringRequest["end_date"]) ) {
+      console.log("start date > end date");
+      this.slideOneForm.controls["end_date"].setErrors({notValid:true});
+      return;
+    } else {
+      console.log("start date < end date");
+      this.slideOneForm.controls["end_date"].setErrors(null);      
+    }
+
+    //console.log(this.recurringRequest);
+    let loader = this.loadingController.create({
+      content: 'Saving ...'
+    });
+
+    if (!this.slideOneForm.valid) {
+
+    }
+    else {
+      this.submitAttempt = false;
+      loader.present();
+
+      if (this.recurringRequest["id"]) {
+        this.recurringRequestApi.updateRecurringRequest(this.recurringRequest).subscribe(
+          recurringRequest => {
+            this.respUtility.showSuccess('Request saved successfully.');
+            this.navCtrl.pop();
+          },
+          error => {
+            this.respUtility.showFailure(error);
+            loader.dismiss();
+          },
+          () => { loader.dismiss(); }
+        );
+      } else {
+        this.recurringRequestApi.createRecurringRequest(this.recurringRequest).subscribe(
+          recurringRequest => {
+            this.respUtility.showSuccess('Request saved successfully. We will notify you when we fill the shift with a Care Giver/Nurse.');
+            this.navCtrl.pop();
+          },
+          error => {
+            this.respUtility.showFailure(error);
+            loader.dismiss();
+          },
+          () => { loader.dismiss() }
+        );
+      }
+    }
+  }
+
+  price(recurringRequest) {
+    this.respUtility.trackEvent("RecurringRequest", "Price", "click");
+    //console.log(this.recurringRequest);
+    let loader = this.loadingController.create({
+      content: 'Getting Estimated Price ...'
+    });
+
+    loader.present();
+
+    this.recurringRequestApi.price(this.recurringRequest).subscribe(
+      recurringRequest => {
+        console.log(`care_home_base=${recurringRequest["care_home_base"]}, audit=${recurringRequest["pricing_audit"]}`);
+        this.recurringRequest["care_home_base"] = recurringRequest["care_home_base"]
+        this.recurringRequest["pricing_audit"] = recurringRequest["pricing_audit"];
+
+        // let msg = "";
+        // for (var propt in recurringRequest["pricing_audit"]) {
+        //   msg += propt.split('_').join(' ') + ' = ' + recurringRequest["pricing_audit"][propt] + ",";
+        // }
+        this.respUtility.popup("Pricing", `Estimated price: GBP ${recurringRequest["care_home_total_amount"]}`);
+      },
+      error => {
+        this.respUtility.showFailure(error);
+        loader.dismiss();
+      },
+      () => { loader.dismiss(); }
+    );
+
+  }
+}

@@ -22,6 +22,7 @@ import { PhoneVerificationPage } from '../users/phone-verification';
 import { Menu } from './menus';
 import { HomeEvents } from '../../providers/home-events';
 import { Agency } from '../agency/agency';
+import { BulkBooking } from '../staffing-request/bulk-booking';
 
 @Component({
     selector: 'admin-menus',
@@ -98,7 +99,6 @@ export class AdminMenus implements Menu {
 
     }
 
-
     show_agencies() {
         this.navCtrl.push(Agency);
     }
@@ -121,6 +121,10 @@ export class AdminMenus implements Menu {
 
     new_staffing_request() {
         this.navCtrl.push(StaffingRequestForm);
+    }
+
+    new_bulk_booking() {
+        this.navCtrl.push(BulkBooking);
     }
 
     phone_verification() {

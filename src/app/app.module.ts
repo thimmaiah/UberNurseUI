@@ -7,6 +7,7 @@ import { File } from '@ionic-native/file';
 import { FileTransfer } from '@ionic-native/file-transfer';
 import { FilePath } from '@ionic-native/file-path';
 import { Keyboard } from '@ionic-native/keyboard';
+import { CalendarModule } from "ion2-calendar";
 
 import { SentryErrorHandler } from '../services/sentry-errorhandler'
 import { CodePush } from '@ionic-native/code-push';
@@ -103,6 +104,8 @@ import { AgencyApi } from '../providers/agency-api';
 import { AgencyUserMappingApi } from '../providers/agency-user-mapping-api';
 import { AgencyCareHomeMappingApi } from '../providers/agency-care-home-mapping-api';
 import { ShiftReject } from '../pages/shift/shift-reject';
+import { BulkBooking } from '../pages/staffing-request/bulk-booking';
+import { RecurringRequestApi } from '../providers/recurring-request-api';
 
 @NgModule({
   declarations: [
@@ -137,6 +140,7 @@ import { ShiftReject } from '../pages/shift/shift-reject';
     PaymentDetails,
     StaffingRequest,
     StaffingRequestForm,
+    BulkBooking,
     StaffingRequestDetails,
     Agency,
     AgencyForm,
@@ -159,6 +163,7 @@ import { ShiftReject } from '../pages/shift/shift-reject';
     HttpModule,
     HttpClientModule,
     RouterModule,
+    CalendarModule,
     MomentModule,
     Ionic2RatingModule,
     IonicModule.forRoot(MyApp),
@@ -200,6 +205,7 @@ import { ShiftReject } from '../pages/shift/shift-reject';
     PaymentDetails,
     StaffingRequest,
     StaffingRequestForm,
+    BulkBooking,
     StaffingRequestDetails,
     Agency,
     AgencyForm,
@@ -232,6 +238,7 @@ import { ShiftReject } from '../pages/shift/shift-reject';
     CqcRecordApi,
     PostCodeApi,
     StaffingRequestApi,
+    RecurringRequestApi,
     ShiftApi,
     PaymentApi,
     ResponseUtility,
