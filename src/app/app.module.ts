@@ -106,6 +106,8 @@ import { AgencyCareHomeMappingApi } from '../providers/agency-care-home-mapping-
 import { ShiftReject } from '../pages/shift/shift-reject';
 import { BulkBooking } from '../pages/staffing-request/bulk-booking';
 import { RecurringRequestApi } from '../providers/recurring-request-api';
+import { CommonModule } from '@angular/common';
+import { PaymentSearch } from '../pages/payment/payment-search';
 
 @NgModule({
   declarations: [
@@ -138,6 +140,7 @@ import { RecurringRequestApi } from '../providers/recurring-request-api';
     Payment,
     PaymentForm,
     PaymentDetails,
+    PaymentSearch,
     StaffingRequest,
     StaffingRequestForm,
     BulkBooking,
@@ -165,6 +168,7 @@ import { RecurringRequestApi } from '../providers/recurring-request-api';
     RouterModule,
     CalendarModule,
     MomentModule,
+    CommonModule,
     Ionic2RatingModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),

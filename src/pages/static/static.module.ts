@@ -5,21 +5,12 @@ import { TermsPage } from './terms';
 import { ContactPage } from './contact';
 
 @NgModule({
-  declarations: [
-    AboutPage,
-    ContactPage,
-    TermsPage
-  ],
-  imports: [
-    AboutPage,
-    ContactPage,
-    TermsPage
-  ],
-  exports: [
-    AboutPage,
-    ContactPage,
-    TermsPage
-  ]
+  // declarations: [
+  // ],
+  // imports: [
+  // ],
+  // exports: [
+  // ]
 })
 
 export class StaticPageModule {}
