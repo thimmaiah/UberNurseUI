@@ -6,6 +6,7 @@ import { RecurringRequestDetails } from './recurring-request-details'
 import { RecurringRequestForm } from './recurring-request-form'
 import { AngularTokenService } from 'angular-token';
 import * as moment from 'moment';
+import { StaffingRequest } from './staffing-request';
 
 
 /**
@@ -93,7 +94,11 @@ export class RecurringRequest {
 
   }
 
-  newRequest() {
+  loadRequests(recurringRequest) {
+    this.navCtrl.push(StaffingRequest, {"recurring_request_id": recurringRequest.id});
+  }
+
+  newRecurringRequest() {
     this.navCtrl.push(RecurringRequestForm);
   }
 }

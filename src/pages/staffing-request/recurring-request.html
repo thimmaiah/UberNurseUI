@@ -19,18 +19,18 @@
         <p class="center">
           Sorry there are no Requests at this time.
         </p>
-        <button ion-button full (click)="newBlockBookings()">Create New Block Bookings</button>
+        <button ion-button full (click)="newRecurringRequest()">Create New Block Booking</button>
       </ion-card-content>
     </ion-card>
   
     <ion-fab id="new_staffing_request_btn" bottom right *ngIf="current_user.role!='Care Giver' && current_user.role!='Nurse' && current_user.care_home && current_user.care_home.verified ">
-      <button ion-fab (click)="newBlockBookings()"><ion-icon name="add"></ion-icon></button>
+      <button ion-fab (click)="newRecurringRequest()"><ion-icon name="add"></ion-icon></button>
     </ion-fab>
   
   
     <ion-list>
       <button ion-item id="RecurringRequest-{{recurringRequest.id}}-item" *ngFor="let recurringRequest of recurringRequests" 
-      (click)=getRecurringRequestDetails(recurringRequest)>
+      (click)=loadRequests(recurringRequest)>
          
         <p text-wrap>
           Agency: {{recurringRequest.agency.name}}

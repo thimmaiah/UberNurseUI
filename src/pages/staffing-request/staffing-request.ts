@@ -35,6 +35,7 @@ export class StaffingRequest {
     public respUtility: ResponseUtility) {
 
     this.current_user = tokenService.currentUserData;
+    
     if (this.current_user["role"] == "Admin") {
       if (this.current_user["care_home_id"] == null) {
         this.care_home_registration_pending = true;
@@ -56,7 +57,7 @@ export class StaffingRequest {
 
     loader.present();
 
-    this.staffingRequestApi.getStaffingRequests().subscribe(
+    this.staffingRequestApi.getStaffingRequests(this.navParams.data).subscribe(
       staffingRequests => {
         this.staffingRequests = staffingRequests;
         // this.staffingRequests.forEach(req => {

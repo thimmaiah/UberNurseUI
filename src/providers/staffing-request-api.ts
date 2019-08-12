@@ -23,8 +23,8 @@ export class StaffingRequestApi {
     })
   }
 
-  getStaffingRequests() {
-    return this.http.get(`${this.base_url}.json`).map(response=>{
+  getStaffingRequests(params) {
+    return this.http.get(`${this.base_url}.json`, {params: params}).map(response=>{
       this.staffingRequests = response;
       return this.staffingRequests;
     })
