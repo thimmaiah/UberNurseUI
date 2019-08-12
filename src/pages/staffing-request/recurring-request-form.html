@@ -80,7 +80,7 @@
           </p>
     
           <ion-item id="preferred_carer_id">
-            <ion-label floating>Staff</ion-label>
+            <ion-label floating>Staff (Optional)</ion-label>
             <ion-select name="preferred_carer_id" [(ngModel)]="recurringRequest.preferred_carer_id" 
                         [class.invalid]="!slideOneForm.controls.preferred_carer_id.valid && (slideOneForm.controls.preferred_carer_id.dirty || submitAttempt)"
                         formControlName="preferred_carer_id">

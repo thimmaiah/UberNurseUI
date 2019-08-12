@@ -22,7 +22,8 @@ import { PhoneVerificationPage } from '../users/phone-verification';
 import { Menu } from './menus';
 import { HomeEvents } from '../../providers/home-events';
 import { Agency } from '../agency/agency';
-import { BulkBooking } from '../staffing-request/bulk-booking';
+import { RecurringRequestForm } from '../staffing-request/recurring-request-form';
+import { RecurringRequest } from '../staffing-request/recurring-request';
 
 @Component({
     selector: 'admin-menus',
@@ -123,8 +124,12 @@ export class AdminMenus implements Menu {
         this.navCtrl.push(StaffingRequestForm);
     }
 
-    new_bulk_booking() {
-        this.navCtrl.push(BulkBooking);
+    new_recurring_request() {
+        this.navCtrl.push(RecurringRequestForm);
+    }
+
+    view_recurring_request() {
+        this.navCtrl.push(RecurringRequest);
     }
 
     phone_verification() {

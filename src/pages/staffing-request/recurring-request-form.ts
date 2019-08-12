@@ -9,10 +9,10 @@ import { CalendarComponentOptions } from 'ion2-calendar'
 
 //@IonicPage()
 @Component({
-  selector: 'bulk-booking',
-  templateUrl: 'bulk-booking.html',
+  selector: 'recurring-request-form',
+  templateUrl: 'recurring-request-form.html',
 })
-export class BulkBooking {
+export class RecurringRequestForm {
 
   recurringRequest: {};
   current_user: {};
@@ -94,7 +94,7 @@ export class BulkBooking {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad RecurringRequestsForm');
-    this.respUtility.trackView("BulkBooking");
+    this.respUtility.trackView("RecurringRequest");
 
     if (this.recurringRequest["start_date"]) {
       // Need to convert back to local time

@@ -104,10 +104,12 @@ import { AgencyApi } from '../providers/agency-api';
 import { AgencyUserMappingApi } from '../providers/agency-user-mapping-api';
 import { AgencyCareHomeMappingApi } from '../providers/agency-care-home-mapping-api';
 import { ShiftReject } from '../pages/shift/shift-reject';
-import { BulkBooking } from '../pages/staffing-request/bulk-booking';
 import { RecurringRequestApi } from '../providers/recurring-request-api';
 import { CommonModule } from '@angular/common';
 import { PaymentSearch } from '../pages/payment/payment-search';
+import { RecurringRequestForm } from '../pages/staffing-request/recurring-request-form';
+import { RecurringRequest } from '../pages/staffing-request/recurring-request';
+import { RecurringRequestDetails } from '../pages/staffing-request/recurring-request-details';
 
 @NgModule({
   declarations: [
@@ -143,7 +145,9 @@ import { PaymentSearch } from '../pages/payment/payment-search';
     PaymentSearch,
     StaffingRequest,
     StaffingRequestForm,
-    BulkBooking,
+    RecurringRequestForm,
+    RecurringRequest,
+    RecurringRequestDetails,
     StaffingRequestDetails,
     Agency,
     AgencyForm,
@@ -209,7 +213,9 @@ import { PaymentSearch } from '../pages/payment/payment-search';
     PaymentDetails,
     StaffingRequest,
     StaffingRequestForm,
-    BulkBooking,
+    RecurringRequestForm,
+    RecurringRequest,
+    RecurringRequestDetails,
     StaffingRequestDetails,
     Agency,
     AgencyForm,

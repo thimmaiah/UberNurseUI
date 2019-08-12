@@ -40,7 +40,16 @@
                 </p>
               </button>
 
-              <button ion-item (click)="new_bulk_booking()">
+              
+              <button ion-item (click)="show_staffing_requests()">
+                <ion-icon name="filing" item-left color="primary"></ion-icon>
+                View Staffing Requests
+                <p text-wrap>
+                  Staffing Request you have placed.
+                </p>
+              </button>
+
+              <button ion-item (click)="new_recurring_request()">
                 <ion-icon name="albums" item-left color="primary"></ion-icon>
                 New Block Booking
                 <p text-wrap>
@@ -48,11 +57,11 @@
                 </p>
               </button>
 
-              <button ion-item (click)="show_staffing_requests()">
-                <ion-icon name="filing" item-left color="primary"></ion-icon>
-                View Staffing Requests
+              <button ion-item (click)="view_recurring_request()">
+                <ion-icon name="albums" item-left color="primary"></ion-icon>
+                View Block Bookings
                 <p text-wrap>
-                  Staffing Request you have placed.
+                  View block bookings by you.
                 </p>
               </button>
 
