@@ -109,14 +109,6 @@ export class BulkBooking {
       console.log(`end date = ${end_date}`);
     }
 
-    if(this.recurringRequest["start_code"] == null) {
-      this.recurringRequest["start_code"] = Math.floor(1000 + Math.random()*9000);
-    }
-
-    if(this.recurringRequest["end_code"] == null) {
-      this.recurringRequest["end_code"] = Math.floor(1000 + Math.random()*9000);
-    }
-
     if(this.current_user["sister_care_homes"] != null) {
       this.recurringRequest["care_home_id"] = this.current_user["care_home_id"]
     }
@@ -135,15 +127,6 @@ export class BulkBooking {
     this.respUtility.trackEvent("RecurringRequest", "Save", "click");
     this.submitAttempt = true;
     this.recurringRequest["dates"] = this.dateMulti;
-
-    if( moment(this.recurringRequest["start_date"]).add(4, 'hours') > moment(this.recurringRequest["end_date"]) ) {
-      console.log("start date > end date");
-      this.slideOneForm.controls["end_date"].setErrors({notValid:true});
-      return;
-    } else {
-      console.log("start date < end date");
-      this.slideOneForm.controls["end_date"].setErrors(null);      
-    }
 
     //console.log(this.recurringRequest);
     let loader = this.loadingController.create({
