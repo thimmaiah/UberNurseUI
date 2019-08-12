@@ -15,7 +15,7 @@
   
   <ion-content padding>
   
-    <p *ngIf="submitAttempt" class="error-text">Please fill out all details accurately.</p>
+    <p *ngIf="submitAttempt" class="error-text center">Please fill out all details accurately.</p>
     
     <p class="field-hint center">
         Pick the dates you want the shifts booked for.
@@ -70,6 +70,11 @@
               <ion-option value="Nurse">Nurse</ion-option>
             </ion-select>
           </ion-item>
+
+          <ion-item *ngIf="!slideOneForm.controls.role.valid  && (slideOneForm.controls.role.dirty || submitAttempt)">
+            <p class="error-text">Please select the type of staff you need.</p>
+          </ion-item>
+
           <p class="field-hint">
             Select the type of temp staff you need.
           </p>

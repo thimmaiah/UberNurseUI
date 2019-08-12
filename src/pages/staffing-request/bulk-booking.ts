@@ -69,7 +69,7 @@ export class BulkBooking {
 
       notes: ['', Validators.compose([])],
 
-      preferred_carer_id: ['', Validators.compose([Validators.required])],
+      preferred_carer_id: [''],
 
     });
 
