@@ -16,9 +16,9 @@ export class RecurringRequestApi {
     this.base_url = this.config.props["API_URL"] + "/recurring_requests";
   }
 
-  getCares(staffingRequest) {
+  getCares(recurringRequest) {
     let endpoint = `${this.base_url}/get_carers.json`;
-    return this.http.post(endpoint, staffingRequest).map(response=>{
+    return this.http.post(endpoint, recurringRequest).map(response=>{
       return response;
     })
   }
