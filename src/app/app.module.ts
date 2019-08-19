@@ -110,6 +110,7 @@ import { PaymentSearch } from '../pages/payment/payment-search';
 import { RecurringRequestForm } from '../pages/staffing-request/recurring-request-form';
 import { RecurringRequest } from '../pages/staffing-request/recurring-request';
 import { RecurringRequestDetails } from '../pages/staffing-request/recurring-request-details';
+import { CookiesPage } from '../pages/static/cookies';
 
 @NgModule({
   declarations: [
@@ -162,6 +163,7 @@ import { RecurringRequestDetails } from '../pages/staffing-request/recurring-req
     UtcDatePipe,
     AboutPage,
     HelpPage,
+    CookiesPage,
     ContactPage,
     TermsPage
   ],
@@ -227,6 +229,7 @@ import { RecurringRequestDetails } from '../pages/staffing-request/recurring-req
     CareHomeBankingDetails,
     QrCode,
     AboutPage,
+    CookiesPage,
     HelpPage,
     ContactPage,
     TermsPage

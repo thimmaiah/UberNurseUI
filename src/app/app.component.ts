@@ -37,6 +37,7 @@ import { GoogleAnalytics } from '@ionic-native/google-analytics';
 import { ShiftDetails } from '../pages/shift/shift-details';
 import { Agency } from '../pages/agency/agency';
 import { EmailVerificationPage } from '../pages/users/email-verification';
+import { CookiesPage } from '../pages/static/cookies';
 
 
 @Component({
@@ -214,6 +215,7 @@ export class MyApp {
               { title: 'Referrals', component: ReferralPage, params: {} },
               { title: 'About Us', component: AboutPage, params: {} },
               { title: 'Terms & Conditions', component: TermsPage, params: {} },
+              { title: 'Privacy & Cookies', component: CookiesPage, params: {} },
               { title: 'Contact Us', component: ContactPage, params: {} },
               { title: 'Help', component: HelpPage, params: {} },
             ];
@@ -236,6 +238,7 @@ export class MyApp {
           this.pages = [
             { title: 'About Us', component: AboutPage, params: {} },
             { title: 'Terms & Conditions', component: TermsPage, params: {} },
+            { title: 'Privacy & Cookies', component: CookiesPage, params: {} },
             { title: 'Contact Us', component: ContactPage, params: {} },
           ];
 
@@ -246,6 +249,7 @@ export class MyApp {
           this.pages = [
             { title: 'About Us', component: AboutPage, params: {} },
             { title: 'Terms & Conditions', component: TermsPage, params: {} },
+            { title: 'Privacy & Cookies', component: CookiesPage, params: {} },
             { title: 'Contact Us', component: ContactPage, params: {} },
           ];
         }
