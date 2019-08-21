@@ -111,6 +111,11 @@ import { RecurringRequestForm } from '../pages/staffing-request/recurring-reques
 import { RecurringRequest } from '../pages/staffing-request/recurring-request';
 import { RecurringRequestDetails } from '../pages/staffing-request/recurring-request-details';
 import { CookiesPage } from '../pages/static/cookies';
+import { ContactDetails } from '../pages/contact/contact-details';
+import { ContactForm } from '../pages/contact/contact-form';
+import { Contact } from '../pages/contact/contact';
+import { ContactApi } from '../providers/contact-api';
+
 
 @NgModule({
   declarations: [
@@ -136,6 +141,9 @@ import { CookiesPage } from '../pages/static/cookies';
     ReferralPage,
     ReferralDetails,
     ReferralForm,
+    Contact,
+    ContactDetails,
+    ContactForm,
     Shift,
     ShiftForm,
     ShiftDetails,
@@ -210,6 +218,9 @@ import { CookiesPage } from '../pages/static/cookies';
     ReferralPage,
     ReferralDetails,
     ReferralForm,
+    Contact,
+    ContactDetails,
+    ContactForm,
     Payment,
     PaymentForm,
     PaymentDetails,
@@ -266,6 +277,7 @@ import { CookiesPage } from '../pages/static/cookies';
     FileTransfer,
     HomeEvents,
     ReferralApi,
+    ContactApi,
     BarcodeScanner, 
     { provide: ErrorHandler, useClass: SentryErrorHandler }
   ]

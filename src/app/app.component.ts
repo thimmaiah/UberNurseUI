@@ -38,6 +38,7 @@ import { ShiftDetails } from '../pages/shift/shift-details';
 import { Agency } from '../pages/agency/agency';
 import { EmailVerificationPage } from '../pages/users/email-verification';
 import { CookiesPage } from '../pages/static/cookies';
+import { Contact } from '../pages/contact/contact';
 
 
 @Component({
@@ -203,6 +204,7 @@ export class MyApp {
               { title: 'Payment Records', component: Payment, params: {} },
               { title: 'About Us', component: AboutPage, params: {} },
               { title: 'Terms & Conditions', component: TermsPage, params: {} },
+              { title: 'Privacy & Cookies', component: CookiesPage, params: {} },
               { title: 'Contact Us', component: ContactPage, params: {} },
               { title: 'Help', component: HelpPage, params: {} },
 
@@ -210,6 +212,7 @@ export class MyApp {
 
           } else if (this.currentUser.role != "Admin" && this.currentUser.verified) {
             this.pages = [
+              { title: 'Emergency Contacts', component: Contact, params: {} },
               { title: 'Agencies', component: Agency, params: {} },
               { title: 'Past Shifts', component: Shift, params: { response_status: "Closed" } },
               { title: 'Referrals', component: ReferralPage, params: {} },
