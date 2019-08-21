@@ -159,6 +159,17 @@
        
       </div>
 
+      <ion-item>
+        <ion-label floating>Medical Conditions</ion-label>
+        <ion-textarea formControlName="medical_info" [(ngModel)]="user.medical_info"
+          [class.invalid]="!slideOneForm.controls.medical_info.valid && (slideOneForm.controls.medical_info.dirty || submitAttempt)"></ion-textarea>
+      </ion-item>
+
+      <p class="field-hint">
+        Medical conditions or history that can be used in an emergency ex Asthma, Diabetes, Allergies etc
+      </p>
+
+
       <div text-wrap>
         <ion-item>
           <ion-checkbox id="accept_terms" [(ngModel)]="user.accept_terms" 

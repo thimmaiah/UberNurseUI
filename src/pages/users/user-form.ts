@@ -59,6 +59,7 @@ export class UserForm {
       work_weekends: [''],
       work_weekend_nights: [''],
       pause_shifts: [''],
+      medical_info: ['']
     }, { "validator": this.isMatching });
 
     this.onRoleChange(this.user["role"]);
