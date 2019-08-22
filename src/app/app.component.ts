@@ -39,6 +39,7 @@ import { Agency } from '../pages/agency/agency';
 import { EmailVerificationPage } from '../pages/users/email-verification';
 import { CookiesPage } from '../pages/static/cookies';
 import { Contact } from '../pages/contact/contact';
+import { ReferencePage } from '../pages/reference/reference';
 
 
 @Component({
@@ -213,6 +214,7 @@ export class MyApp {
           } else if (this.currentUser.role != "Admin" && this.currentUser.verified) {
             this.pages = [
               { title: 'Emergency Contacts', component: Contact, params: {} },
+              { title: 'References', component: ReferencePage, params: {} },
               { title: 'Agencies', component: Agency, params: {} },
               { title: 'Past Shifts', component: Shift, params: { response_status: "Closed" } },
               { title: 'Referrals', component: ReferralPage, params: {} },

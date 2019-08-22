@@ -115,6 +115,10 @@ import { ContactDetails } from '../pages/contact/contact-details';
 import { ContactForm } from '../pages/contact/contact-form';
 import { Contact } from '../pages/contact/contact';
 import { ContactApi } from '../providers/contact-api';
+import { ReferenceApi } from '../providers/reference-api';
+import { ReferencePage } from '../pages/reference/reference';
+import { ReferenceDetails } from '../pages/reference/reference-details';
+import { ReferenceForm } from '../pages/reference/reference-form';
 
 
 @NgModule({
@@ -144,6 +148,9 @@ import { ContactApi } from '../providers/contact-api';
     Contact,
     ContactDetails,
     ContactForm,
+    ReferencePage,
+    ReferenceDetails,
+    ReferenceForm,
     Shift,
     ShiftForm,
     ShiftDetails,
@@ -221,6 +228,9 @@ import { ContactApi } from '../providers/contact-api';
     Contact,
     ContactDetails,
     ContactForm,
+    ReferencePage,
+    ReferenceDetails,
+    ReferenceForm,
     Payment,
     PaymentForm,
     PaymentDetails,
@@ -278,6 +288,7 @@ import { ContactApi } from '../providers/contact-api';
     HomeEvents,
     ReferralApi,
     ContactApi,
+    ReferenceApi,
     BarcodeScanner, 
     { provide: ErrorHandler, useClass: SentryErrorHandler }
   ]
