@@ -138,6 +138,18 @@
       </ion-row>
     </ion-item>
 
+
+    <ion-item *ngIf="staffingRequest.po_for_invoice">
+      <ion-row>
+        <ion-col>
+          PO for Invoice:
+        </ion-col>
+        <ion-col>
+          {{staffingRequest.po_for_invoice}}
+        </ion-col>
+      </ion-row>
+    </ion-item>
+
     <div *ngIf="staffingRequest.can_manage == true">
 
 

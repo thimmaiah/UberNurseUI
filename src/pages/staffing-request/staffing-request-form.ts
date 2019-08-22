@@ -39,7 +39,7 @@ export class StaffingRequestForm {
 
     this.current_user = tokenService.currentUserData;  
     this.care_home = this.current_user["care_home"];
-    
+      
     this.staffingRequest = this.navParams.data;
     this.staffingRequest["care_home_id"] = this.current_user["care_home_id"];
        
@@ -71,6 +71,8 @@ export class StaffingRequestForm {
 
       notes: ['', Validators.compose([])],
 
+      po_for_invoice: [''],
+
       preferred_carer_id: ['', Validators.compose([])],
 
     });
@@ -80,8 +82,21 @@ export class StaffingRequestForm {
 
     });
 
+    this.setPOValidators();
+
   }
 
+  setPOValidators() {
+  
+    const po_for_invoideControl = this.slideOneForm.get('po_for_invoice');
+    
+    if (this.care_home["po_req_for_invoice"]) {
+      po_for_invoideControl.setValidators([Validators.required]);
+    } else {
+      po_for_invoideControl.setValidators(null);
+    }
+
+  }
 
   getCarers() {
     console.log("getCarers Called");
