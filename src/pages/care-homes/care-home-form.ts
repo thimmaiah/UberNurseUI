@@ -40,7 +40,15 @@ export class CareHomeForm {
       carer_break_mins: [0], 
       phone: ['', Validators.compose([Validators.minLength(10), Validators.maxLength(11), Validators.pattern('^\\d+$')])],            
       postcode: ['', Validators.compose([Validators.minLength(7), Validators.required, new PostCodeValidator(this.postCodeApi).checkPostCode])],       
-      image_url: ['']  
+      image_url: [''],
+      vat_number: ['', Validators.compose([Validators.required])], 
+      company_registration_number: ['', Validators.compose([Validators.required])], 
+      dress_code: [''],
+      parking_available: [false],
+      paid_unpaid_breaks: ['Unpaid'],
+      meals_provided_on_shift: [false],
+      po_req_for_invoice: [false],
+      meals_subsidised: [false],
     });
 
     this.slideTwoForm = formBuilder.group({

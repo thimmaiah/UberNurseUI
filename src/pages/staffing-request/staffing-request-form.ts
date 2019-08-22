@@ -130,7 +130,7 @@ export class StaffingRequestForm {
   }
 
   confirmSave() {
-    this.respUtility.confirmAction(this.save.bind(this), null, "Cancellation of the shift within 24 hrs of the shift starting, will cause the full fee to be charged. Proceed?");
+    this.respUtility.confirmAction(this.save.bind(this), null, "Please check the shift details are correct. Note: Cancellation within 24 hours of start time will incur full shift charge to cover the candidates losses. Proceed?");
   }
 
   save() {

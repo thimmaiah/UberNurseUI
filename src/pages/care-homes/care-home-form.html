@@ -58,14 +58,88 @@
       </ion-item>
 
       <ion-item>
-        <ion-label floating>Break for Carers in Minutes</ion-label>
-        <ion-input name="carer_break_mins" formControlName="carer_break_mins" type="text" [(ngModel)]="care_home.carer_break_mins" 
-        [class.invalid]="!slideOneForm.controls.carer_break_mins.valid && (slideOneForm.controls.carer_break_mins.dirty || submitAttempt)"></ion-input>
+        <ion-label floating>VAT Number</ion-label>
+        <ion-input name="vat_number" formControlName="vat_number" type="text" [(ngModel)]="care_home.vat_number" [class.invalid]="!slideOneForm.controls.vat_number.valid && (slideOneForm.controls.vat_number.dirty || submitAttempt)"></ion-input>
       </ion-item>
 
-      <ion-item *ngIf="!slideOneForm.controls.carer_break_mins.valid  && (slideOneForm.controls.carer_break_mins.dirty || submitAttempt)">
+      <ion-item *ngIf="!slideOneForm.controls.vat_number.valid  && (slideOneForm.controls.vat_number.dirty || submitAttempt)">
+        <p class="error-text">Please enter a valid VAT Number.</p>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Company Registration Number</ion-label>
+        <ion-input name="company_registration_number" formControlName="company_registration_number" type="text" [(ngModel)]="care_home.company_registration_number" [class.invalid]="!slideOneForm.controls.company_registration_number.valid && (slideOneForm.controls.company_registration_number.dirty || submitAttempt)"></ion-input>
+      </ion-item>
+
+      <ion-item *ngIf="!slideOneForm.controls.company_registration_number.valid  && (slideOneForm.controls.company_registration_number.dirty || submitAttempt)">
+        <p>Please enter a valid Company Registration Number.</p>
+      </ion-item>
+
+      
+      
+      <ion-item>
+        <ion-label floating>Break for Carers in Minutes</ion-label>
+        
+        <ion-select name="carer_break_mins" [(ngModel)]="care_home.carer_break_mins" [class.invalid]="!slideOneForm.controls.carer_break_mins.valid && (slideOneForm.controls.carer_break_mins.dirty || submitAttempt)"
+          formControlName="carer_break_mins">
+          <ion-option value="30">30 mins</ion-option>
+          <ion-option value="60">60 mins</ion-option>
+        </ion-select>
+
+      </ion-item>
+      <p class="field-hint">
+        The number of minutes the carer can take as a break. 
+      </p>
+
+
+      <ion-item>
+        <ion-label floating>Paid / Unpaid Breaks</ion-label>
+        
+        <ion-select name="paid_unpaid_breaks" [(ngModel)]="care_home.paid_unpaid_breaks" [class.invalid]="!slideOneForm.controls.paid_unpaid_breaks.valid && (slideOneForm.controls.paid_unpaid_breaks.dirty || submitAttempt)"
+          formControlName="paid_unpaid_breaks">
+          <ion-option value="Paid">Paid</ion-option>
+          <ion-option value="Unpaid">Unpaid</ion-option>
+        </ion-select>
+
+      </ion-item>
+
+      <ion-item *ngIf="!slideOneForm.controls.paid_unpaid_breaks.valid  && (slideOneForm.controls.paid_unpaid_breaks.dirty || submitAttempt)">
         <p class="error-text">Please enter valid break time in mins for carers.</p>
       </ion-item>
+
+      <ion-item>
+        <ion-checkbox id="parking_available" [(ngModel)]="care_home.parking_available" formControlName="parking_available" type="text"></ion-checkbox>
+        <ion-label text-warp>Parking avaliable</ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-checkbox id="meals_provided_on_shift" [(ngModel)]="care_home.meals_provided_on_shift" formControlName="meals_provided_on_shift" type="text"></ion-checkbox>
+        <ion-label text-warp>Meals provided on shift</ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-checkbox id="meals_subsidised" [(ngModel)]="care_home.meals_subsidised" formControlName="meals_subsidised" type="text"></ion-checkbox>
+        <ion-label text-warp>Meals subsidised</ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-checkbox id="po_req_for_invoice" [(ngModel)]="care_home.po_req_for_invoice" formControlName="po_req_for_invoice" type="text"></ion-checkbox>
+        <ion-label text-warp>PO required for invoice</ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-label floating>Dress Code</ion-label>
+        <ion-input name="dress_code" formControlName="dress_code" type="text" [(ngModel)]="care_home.dress_code" [class.invalid]="!slideOneForm.controls.dress_code.valid && (slideOneForm.controls.dress_code.dirty || submitAttempt)"></ion-input>
+      </ion-item>
+
+      <ion-item *ngIf="!slideOneForm.controls.dress_code.valid  && (slideOneForm.controls.dress_code.dirty || submitAttempt)">
+        <p>Please enter a valid Dress Code.</p>
+      </ion-item>
+      <p class="field-hint">
+        Please specify any dress code you may have for our Healthcare Professionals.
+      </p>
+
+
 
       <ion-item>
         <ion-label floating>Image URL</ion-label>
