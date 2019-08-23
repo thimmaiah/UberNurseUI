@@ -102,6 +102,18 @@
             Select the temp staff you want for these shifts.
           </p>
     
+          <ion-item>
+            <ion-label floating>PO for Invoice</ion-label>
+            <ion-input name="po_for_invoice" formControlName="po_for_invoice" type="text" [(ngModel)]="recurringRequest.po_for_invoice" [class.invalid]="!slideOneForm.controls.po_for_invoice.valid && (slideOneForm.controls.po_for_invoice.dirty || submitAttempt)"></ion-input>
+          </ion-item>
+    
+          <ion-item *ngIf="!slideOneForm.controls.po_for_invoice.valid  && (slideOneForm.controls.po_for_invoice.dirty || submitAttempt)">
+            <p class="error-text" text-wrap>Please enter a valid Purchase Order to be used for invoicing.</p>
+          </ion-item>
+    
+          <p class="field-hint">
+            Purchase Order to be used for invoicing
+          </p>
     
           <ion-item>
             <ion-label floating>Notes</ion-label>

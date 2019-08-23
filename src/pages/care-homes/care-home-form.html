@@ -77,10 +77,11 @@
 
       
       
-      <ion-item>
+      <ion-item id="carer_break_mins">
         <ion-label floating>Break for Carers in Minutes</ion-label>
         
-        <ion-select name="carer_break_mins" [(ngModel)]="care_home.carer_break_mins" [class.invalid]="!slideOneForm.controls.carer_break_mins.valid && (slideOneForm.controls.carer_break_mins.dirty || submitAttempt)"
+        <ion-select name="carer_break_mins" [(ngModel)]="care_home.carer_break_mins" 
+          [class.invalid]="!slideOneForm.controls.carer_break_mins.valid && (slideOneForm.controls.carer_break_mins.dirty || submitAttempt)"
           formControlName="carer_break_mins">
           <ion-option value="30">30 mins</ion-option>
           <ion-option value="60">60 mins</ion-option>
@@ -92,7 +93,7 @@
       </p>
 
 
-      <ion-item>
+      <ion-item id="paid_unpaid_breaks">
         <ion-label floating>Paid / Unpaid Breaks</ion-label>
         
         <ion-select name="paid_unpaid_breaks" [(ngModel)]="care_home.paid_unpaid_breaks" [class.invalid]="!slideOneForm.controls.paid_unpaid_breaks.valid && (slideOneForm.controls.paid_unpaid_breaks.dirty || submitAttempt)"

@@ -71,6 +71,8 @@ export class RecurringRequestForm {
 
       preferred_carer_id: [''],
 
+      po_for_invoice: ['']
+
     });
 
     this.slideTwoForm = formBuilder.group({
