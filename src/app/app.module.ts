@@ -119,6 +119,8 @@ import { ReferenceApi } from '../providers/reference-api';
 import { ReferencePage } from '../pages/reference/reference';
 import { ReferenceDetails } from '../pages/reference/reference-details';
 import { ReferenceForm } from '../pages/reference/reference-form';
+import { TermsHcpPage } from '../pages/static/terms-hcp';
+import { TermsPartnerPage } from '../pages/static/terms-partner';
 
 
 @NgModule({
@@ -180,7 +182,9 @@ import { ReferenceForm } from '../pages/reference/reference-form';
     HelpPage,
     CookiesPage,
     ContactPage,
-    TermsPage
+    TermsPage,
+    TermsHcpPage,
+    TermsPartnerPage
   ],
   imports: [
     BrowserModule,
@@ -253,7 +257,9 @@ import { ReferenceForm } from '../pages/reference/reference-form';
     CookiesPage,
     HelpPage,
     ContactPage,
-    TermsPage
+    TermsPage,
+    TermsHcpPage,
+    TermsPartnerPage
   ],
 
   providers: [

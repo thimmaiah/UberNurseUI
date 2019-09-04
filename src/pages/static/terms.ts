@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { AngularTokenService } from 'angular-token';
 
 
 @Component({
@@ -8,11 +9,15 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class TermsPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  currentUser: {};
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public tokenService: AngularTokenService) {
+    
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad TermsPage');
+    this.currentUser = this.tokenService.currentUserData;
   }
 
 }

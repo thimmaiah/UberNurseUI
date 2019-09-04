@@ -40,6 +40,8 @@ import { EmailVerificationPage } from '../pages/users/email-verification';
 import { CookiesPage } from '../pages/static/cookies';
 import { Contact } from '../pages/contact/contact';
 import { ReferencePage } from '../pages/reference/reference';
+import {TermsPartnerPage} from '../pages/static/terms-partner';
+import {TermsHcpPage} from '../pages/static/terms-hcp';
 
 
 @Component({
