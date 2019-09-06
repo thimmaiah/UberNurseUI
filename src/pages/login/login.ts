@@ -90,11 +90,19 @@ export class Login {
   forgotPassword() {
     this.respUtility.trackEvent("User", "ForgotPassword", "click");
     if (this.email != null) {
-      this.tokenService.resetPassword({ login: this.email }).subscribe(
+      this.userApi.generateResetPasswordBySms(this.email).subscribe(
         res => {
           console.log(res);
-          this.respUtility.showMsg(res.message);
-          this.navCtrl.push(PasswordReset)
+          if (res["reset"] == true) {
+            this.navCtrl.push(PasswordReset, {email: this.email})
+            this.respUtility.showSuccess("Sms with password reset secret sent. Please check your phone.");
+          } else {
+            if (res["user_not_found"] == true) {
+              this.respUtility.showWarning("Email specified above was not found in our system. Please register.");
+            } else {
+              this.respUtility.showWarning("Password reset failed. Please contact us.");
+            }
+          }
         },
         error => this.respUtility.showFailure(error)
       );

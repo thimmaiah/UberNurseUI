@@ -97,4 +97,18 @@ export class UserApi {
       //return response.status;
     })
   }
+
+  generateResetPasswordBySms(email) {
+    return this.http.post(`${this.base_url}/generate_reset_password_by_sms.json`, {"email": email}).map(response=>{
+      let resp = response;
+      return resp;
+    })
+  }
+
+  resetPasswordBySms(email, password_reset_code, password) {
+    return this.http.post(`${this.base_url}/reset_password_by_sms.json`, {"email": email, "password_reset_code": password_reset_code, "password": password}).map(response=>{
+      let resp = response;
+      return resp;
+    })
+  }
 }

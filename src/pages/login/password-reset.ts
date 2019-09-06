@@ -6,6 +6,7 @@ import { AngularTokenService } from 'angular-token';
 import { ResponseUtility } from '../../providers/response-utility';
 import { Config } from '../../providers/config';
 import { Http, RequestOptions, Headers } from '@angular/http';
+import { UserApi } from '../../providers/user-api';
 
 
 @Component({
@@ -14,10 +15,11 @@ import { Http, RequestOptions, Headers } from '@angular/http';
 })
 export class PasswordReset {
 
-  token: any;
+  secret: any;
   password: any;
   confirm_password: any;
   headerInfo = {};
+  email: any;
 
   slideOneForm: FormGroup;
   constructor(public navCtrl: NavController,
@@ -26,15 +28,19 @@ export class PasswordReset {
     public respUtility: ResponseUtility,
     public loadingController: LoadingController,
     private tokenService: AngularTokenService,
+    private userApi: UserApi,
     private config: Config,
     private http: Http) {
 
 
     this.slideOneForm = formBuilder.group({
-      token: ['', Validators.compose([Validators.required])],
+      secret: ['', Validators.compose([Validators.required])],
       password: ['', Validators.compose([Validators.pattern('^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,70}$'), Validators.minLength(8), Validators.required])],
       confirm_password: ['', Validators.compose([Validators.required])],
     });
+
+    this.email = this.navParams.data["email"];
+    
   }
 
   ionViewDidLoad() {
@@ -47,32 +53,27 @@ export class PasswordReset {
       this.respUtility.showWarning("Passwords dont match, please re-enter the password and confirm.")
     } else {
 
-      let loader = this.loadingController.create({
-        content: 'Reset in progress ...'
-      });
-
-      loader.present();
-      this.http.post(`${this.config.props["API_URL"]}/users/reset_password.json`, {token: this.token, password: this.password}).subscribe(
-        res => {
-          console.log(res);
-          this.headerInfo = res.json();
-          loader.dismiss();
-          console.log(this.headerInfo);
-          if(this.headerInfo["reset"] == true) {
-            this.respUtility.showSuccess("Password reset successfully, please login with the new password.")
-            this.navCtrl.pop();
-          } else {
-            this.respUtility.showWarning("Password reset failed, please contact support.")
-          }
-          
-        },
-        error => {
-          console.log(error);
-          loader.dismiss();
-          this.respUtility.showFailure(error);
-        }
-      );
-
+      if (this.email != null) {
+        this.userApi.resetPasswordBySms(this.email, this.secret, this.password).subscribe(
+          res => {
+            console.log(res);
+            if (res["reset"] == true) {
+              this.respUtility.showSuccess("Password reset successfully, please login with the new password.")
+              this.navCtrl.pop();  
+            } else {
+              if (res["user_not_found"] == true) {
+                this.respUtility.showWarning("Email specified above was not found in our system. Please register.");
+              } else {
+                this.respUtility.showWarning("Password reset failed. Please check the secret sent via sms or contact us.");
+              }
+            }
+          },
+          error => this.respUtility.showFailure(error)
+        );
+      } else {
+        this.respUtility.showWarning("Please enter a valid email above.");
+      }
+      
     }
   }
 
