@@ -42,6 +42,8 @@ import { Contact } from '../pages/contact/contact';
 import { ReferencePage } from '../pages/reference/reference';
 import {TermsPartnerPage} from '../pages/static/terms-partner';
 import {TermsHcpPage} from '../pages/static/terms-hcp';
+import { PasswordReset } from '../pages/login/password-reset';
+import { UserApi } from '../providers/user-api';
 
 
 @Component({
@@ -63,6 +65,7 @@ export class MyApp {
     public splashScreen: SplashScreen,
     public push: Push,
     private tokenService: AngularTokenService,
+    private userApi: UserApi,
     private config: Config,
     public events: Events,
     public respUtility: ResponseUtility,
@@ -236,6 +239,17 @@ export class MyApp {
             this.edit_profile();
           }
 
+          // Check for password change needed - GDPR requirement
+          let password_reset_date = new Date(this.currentUser.password_reset_date);
+          let diffTime = Math.abs(new Date().getTime() - password_reset_date.getTime());
+          let diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+          if(diffDays > 29) {
+            this.reset_password();
+          }
+          else if(diffDays > 25) {
+            this.respUtility.showWarning(`Please change your password as you have ${30 - diffDays + 1} days before it expires`);
+          }
+
         });
 
         this.events.subscribe('user:logout:success', () => {
@@ -276,6 +290,30 @@ export class MyApp {
 
   show_settings() {
     this.nav.push(UserTabs, this.currentUser);
+  }
+
+  reset_password() {
+      if (this.currentUser != null) {
+        this.userApi.generateResetPasswordBySms(this.currentUser.email).subscribe(
+          res => {
+            console.log(res);
+            if (res["reset"] == true) {
+              this.nav.push(PasswordReset, {email: this.currentUser.email})
+              this.respUtility.showSuccess("Sms with password reset secret sent. Please check your phone.");
+            } else {
+              if (res["user_not_found"] == true) {
+                this.respUtility.showWarning("Email specified above was not found in our system. Please register.");
+              } else {
+                this.respUtility.showWarning("Password reset failed. Please contact us.");
+              }
+            }
+          },
+          error => this.respUtility.showFailure(error)
+        );
+      } else {
+        this.respUtility.showWarning("Please enter a valid email above.");
+      }
+    
   }
 
   show_care_home() {
