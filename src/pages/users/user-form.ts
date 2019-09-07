@@ -86,7 +86,7 @@ export class UserForm {
 
     let firstPassword = group.controls['password'].value;
     let secondPassword = group.controls['confirm_password'].value;
-    console.log(`password check ${firstPassword}, ${secondPassword}`);
+    //console.log(`password check ${firstPassword}, ${secondPassword}`);
 
 
     if ((firstPassword && secondPassword) && (firstPassword != secondPassword)) {
