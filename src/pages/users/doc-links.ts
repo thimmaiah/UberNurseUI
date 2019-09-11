@@ -25,7 +25,7 @@ export class DocLinks {
 
   uploadNow(doc) {
     if(doc == null) {
-      doc = { name: "Not Uploaded", doc_type: "Additional Doc" }
+      doc = { name: "Not Uploaded", doc_type: "Other" }
     }
     this.navCtrl.push(UserPic, doc);
   }
