@@ -17,6 +17,14 @@ export class CqcRecordApi {
     this.base_url = this.config.props["API_URL"] + "/cqc_records";
   }
 
+  getCareHomesAndCqcRecords(searchTerm) {
+    let endpoint = `${this.base_url}/search_care_homes_and_cqc.json?search=${searchTerm}`;
+    return this.http.get(endpoint).map(response=>{
+      this.cqc_records = response["cqc_records"];
+      return response;
+    })
+  }
+  
   getCqcRecords(searchTerm) {
     let endpoint = `${this.base_url}.json?search=${searchTerm}`;
     return this.http.get(endpoint).map(response=>{

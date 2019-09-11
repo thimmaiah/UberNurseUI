@@ -47,6 +47,12 @@ export class CareHomeApi {
     })
   }
 
+  claim(care_home, user_id) {
+    return this.http.post(`${this.base_url}/claim.json`, {care_home_id: care_home.id, user_id: user_id}).map(response=>{
+      return response;
+    })
+  }
+
   updateCareHome(care_home) {
     console.log(`CareHomeApi: Updating care_home`)
     console.log(care_home);

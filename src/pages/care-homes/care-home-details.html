@@ -152,9 +152,14 @@
   </ion-list>
 
   <ion-row>
-    <ion-col>
+    <ion-col *ngIf="care_home.id === current_user.care_home_id">
       <button ion-button full color="secondary" (click)="editCareHome(care_home)">Edit</button>
     </ion-col>
+
+    <ion-col *ngIf="care_home.id !== current_user.care_home_id">
+      <button ion-button full color="secondary" (click)="confirmClaim(care_home)">Claim</button>
+    </ion-col>
+
   </ion-row>
 
 

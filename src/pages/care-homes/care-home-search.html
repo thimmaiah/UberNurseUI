@@ -10,34 +10,63 @@
 <ion-content padding>
 
 
-  <ion-searchbar name="searchBox" [(ngModel)]="searchTerm" [showCancelButton]="shouldShowCancel" (ionInput)="onSearch($event)"
-    (ionCancel)="onCancel($event)" [debounce]=1000>
+  <ion-searchbar name="searchBox" [(ngModel)]="searchTerm" [showCancelButton]="shouldShowCancel"
+    (ionInput)="onSearch($event)" (ionCancel)="onCancel($event)" [debounce]=1000>
   </ion-searchbar>
 
 
   <ion-list>
+<!-- 
+    <ion-item-divider *ngIf="care_homes">
+      <ion-label>
+        Existing Partner
+      </ion-label>
+    </ion-item-divider> -->
+
+    <button ion-item *ngFor="let care_home of care_homes" (click)=exsitingCareHome(care_home)>
+      <p>
+        {{care_home.name}}
+      </p>
+
+      <p>
+        {{care_home.address}}
+      </p>
+
+      <p>
+        {{care_home.phone}}
+      </p>
+
+      <p>
+        {{care_home.postcode}}
+      </p>
+    </button>
+
+    <!-- <ion-item-divider *ngIf="cqc_records">
+      <ion-label>
+        CQC Details
+      </ion-label>
+    </ion-item-divider> -->
+
     <button ion-item *ngFor="let cqc of cqc_records" (click)=newCareHome(cqc)>
       <p>
         {{cqc.name}}
       </p>
-       
+
       <p>
         {{cqc.address}}
       </p>
-       
+
       <p>
         {{cqc.phone}}
       </p>
-       
+
       <p>
         {{cqc.postcode}}
       </p>
-      
-      
     </button>
 
     <button *ngIf="searchTerm" ion-button full color="primary" (click)="newCareHome(null)">
-        Register New Partner.
+      Register New Partner.
     </button>
 
   </ion-list>

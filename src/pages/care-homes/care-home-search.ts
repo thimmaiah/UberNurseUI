@@ -4,6 +4,7 @@ import { CareHomeApi } from '../../providers/care-home-api';
 import { CqcRecordApi } from '../../providers/cqc-record-api';
 import { ResponseUtility } from '../../providers/response-utility';
 import { CareHomeForm } from '../care-homes/care-home-form';
+import { CareHomeDetails } from './care-home-details';
 /**
  * Generated class for the CareHomeSearchPage page.
  *
@@ -20,7 +21,8 @@ export class CareHomeSearch {
 
   
   searchTerm = "";
-  cqc_records = [];
+  cqc_records = null;
+  care_homes = null;
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -41,9 +43,10 @@ export class CareHomeSearch {
     });
     loader.present();
 
-    this.cqcApi.getCqcRecords(searchTerm).subscribe(
-      cqc_records => {
-        this.cqc_records = cqc_records;
+    this.cqcApi.getCareHomesAndCqcRecords(searchTerm).subscribe(
+      response => {
+        this.cqc_records = response["cqc_records"];
+        this.care_homes = response["care_homes"];
         console.log("Loaded CareHome");
         console.log(this.cqc_records);
 
@@ -59,11 +62,16 @@ export class CareHomeSearch {
       this.loadCareHomes(this.searchTerm);
     } else {
       this.cqc_records = null;
+      this.care_homes = null;
     }
   }
 
   onCancel() {
     this.searchTerm = "";
+  }
+
+  exsitingCareHome(care_home) {
+    this.navCtrl.push(CareHomeDetails, care_home);
   }
 
   newCareHome(cqc) {
