@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, Platform, NavController, NavParams, ActionSheetController, ToastController, LoadingController } from 'ionic-angular';
-import { Camera, CameraOptions } from '@ionic-native/camera';
-import { File } from '@ionic-native/file';
-import { FileTransfer } from '@ionic-native/file-transfer';
-import { FilePath } from '@ionic-native/file-path';
-import { Diagnostic } from '@ionic-native/diagnostic';
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { File } from '@ionic-native/file/ngx';
+import { FileTransfer } from '@ionic-native/file-transfer/ngx';
+import { FilePath } from '@ionic-native/file-path/ngx';
+import { Diagnostic } from '@ionic-native/diagnostic/ngx';
 import { ResponseUtility } from '../../providers/response-utility';
 import { UserDocApi } from '../../providers/user-doc-api';
 import { Config } from '../../providers/config';

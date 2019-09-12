@@ -18,13 +18,15 @@
     <preference name="UIWebViewBounce" value="false" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="BackupWebStorage" value="none" />
-    <preference name="SplashMaintainAspectRatio" value="true" />
-    <preference name="FadeSplashScreenDuration" value="100" />
-    <preference name="SplashShowOnlyFirstTime" value="false" />
-    <preference name="SplashScreen" value="screen" />
-    <preference name="SplashScreenDelay" value="300" />
-    <preference name="KeyboardDisplayRequiresUserAction" value="false" />
     <preference name="AutoHideSplashScreen" value="false" />
+    <preference name="SplashScreenDelay" value="10000" />
+    <preference name="FadeSplashScreenDuration" value="1000" />
+    <preference name="SplashScreen" value="screen" />
+    <preference name="ShowSplashScreen" value="true" />
+    <preference name="ShowSplashScreenSpinner" value="false" />
+    <preference name="SplashShowOnlyFirstTime" value="false" />
+    <preference name="FadeSplashScreen" value="true" />
+    <preference name="KeyboardDisplayRequiresUserAction" value="false" />
     <preference name="AndroidLaunchMode" value="singleTask" />
     <platform name="android">
         <allow-intent href="market:*" />
@@ -46,6 +48,12 @@
         <splash density="port-xhdpi" src="resources/android/splash/drawable-port-xhdpi-screen.png" />
         <splash density="port-xxhdpi" src="resources/android/splash/drawable-port-xxhdpi-screen.png" />
         <splash density="port-xxxhdpi" src="resources/android/splash/drawable-port-xxxhdpi-screen.png" />
+        <splash density="ldpi" src="resources/android/splash/drawable-port-ldpi-screen.png" />
+        <splash density="mdpi" src="resources/android/splash/drawable-port-mdpi-screen.png" />
+        <splash density="hdpi" src="resources/android/splash/drawable-port-hdpi-screen.png" />
+        <splash density="xhdpi" src="resources/android/splash/drawable-port-xhdpi-screen.png" />
+        <splash density="xxhdpi" src="resources/android/splash/drawable-port-xxhdpi-screen.png" />
+        <splash density="xxxhdpi" src="resources/android/splash/drawable-port-xxxhdpi-screen.png" />
         <preference name="CodePushDeploymentKey" value="GMEpa_YlgqaOk0KqyGItThhwKbSH4b2ed3e5-0af3-4cbb-a368-b2812d60ae9d" />
         <preference name="android-targetSdkVersion" value="29" />
         <preference name="android-minSdkVersion" value="19" />
@@ -93,7 +101,7 @@
         <variable name="PHOTO_LIBRARY_USAGE_DESCRIPTION" value="Use camera to upload images of documents required for verification" />
     </plugin>
     <plugin name="cordova-plugin-google-analytics" spec="^1.8.6">
-        <variable name="GMS_VERSION" value="11.0.1" />
+        <variable name="GMS_VERSION" value="11.6.2" />
     </plugin>
     <plugin name="cordova-plugin-zip" spec="^3.1.0" />
     <plugin name="cordova-plugin-compat" spec="1.2.0" />

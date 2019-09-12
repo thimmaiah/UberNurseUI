@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AlertController, ToastController, ModalController, Toast } from 'ionic-angular';
-import { GoogleAnalytics } from '@ionic-native/google-analytics';
+import { GoogleAnalytics } from '@ionic-native/google-analytics/ngx';
 import { HttpClient } from '@angular/common/http';
 import 'rxjs/add/operator/map';
 
@@ -100,10 +100,18 @@ export class ResponseUtility {
       msg = 'The operations you were trying failed. Please contact the administrator. ';
     }
 
+    let errorMsg = "";
+    if(error["message"] !== null) {
+      errorMsg =  `<p>  ${error["message"]} </p>`;
+      errorMsg +=  " " + `<p>  ${error["error"]} </p>`
+    } else {
+      errorMsg = JSON.stringify(error);
+    }
+
     let confirm = this.alertController.create({
       title: 'Error',
       cssClass: 'error-alert',
-      message: msg + ` </br> ${error}`,
+      message: msg + errorMsg,
       buttons: [
         { text: 'OK' }
       ]

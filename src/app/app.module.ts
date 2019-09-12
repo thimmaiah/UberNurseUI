@@ -2,15 +2,15 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { IonicApp, IonicErrorHandler, IonicModule, NavController } from 'ionic-angular';
-import { Camera, CameraOptions } from '@ionic-native/camera';
-import { File } from '@ionic-native/file';
-import { FileTransfer } from '@ionic-native/file-transfer';
-import { FilePath } from '@ionic-native/file-path';
-import { Keyboard } from '@ionic-native/keyboard';
+import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { File } from '@ionic-native/file/ngx';
+import { FileTransfer } from '@ionic-native/file-transfer/ngx';
+import { FilePath } from '@ionic-native/file-path/ngx';
+import { Keyboard } from '@ionic-native/keyboard/ngx';
 import { CalendarModule } from "ion2-calendar";
 
 import { SentryErrorHandler } from '../services/sentry-errorhandler'
-import { CodePush } from '@ionic-native/code-push';
+import { CodePush } from '@ionic-native/code-push/ngx';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -70,9 +70,9 @@ import { CareHomeForm } from '../pages/care-homes/care-home-form';
 import { CareHomeDetails } from '../pages/care-homes/care-home-details';
 import { CareHomeBankingDetails } from '../pages/care-homes/care-home-banking-details';
 
-import { Diagnostic } from '@ionic-native/diagnostic';
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
+import { Diagnostic } from '@ionic-native/diagnostic/ngx';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { HttpModule, Http } from '@angular/http';
 import { MomentModule } from 'ngx-moment';
 import { UserApi } from '../providers/user-api'
@@ -87,15 +87,15 @@ import { ShiftApi } from '../providers/shift-api'
 import { ReferralApi } from '../providers/referral-api'
 
 import { ResponseUtility } from '../providers/response-utility'
-import { Push } from '@ionic-native/push';
+import { Push } from '@ionic-native/push/ngx';
 import { TitleCasePipe } from '../pipes/title-case/title-case';
 import { UtcDatePipe } from '../pipes/utc-date/utc-date';
 import { LoginProvider } from '../providers/login-provider';
 import { PostCodeApi } from '../providers/postcode-api';
 import { HomeEvents } from '../providers/home-events';
-import { GoogleAnalytics } from '@ionic-native/google-analytics';
+import { GoogleAnalytics } from '@ionic-native/google-analytics/ngx';
 
-import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { HttpClientModule } from '@angular/common/http';
 import { Agency } from '../pages/agency/agency';
 import { AgencyForm } from '../pages/agency/agency-form';

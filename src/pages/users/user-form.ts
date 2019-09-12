@@ -1,7 +1,7 @@
 import { IonicPage, NavController, NavParams, AlertController, ToastController, LoadingController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, ViewChild, ElementRef, Renderer } from '@angular/core';
-import { Keyboard } from '@ionic-native/keyboard';
+import { Keyboard } from '@ionic-native/keyboard/ngx';
 import { UserApi } from '../../providers/user-api';
 import { ResponseUtility } from '../../providers/response-utility';
 import { AngularTokenService } from 'angular-token';

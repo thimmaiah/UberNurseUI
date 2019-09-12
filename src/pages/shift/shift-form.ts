@@ -4,7 +4,7 @@ import { Component, ViewChild } from '@angular/core';
 import { ShiftApi } from '../../providers/shift-api';
 import { ResponseUtility } from '../../providers/response-utility';
 import { RatingForm } from '../rating/rating-form';
-import { BarcodeScanner } from '@ionic-native/barcode-scanner';
+import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import * as moment from 'moment';
 
 

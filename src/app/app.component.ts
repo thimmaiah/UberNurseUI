@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { Nav, Platform, AlertController } from 'ionic-angular';
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { HomePage } from '../pages/home/home';
 import { Users } from '../pages/users/users';
 import { UserPic } from '../pages/user-pic/user-pic';
@@ -11,7 +11,7 @@ import { ReferralPage } from '../pages/referral/referral'
 import { Rating } from '../pages/rating/rating'
 import { AngularTokenService } from 'angular-token';
 import { Config } from '../providers/config';
-import { Push, PushObject, PushOptions } from '@ionic-native/push';
+import { Push, PushObject, PushOptions } from '@ionic-native/push/ngx';
 import { LoginProvider } from '../providers/login-provider';
 import { Events } from 'ionic-angular';
 
@@ -32,8 +32,8 @@ import { HelpPage } from '../pages/static/help';
 import { TermsPage } from '../pages/static/terms';
 import { ContactPage } from '../pages/static/contact';
 
-import { CodePush, SyncStatus, InstallMode } from '@ionic-native/code-push';
-import { GoogleAnalytics } from '@ionic-native/google-analytics';
+import { CodePush, SyncStatus, InstallMode } from '@ionic-native/code-push/ngx';
+import { GoogleAnalytics } from '@ionic-native/google-analytics/ngx';
 import { ShiftDetails } from '../pages/shift/shift-details';
 import { Agency } from '../pages/agency/agency';
 import { EmailVerificationPage } from '../pages/users/email-verification';
