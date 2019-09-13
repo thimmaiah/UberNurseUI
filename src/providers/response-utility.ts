@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { AlertController, ToastController, ModalController, Toast } from 'ionic-angular';
-import { GoogleAnalytics } from '@ionic-native/google-analytics/ngx';
 import { HttpClient } from '@angular/common/http';
 import 'rxjs/add/operator/map';
-
+import Raven from 'raven-js';
 
 @Injectable()
 export class ResponseUtility {
@@ -11,7 +10,6 @@ export class ResponseUtility {
   toast: Toast;
 
   constructor(
-    private ga: GoogleAnalytics,
     public http: HttpClient,
     public alertController: AlertController,
     public modalController: ModalController,
@@ -92,6 +90,7 @@ export class ResponseUtility {
     } else {
       this.showFailureAlert(error, msg);
     }
+    Raven.captureException(error);
   }
 
   showFailureAlert(error, msg = null) {
@@ -172,14 +171,11 @@ export class ResponseUtility {
   }
 
   trackView(view) {
-    this.ga.trackView(view);
   }
 
   trackEvent(category, action, label, value=null, newSession=false) {
-    this.ga.trackEvent(category, action, label, value, newSession)
   }
 
   trackMetric(key, value) {
-    this.ga.trackMetric(key, value);
   }
 }

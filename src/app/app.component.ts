@@ -11,7 +11,6 @@ import { ReferralPage } from '../pages/referral/referral'
 import { Rating } from '../pages/rating/rating'
 import { AngularTokenService } from 'angular-token';
 import { Config } from '../providers/config';
-import { Push, PushObject, PushOptions } from '@ionic-native/push/ngx';
 import { LoginProvider } from '../providers/login-provider';
 import { Events } from 'ionic-angular';
 
@@ -32,8 +31,7 @@ import { HelpPage } from '../pages/static/help';
 import { TermsPage } from '../pages/static/terms';
 import { ContactPage } from '../pages/static/contact';
 
-import { CodePush, SyncStatus, InstallMode } from '@ionic-native/code-push/ngx';
-import { GoogleAnalytics } from '@ionic-native/google-analytics/ngx';
+import { CodePush, SyncStatus, InstallMode } from '@ionic-native/code-push';
 import { ShiftDetails } from '../pages/shift/shift-details';
 import { Agency } from '../pages/agency/agency';
 import { EmailVerificationPage } from '../pages/users/email-verification';
@@ -58,12 +56,9 @@ export class MyApp {
   pages: Array<{ title: string, component: any, params: any }> = [];
 
   constructor(
-    private ga: GoogleAnalytics,
-    private codePush: CodePush,
     public platform: Platform,
     public statusBar: StatusBar,
     public splashScreen: SplashScreen,
-    public push: Push,
     private tokenService: AngularTokenService,
     private userApi: UserApi,
     private config: Config,
@@ -78,97 +73,6 @@ export class MyApp {
 
   }
 
-  initGA() {
-    this.ga.startTrackerWithId(this.config.props["GA_ID"])
-      .then(() => {
-
-        this.ga.enableUncaughtExceptionReporting(true)
-          .then((_success) => {
-            console.log("GoogleAnalytics success: " + _success);
-          }).catch((_error) => {
-            console.log("GoogleAnalytics error: " + _error);
-          });
-        console.log('Google analytics is ready now');
-        //this.ga.debugMode();
-        this.ga.setAllowIDFACollection(true);
-        this.ga.trackView('Main');
-        // Tracker is ready
-        // You can now track pages or set additional information such as AppVersion or UserId
-      })
-      .catch(e => console.log('Error starting GoogleAnalytics', e));
-  }
-
-  initPushNotification() {
-    console.log("initPushNotification");
-    if (!this.platform.is('cordova')) {
-      console.warn("Push notifications not initialized. Cordova is not available - Run in physical device");
-      return;
-    }
-
-    // to check if we have permission
-    this.push.hasPermission()
-      .then((res: any) => {
-
-        if (res.isEnabled) {
-          console.log('We have permission to send push notifications');
-        } else {
-          console.log('We do not have permission to send push notifications');
-        }
-
-      });
-
-    const options: PushOptions = {
-      android: {
-        senderID: '600472014859'
-      },
-      ios: {
-        alert: 'true',
-        badge: true,
-        sound: 'false'
-      },
-      windows: {}
-    };
-
-    const pushObject: PushObject = this.push.init(options);
-
-    pushObject.on('registration').subscribe((data: any) => {
-      console.log("registrationId ->", data.registrationId);
-      // Lets store this in the push_token. This is because at this point the user may not be logged in
-      // When he logs in we will save it
-      this.config.props["push_token"] = data.registrationId;
-      console.log("this.config.props[push_token] = ", this.config.props["push_token"]);
-    });
-
-    pushObject.on('notification').subscribe((data: any) => {
-      console.log('message', data.message);
-      //if user using app and push notification comes
-      if (data.additionalData.foreground) {
-        // if application open, show popup
-        let confirmAlert = this.alertCtrl.create({
-          title: 'New Notification',
-          message: data.message,
-          buttons: [{
-            text: 'Ignore',
-            role: 'cancel'
-          }, {
-            text: 'View',
-            handler: () => {
-              //TODO: Your logic here
-              //this.nav.push(DetailsPage, { message: data.message });
-            }
-          }]
-        });
-        confirmAlert.present();
-      } else {
-        //if user NOT using app and push notification comes
-        //TODO: Your logic on click of push notification directly
-        //this.nav.push(DetailsPage, { message: data.message });
-        console.log("Push notification clicked");
-      }
-    });
-
-    pushObject.on('error').subscribe(error => console.error('Error with Push plugin', error));
-  }
 
   initializeApp() {
 
@@ -178,11 +82,7 @@ export class MyApp {
       () => {
 
         this.hideSplashScreen();
-
-        this.syncCodePush();
-
-        this.initGA();
-
+        
         // https://github.com/neroniaky/angular-token/issues/475
         (this.tokenService as any).options.apiBase = this.config.props["API_URL"];
 
@@ -190,15 +90,12 @@ export class MyApp {
         // Here you can do any higher level native things you might need.
         this.statusBar.styleDefault();
         this.splashScreen.hide();
-        this.initPushNotification();
 
         this.currentUser = this.tokenService.currentUserData;
 
         this.events.subscribe('user:login:success', () => {
           console.log("AppComponent: user:login:success");
           this.currentUser = this.tokenService.currentUserData;
-
-          this.ga.setUserId(this.currentUser["id"]); // Set the user ID using signed-in user_id.
 
           if (this.currentUser.role == "Admin" &&
             this.currentUser.care_home != null &&
@@ -334,74 +231,7 @@ export class MyApp {
     this.loginProvider.logout();
   }
 
-  syncCodePush() {
-    if (this.platform.is('cordova')) {
-
-      let updateDialogOptions = {
-        updateTitle: "Updated available",
-        optionalUpdateMessage: "A new app update is available. Install?",
-        optionalIgnoreButtonLabel: "Not right now",
-        optionalInstallButtonLabel: "Install Now"
-      };
-
-      const downloadProgress = (progress) => {
-        console.log(`Downloaded ${progress.receivedBytes} of ${progress.totalBytes}`);
-        //this.respUtility.showWarning(`Updating app. Please wait ....`);
-      }
-
-      const onSyncStatusChange = (syncStatus) => {
-        let messageText = null;
-
-        switch (syncStatus) {
-          case SyncStatus.IN_PROGRESS:
-            messageText = 'An update is in progress ..';
-            break;
-
-          case SyncStatus.CHECKING_FOR_UPDATE:
-            messageText = 'Checking for update ..';
-            break;
-
-          case SyncStatus.DOWNLOADING_PACKAGE:
-            messageText = 'Downloading package ..';
-            break;
-
-          case SyncStatus.INSTALLING_UPDATE:
-            this.splashScreen.show();
-            messageText = 'Installing update. Please wait ..';
-            break;
-
-          case SyncStatus.UPDATE_INSTALLED:
-            messageText = 'Installed the update ..';
-            break;
-
-          case SyncStatus.ERROR:
-            messageText = 'An error occurred :( ...';
-            break;
-
-          default:
-            //messageText = 'Update done.';
-            break;
-
-        }
-        if (messageText) {
-          this.respUtility.showSuccess(messageText);
-        }
-
-      }
-
-      this.codePush.sync({ updateDialog: updateDialogOptions, installMode: InstallMode.IMMEDIATE }, downloadProgress).subscribe(
-        (syncStatus) => {
-          console.log(syncStatus);
-          onSyncStatusChange(syncStatus);
-        });
-
-      console.log("Initializing CodePush");
-    } else {
-      // Cordova not accessible, add mock data if necessary
-      console.log("Not Initializing CodePush, load app on device");
-    }
-  }
-
+  
   hideSplashScreen() {
     if (this.splashScreen) {
       setTimeout(() => {

@@ -16,6 +16,7 @@
     <preference name="loadUrlTimeoutValue" value="700000" />
     <preference name="webviewbounce" value="false" />
     <preference name="UIWebViewBounce" value="false" />
+    <preference name="WKSuspendInBackground" value="false" />
     <preference name="DisallowOverscroll" value="true" />
     <preference name="BackupWebStorage" value="none" />
     <preference name="AutoHideSplashScreen" value="false" />
@@ -23,11 +24,12 @@
     <preference name="FadeSplashScreenDuration" value="1000" />
     <preference name="SplashScreen" value="screen" />
     <preference name="ShowSplashScreen" value="true" />
-    <preference name="ShowSplashScreenSpinner" value="false" />
+    <preference name="ShowSplashScreenSpinner" value="true" />
     <preference name="SplashShowOnlyFirstTime" value="false" />
     <preference name="FadeSplashScreen" value="true" />
     <preference name="KeyboardDisplayRequiresUserAction" value="false" />
     <preference name="AndroidLaunchMode" value="singleTask" />
+    <preference name="DisableDeploy" value="true" />
     <platform name="android">
         <allow-intent href="market:*" />
         <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
@@ -95,27 +97,23 @@
         <icon height="1024" src="resources/ios/icon/icon-1024.png" width="1024" />
         <splash height="2732" src="resources/ios/splash/Default@2x~universal~anyany.png" width="2732" />
     </platform>
-    <plugin name="cordova-plugin-whitelist" spec="^1.3.1" />
     <plugin name="cordova-plugin-camera" spec="^4.0.3">
         <variable name="CAMERA_USAGE_DESCRIPTION" value="Use camera to upload images of documents required for verification" />
         <variable name="PHOTO_LIBRARY_USAGE_DESCRIPTION" value="Use camera to upload images of documents required for verification" />
     </plugin>
-    <plugin name="cordova-plugin-google-analytics" spec="^1.8.6">
-        <variable name="GMS_VERSION" value="11.6.2" />
-    </plugin>
     <plugin name="cordova-plugin-zip" spec="^3.1.0" />
     <plugin name="cordova-plugin-compat" spec="1.2.0" />
     <engine name="browser" spec="~5.0.4" />
-    <plugin name="cordova-plugin-code-push" spec="1.11.20" />
     <plugin name="cordova-plugin-file-transfer" spec="^1.7.1" />
     <plugin name="phonegap-plugin-barcodescanner" spec="8.1.0" />
-    <plugin name="cordova-plugin-splashscreen" spec="5.0.3" />
-    <plugin name="phonegap-plugin-push" spec="2.2.3">
-        <variable name="SENDER_ID" value="600472014859" />
-    </plugin>
     <plugin name="cordova-sqlite-storage" spec="3.2.1" />
     <plugin name="cordova-plugin-filepath" spec="1.5.6" />
     <plugin name="cordova-plugin-statusbar" spec="2.4.3" />
     <plugin name="cordova-plugin-device" spec="2.0.3" />
     <plugin name="cordova-plugin-file" spec="6.0.1" />
+    <plugin name="cordova-plugin-whitelist" spec="1.3.3" />
+    <plugin name="cordova-plugin-statusbar" spec="2.4.2" />
+    <plugin name="cordova-plugin-device" spec="2.0.2" />
+    <plugin name="cordova-plugin-splashscreen" spec="5.0.2" />
+    <plugin name="cordova-plugin-ionic-webview" spec="^4.0.0" />
 </widget>
