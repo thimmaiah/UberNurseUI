@@ -1,17 +1,15 @@
 import { Component, ViewChild } from '@angular/core';
 import { Searchbar, IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
-import { CareHomeApi } from '../../providers/care-home-api';
-import { CqcRecordApi } from '../../providers/cqc-record-api';
-import { ResponseUtility } from '../../providers/response-utility';
-import { CareHomeForm } from '../care-homes/care-home-form';
-import { CareHomeDetails } from './care-home-details';
+import { CareHomeApi } from '../../../providers/care-home-api';
+import { CqcRecordApi } from '../../../providers/cqc-record-api';
+import { ResponseUtility } from '../../../providers/response-utility';
 /**
  * Generated class for the CareHomeSearchPage page.
  *
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
-//@IonicPage()
+@IonicPage()
 
 @Component({
   selector: 'page-care-home-search',
@@ -71,7 +69,7 @@ export class CareHomeSearch {
   }
 
   exsitingCareHome(care_home) {
-    this.navCtrl.push(CareHomeDetails, care_home);
+    this.navCtrl.push('CareHomeDetails', care_home);
   }
 
   newCareHome(cqc) {
@@ -84,6 +82,6 @@ export class CareHomeSearch {
       };
     }
     this.respUtility.trackEvent("CareHome", "New", "click");
-    this.navCtrl.push(CareHomeForm, care_home);
+    this.navCtrl.push('CareHomeForm', care_home);
   }
 }

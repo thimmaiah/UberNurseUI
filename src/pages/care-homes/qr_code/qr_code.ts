@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, ToastController, LoadingController } from 'ionic-angular';
-import { CareHomeForm } from '../care-homes/care-home-form';
-import { CareHomeApi } from '../../providers/care-home-api';
-import { ResponseUtility } from '../../providers/response-utility';
+import { CareHomeApi } from '../../../providers/care-home-api';
+import { ResponseUtility } from '../../../providers/response-utility';
 
 import QRCode from 'qrcode';
 
@@ -12,7 +11,7 @@ import QRCode from 'qrcode';
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
-//@IonicPage()
+@IonicPage()
 @Component({
   selector: 'care-home-qr-code',
   templateUrl: 'qr_code.html',

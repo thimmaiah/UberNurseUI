@@ -14,7 +14,7 @@ import Raven from 'raven-js';
 
 
 declare var cordova: any;
-
+@IonicPage()
 @Component({
   selector: 'page-user-pic',
   templateUrl: 'user-pic.html',

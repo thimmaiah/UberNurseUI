@@ -2,9 +2,6 @@ import { Component } from '@angular/core';
 import { InfiniteScroll, IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { CareHomeApi } from '../../providers/care-home-api';
 import { ResponseUtility } from '../../providers/response-utility';
-import { CareHomeDetails } from '../care-homes/care-home-details';
-import { CareHomeForm } from '../care-homes/care-home-form';
-import { CareHomeSearch } from '../care-homes/care-home-search';
 import { AngularTokenService } from 'angular-token';
 
 
@@ -82,7 +79,7 @@ export class CareHomes {
       care_home => {
         this.care_home = care_home;
         console.log("got care_home " + care_home);
-        this.navCtrl.push(CareHomeDetails, care_home);
+        this.navCtrl.push('CareHomeDetails', care_home);
       },
       error => { this.respUtility.showFailure(error); },
       () => { loader.dismiss(); }
@@ -101,7 +98,7 @@ export class CareHomes {
   newCareHome() {
     let care_home = {};
     this.respUtility.trackEvent("CareHome", "New", "click");
-    this.navCtrl.push(CareHomeSearch);
+    this.navCtrl.push('CareHomeSearch');
   }
 
   onSearch(event) {

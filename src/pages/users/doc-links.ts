@@ -1,7 +1,5 @@
 import { Injectable} from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { UserPic } from '../user-pic/user-pic';
-import { UserDoc } from '../user-doc/user-doc';
 
 import * as _ from 'lodash';
 
@@ -27,11 +25,11 @@ export class DocLinks {
     if(doc == null) {
       doc = { name: "Not Uploaded", doc_type: "Other" }
     }
-    this.navCtrl.push(UserPic, doc);
+    this.navCtrl.push('UserPic', doc);
   }
 
   viewDoc(doc) {
-    this.navCtrl.push(UserDoc, doc);
+    this.navCtrl.push('UserDoc', doc);
   }
 
   getDocColorAndText(doc) {

@@ -5,8 +5,6 @@ import * as _ from 'lodash';
 import { DocLinks } from '../doc-links';
 import { UserApi } from '../../../providers/user-api';
 import { ResponseUtility } from '../../../providers/response-utility';
-import { CareHomeBankingDetails } from '../../care-homes/care-home-banking-details';
-import { CareHomeForm } from '../../care-homes/care-home-form';
 
 @IonicPage()
 @Component({
@@ -95,12 +93,12 @@ export class UserDetails extends DocLinks {
 
   editCareHomeBankingDetails(user) {
     this.respUtility.trackEvent("User", "EditCareHomeBankingDetails", "click");
-    this.navCtrl.push(CareHomeBankingDetails, user.care_home);
+    this.navCtrl.push('CareHomeBankingDetails', user.care_home);
   }
 
   editCareHome(user) {
     this.respUtility.trackEvent("User", "EditCareHome", "click");
-    this.navCtrl.push(CareHomeForm, user.care_home);
+    this.navCtrl.push('CareHomeForm', user.care_home);
   }
 
 }

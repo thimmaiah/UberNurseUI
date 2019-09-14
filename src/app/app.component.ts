@@ -11,8 +11,6 @@ import { Events } from 'ionic-angular';
 
 import { ResponseUtility } from '../providers/response-utility';
 import { UserTabs } from '../pages/users/user-tabs';
-
-import { CareHomeDetails } from '../pages/care-homes/care-home-details';
 import { Login } from '../pages/login/login';
 
 import { PasswordReset } from '../pages/login/password-reset';
@@ -191,7 +189,7 @@ export class MyApp {
   }
 
   show_care_home() {
-    this.nav.push(CareHomeDetails, this.currentUser.care_home);
+    this.nav.push('CareHomeDetails', this.currentUser.care_home);
   }
 
 

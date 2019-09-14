@@ -26,16 +26,7 @@ import { PasswordReset } from '../pages/login/password-reset'
 import { IonicStorageModule } from '@ionic/storage';
 import { AngularTokenService, AngularTokenModule } from 'angular-token';
 
-import { UserPic } from '../pages/user-pic/user-pic';
-import { UserDoc } from '../pages/user-doc/user-doc';
 import { UserTabs } from '../pages/users/user-tabs';
-
-import { CareHomes } from '../pages/care-homes/care-homes';
-import { QrCode } from '../pages/care-homes/qr_code';
-import { CareHomeSearch } from '../pages/care-homes/care-home-search';
-import { CareHomeForm } from '../pages/care-homes/care-home-form';
-import { CareHomeDetails } from '../pages/care-homes/care-home-details';
-import { CareHomeBankingDetails } from '../pages/care-homes/care-home-banking-details';
 
 import { HttpModule, Http } from '@angular/http';
 import { MomentModule } from 'ngx-moment';
@@ -77,15 +68,7 @@ import { HelpPage } from '../pages/static/help';
     TempMenus,
     Login,
     PasswordReset,
-    UserPic,
-    UserDoc,
     UserTabs,
-    CareHomes,
-    CareHomeForm,
-    CareHomeDetails,
-    CareHomeSearch,
-    CareHomeBankingDetails,
-    QrCode,
     ContactPage,
     HelpPage,
   ],
@@ -110,15 +93,7 @@ import { HelpPage } from '../pages/static/help';
     TempMenus,
     Login,
     PasswordReset,
-    UserPic,
-    UserDoc,
     UserTabs,
-    CareHomes,
-    CareHomeForm,
-    CareHomeDetails,
-    CareHomeSearch,
-    CareHomeBankingDetails,
-    QrCode,
     ContactPage,
     HelpPage
   ],

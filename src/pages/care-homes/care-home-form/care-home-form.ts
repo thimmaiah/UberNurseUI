@@ -1,13 +1,13 @@
-import { NavController, NavParams, LoadingController } from 'ionic-angular';
+import { NavController, NavParams, LoadingController, Ion, IonicPage } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, ViewChild } from '@angular/core';
-import { CareHomeApi } from '../../providers/care-home-api';
-import { ResponseUtility } from '../../providers/response-utility';
 import { Events } from 'ionic-angular';
-import {PostCodeValidator} from '../users/postcode-validator';
-import { PostCodeApi } from '../../providers/postcode-api';
+import { CareHomeApi } from '../../../providers/care-home-api';
+import { PostCodeApi } from '../../../providers/postcode-api';
+import { ResponseUtility } from '../../../providers/response-utility';
+import { PostCodeValidator } from '../../users/postcode-validator';
 
-
+@IonicPage()
 @Component({
   selector: 'page-care-home-form',
   templateUrl: 'care-home-form.html',

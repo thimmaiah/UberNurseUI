@@ -2,8 +2,6 @@ import { Component, Input } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AngularTokenService } from 'angular-token';
 import { ResponseUtility } from '../../providers/response-utility';
-import { CareHomeSearch } from '../care-homes/care-home-search';
-import { CareHomeBankingDetails } from '../care-homes/care-home-banking-details';
 import { Config } from '../../providers/config';
 import { LoginProvider } from '../../providers/login-provider';
 import { Events } from 'ionic-angular';
@@ -58,7 +56,7 @@ export class AdminMenus implements Menu {
 
             if (this.currentUser.care_home_id == null) {
                 this.registerCareHome = true;
-                this.navCtrl.push(CareHomeSearch);
+                this.navCtrl.push('CareHomeSearch');
                 this.respUtility.showWarning("Please register your care home and get it verified at the earliest.");
             } else if (this.currentUser.care_home) {
                 if (!this.currentUser.care_home.verified) {
@@ -93,11 +91,11 @@ export class AdminMenus implements Menu {
     }
 
     register_care_home() {
-        this.navCtrl.push(CareHomeSearch);
+        this.navCtrl.push('CareHomeSearch');
     }
 
     add_care_home_banking_details() {
-        this.navCtrl.push(CareHomeBankingDetails, this.currentUser.care_home);
+        this.navCtrl.push('CareHomeBankingDetails', this.currentUser.care_home);
     }
 
     show_staffing_requests() {

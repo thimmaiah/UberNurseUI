@@ -4,9 +4,9 @@ import { Config } from '../../providers/config';
 import { AngularTokenService } from 'angular-token';
 import { UserDocApi } from '../../providers/user-doc-api';
 import { ResponseUtility } from '../../providers/response-utility';
-import { UserPic } from '../user-pic/user-pic';
 import { Events } from 'ionic-angular';
 
+@IonicPage()
 @Component({
   selector: 'page-user-doc',
   templateUrl: 'user-doc.html',
@@ -37,7 +37,7 @@ export class UserDoc {
 
   uploadDocument(document) {
     this.respUtility.trackEvent("UserDoc", "Upload", "click");
-    this.navCtrl.push(UserPic, document);
+    this.navCtrl.push('UserPic', document);
   }
 
   deleteDocument(document) {

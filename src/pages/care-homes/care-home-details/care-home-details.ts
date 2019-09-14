@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
-import { CareHomeForm } from '../care-homes/care-home-form';
-import { CareHomeApi } from '../../providers/care-home-api';
-import { ResponseUtility } from '../../providers/response-utility';
 import { AngularTokenService } from 'angular-token';
+import { CareHomeApi } from '../../../providers/care-home-api';
+import { ResponseUtility } from '../../../providers/response-utility';
 
 /**
  * Generated class for the CareHomesDetails page.
@@ -11,7 +10,7 @@ import { AngularTokenService } from 'angular-token';
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
-//@IonicPage()
+@IonicPage()
 @Component({
   selector: 'page-care-home-details',
   templateUrl: 'care-home-details.html',
@@ -40,7 +39,7 @@ export class CareHomeDetails {
 
   editCareHome(care_home) {
     this.respUtility.trackEvent("CareHome", "Edit", "click");
-    this.navCtrl.push(CareHomeForm, care_home);
+    this.navCtrl.push('CareHomeForm', care_home);
   }
 
   confirmClaim(care_home) {
