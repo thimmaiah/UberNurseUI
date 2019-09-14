@@ -43,10 +43,6 @@ import { StaffingRequest } from '../pages/staffing-request/staffing-request';
 import { StaffingRequestForm } from '../pages/staffing-request/staffing-request-form';
 import { StaffingRequestDetails } from '../pages/staffing-request/staffing-request-details';
 
-import { AboutPage } from '../pages/static/about';
-import { HelpPage } from '../pages/static/help';
-import { TermsPage } from '../pages/static/terms';
-import { ContactPage } from '../pages/static/contact';
 
 import { Shift } from '../pages/shift/shift';
 import { ShiftDetails } from '../pages/shift/shift-details';
@@ -109,7 +105,6 @@ import { PaymentSearch } from '../pages/payment/payment-search';
 import { RecurringRequestForm } from '../pages/staffing-request/recurring-request-form';
 import { RecurringRequest } from '../pages/staffing-request/recurring-request';
 import { RecurringRequestDetails } from '../pages/staffing-request/recurring-request-details';
-import { CookiesPage } from '../pages/static/cookies';
 import { ContactDetails } from '../pages/contact/contact-details';
 import { ContactForm } from '../pages/contact/contact-form';
 import { Contact } from '../pages/contact/contact';
@@ -118,8 +113,8 @@ import { ReferenceApi } from '../providers/reference-api';
 import { ReferencePage } from '../pages/reference/reference';
 import { ReferenceDetails } from '../pages/reference/reference-details';
 import { ReferenceForm } from '../pages/reference/reference-form';
-import { TermsHcpPage } from '../pages/static/terms-hcp';
-import { TermsPartnerPage } from '../pages/static/terms-partner';
+import { ContactPage } from '../pages/static/contact';
+import { HelpPage } from '../pages/static/help';
 
 
 @NgModule({
@@ -175,15 +170,10 @@ import { TermsPartnerPage } from '../pages/static/terms-partner';
     CareHomeSearch,
     CareHomeBankingDetails,
     QrCode,
-    TitleCasePipe,
-    UtcDatePipe,
-    AboutPage,
-    HelpPage,
-    CookiesPage,
     ContactPage,
-    TermsPage,
-    TermsHcpPage,
-    TermsPartnerPage
+    HelpPage,
+    TitleCasePipe,
+    UtcDatePipe
   ],
   imports: [
     BrowserModule,
@@ -252,13 +242,8 @@ import { TermsPartnerPage } from '../pages/static/terms-partner';
     CareHomeSearch,
     CareHomeBankingDetails,
     QrCode,
-    AboutPage,
-    CookiesPage,
-    HelpPage,
     ContactPage,
-    TermsPage,
-    TermsHcpPage,
-    TermsPartnerPage
+    HelpPage
   ],
 
   providers: [

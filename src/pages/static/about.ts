@@ -6,6 +6,9 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   selector: 'page-about',
   templateUrl: 'about.html',
 })
+@IonicPage({
+  name: 'AboutPage'
+})
 export class AboutPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {

@@ -26,22 +26,17 @@ import { CareHomeBankingDetails } from '../pages/care-homes/care-home-banking-de
 import { Login } from '../pages/login/login';
 import { StaffingRequest } from '../pages/staffing-request/staffing-request';
 import { Shift } from '../pages/shift/shift';
-import { AboutPage } from '../pages/static/about';
-import { HelpPage } from '../pages/static/help';
-import { TermsPage } from '../pages/static/terms';
-import { ContactPage } from '../pages/static/contact';
 
 import { CodePush, SyncStatus, InstallMode } from '@ionic-native/code-push';
 import { ShiftDetails } from '../pages/shift/shift-details';
 import { Agency } from '../pages/agency/agency';
 import { EmailVerificationPage } from '../pages/users/email-verification';
-import { CookiesPage } from '../pages/static/cookies';
 import { Contact } from '../pages/contact/contact';
 import { ReferencePage } from '../pages/reference/reference';
-import {TermsPartnerPage} from '../pages/static/terms-partner';
-import {TermsHcpPage} from '../pages/static/terms-hcp';
 import { PasswordReset } from '../pages/login/password-reset';
 import { UserApi } from '../providers/user-api';
+import { ContactPage } from '../pages/static/contact';
+import { HelpPage } from '../pages/static/help';
 
 
 @Component({
@@ -105,9 +100,9 @@ export class MyApp {
               { title: 'Agencies', component: Agency, params: {} },
               { title: 'Past Shifts', component: Shift, params: { response_status: "Closed" } },
               { title: 'Payment Records', component: Payment, params: {} },
-              { title: 'About Us', component: AboutPage, params: {} },
-              { title: 'Terms & Conditions', component: TermsPage, params: {} },
-              { title: 'Privacy & Cookies', component: CookiesPage, params: {} },
+              { title: 'About Us', component: 'AboutPage', params: {} },
+              { title: 'Terms & Conditions', component: 'TermsPage', params: {} },
+              { title: 'Privacy & Cookies', component: 'CookiesPage', params: {} },
               { title: 'Contact Us', component: ContactPage, params: {} },
               { title: 'Help', component: HelpPage, params: {} },
 
@@ -120,9 +115,9 @@ export class MyApp {
               { title: 'Agencies', component: Agency, params: {} },
               { title: 'Past Shifts', component: Shift, params: { response_status: "Closed" } },
               { title: 'Referrals', component: ReferralPage, params: {} },
-              { title: 'About Us', component: AboutPage, params: {} },
-              { title: 'Terms & Conditions', component: TermsPage, params: {} },
-              { title: 'Privacy & Cookies', component: CookiesPage, params: {} },
+              { title: 'About Us', component: 'AboutPage', params: {} },
+              { title: 'Terms & Conditions', component: 'TermsPage', params: {} },
+              { title: 'Privacy & Cookies', component: 'CookiesPage', params: {} },
               { title: 'Contact Us', component: ContactPage, params: {} },
               { title: 'Help', component: HelpPage, params: {} },
             ];
@@ -154,9 +149,9 @@ export class MyApp {
           this.currentUser = null;
 
           this.pages = [
-            { title: 'About Us', component: AboutPage, params: {} },
-            { title: 'Terms & Conditions', component: TermsPage, params: {} },
-            { title: 'Privacy & Cookies', component: CookiesPage, params: {} },
+            { title: 'About Us', component: 'AboutPage', params: {} },
+            { title: 'Terms & Conditions', component: 'TermsPage', params: {} },
+            { title: 'Privacy & Cookies', component: 'CookiesPage', params: {} },
             { title: 'Contact Us', component: ContactPage, params: {} },
           ];
 
@@ -165,9 +160,9 @@ export class MyApp {
         if (this.currentUser == null) {
           this.loginProvider.auto_login(null);
           this.pages = [
-            { title: 'About Us', component: AboutPage, params: {} },
-            { title: 'Terms & Conditions', component: TermsPage, params: {} },
-            { title: 'Privacy & Cookies', component: CookiesPage, params: {} },
+            { title: 'About Us', component: 'AboutPage', params: {} },
+            { title: 'Terms & Conditions', component: 'TermsPage', params: {} },
+            { title: 'Privacy & Cookies', component: 'CookiesPage', params: {} },
             { title: 'Contact Us', component: ContactPage, params: {} },
           ];
         }

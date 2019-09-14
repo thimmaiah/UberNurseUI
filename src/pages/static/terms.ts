@@ -7,6 +7,9 @@ import { AngularTokenService } from 'angular-token';
   selector: 'page-terms',
   templateUrl: 'terms.html',
 })
+@IonicPage({
+  name: 'TermsPage'
+})
 export class TermsPage {
 
   currentUser: {};
