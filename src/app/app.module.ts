@@ -25,17 +25,10 @@ import { PasswordReset } from '../pages/login/password-reset'
 
 import { IonicStorageModule } from '@ionic/storage';
 import { AngularTokenService, AngularTokenModule } from 'angular-token';
-import {EmailVerificationPage} from '../pages/users/email-verification';
 
 import { UserPic } from '../pages/user-pic/user-pic';
 import { UserDoc } from '../pages/user-doc/user-doc';
-import { Users } from '../pages/users/users';
 import { UserTabs } from '../pages/users/user-tabs';
-import { UserForm } from '../pages/users/user-form';
-import { UserDetails } from '../pages/users/user-details';
-import { PhoneVerificationPage } from '../pages/users/phone-verification';
-import { BankingDetailsPage } from '../pages/users/banking-details';
-import { RegisterPage } from '../pages/users/register';
 
 import { CareHomes } from '../pages/care-homes/care-homes';
 import { QrCode } from '../pages/care-homes/qr_code';
@@ -86,14 +79,7 @@ import { HelpPage } from '../pages/static/help';
     PasswordReset,
     UserPic,
     UserDoc,
-    Users,
     UserTabs,
-    UserForm,
-    UserDetails,
-    PhoneVerificationPage,
-    EmailVerificationPage,
-    BankingDetailsPage,
-    RegisterPage,
     CareHomes,
     CareHomeForm,
     CareHomeDetails,
@@ -126,14 +112,7 @@ import { HelpPage } from '../pages/static/help';
     PasswordReset,
     UserPic,
     UserDoc,
-    Users,
     UserTabs,
-    UserForm,
-    UserDetails,
-    PhoneVerificationPage,
-    EmailVerificationPage,
-    BankingDetailsPage,
-    RegisterPage,
     CareHomes,
     CareHomeForm,
     CareHomeDetails,

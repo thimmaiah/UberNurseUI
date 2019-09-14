@@ -11,7 +11,6 @@ import { Events } from 'ionic-angular';
 
 import { ResponseUtility } from '../providers/response-utility';
 import { UserTabs } from '../pages/users/user-tabs';
-import { UserForm } from '../pages/users/user-form';
 
 import { CareHomeDetails } from '../pages/care-homes/care-home-details';
 import { Login } from '../pages/login/login';
@@ -197,7 +196,7 @@ export class MyApp {
 
 
   edit_profile() {
-    this.nav.push(UserForm, this.currentUser);
+    this.nav.push('UserForm', this.currentUser);
   }
 
   login() {

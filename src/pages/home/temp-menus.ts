@@ -2,17 +2,13 @@ import { Component, Input } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AngularTokenService } from 'angular-token';
 import { ResponseUtility } from '../../providers/response-utility';
-import { UserDetails } from '../users/user-details';
-import { UserForm } from '../users/user-form';
 import { Config } from '../../providers/config';
 import { LoginProvider } from '../../providers/login-provider';
 import { Events } from 'ionic-angular';
 import { ContactPage } from '../static/contact';
-import { BankingDetailsPage } from '../users/banking-details';
 import { DocLinks } from '../users/doc-links';
 import { Menu } from './menus';
 import { HomeEvents } from '../../providers/home-events';
-import { PhoneVerificationPage } from '../users/phone-verification';
 import { UserApi } from '../../providers/user-api';
 
 @Component({
@@ -66,14 +62,14 @@ export class TempMenus extends DocLinks implements Menu {
             this.currentUser.phone_verified != true &&
             this.currentUser.sms_verification_code != null) {
 
-            this.navCtrl.push(PhoneVerificationPage);
+            this.navCtrl.push('PhoneVerificationPage');
 
         }
 
     }
 
     add_banking_details() {
-        this.navCtrl.push(BankingDetailsPage);
+        this.navCtrl.push('BankingDetailsPage');
     }
 
 
@@ -82,7 +78,7 @@ export class TempMenus extends DocLinks implements Menu {
     }
 
     show_profile() {
-        this.navCtrl.push(UserDetails, this.currentUser);
+        this.navCtrl.push('UserDetails', this.currentUser);
     }
 
     show_agencies() {
@@ -90,7 +86,7 @@ export class TempMenus extends DocLinks implements Menu {
     }
 
     phone_verification() {
-        this.navCtrl.push(PhoneVerificationPage);
+        this.navCtrl.push('PhoneVerificationPage');
     }
 
 

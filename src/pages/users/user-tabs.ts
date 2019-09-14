@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, ToastController, LoadingController } from 'ionic-angular';
-import { UserForm } from './user-form';
-import { UserDetails } from './user-details';
+
 import { UserApi } from '../../providers/user-api';
 import { ResponseUtility } from '../../providers/response-utility';
-import { BankingDetailsPage } from './banking-details';
 import { CareHomeBankingDetails } from '../care-homes/care-home-banking-details';
 import { CareHomeDetails } from '../care-homes/care-home-details';
 import { QrCode } from '../care-homes/qr_code';
@@ -20,7 +18,7 @@ export class UserTabs  {
   user: any;
   // this tells the tabs component which Pages
   // should be each tab's root Page
-  tab1Root = UserDetails;
+  tab1Root = 'UserDetails';
   tab2Root: any; 
   tab3Root: any;
   tab4Root: any;
@@ -41,7 +39,7 @@ export class UserTabs  {
       this.tab3Root = CareHomeDetails;
       this.tab4Root = QrCode;
     } else {
-      this.tab2Root = BankingDetailsPage;
+      this.tab2Root = 'BankingDetailsPage';
     }
 
     this.params = {showNavBar: false, user: this.user};

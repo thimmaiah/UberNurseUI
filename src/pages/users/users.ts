@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { UserApi } from '../../providers/user-api';
 import { ResponseUtility } from '../../providers/response-utility';
-import { UserDetails } from '../users/user-details'
 
 /**
  * Generated class for the Users page.
@@ -47,6 +46,6 @@ export class Users {
 
   getUserDetails(user) {
     this.respUtility.trackEvent("User", "Details", "click");
-    this.navCtrl.push(UserDetails, user);
+    this.navCtrl.push('UserDetails', user);
   }
 }

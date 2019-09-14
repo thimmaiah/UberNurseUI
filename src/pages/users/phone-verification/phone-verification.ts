@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { UserForm } from './user-form';
-import { ResponseUtility } from '../../providers/response-utility';
 import { AngularTokenService } from 'angular-token';
-import { UserApi } from '../../providers/user-api';
 import { Events } from 'ionic-angular';
+import { UserApi } from '../../../providers/user-api';
+import { ResponseUtility } from '../../../providers/response-utility';
 
+@IonicPage()
 @Component({
   selector: 'phone-verification',
   templateUrl: 'phone-verification.html',

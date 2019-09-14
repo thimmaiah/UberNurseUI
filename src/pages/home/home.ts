@@ -3,7 +3,6 @@ import { NavController } from 'ionic-angular';
 import { AngularTokenService } from 'angular-token';
 import { Login } from '../login/login';
 import { ResponseUtility } from '../../providers/response-utility';
-import { RegisterPage } from '../users/register';
 import { Config } from '../../providers/config';
 import { LoginProvider } from '../../providers/login-provider';
 import { Events } from 'ionic-angular';
@@ -61,7 +60,7 @@ export class HomePage implements Menu {
   }
 
   register() {
-    this.navCtrl.push(RegisterPage);
+    this.navCtrl.push('RegisterPage');
   }
 
   contact() {

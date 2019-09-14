@@ -1,13 +1,12 @@
 import { IonicPage, NavController, NavParams, AlertController, ToastController, LoadingController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, ViewChild } from '@angular/core';
-import { UserApi } from '../../providers/user-api';
-import { ResponseUtility } from '../../providers/response-utility';
 import { AngularTokenService } from 'angular-token';
 import { Events } from 'ionic-angular';
+import { UserApi } from '../../../providers/user-api';
+import { ResponseUtility } from '../../../providers/response-utility';
 
-import { UserForm } from './user-form';
-
+@IonicPage()
 @Component({
   selector: 'page-bank-details',
   templateUrl: 'banking-details.html',

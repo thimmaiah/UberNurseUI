@@ -1,17 +1,14 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, ToastController, LoadingController } from 'ionic-angular';
-import { UserForm } from '../users/user-form';
-import { DocLinks } from './doc-links';
-import { UserPic } from '../user-pic/user-pic';
-import { UserApi } from '../../providers/user-api';
-import { ResponseUtility } from '../../providers/response-utility';
-import { UserDoc } from '../user-doc/user-doc';
-import { BankingDetailsPage } from './banking-details';
-import { CareHomeBankingDetails } from '../care-homes/care-home-banking-details';
-import { CareHomeForm } from '../care-homes/care-home-form';
 
 import * as _ from 'lodash';
+import { DocLinks } from '../doc-links';
+import { UserApi } from '../../../providers/user-api';
+import { ResponseUtility } from '../../../providers/response-utility';
+import { CareHomeBankingDetails } from '../../care-homes/care-home-banking-details';
+import { CareHomeForm } from '../../care-homes/care-home-form';
 
+@IonicPage()
 @Component({
   selector: 'page-user-details',
   templateUrl: 'user-details.html',
@@ -42,7 +39,7 @@ export class UserDetails extends DocLinks {
 
   editUser(user) {
     this.respUtility.trackEvent("User", "Edit", "click");
-    this.navCtrl.push(UserForm, user);
+    this.navCtrl.push('UserForm', user);
   }
 
   loadUser() {
@@ -93,7 +90,7 @@ export class UserDetails extends DocLinks {
 
   editUserBankingDetails(user) {
     this.respUtility.trackEvent("User", "EditBankingDetails", "click");
-    this.navCtrl.push(BankingDetailsPage, user);
+    this.navCtrl.push('BankingDetailsPage', user);
   }
 
   editCareHomeBankingDetails(user) {

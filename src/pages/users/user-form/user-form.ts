@@ -2,15 +2,14 @@ import { IonicPage, NavController, NavParams, AlertController, ToastController, 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, ViewChild, ElementRef, Renderer } from '@angular/core';
 import { Keyboard } from '@ionic-native/keyboard/ngx';
-import { UserApi } from '../../providers/user-api';
-import { ResponseUtility } from '../../providers/response-utility';
 import { AngularTokenService } from 'angular-token';
-import { UserValidator } from './user-validator'
-import { TermsPage } from '../static/terms';
-import { PostCodeValidator } from './postcode-validator';
-import { PostCodeApi } from '../../providers/postcode-api';
-import { CheckboxValidator } from '../../providers/checkbox-validator';
+import { UserApi } from '../../../providers/user-api';
+import { ResponseUtility } from '../../../providers/response-utility';
+import { PostCodeApi } from '../../../providers/postcode-api';
+import { CheckboxValidator } from '../../../providers/checkbox-validator';
+import { PostCodeValidator } from '../postcode-validator';
 
+@IonicPage()
 @Component({
   selector: 'page-user-form',
   templateUrl: 'user-form.html',
@@ -190,7 +189,7 @@ export class UserForm {
   }
 
   show_terms() {
-    this.navCtrl.push(TermsPage);
+    this.navCtrl.push('TermsPage');
   }
 
 }

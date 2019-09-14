@@ -1,16 +1,13 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { TokenService } from '../../providers/token-service';
 import { AngularTokenService } from 'angular-token';
 import { ResponseUtility } from '../../providers/response-utility';
 import { Config } from '../../providers/config';
 import { LoginProvider } from '../../providers/login-provider';
 import { UserApi } from '../../providers/user-api';
-import { UserForm } from '../users/user-form';
 import { PasswordReset } from './password-reset';
 import { Storage } from '@ionic/storage';
-import { RegisterPage } from '../users/register';
 
 
 @Component({
@@ -60,7 +57,7 @@ export class Login {
 
   register() {
     this.respUtility.trackEvent("User", "Register", "click");
-    this.navCtrl.push(RegisterPage);
+    this.navCtrl.push('RegisterPage');
   }
 
   resendConfirmationEmail() {

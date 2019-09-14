@@ -1,20 +1,12 @@
 import { Component, Input } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AngularTokenService } from 'angular-token';
-import { Login } from '../login/login';
 import { ResponseUtility } from '../../providers/response-utility';
-import { UserDetails } from '../users/user-details';
-import { UserForm } from '../users/user-form';
-import { RegisterPage } from '../users/register';
 import { CareHomeSearch } from '../care-homes/care-home-search';
 import { CareHomeBankingDetails } from '../care-homes/care-home-banking-details';
 import { Config } from '../../providers/config';
 import { LoginProvider } from '../../providers/login-provider';
 import { Events } from 'ionic-angular';
-import { ContactPage } from '../static/contact';
-import { BankingDetailsPage } from '../users/banking-details';
-import { DocLinks } from '../users/doc-links';
-import { PhoneVerificationPage } from '../users/phone-verification';
 import { Menu } from './menus';
 import { HomeEvents } from '../../providers/home-events';
 @Component({
@@ -85,7 +77,7 @@ export class AdminMenus implements Menu {
             this.currentUser.phone_verified != true &&
             this.currentUser.sms_verification_code != null) {
 
-            this.navCtrl.push(PhoneVerificationPage);
+            this.navCtrl.push('PhoneVerificationPage');
 
         }
 
@@ -97,7 +89,7 @@ export class AdminMenus implements Menu {
     }
 
     show_profile() {
-        this.navCtrl.push(UserDetails, this.currentUser);
+        this.navCtrl.push('UserDetails', this.currentUser);
     }
 
     register_care_home() {
@@ -125,7 +117,7 @@ export class AdminMenus implements Menu {
     }
 
     phone_verification() {
-        this.navCtrl.push(PhoneVerificationPage);
+        this.navCtrl.push('PhoneVerificationPage');
     }
 
     show_shifts(response_status) {
