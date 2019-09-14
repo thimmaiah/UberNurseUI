@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
-import { AgencyForm } from '../agency/agency-form';
-import { AgencyApi } from '../../providers/agency-api';
-import { ResponseUtility } from '../../providers/response-utility';
 import { AngularTokenService } from 'angular-token';
-import { AgencyUserMappingApi } from '../../providers/agency-user-mapping-api';
-import { AgencyCareHomeMappingApi } from '../../providers/agency-care-home-mapping-api';
+import { AgencyApi } from '../../../providers/agency-api';
+import { AgencyUserMappingApi } from '../../../providers/agency-user-mapping-api';
+import { AgencyCareHomeMappingApi } from '../../../providers/agency-care-home-mapping-api';
+import { ResponseUtility } from '../../../providers/response-utility';
 
+@IonicPage()
 @Component({
   selector: 'page-agency-details',
   templateUrl: 'agency-details.html',

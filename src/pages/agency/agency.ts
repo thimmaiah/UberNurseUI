@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { InfiniteScroll, IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { AgencyApi } from '../../providers/agency-api';
 import { ResponseUtility } from '../../providers/response-utility';
-import { AgencyDetails } from '../agency/agency-details'
 import { AgencyUserMappingApi } from '../../providers/agency-user-mapping-api';
 import { AgencyCareHomeMappingApi } from '../../providers/agency-care-home-mapping-api';
 import { AngularTokenService } from 'angular-token';
@@ -78,7 +77,7 @@ export class Agency {
 
   getAgencyDetails(mapping) {
     this.mapping = mapping;
-    this.navCtrl.push(AgencyDetails, mapping);
+    this.navCtrl.push('AgencyDetails', mapping);
   }
 
 }

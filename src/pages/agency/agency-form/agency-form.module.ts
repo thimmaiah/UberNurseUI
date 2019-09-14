@@ -1,17 +1,16 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { Agency } from './agency';
-
+import { AgencyForm } from './agency-form';
 
 @NgModule({
   declarations: [
-    Agency,
+    AgencyForm,
    ],
   imports: [
-    IonicPageModule.forChild(Agency),
+    IonicPageModule.forChild(AgencyForm),
    ],
   exports: [
-    Agency,
+    AgencyForm,
   ]
 })
-export class AgencyModule {}
+export class AgencyFormModule {}

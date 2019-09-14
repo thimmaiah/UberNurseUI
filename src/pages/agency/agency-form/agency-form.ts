@@ -1,9 +1,10 @@
 import { IonicPage, NavController, NavParams, AlertController, ToastController, LoadingController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, ViewChild } from '@angular/core';
-import { AgencyApi } from '../../providers/agency-api';
-import { ResponseUtility } from '../../providers/response-utility';
+import { AgencyApi } from '../../../providers/agency-api';
+import { ResponseUtility } from '../../../providers/response-utility';
 
+@IonicPage()
 @Component({
   selector: 'page-agency-form',
   templateUrl: 'agency-form.html'

@@ -85,9 +85,6 @@ import { HomeEvents } from '../providers/home-events';
 
 
 import { HttpClientModule } from '@angular/common/http';
-import { Agency } from '../pages/agency/agency';
-import { AgencyForm } from '../pages/agency/agency-form';
-import { AgencyDetails } from '../pages/agency/agency-details';
 import { AgencyApi } from '../providers/agency-api';
 import { AgencyUserMappingApi } from '../providers/agency-user-mapping-api';
 import { AgencyCareHomeMappingApi } from '../providers/agency-care-home-mapping-api';
@@ -139,9 +136,6 @@ import { HelpPage } from '../pages/static/help';
     RecurringRequest,
     RecurringRequestDetails,
     StaffingRequestDetails,
-    Agency,
-    AgencyForm,
-    AgencyDetails,
     CareHomes,
     CareHomeForm,
     CareHomeDetails,
@@ -202,9 +196,6 @@ import { HelpPage } from '../pages/static/help';
     RecurringRequest,
     RecurringRequestDetails,
     StaffingRequestDetails,
-    Agency,
-    AgencyForm,
-    AgencyDetails,
     CareHomes,
     CareHomeForm,
     CareHomeDetails,

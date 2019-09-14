@@ -17,7 +17,6 @@ import { CareHomeDetails } from '../pages/care-homes/care-home-details';
 import { Login } from '../pages/login/login';
 import { Shift } from '../pages/shift/shift';
 
-import { Agency } from '../pages/agency/agency';
 import { PasswordReset } from '../pages/login/password-reset';
 import { UserApi } from '../providers/user-api';
 import { ContactPage } from '../pages/static/contact';
@@ -82,7 +81,7 @@ export class MyApp {
             this.currentUser.care_home.verified == true) {
 
             this.pages = [
-              { title: 'Agencies', component: Agency, params: {} },
+              { title: 'Agencies', component: 'Agency', params: {} },
               { title: 'Past Shifts', component: Shift, params: { response_status: "Closed" } },
               { title: 'Payment Records', component: Payment, params: {} },
               { title: 'About Us', component: 'AboutPage', params: {} },
@@ -97,7 +96,7 @@ export class MyApp {
             this.pages = [
               { title: 'Emergency Contacts', component: 'Contact', params: {} },
               { title: 'References', component: 'ReferencePage', params: {} },
-              { title: 'Agencies', component: Agency, params: {} },
+              { title: 'Agencies', component: 'Agency', params: {} },
               { title: 'Past Shifts', component: Shift, params: { response_status: "Closed" } },
               { title: 'Referrals', component: 'ReferralPage', params: {} },
               { title: 'About Us', component: 'AboutPage', params: {} },
