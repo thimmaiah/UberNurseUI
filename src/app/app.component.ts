@@ -3,12 +3,7 @@ import { Nav, Platform, AlertController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { HomePage } from '../pages/home/home';
-import { Users } from '../pages/users/users';
-import { UserPic } from '../pages/user-pic/user-pic';
-import { CareHomes } from '../pages/care-homes/care-homes';
 import { Payment } from '../pages/payment/payment'
-import { ReferralPage } from '../pages/referral/referral'
-import { Rating } from '../pages/rating/rating'
 import { AngularTokenService } from 'angular-token';
 import { Config } from '../providers/config';
 import { LoginProvider } from '../providers/login-provider';
@@ -16,23 +11,13 @@ import { Events } from 'ionic-angular';
 
 import { ResponseUtility } from '../providers/response-utility';
 import { UserTabs } from '../pages/users/user-tabs';
-import { BankingDetailsPage } from '../pages/users/banking-details';
 import { UserForm } from '../pages/users/user-form';
-import { RegisterPage } from '../pages/users/register';
 
-import { CareHomeSearch } from '../pages/care-homes/care-home-search';
 import { CareHomeDetails } from '../pages/care-homes/care-home-details';
-import { CareHomeBankingDetails } from '../pages/care-homes/care-home-banking-details';
 import { Login } from '../pages/login/login';
-import { StaffingRequest } from '../pages/staffing-request/staffing-request';
 import { Shift } from '../pages/shift/shift';
 
-import { CodePush, SyncStatus, InstallMode } from '@ionic-native/code-push';
-import { ShiftDetails } from '../pages/shift/shift-details';
 import { Agency } from '../pages/agency/agency';
-import { EmailVerificationPage } from '../pages/users/email-verification';
-import { Contact } from '../pages/contact/contact';
-import { ReferencePage } from '../pages/reference/reference';
 import { PasswordReset } from '../pages/login/password-reset';
 import { UserApi } from '../providers/user-api';
 import { ContactPage } from '../pages/static/contact';
@@ -110,11 +95,11 @@ export class MyApp {
 
           } else if (this.currentUser.role != "Admin" && this.currentUser.verified) {
             this.pages = [
-              { title: 'Emergency Contacts', component: Contact, params: {} },
-              { title: 'References', component: ReferencePage, params: {} },
+              { title: 'Emergency Contacts', component: 'Contact', params: {} },
+              { title: 'References', component: 'ReferencePage', params: {} },
               { title: 'Agencies', component: Agency, params: {} },
               { title: 'Past Shifts', component: Shift, params: { response_status: "Closed" } },
-              { title: 'Referrals', component: ReferralPage, params: {} },
+              { title: 'Referrals', component: 'ReferralPage', params: {} },
               { title: 'About Us', component: 'AboutPage', params: {} },
               { title: 'Terms & Conditions', component: 'TermsPage', params: {} },
               { title: 'Privacy & Cookies', component: 'CookiesPage', params: {} },

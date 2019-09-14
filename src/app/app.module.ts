@@ -52,16 +52,9 @@ import { Payment } from '../pages/payment/payment';
 import { PaymentDetails } from '../pages/payment/payment-details';
 import { PaymentForm } from '../pages/payment/payment-form';
 
-import { ReferralPage } from '../pages/referral/referral';
-import { ReferralDetails } from '../pages/referral/referral-details';
-import { ReferralForm } from '../pages/referral/referral-form';
-
-
 import { Rating } from '../pages/rating/rating';
 import { RatingDetails } from '../pages/rating/rating-details';
 import { RatingForm } from '../pages/rating/rating-form';
-
-
 
 import { CareHomes } from '../pages/care-homes/care-homes';
 import { QrCode } from '../pages/care-homes/qr_code';
@@ -105,14 +98,8 @@ import { PaymentSearch } from '../pages/payment/payment-search';
 import { RecurringRequestForm } from '../pages/staffing-request/recurring-request-form';
 import { RecurringRequest } from '../pages/staffing-request/recurring-request';
 import { RecurringRequestDetails } from '../pages/staffing-request/recurring-request-details';
-import { ContactDetails } from '../pages/contact/contact-details';
-import { ContactForm } from '../pages/contact/contact-form';
-import { Contact } from '../pages/contact/contact';
 import { ContactApi } from '../providers/contact-api';
 import { ReferenceApi } from '../providers/reference-api';
-import { ReferencePage } from '../pages/reference/reference';
-import { ReferenceDetails } from '../pages/reference/reference-details';
-import { ReferenceForm } from '../pages/reference/reference-form';
 import { ContactPage } from '../pages/static/contact';
 import { HelpPage } from '../pages/static/help';
 
@@ -138,15 +125,6 @@ import { HelpPage } from '../pages/static/help';
     Rating,
     RatingForm,
     RatingDetails,
-    ReferralPage,
-    ReferralDetails,
-    ReferralForm,
-    Contact,
-    ContactDetails,
-    ContactForm,
-    ReferencePage,
-    ReferenceDetails,
-    ReferenceForm,
     Shift,
     ShiftForm,
     ShiftDetails,
@@ -215,15 +193,6 @@ import { HelpPage } from '../pages/static/help';
     ShiftForm,
     ShiftDetails,
     ShiftReject,
-    ReferralPage,
-    ReferralDetails,
-    ReferralForm,
-    Contact,
-    ContactDetails,
-    ContactForm,
-    ReferencePage,
-    ReferenceDetails,
-    ReferenceForm,
     Payment,
     PaymentForm,
     PaymentDetails,

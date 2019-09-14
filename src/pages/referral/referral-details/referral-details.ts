@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
-import { ReferralForm } from '../referral/referral-form';
-import { ReferralApi } from '../../providers/referral-api';
-import { ResponseUtility } from '../../providers/response-utility';
 import { AngularTokenService } from 'angular-token';
+import { ReferralApi } from '../../../providers/referral-api';
+import { ResponseUtility } from '../../../providers/response-utility';
 
+@IonicPage()
 @Component({
   selector: 'page-referral-details',
   templateUrl: 'referral-details.html',
@@ -31,7 +31,7 @@ export class ReferralDetails {
 
   editReferral(referral) {
     this.respUtility.trackEvent("Referral", "Edit", "click");
-    this.navCtrl.push(ReferralForm, referral);
+    this.navCtrl.push('ReferralForm', referral);
   }
 
   deleteReferral(referral) {

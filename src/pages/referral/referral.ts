@@ -3,8 +3,6 @@ import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-an
 import { ReferralApi } from '../../providers/referral-api';
 import { ResponseUtility } from '../../providers/response-utility';
 import { AngularTokenService } from 'angular-token';
-import {ReferralDetails} from './referral-details';
-import { ReferralForm } from '../referral/referral-form';
 
 @IonicPage()
 @Component({
@@ -60,7 +58,7 @@ export class ReferralPage {
       referral => {
         this.referral = referral;
         console.log("got referral " + referral);
-        this.navCtrl.push(ReferralDetails, referral);
+        this.navCtrl.push('ReferralDetails', referral);
       },
       error => { this.respUtility.showFailure(error); loader.dismiss(); },
       () => { loader.dismiss(); }
@@ -70,7 +68,7 @@ export class ReferralPage {
 
   newReferral() {
     let referral = {user_id: this.tokenService.currentAuthData["id"]};
-    this.navCtrl.push(ReferralForm, referral);
+    this.navCtrl.push('ReferralForm', referral);
   }
 
 

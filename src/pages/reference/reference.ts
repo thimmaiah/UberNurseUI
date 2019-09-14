@@ -3,8 +3,6 @@ import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-an
 import { ReferenceApi } from '../../providers/reference-api';
 import { ResponseUtility } from '../../providers/response-utility';
 import { AngularTokenService } from 'angular-token';
-import {ReferenceDetails} from './reference-details';
-import { ReferenceForm } from '../reference/reference-form';
 
 @IonicPage()
 @Component({
@@ -60,7 +58,7 @@ export class ReferencePage {
       reference => {
         this.reference = reference;
         console.log("got reference " + reference);
-        this.navCtrl.push(ReferenceDetails, reference);
+        this.navCtrl.push('ReferenceDetails', reference);
       },
       error => { this.respUtility.showFailure(error); loader.dismiss(); },
       () => { loader.dismiss(); }
@@ -70,7 +68,7 @@ export class ReferencePage {
 
   newReference() {
     let reference = {user_id: this.tokenService.currentAuthData["id"]};
-    this.navCtrl.push(ReferenceForm, reference);
+    this.navCtrl.push('ReferenceForm', reference);
   }
 
 

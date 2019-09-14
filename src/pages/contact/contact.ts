@@ -3,8 +3,6 @@ import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-an
 import { ContactApi } from '../../providers/contact-api';
 import { ResponseUtility } from '../../providers/response-utility';
 import { AngularTokenService } from 'angular-token';
-import {ContactDetails} from './contact-details';
-import { ContactForm } from '../contact/contact-form';
 
 @IonicPage()
 @Component({
@@ -60,7 +58,7 @@ export class Contact {
       contact => {
         this.contact = contact;
         console.log("got contact " + contact);
-        this.navCtrl.push(ContactDetails, contact);
+        this.navCtrl.push('ContactDetails', contact);
       },
       error => { this.respUtility.showFailure(error); loader.dismiss(); },
       () => { loader.dismiss(); }
@@ -70,7 +68,7 @@ export class Contact {
 
   newContact() {
     let contact = {user_id: this.tokenService.currentAuthData["id"]};
-    this.navCtrl.push(ContactForm, contact);
+    this.navCtrl.push('ContactForm', contact);
   }
 
 

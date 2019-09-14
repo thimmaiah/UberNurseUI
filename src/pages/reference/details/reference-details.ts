@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
-import { ReferenceForm } from '../reference/reference-form';
-import { ReferenceApi } from '../../providers/reference-api';
-import { ResponseUtility } from '../../providers/response-utility';
 import { AngularTokenService } from 'angular-token';
+import { ReferenceApi } from '../../../providers/reference-api';
+import { ResponseUtility } from '../../../providers/response-utility';
 
+@IonicPage()
 @Component({
   selector: 'page-reference-details',
   templateUrl: 'reference-details.html',
@@ -31,7 +31,7 @@ export class ReferenceDetails {
 
   editReference(reference) {
     this.respUtility.trackEvent("Reference", "Edit", "click");
-    this.navCtrl.push(ReferenceForm, reference);
+    this.navCtrl.push('ReferenceForm', reference);
   }
 
   deleteReference(reference) {

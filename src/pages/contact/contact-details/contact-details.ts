@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
-import { ContactForm } from '../contact/contact-form';
-import { ContactApi } from '../../providers/contact-api';
-import { ResponseUtility } from '../../providers/response-utility';
 import { AngularTokenService } from 'angular-token';
+import { ContactApi } from '../../../providers/contact-api';
+import { ResponseUtility } from '../../../providers/response-utility';
 
+
+@IonicPage()
 @Component({
   selector: 'page-contact-details',
   templateUrl: 'contact-details.html',
@@ -31,7 +32,7 @@ export class ContactDetails {
 
   editContact(contact) {
     this.respUtility.trackEvent("Contact", "Edit", "click");
-    this.navCtrl.push(ContactForm, contact);
+    this.navCtrl.push('ContactForm', contact);
   }
 
   deleteContact(contact) {
