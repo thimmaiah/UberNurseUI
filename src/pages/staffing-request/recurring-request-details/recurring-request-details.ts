@@ -1,18 +1,14 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
-import { RecurringRequestForm } from '../recurring-request/recurring-request-form';
-import { RecurringRequestApi } from '../../providers/recurring-request-api';
-import { ResponseUtility } from '../../providers/response-utility';
-import { Shift } from '../shift/shift';
-import { ShiftForm } from '../shift/shift-form';
 import { AngularTokenService } from 'angular-token';
 import { ActionSheetController, Platform, ActionSheet } from 'ionic-angular';
 
 import * as _ from 'lodash';
 import * as moment from 'moment';
-import { ShiftDetails } from '../shift/shift-details';
+import { RecurringRequestApi } from '../../../providers/recurring-request-api';
+import { ResponseUtility } from '../../../providers/response-utility';
 
-//@IonicPage()
+@IonicPage()
 @Component({
   selector: 'page-recurring-request-details',
   templateUrl: 'recurring-request-details.html',

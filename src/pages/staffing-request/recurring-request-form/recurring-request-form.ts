@@ -1,13 +1,13 @@
 import { IonicPage, NavController, NavParams, AlertController, ToastController, LoadingController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SimpleChanges, Component, ViewChild } from '@angular/core';
-import { RecurringRequestApi } from '../../providers/recurring-request-api';
-import { ResponseUtility } from '../../providers/response-utility';
 import * as moment from 'moment';
 import { AngularTokenService } from 'angular-token';
 import { CalendarComponentOptions } from 'ion2-calendar'
+import { RecurringRequestApi } from '../../../providers/recurring-request-api';
+import { ResponseUtility } from '../../../providers/response-utility';
 
-//@IonicPage()
+@IonicPage()
 @Component({
   selector: 'recurring-request-form',
   templateUrl: 'recurring-request-form.html',

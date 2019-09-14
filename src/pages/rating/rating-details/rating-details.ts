@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
-import { RatingForm } from '../rating/rating-form';
-import { RatingApi } from '../../providers/rating-api';
-import { ResponseUtility } from '../../providers/response-utility';
 import { AngularTokenService } from 'angular-token';
+import { RatingApi } from '../../../providers/rating-api';
+import { ResponseUtility } from '../../../providers/response-utility';
 
+@IonicPage()
 @Component({
   selector: 'page-rating-details',
   templateUrl: 'rating-details.html',
@@ -31,7 +31,7 @@ export class RatingDetails {
 
   editRating(rating) {
     this.respUtility.trackEvent("Rating", "Edit", "click");
-    this.navCtrl.push(RatingForm, rating);
+    this.navCtrl.push('RatingForm', rating);
   }
 
   deleteRating(rating) {

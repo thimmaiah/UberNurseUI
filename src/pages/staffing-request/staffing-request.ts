@@ -2,8 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { StaffingRequestApi } from '../../providers/staffing-request-api';
 import { ResponseUtility } from '../../providers/response-utility';
-import { StaffingRequestDetails } from '../staffing-request/staffing-request-details'
-import { StaffingRequestForm } from '../staffing-request/staffing-request-form'
 import { AngularTokenService } from 'angular-token';
 import * as moment from 'moment';
 
@@ -14,7 +12,7 @@ import * as moment from 'moment';
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
-//@IonicPage()
+@IonicPage()
 @Component({
   selector: 'page-staffing-requests',
   templateUrl: 'staffing-requests.html',
@@ -86,7 +84,7 @@ export class StaffingRequest {
       staffingRequest => {
         this.staffingRequest = staffingRequest;
         console.log("got staffingRequest " + staffingRequest);
-        this.navCtrl.push(StaffingRequestDetails, staffingRequest);
+        this.navCtrl.push('StaffingRequestDetails', staffingRequest);
       },
       error => { this.respUtility.showFailure(error); loader.dismiss(); },
       () => { loader.dismiss(); }
@@ -95,6 +93,6 @@ export class StaffingRequest {
   }
 
   newRequest() {
-    this.navCtrl.push(StaffingRequestForm);
+    this.navCtrl.push('StaffingRequestForm');
   }
 }

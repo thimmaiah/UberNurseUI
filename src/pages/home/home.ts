@@ -4,7 +4,6 @@ import { AngularTokenService } from 'angular-token';
 import { Login } from '../login/login';
 import { ResponseUtility } from '../../providers/response-utility';
 import { RegisterPage } from '../users/register';
-import { Payment } from '../payment/payment';
 import { Config } from '../../providers/config';
 import { LoginProvider } from '../../providers/login-provider';
 import { Events } from 'ionic-angular';
@@ -48,7 +47,7 @@ export class HomePage implements Menu {
   }
 
   show_payments() {
-    this.navCtrl.push(Payment);
+    this.navCtrl.push('Payment');
   }
 
   login() {

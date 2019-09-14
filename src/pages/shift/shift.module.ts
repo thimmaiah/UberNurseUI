@@ -1,24 +1,20 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
 import { Shift } from './shift';
-import { ShiftDetails } from './shift-details';
-import { ShiftForm } from './shift-form';
+import { PipesModule } from '../../pipes/pipes.module';
+import { Ionic2RatingModule } from 'ionic2-rating';
 
 @NgModule({
-  // declarations: [
-  //   Shift,
-  //   ShiftDetails,
-  //   ShiftForm
-  // ],
-  // imports: [
-  //   IonicPageModule.forChild(Shift),
-  //   IonicPageModule.forChild(ShiftDetails),
-  //   IonicPageModule.forChild(ShiftForm)
-  // ],
-  // exports: [
-  //   Shift,
-  //   ShiftDetails,
-  //   ShiftForm
-  // ]
+  declarations: [
+    Shift,
+  ],
+  imports: [
+    IonicPageModule.forChild(Shift),
+    PipesModule,
+    Ionic2RatingModule
+  ],
+  exports: [
+    Shift,
+  ]
 })
-export class ShiftssModule {}
+export class ShiftModule {}

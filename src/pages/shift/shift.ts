@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { ShiftApi } from '../../providers/shift-api';
 import { ResponseUtility } from '../../providers/response-utility';
-import { ShiftDetails } from '../shift/shift-details'
 import { AngularTokenService } from 'angular-token';
 import * as moment from 'moment';
 
+@IonicPage()
 @Component({
   selector: 'page-shift',
   templateUrl: 'shift.html',
@@ -78,7 +78,7 @@ export class Shift {
       shift => {
         this.shift = shift;
         console.log("got shift " + shift);
-        this.navCtrl.push(ShiftDetails, shift);
+        this.navCtrl.push('ShiftDetails', shift);
       },
       error => { this.respUtility.showFailure(error); loader.dismiss(); },
       () => { loader.dismiss(); }

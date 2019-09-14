@@ -1,13 +1,12 @@
 import { IonicPage, NavController, NavParams, AlertController, ToastController, LoadingController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, ViewChild } from '@angular/core';
-import { ShiftApi } from '../../providers/shift-api';
-import { ResponseUtility } from '../../providers/response-utility';
-import { RatingForm } from '../rating/rating-form';
 import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import * as moment from 'moment';
+import { ShiftApi } from '../../../providers/shift-api';
+import { ResponseUtility } from '../../../providers/response-utility';
 
-
+@IonicPage()
 @Component({
   selector: 'page-shift-form',
   templateUrl: 'shift-form.html',
@@ -129,7 +128,7 @@ export class ShiftForm {
       shift_id: shift.id,
       comments: "Thank you."
     }
-    this.navCtrl.push(RatingForm, rating);
+    this.navCtrl.push('RatingForm', rating);
   }
 
   save() {

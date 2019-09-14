@@ -1,27 +1,18 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule, IonicModule } from 'ionic-angular';
 import { Payment } from './payment';
-import { PaymentDetails } from './payment-details';
-import { PaymentForm } from './payment-form';
-import { PaymentSearch } from './payment-search';
+import { PipesModule } from '../../pipes/pipes.module';
 
 @NgModule({
-  // declarations: [
-  //   Payment,
-  //   PaymentDetails,
-  //   PaymentForm,
-  //   PaymentSearch,
-  // ],
-  // imports: [
-  //   IonicPageModule.forChild(Payment),
-  //   IonicPageModule.forChild(PaymentDetails),
-  //   IonicPageModule.forChild(PaymentForm),
-  // ],
-  // exports: [
-  //   Payment,
-  //   PaymentDetails,
-  //   PaymentForm,
-  //   PaymentSearch
-  // ]
+  declarations: [
+    Payment,
+  ],
+  imports: [
+    IonicPageModule.forChild(Payment),
+    PipesModule
+  ],
+  exports: [
+    Payment,
+  ]
 })
-export class PaymentssModule {}
+export class PaymentModule {}

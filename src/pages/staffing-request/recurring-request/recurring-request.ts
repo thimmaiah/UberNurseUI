@@ -1,12 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
-import { RecurringRequestApi } from '../../providers/recurring-request-api';
-import { ResponseUtility } from '../../providers/response-utility';
-import { RecurringRequestDetails } from './recurring-request-details'
-import { RecurringRequestForm } from './recurring-request-form'
 import { AngularTokenService } from 'angular-token';
 import * as moment from 'moment';
-import { StaffingRequest } from './staffing-request';
+
+import { RecurringRequestApi } from '../../../providers/recurring-request-api';
+import { ResponseUtility } from '../../../providers/response-utility';
 
 
 /**
@@ -15,7 +13,7 @@ import { StaffingRequest } from './staffing-request';
  * See http://ionicframework.com/docs/components/#navigation for more info
  * on Ionic pages and navigation.
  */
-//@IonicPage()
+@IonicPage()
 @Component({
   selector: 'page-recurring-request',
   templateUrl: 'recurring-request.html',
@@ -86,7 +84,7 @@ export class RecurringRequest {
       recurringRequest => {
         this.recurringRequest = recurringRequest;
         console.log("got recurringRequest " + recurringRequest);
-        this.navCtrl.push(RecurringRequestDetails, recurringRequest);
+        this.navCtrl.push('RecurringRequestDetails', recurringRequest);
       },
       error => { this.respUtility.showFailure(error); loader.dismiss(); },
       () => { loader.dismiss(); }
@@ -95,10 +93,10 @@ export class RecurringRequest {
   }
 
   loadRequests(recurringRequest) {
-    this.navCtrl.push(StaffingRequest, {"recurring_request_id": recurringRequest.id});
+    this.navCtrl.push('StaffingRequest', {"recurring_request_id": recurringRequest.id});
   }
 
   newRecurringRequest() {
-    this.navCtrl.push(RecurringRequestForm);
+    this.navCtrl.push('RecurringRequestForm');
   }
 }

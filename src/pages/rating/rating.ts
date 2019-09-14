@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { InfiniteScroll, IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { RatingApi } from '../../providers/rating-api';
 import { ResponseUtility } from '../../providers/response-utility';
-import { RatingDetails } from '../rating/rating-details'
 
 
 @IonicPage()
@@ -95,7 +94,7 @@ export class Rating {
       rating => {
         this.rating = rating;
         console.log("got rating " + rating);
-        this.navCtrl.push(RatingDetails, rating);
+        this.navCtrl.push('RatingDetails', rating);
       },
       error => { this.respUtility.showFailure(error); loader.dismiss(); },
       () => { loader.dismiss(); }

@@ -2,7 +2,6 @@ import { Component } from '@angular/core';
 import { InfiniteScroll, IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { PaymentApi } from '../../providers/payment-api';
 import { ResponseUtility } from '../../providers/response-utility';
-import { PaymentDetails } from '../payment/payment-details'
 
 
 
@@ -81,7 +80,7 @@ export class Payment {
       payment => {
         this.payment = payment;
         console.log("got payment " + payment);
-        this.navCtrl.push(PaymentDetails, payment);
+        this.navCtrl.push('PaymentDetails', payment);
       },
       error => { this.respUtility.showFailure(error); loader.dismiss(); },
       () => { loader.dismiss(); }

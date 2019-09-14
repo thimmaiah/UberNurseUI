@@ -1,12 +1,12 @@
 import { IonicPage, NavController, NavParams, AlertController, ToastController, LoadingController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SimpleChanges, Component, ViewChild } from '@angular/core';
-import { StaffingRequestApi } from '../../providers/staffing-request-api';
-import { ResponseUtility } from '../../providers/response-utility';
 import * as moment from 'moment';
 import { AngularTokenService } from 'angular-token';
+import { StaffingRequestApi } from '../../../providers/staffing-request-api';
+import { ResponseUtility } from '../../../providers/response-utility';
 
-//@IonicPage()
+@IonicPage()
 @Component({
   selector: 'page-staffing-request-form',
   templateUrl: 'staffing-request-form.html',

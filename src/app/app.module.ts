@@ -12,7 +12,7 @@ import { File } from '@ionic-native/file/ngx';
 import { FileTransfer } from '@ionic-native/file-transfer/ngx';
 import { FilePath } from '@ionic-native/file-path/ngx';
 import { Keyboard } from '@ionic-native/keyboard/ngx';
-import { CalendarModule } from "ion2-calendar";
+
 
 import { SentryErrorHandler } from '../services/sentry-errorhandler'
 
@@ -25,8 +25,6 @@ import { PasswordReset } from '../pages/login/password-reset'
 
 import { IonicStorageModule } from '@ionic/storage';
 import { AngularTokenService, AngularTokenModule } from 'angular-token';
-// Import ionic2-rating module
-import { Ionic2RatingModule } from 'ionic2-rating';
 import {EmailVerificationPage} from '../pages/users/email-verification';
 
 import { UserPic } from '../pages/user-pic/user-pic';
@@ -38,23 +36,6 @@ import { UserDetails } from '../pages/users/user-details';
 import { PhoneVerificationPage } from '../pages/users/phone-verification';
 import { BankingDetailsPage } from '../pages/users/banking-details';
 import { RegisterPage } from '../pages/users/register';
-
-import { StaffingRequest } from '../pages/staffing-request/staffing-request';
-import { StaffingRequestForm } from '../pages/staffing-request/staffing-request-form';
-import { StaffingRequestDetails } from '../pages/staffing-request/staffing-request-details';
-
-
-import { Shift } from '../pages/shift/shift';
-import { ShiftDetails } from '../pages/shift/shift-details';
-import { ShiftForm } from '../pages/shift/shift-form';
-
-import { Payment } from '../pages/payment/payment';
-import { PaymentDetails } from '../pages/payment/payment-details';
-import { PaymentForm } from '../pages/payment/payment-form';
-
-import { Rating } from '../pages/rating/rating';
-import { RatingDetails } from '../pages/rating/rating-details';
-import { RatingForm } from '../pages/rating/rating-form';
 
 import { CareHomes } from '../pages/care-homes/care-homes';
 import { QrCode } from '../pages/care-homes/qr_code';
@@ -77,8 +58,6 @@ import { ShiftApi } from '../providers/shift-api'
 import { ReferralApi } from '../providers/referral-api'
 
 import { ResponseUtility } from '../providers/response-utility'
-import { TitleCasePipe } from '../pipes/title-case/title-case';
-import { UtcDatePipe } from '../pipes/utc-date/utc-date';
 import { LoginProvider } from '../providers/login-provider';
 import { PostCodeApi } from '../providers/postcode-api';
 import { HomeEvents } from '../providers/home-events';
@@ -88,13 +67,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { AgencyApi } from '../providers/agency-api';
 import { AgencyUserMappingApi } from '../providers/agency-user-mapping-api';
 import { AgencyCareHomeMappingApi } from '../providers/agency-care-home-mapping-api';
-import { ShiftReject } from '../pages/shift/shift-reject';
 import { RecurringRequestApi } from '../providers/recurring-request-api';
 import { CommonModule } from '@angular/common';
-import { PaymentSearch } from '../pages/payment/payment-search';
-import { RecurringRequestForm } from '../pages/staffing-request/recurring-request-form';
-import { RecurringRequest } from '../pages/staffing-request/recurring-request';
-import { RecurringRequestDetails } from '../pages/staffing-request/recurring-request-details';
+
 import { ContactApi } from '../providers/contact-api';
 import { ReferenceApi } from '../providers/reference-api';
 import { ContactPage } from '../pages/static/contact';
@@ -119,23 +94,6 @@ import { HelpPage } from '../pages/static/help';
     EmailVerificationPage,
     BankingDetailsPage,
     RegisterPage,
-    Rating,
-    RatingForm,
-    RatingDetails,
-    Shift,
-    ShiftForm,
-    ShiftDetails,
-    ShiftReject,
-    Payment,
-    PaymentForm,
-    PaymentDetails,
-    PaymentSearch,
-    StaffingRequest,
-    StaffingRequestForm,
-    RecurringRequestForm,
-    RecurringRequest,
-    RecurringRequestDetails,
-    StaffingRequestDetails,
     CareHomes,
     CareHomeForm,
     CareHomeDetails,
@@ -144,18 +102,14 @@ import { HelpPage } from '../pages/static/help';
     QrCode,
     ContactPage,
     HelpPage,
-    TitleCasePipe,
-    UtcDatePipe
   ],
   imports: [
     BrowserModule,
     HttpModule,
     HttpClientModule,
     RouterModule,
-    CalendarModule,
     MomentModule,
     CommonModule,
-    Ionic2RatingModule,
     IonicModule.forRoot(MyApp),
     IonicStorageModule.forRoot(),
     AngularTokenModule.forRoot({
@@ -180,22 +134,6 @@ import { HelpPage } from '../pages/static/help';
     EmailVerificationPage,
     BankingDetailsPage,
     RegisterPage,
-    Rating,
-    RatingForm,
-    RatingDetails,
-    Shift,
-    ShiftForm,
-    ShiftDetails,
-    ShiftReject,
-    Payment,
-    PaymentForm,
-    PaymentDetails,
-    StaffingRequest,
-    StaffingRequestForm,
-    RecurringRequestForm,
-    RecurringRequest,
-    RecurringRequestDetails,
-    StaffingRequestDetails,
     CareHomes,
     CareHomeForm,
     CareHomeDetails,

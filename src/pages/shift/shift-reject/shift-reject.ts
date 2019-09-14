@@ -1,18 +1,12 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController, Select } from 'ionic-angular';
-import { ShiftForm } from '../shift/shift-form';
-import { PaymentForm } from '../payment/payment-form';
-import { PaymentDetails } from '../payment/payment-details';
-import { RatingForm } from '../rating/rating-form';
-import { Rating } from '../rating/rating';
-import { StaffingRequestDetails } from '../staffing-request/staffing-request-details';
-import { ShiftApi } from '../../providers/shift-api';
-import { ResponseUtility } from '../../providers/response-utility';
 import { AngularTokenService } from 'angular-token';
 import * as moment from 'moment';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ShiftApi } from '../../../providers/shift-api';
+import { ResponseUtility } from '../../../providers/response-utility';
 
-
+@IonicPage()
 @Component({
   selector: 'page-shift-reject',
   templateUrl: 'shift-reject.html',

@@ -18,9 +18,9 @@
 
     <ion-item>
       {{user.title}} {{user.first_name}} {{user.last_name}}
-      <p *ngIf="user.role == 'Care Giver' || user.role == 'Nurse'">
+      <!-- <p *ngIf="user.role == 'Care Giver' || user.role == 'Nurse'">
         <rating [(ngModel)]="user.rating" readOnly="true"></rating>
-      </p>
+      </p> -->
       <p>
         Phone: {{user.phone}}
       </p>

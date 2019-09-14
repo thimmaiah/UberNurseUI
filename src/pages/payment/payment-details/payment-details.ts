@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
-import { PaymentForm } from '../payment/payment-form';
-import { PaymentApi } from '../../providers/payment-api';
-import { ResponseUtility } from '../../providers/response-utility';
 import { AngularTokenService } from 'angular-token';
+import { PaymentApi } from '../../../providers/payment-api';
+import { ResponseUtility } from '../../../providers/response-utility';
 
+
+@IonicPage()
 @Component({
   selector: 'page-payment-details',
   templateUrl: 'payment-details.html',
@@ -30,7 +31,7 @@ export class PaymentDetails {
   }
 
   editPayment(payment) {
-    this.navCtrl.push(PaymentForm, payment);
+    this.navCtrl.push('PaymentForm', payment);
   }
 
   deletePayment(payment) {

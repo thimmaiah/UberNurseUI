@@ -3,15 +3,11 @@ import { NavController } from 'ionic-angular';
 import { AngularTokenService } from 'angular-token';
 import { Login } from '../login/login';
 import { ResponseUtility } from '../../providers/response-utility';
-import { Shift } from '../shift/shift';
-import { StaffingRequest } from '../staffing-request/staffing-request';
-import { StaffingRequestForm } from '../staffing-request/staffing-request-form';
 import { UserDetails } from '../users/user-details';
 import { UserForm } from '../users/user-form';
 import { RegisterPage } from '../users/register';
 import { CareHomeSearch } from '../care-homes/care-home-search';
 import { CareHomeBankingDetails } from '../care-homes/care-home-banking-details';
-import { Payment } from '../payment/payment';
 import { Config } from '../../providers/config';
 import { LoginProvider } from '../../providers/login-provider';
 import { Events } from 'ionic-angular';
@@ -21,10 +17,6 @@ import { DocLinks } from '../users/doc-links';
 import { PhoneVerificationPage } from '../users/phone-verification';
 import { Menu } from './menus';
 import { HomeEvents } from '../../providers/home-events';
-import { Agency } from '../agency/agency';
-import { RecurringRequestForm } from '../staffing-request/recurring-request-form';
-import { RecurringRequest } from '../staffing-request/recurring-request';
-
 @Component({
     selector: 'admin-menus',
     templateUrl: 'admin-menus.html'
@@ -101,7 +93,7 @@ export class AdminMenus implements Menu {
     }
 
     show_agencies() {
-        this.navCtrl.push(Agency);
+        this.navCtrl.push('Agency');
     }
 
     show_profile() {
@@ -117,19 +109,19 @@ export class AdminMenus implements Menu {
     }
 
     show_staffing_requests() {
-        this.navCtrl.push(StaffingRequest);
+        this.navCtrl.push('StaffingRequest');
     }
 
     new_staffing_request() {
-        this.navCtrl.push(StaffingRequestForm);
+        this.navCtrl.push('StaffingRequestForm');
     }
 
     new_recurring_request() {
-        this.navCtrl.push(RecurringRequestForm);
+        this.navCtrl.push('RecurringRequestForm');
     }
 
     view_recurring_request() {
-        this.navCtrl.push(RecurringRequest);
+        this.navCtrl.push('RecurringRequest');
     }
 
     phone_verification() {
@@ -137,7 +129,7 @@ export class AdminMenus implements Menu {
     }
 
     show_shifts(response_status) {
-        this.navCtrl.push(Shift, { response_status: response_status });
+        this.navCtrl.push('Shift', { response_status: response_status });
     }
 
 }

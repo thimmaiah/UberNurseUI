@@ -3,7 +3,7 @@ import { Nav, Platform, AlertController } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { HomePage } from '../pages/home/home';
-import { Payment } from '../pages/payment/payment'
+
 import { AngularTokenService } from 'angular-token';
 import { Config } from '../providers/config';
 import { LoginProvider } from '../providers/login-provider';
@@ -15,7 +15,6 @@ import { UserForm } from '../pages/users/user-form';
 
 import { CareHomeDetails } from '../pages/care-homes/care-home-details';
 import { Login } from '../pages/login/login';
-import { Shift } from '../pages/shift/shift';
 
 import { PasswordReset } from '../pages/login/password-reset';
 import { UserApi } from '../providers/user-api';
@@ -82,8 +81,8 @@ export class MyApp {
 
             this.pages = [
               { title: 'Agencies', component: 'Agency', params: {} },
-              { title: 'Past Shifts', component: Shift, params: { response_status: "Closed" } },
-              { title: 'Payment Records', component: Payment, params: {} },
+              { title: 'Past Shifts', component: 'Shift', params: { response_status: "Closed" } },
+              { title: 'Payment Records', component: 'Payment', params: {} },
               { title: 'About Us', component: 'AboutPage', params: {} },
               { title: 'Terms & Conditions', component: 'TermsPage', params: {} },
               { title: 'Privacy & Cookies', component: 'CookiesPage', params: {} },
@@ -97,7 +96,7 @@ export class MyApp {
               { title: 'Emergency Contacts', component: 'Contact', params: {} },
               { title: 'References', component: 'ReferencePage', params: {} },
               { title: 'Agencies', component: 'Agency', params: {} },
-              { title: 'Past Shifts', component: Shift, params: { response_status: "Closed" } },
+              { title: 'Past Shifts', component: 'Shift', params: { response_status: "Closed" } },
               { title: 'Referrals', component: 'ReferralPage', params: {} },
               { title: 'About Us', component: 'AboutPage', params: {} },
               { title: 'Terms & Conditions', component: 'TermsPage', params: {} },
@@ -221,7 +220,7 @@ export class MyApp {
 
   showShifts() {
     if(this.currentUser !== null) {
-      this.nav.push(Shift, {response_status: "Pending"});
+      this.nav.push('Shift', {response_status: "Pending"});
     }
   }
 

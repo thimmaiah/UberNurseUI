@@ -50,16 +50,5 @@
 
   <button ion-button full color="primary" (click)="save()">Save</button>
 
-  <ion-card class="pricing_audit" *ngIf="payment.pricing_audit">
-
-    <ion-list>
-      <ion-list-header>
-        Price computation rules
-      </ion-list-header>
-      <button ion-item *ngFor="let key of pricing_audit_keys">
-          {{key | titlecase}} = {{payment.pricing_audit[key]}}
-        </button>
-    </ion-list>
-  </ion-card>
 
 </ion-content>

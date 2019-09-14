@@ -1,18 +1,14 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
-import { StaffingRequestForm } from '../staffing-request/staffing-request-form';
-import { StaffingRequestApi } from '../../providers/staffing-request-api';
-import { ResponseUtility } from '../../providers/response-utility';
-import { Shift } from '../shift/shift';
-import { ShiftForm } from '../shift/shift-form';
 import { AngularTokenService } from 'angular-token';
 import { ActionSheetController, Platform, ActionSheet } from 'ionic-angular';
 
 import * as _ from 'lodash';
 import * as moment from 'moment';
-import { ShiftDetails } from '../shift/shift-details';
+import { StaffingRequestApi } from '../../../providers/staffing-request-api';
+import { ResponseUtility } from '../../../providers/response-utility';
 
-//@IonicPage()
+@IonicPage()
 @Component({
   selector: 'page-staffing-request-details',
   templateUrl: 'staffing-request-details.html',
@@ -61,7 +57,7 @@ export class StaffingRequestDetails {
 
   editStaffingRequest(staffingRequest) {
     this.respUtility.trackEvent("StaffingRequest", "Edit", "click");
-    this.navCtrl.push(StaffingRequestForm, staffingRequest);
+    this.navCtrl.push('StaffingRequestForm', staffingRequest);
   }
 
   deleteStaffingRequest(staffingRequest) {
@@ -99,12 +95,12 @@ export class StaffingRequestDetails {
   }
 
   viewShift(shift) {
-    this.navCtrl.push(ShiftDetails, {shiftId: shift.id});
+    this.navCtrl.push('ShiftDetails', {shiftId: shift.id});
   }
 
   showResponses(staffing_request) {
     this.respUtility.trackEvent("StaffingRequest", "ShowResponses", "click");
-    this.navCtrl.push(Shift, { staffing_request: staffing_request });
+    this.navCtrl.push('Shift', { staffing_request: staffing_request });
   }
 
   confirmDelete(staffingRequest) {

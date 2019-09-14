@@ -1,18 +1,12 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
-import { ShiftForm } from '../shift/shift-form';
-import { PaymentForm } from '../payment/payment-form';
-import { PaymentDetails } from '../payment/payment-details';
-import { RatingForm } from '../rating/rating-form';
-import { Rating } from '../rating/rating';
-import { StaffingRequestDetails } from '../staffing-request/staffing-request-details';
-import { ShiftApi } from '../../providers/shift-api';
-import { ResponseUtility } from '../../providers/response-utility';
+
 import { AngularTokenService } from 'angular-token';
 import * as moment from 'moment';
-import { ShiftReject } from './shift-reject';
+import { ShiftApi } from '../../../providers/shift-api';
+import { ResponseUtility } from '../../../providers/response-utility';
 
-
+@IonicPage()
 @Component({
   selector: 'page-shift-details',
   templateUrl: 'shift-details.html',
@@ -49,7 +43,7 @@ export class ShiftDetails {
 
   editShift(shift) {
     this.respUtility.trackEvent("Shift", "Edit", "click");
-    this.navCtrl.push(ShiftForm, shift);
+    this.navCtrl.push('ShiftForm', shift);
   }
 
   acceptResponse(shift) {
@@ -60,11 +54,11 @@ export class ShiftDetails {
   }
   
   cancelShift(shift) {
-    this.navCtrl.push(ShiftReject, {"shift": shift, "cancel_or_reject": "Cancel"})
+    this.navCtrl.push('ShiftReject', {"shift": shift, "cancel_or_reject": "Cancel"})
   }
 
   rejectShift(shift) {
-    this.navCtrl.push(ShiftReject, {"shift": shift, "cancel_or_reject": "Reject"})
+    this.navCtrl.push('ShiftReject', {"shift": shift, "cancel_or_reject": "Reject"})
   }
 
   set_end_code() {
@@ -123,13 +117,13 @@ export class ShiftDetails {
     this.respUtility.trackEvent("Shift", "ShowRequest", "click");
     let staffingRequest = {}
     staffingRequest["id"] = shift["staffing_request_id"];
-    this.navCtrl.push(StaffingRequestDetails, staffingRequest);
+    this.navCtrl.push('StaffingRequestDetails', staffingRequest);
   }
 
   viewPayment(shift) {
     this.respUtility.trackEvent("Shift", "ViewPayment", "click");
     console.log('View Payment clicked');
-    this.navCtrl.push(PaymentDetails, this.shift.payment);
+    this.navCtrl.push('PaymentDetails', this.shift.payment);
   }
 
 
@@ -143,7 +137,7 @@ export class ShiftDetails {
       shift_id: shift.id,
       comments: "Great Work."
     }
-    this.navCtrl.push(RatingForm, rating);
+    this.navCtrl.push('RatingForm', rating);
   }
 
   rate_care_home(shift) {
@@ -156,13 +150,13 @@ export class ShiftDetails {
       shift_id: shift.id,
       comments: "Thank you."
     }
-    this.navCtrl.push(RatingForm, rating);
+    this.navCtrl.push('RatingForm', rating);
   }
 
   viewRatings(shift) {
     this.respUtility.trackEvent("Shift", "ViewRating", "click");
     console.log('View Rating clicked');
-    this.navCtrl.push(Rating, { "ratings": shift.ratings, "load_ratings": false });
+    this.navCtrl.push('Rating', { "ratings": shift.ratings, "load_ratings": false });
   }
 
 }
