@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, ToastController, LoadingController } from 'ionic-angular';
 
-import { UserApi } from '../../providers/user-api';
-import { ResponseUtility } from '../../providers/response-utility';
 
 import * as _ from 'lodash';
+import { UserApi } from '../../../providers/user-api';
+import { ResponseUtility } from '../../../providers/response-utility';
 
+@IonicPage()
 @Component({
   selector: 'page-user-tabs',
   templateUrl: 'user-tabs.html',

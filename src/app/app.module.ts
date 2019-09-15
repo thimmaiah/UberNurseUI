@@ -7,7 +7,7 @@ import { BarcodeScanner } from '@ionic-native/barcode-scanner/ngx';
 import { Diagnostic } from '@ionic-native/diagnostic/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
+import { Camera } from '@ionic-native/camera/ngx';
 import { File } from '@ionic-native/file/ngx';
 import { FileTransfer } from '@ionic-native/file-transfer/ngx';
 import { FilePath } from '@ionic-native/file-path/ngx';
@@ -21,12 +21,9 @@ import { HomePage } from '../pages/home/home';
 import { AdminMenus } from '../pages/home/admin-menus';
 import { TempMenus } from '../pages/home/temp-menus';
 import { Login } from '../pages/login/login';
-import { PasswordReset } from '../pages/login/password-reset'
 
 import { IonicStorageModule } from '@ionic/storage';
-import { AngularTokenService, AngularTokenModule } from 'angular-token';
-
-import { UserTabs } from '../pages/users/user-tabs';
+import { AngularTokenModule } from 'angular-token';
 
 import { HttpModule, Http } from '@angular/http';
 import { MomentModule } from 'ngx-moment';
@@ -67,8 +64,6 @@ import { HelpPage } from '../pages/static/help';
     AdminMenus,
     TempMenus,
     Login,
-    PasswordReset,
-    UserTabs,
     ContactPage,
     HelpPage,
   ],
@@ -92,8 +87,6 @@ import { HelpPage } from '../pages/static/help';
     AdminMenus,
     TempMenus,
     Login,
-    PasswordReset,
-    UserTabs,
     ContactPage,
     HelpPage
   ],

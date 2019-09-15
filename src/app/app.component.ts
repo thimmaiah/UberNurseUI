@@ -10,10 +10,8 @@ import { LoginProvider } from '../providers/login-provider';
 import { Events } from 'ionic-angular';
 
 import { ResponseUtility } from '../providers/response-utility';
-import { UserTabs } from '../pages/users/user-tabs';
 import { Login } from '../pages/login/login';
 
-import { PasswordReset } from '../pages/login/password-reset';
 import { UserApi } from '../providers/user-api';
 import { ContactPage } from '../pages/static/contact';
 import { HelpPage } from '../pages/static/help';
@@ -161,7 +159,7 @@ export class MyApp {
 
 
   show_settings() {
-    this.nav.push(UserTabs, this.currentUser);
+    this.nav.push('UserTabs', this.currentUser);
   }
 
   reset_password() {
@@ -170,7 +168,7 @@ export class MyApp {
           res => {
             console.log(res);
             if (res["reset"] == true) {
-              this.nav.push(PasswordReset, {email: this.currentUser.email})
+              this.nav.push('PasswordReset', {email: this.currentUser.email})
               this.respUtility.showSuccess("Sms with password reset secret sent. Please check your phone.");
             } else {
               if (res["user_not_found"] == true) {

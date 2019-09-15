@@ -1,14 +1,13 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { TokenService } from '../../providers/token-service';
 import { AngularTokenService } from 'angular-token';
-import { ResponseUtility } from '../../providers/response-utility';
-import { Config } from '../../providers/config';
-import { Http, RequestOptions, Headers } from '@angular/http';
-import { UserApi } from '../../providers/user-api';
+import { Http } from '@angular/http';
+import { ResponseUtility } from '../../../providers/response-utility';
+import { UserApi } from '../../../providers/user-api';
+import { Config } from '../../../providers/config';
 
-
+@IonicPage()
 @Component({
   selector: 'page-password-reset',
   templateUrl: 'password-reset.html',

@@ -6,7 +6,6 @@ import { ResponseUtility } from '../../providers/response-utility';
 import { Config } from '../../providers/config';
 import { LoginProvider } from '../../providers/login-provider';
 import { UserApi } from '../../providers/user-api';
-import { PasswordReset } from './password-reset';
 import { Storage } from '@ionic/storage';
 
 
@@ -91,7 +90,7 @@ export class Login {
         res => {
           console.log(res);
           if (res["reset"] == true) {
-            this.navCtrl.push(PasswordReset, {email: this.email})
+            this.navCtrl.push('PasswordReset', {email: this.email})
             this.respUtility.showSuccess("Sms with password reset secret sent. Please check your phone.");
           } else {
             if (res["user_not_found"] == true) {
