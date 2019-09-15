@@ -88,7 +88,7 @@ export class UserPic {
       }
     }, (err) => {
       Raven.captureException(err);
-      console.log(err);
+      console.log(JSON.stringify(err));
       this.respUtility.showWarning('Error while selecting image.');
     });
   }
