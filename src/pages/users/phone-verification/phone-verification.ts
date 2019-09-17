@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AngularTokenService } from 'angular-token';
+import { LoginProvider } from '../../../providers/login-provider';
 import { Events } from 'ionic-angular';
 import { UserApi } from '../../../providers/user-api';
 import { ResponseUtility } from '../../../providers/response-utility';
@@ -26,12 +26,12 @@ export class PhoneVerificationPage {
     public loadingController: LoadingController,
     public respUtility: ResponseUtility,
     public events: Events,
-    private tokenService: AngularTokenService) {
+    private loginProvider: LoginProvider) {
     this.slideOneForm = formBuilder.group({
       verification_code: ['', Validators.compose([Validators.maxLength(5), Validators.minLength(5),Validators.required])],
     });
 
-    this.current_user = this.tokenService.currentUserData;
+    this.current_user = this.loginProvider.currentUser;
     this.verification_code_sent = this.current_user.sms_verification_code != null;
 
   }

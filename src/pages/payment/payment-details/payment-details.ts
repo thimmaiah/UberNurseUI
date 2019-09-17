@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
-import { AngularTokenService } from 'angular-token';
+import { LoginProvider } from '../../../providers/login-provider';
 import { PaymentApi } from '../../../providers/payment-api';
 import { ResponseUtility } from '../../../providers/response-utility';
 
@@ -18,11 +18,11 @@ export class PaymentDetails {
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public paymentApi: PaymentApi,
     public loadingController: LoadingController,
-    private tokenService: AngularTokenService,
+    private loginProvider: LoginProvider,
     public respUtility: ResponseUtility) {
       
     this.payment = this.navParams.data;
-    this.current_user = this.tokenService.currentUserData;
+    this.current_user = this.loginProvider.currentUser;
 
   }
 

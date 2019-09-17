@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 
-import { AngularTokenService } from 'angular-token';
+import { LoginProvider } from '../../../providers/login-provider';
 import * as moment from 'moment';
 import { ShiftApi } from '../../../providers/shift-api';
 import { ResponseUtility } from '../../../providers/response-utility';
@@ -19,7 +19,7 @@ export class ShiftDetails {
   current_user: {};
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    private tokenService: AngularTokenService,
+    private loginProvider: LoginProvider,
     public shiftApi: ShiftApi,
     public loadingController: LoadingController,
     public respUtility: ResponseUtility) {
@@ -30,7 +30,7 @@ export class ShiftDetails {
       this.shift = this.navParams.data;
     }
 
-    this.current_user = tokenService.currentUserData;
+    this.current_user = loginProvider.currentUser;
     
   }
 

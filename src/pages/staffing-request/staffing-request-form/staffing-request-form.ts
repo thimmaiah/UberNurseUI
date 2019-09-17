@@ -2,7 +2,7 @@ import { IonicPage, NavController, NavParams, AlertController, ToastController, 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SimpleChanges, Component, ViewChild } from '@angular/core';
 import * as moment from 'moment';
-import { AngularTokenService } from 'angular-token';
+import { LoginProvider } from '../../../providers/login-provider';
 import { StaffingRequestApi } from '../../../providers/staffing-request-api';
 import { ResponseUtility } from '../../../providers/response-utility';
 
@@ -30,14 +30,14 @@ export class StaffingRequestForm {
   submitAttempt: boolean = false;
 
   constructor(public navCtrl: NavController,
-    private tokenService: AngularTokenService,
+    private loginProvider: LoginProvider,
     public navParams: NavParams,
     public formBuilder: FormBuilder,
     public loadingController: LoadingController,
     public staffingRequestApi: StaffingRequestApi,
     public respUtility: ResponseUtility) {
 
-    this.current_user = tokenService.currentUserData;  
+    this.current_user = loginProvider.currentUser;  
     this.care_home = this.current_user["care_home"];
       
     this.staffingRequest = this.navParams.data;

@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { AngularTokenService } from 'angular-token';
+import { LoginProvider } from '../../providers/login-provider';
 import { Login } from '../login/login';
 import { ResponseUtility } from '../../providers/response-utility';
 import { Config } from '../../providers/config';
-import { LoginProvider } from '../../providers/login-provider';
 import { Events } from 'ionic-angular';
 import { ContactPage } from '../static/contact';
 import { Menu } from './menus';
@@ -24,7 +23,6 @@ export class HomePage implements Menu {
   
   constructor(public navCtrl: NavController,
     public respUtility: ResponseUtility,
-    public tokenService: AngularTokenService,
     public config: Config,
     public events: Events,
     public userApi: UserApi,
@@ -41,7 +39,7 @@ export class HomePage implements Menu {
 
   ionViewWillEnter() {
     console.log('ionViewWillEnter HomePage ');
-    this.currentUser = this.tokenService.currentUserData;
+    this.currentUser = this.loginProvider.currentUser;
     this.getInitialData();
   }
 

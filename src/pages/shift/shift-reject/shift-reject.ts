@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController, Select } from 'ionic-angular';
-import { AngularTokenService } from 'angular-token';
+import { LoginProvider } from '../../../providers/login-provider';
 import * as moment from 'moment';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ShiftApi } from '../../../providers/shift-api';
@@ -23,7 +23,7 @@ export class ShiftReject {
   cancel_or_reject: "Reject";
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    private tokenService: AngularTokenService,
+    private loginProvider: LoginProvider,
     public formBuilder: FormBuilder,
     public shiftApi: ShiftApi,
     public loadingController: LoadingController,
@@ -32,7 +32,7 @@ export class ShiftReject {
     this.shift = this.navParams.data["shift"];
     this.cancel_or_reject = this.navParams.data["cancel_or_reject"];
 
-    this.current_user = tokenService.currentUserData;
+    this.current_user = loginProvider.currentUser;
 
     this.slideOneForm = formBuilder.group({
 

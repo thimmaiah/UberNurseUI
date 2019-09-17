@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AngularTokenService } from 'angular-token';
+import { LoginProvider } from '../../../providers/login-provider';
 import { Http } from '@angular/http';
 import { ResponseUtility } from '../../../providers/response-utility';
 import { UserApi } from '../../../providers/user-api';
@@ -26,7 +26,7 @@ export class PasswordReset {
     public formBuilder: FormBuilder,
     public respUtility: ResponseUtility,
     public loadingController: LoadingController,
-    private tokenService: AngularTokenService,
+    private loginProvider: LoginProvider,
     private userApi: UserApi,
     private config: Config,
     private http: Http) {

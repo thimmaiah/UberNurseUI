@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Component } from '@angular/core';
-import { AngularTokenService } from 'angular-token';
 import { ResponseUtility } from './response-utility';
 import { Config } from './config';
 import { Events } from 'ionic-angular';
 import { Menu } from '../pages/home/menus'
+import { AngularTokenService } from 'angular-token';
 
 @Injectable()
 export class HomeEvents {

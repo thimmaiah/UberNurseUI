@@ -2,7 +2,7 @@ import { IonicPage, NavController, NavParams, AlertController, ToastController, 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { SimpleChanges, Component, ViewChild } from '@angular/core';
 import * as moment from 'moment';
-import { AngularTokenService } from 'angular-token';
+import { LoginProvider } from '../../../providers/login-provider';
 import { CalendarComponentOptions } from 'ion2-calendar'
 import { RecurringRequestApi } from '../../../providers/recurring-request-api';
 import { ResponseUtility } from '../../../providers/response-utility';
@@ -33,14 +33,14 @@ export class RecurringRequestForm {
   submitAttempt: boolean = false;
 
   constructor(public navCtrl: NavController,
-    private tokenService: AngularTokenService,
+    private loginProvider: LoginProvider,
     public navParams: NavParams,
     public formBuilder: FormBuilder,
     public loadingController: LoadingController,
     public recurringRequestApi: RecurringRequestApi,
     public respUtility: ResponseUtility) {
 
-    this.current_user = tokenService.currentUserData;  
+    this.current_user = loginProvider.currentUser;  
     this.care_home = this.current_user["care_home"];
     
     this.recurringRequest = this.navParams.data;

@@ -17,6 +17,8 @@ import Raven from 'raven-js';
 @Injectable()
 export class LoginProvider {
 
+  currentUser: any;
+
   constructor(public tokenService: AngularTokenService,
     public loadingController: LoadingController,
     public storage: Storage,
@@ -81,30 +83,30 @@ export class LoginProvider {
         this.storage.set("push_token", this.config.props["push_token"]);
         // Save the push token now that the user is logged in
         console.log(this.tokenService.currentUserData);
-        
+        this.currentUser = this.tokenService.currentUserData;
         // Publish event - so other listners can get the newly logged in user
         this.events.publish('user:login:success');
 
         // Send this to sentry - so any errors can be logged with this user data
         Raven.setUserContext({
           email: email,
-          id: this.tokenService.currentUserData["id"].toString()
+          id: this.currentUser["id"].toString()
         })
 
-        let user = {
-          id: this.tokenService.currentUserData.id,
-          push_token: this.config.props["push_token"],
-          user: { id: this.tokenService.currentUserData.id, push_token: this.config.props["push_token"] }
-        };
+        // let user = {
+        //   id: this.loginProvider.currentUser.id,
+        //   push_token: this.config.props["push_token"],
+        //   user: { id: this.loginProvider.currentUser.id, push_token: this.config.props["push_token"] }
+        // };
 
-        this.userApi.updateUser(user).subscribe(
-          resp => {
-            console.log("Saved push_token to server");
-          },
-          error => {
-            console.log("Failed to save push_token to server. Notification will not work !!");
-          }
-        );
+        // this.userApi.updateUser(user).subscribe(
+        //   resp => {
+        //     console.log("Saved push_token to server");
+        //   },
+        //   error => {
+        //     console.log("Failed to save push_token to server. Notification will not work !!");
+        //   }
+        // );
 
         loader.dismiss();
         if (navCtrl != null) {

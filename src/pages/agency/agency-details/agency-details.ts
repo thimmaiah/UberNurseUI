@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
-import { AngularTokenService } from 'angular-token';
 import { AgencyApi } from '../../../providers/agency-api';
 import { AgencyUserMappingApi } from '../../../providers/agency-user-mapping-api';
 import { AgencyCareHomeMappingApi } from '../../../providers/agency-care-home-mapping-api';
 import { ResponseUtility } from '../../../providers/response-utility';
+import { LoginProvider } from '../../../providers/login-provider';
 
 @IonicPage()
 @Component({
@@ -21,11 +21,11 @@ export class AgencyDetails {
     public aumApi: AgencyUserMappingApi,
     public acmApi: AgencyCareHomeMappingApi,
     public loadingController: LoadingController,
-    private tokenService: AngularTokenService,
+    private loginProvider: LoginProvider,
     public respUtility: ResponseUtility) {
 
     this.mapping = this.navParams.data;
-    this.currentUser = this.tokenService.currentUserData;
+    this.currentUser = this.loginProvider.currentUser;
 
   }
 

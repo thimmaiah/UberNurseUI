@@ -1,7 +1,7 @@
 import { IonicPage, NavController, NavParams, AlertController, ToastController, LoadingController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, ViewChild } from '@angular/core';
-import { AngularTokenService } from 'angular-token';
+import { LoginProvider } from '../../../providers/login-provider';
 import { Events } from 'ionic-angular';
 import { UserApi } from '../../../providers/user-api';
 import { ResponseUtility } from '../../../providers/response-utility';
@@ -25,7 +25,7 @@ export class BankingDetailsPage {
     public userApi: UserApi,
     public respUtility: ResponseUtility,
     public loadingController: LoadingController,
-    private tokenService: AngularTokenService,
+    private loginProvider: LoginProvider,
     public events: Events) {
 
     this.slideOneForm = formBuilder.group({
@@ -33,7 +33,7 @@ export class BankingDetailsPage {
       sort_code: ['', Validators.compose([Validators.minLength(6), Validators.maxLength(6), Validators.required])],
     });
 
-    let current_user = this.tokenService.currentUserData;
+    let current_user = this.loginProvider.currentUser;
     this.user = {
       "id": current_user.id,
       "bank_account": current_user["bank_account"],

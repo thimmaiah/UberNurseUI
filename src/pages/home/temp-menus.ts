@@ -1,9 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { AngularTokenService } from 'angular-token';
+import { LoginProvider } from '../../providers/login-provider';
 import { ResponseUtility } from '../../providers/response-utility';
 import { Config } from '../../providers/config';
-import { LoginProvider } from '../../providers/login-provider';
 import { Events } from 'ionic-angular';
 import { ContactPage } from '../static/contact';
 import { DocLinks } from '../users/doc-links';
@@ -23,7 +22,6 @@ export class TempMenus extends DocLinks implements Menu {
 
     constructor(public navCtrl: NavController,
         public respUtility: ResponseUtility,
-        private tokenService: AngularTokenService,
         private config: Config,
         public events: Events,
         public homeEvents: HomeEvents,
@@ -32,7 +30,7 @@ export class TempMenus extends DocLinks implements Menu {
         super(navCtrl);
         this.homeEvents.registerMenu(this);
 
-        this.currentUser = this.tokenService.currentUserData;
+        this.currentUser = this.loginProvider.currentUser;
         this.displayMsgs();
 
         console.log("TempMenus: Constructor");

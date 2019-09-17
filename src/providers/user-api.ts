@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import 'rxjs/add/operator/map';
-import { AngularTokenService } from 'angular-token';
+import { LoginProvider } from './providers/login-provider';
 import { Config } from './config';
 
 
@@ -86,6 +86,12 @@ export class UserApi {
 
   deleteUser(user) {
     return this.http.delete(`${this.base_url}/${user.id}.json`).map(response=>{
+      return response;
+    })
+  }
+
+  impersonateUser(user_id) {
+    return this.http.post(`${this.base_url}/${user_id}/impersonate.json`, {}).map(response=>{
       return response;
     })
   }

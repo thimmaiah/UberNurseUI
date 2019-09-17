@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularTokenService } from 'angular-token';
+import { LoginProvider } from './providers/login-provider';
 import { HttpClient } from '@angular/common/http';
 import { Config } from './config';
 

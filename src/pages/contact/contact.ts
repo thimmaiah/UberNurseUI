@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { ContactApi } from '../../providers/contact-api';
 import { ResponseUtility } from '../../providers/response-utility';
-import { AngularTokenService } from 'angular-token';
+import { LoginProvider } from '../../providers/login-provider';
 
 @IonicPage()
 @Component({
@@ -16,7 +16,7 @@ export class Contact {
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
-    private tokenService: AngularTokenService,
+    private loginProvider: LoginProvider,
     public loadingController: LoadingController,
     public contactApi: ContactApi, 
     public respUtility: ResponseUtility) {
@@ -67,7 +67,7 @@ export class Contact {
   }
 
   newContact() {
-    let contact = {user_id: this.tokenService.currentAuthData["id"]};
+    let contact = {user_id: this.loginProvider.currentUser["id"]};
     this.navCtrl.push('ContactForm', contact);
   }
 

@@ -64,11 +64,11 @@ export class MyApp {
         this.statusBar.styleDefault();
         this.splashScreen.hide();
 
-        this.currentUser = this.tokenService.currentUserData;
+        this.currentUser = this.loginProvider.currentUser;
 
         this.events.subscribe('user:login:success', () => {
           console.log("AppComponent: user:login:success");
-          this.currentUser = this.tokenService.currentUserData;
+          this.currentUser = this.loginProvider.currentUser;
 
           if (this.currentUser.role == "Admin" &&
             this.currentUser.care_home != null &&

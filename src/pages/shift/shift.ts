@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { ShiftApi } from '../../providers/shift-api';
 import { ResponseUtility } from '../../providers/response-utility';
-import { AngularTokenService } from 'angular-token';
+import { LoginProvider } from '../../providers/login-provider';
 import * as moment from 'moment';
 
 @IonicPage()
@@ -21,7 +21,7 @@ export class Shift {
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
-    private tokenService: AngularTokenService,
+    private loginProvider: LoginProvider,
     public loadingController: LoadingController,
     public shiftApi: ShiftApi, 
     public respUtility: ResponseUtility) {
@@ -29,7 +29,7 @@ export class Shift {
     this.staffingRequest = this.navParams.data["staffing_request"];
     this.response_status = this.navParams.data["response_status"];
 
-    this.current_user = tokenService.currentUserData;
+    this.current_user = loginProvider.currentUser;
     if (this.current_user["role"] == "Care Giver" || this.current_user["role"] == "Nurse") {
       this.verification_pending = !this.current_user["verified"];
       console.log(`Shift: verification_pending = ${this.verification_pending}`);

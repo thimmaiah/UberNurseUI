@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
-import { AngularTokenService } from 'angular-token';
+import { LoginProvider } from '../../../providers/login-provider';
 import { ContactApi } from '../../../providers/contact-api';
 import { ResponseUtility } from '../../../providers/response-utility';
 
@@ -19,10 +19,10 @@ export class ContactDetails {
     public contactApi: ContactApi,
     public loadingController: LoadingController, 
     public respUtility: ResponseUtility,
-    public tokenService: AngularTokenService) {
+    public loginProvider: LoginProvider) {
     
     this.contact = this.navParams.data;
-    this.current_user = tokenService.currentUserData;
+    this.current_user = loginProvider.currentUser;
   }
 
   ionViewDidLoad() {

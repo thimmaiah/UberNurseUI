@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { InfiniteScroll, IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { CareHomeApi } from '../../providers/care-home-api';
 import { ResponseUtility } from '../../providers/response-utility';
-import { AngularTokenService } from 'angular-token';
+import { LoginProvider } from '../../providers/login-provider';
 
 
 @IonicPage()
@@ -22,10 +22,10 @@ export class CareHomes {
     public navParams: NavParams,
     public loadingController: LoadingController,
     public care_homeApi: CareHomeApi,
-    private tokenService: AngularTokenService,
+    private loginProvider: LoginProvider,
     public respUtility: ResponseUtility) {
 
-      this.current_user = tokenService.currentUserData;
+      this.current_user = loginProvider.currentUser;
 
   }
 

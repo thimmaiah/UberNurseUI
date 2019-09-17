@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
-import { AngularTokenService } from 'angular-token';
+import { LoginProvider } from '../../../providers/login-provider';
 import * as moment from 'moment';
 
 import { RecurringRequestApi } from '../../../providers/recurring-request-api';
@@ -28,12 +28,12 @@ export class RecurringRequest {
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
-    private tokenService: AngularTokenService,
+    private loginProvider: LoginProvider,
     public loadingController: LoadingController,
     public recurringRequestApi: RecurringRequestApi,
     public respUtility: ResponseUtility) {
 
-    this.current_user = tokenService.currentUserData;
+    this.current_user = loginProvider.currentUser;
     if (this.current_user["role"] == "Admin") {
       if (this.current_user["care_home_id"] == null) {
         this.care_home_registration_pending = true;

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AngularTokenService } from 'angular-token';
+import { LoginProvider } from '../../providers/login-provider';
 import { Events } from 'ionic-angular';
 import { UserApi } from '../../../providers/user-api';
 import { ResponseUtility } from '../../../providers/response-utility';

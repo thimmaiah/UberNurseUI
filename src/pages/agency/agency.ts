@@ -4,7 +4,7 @@ import { AgencyApi } from '../../providers/agency-api';
 import { ResponseUtility } from '../../providers/response-utility';
 import { AgencyUserMappingApi } from '../../providers/agency-user-mapping-api';
 import { AgencyCareHomeMappingApi } from '../../providers/agency-care-home-mapping-api';
-import { AngularTokenService } from 'angular-token';
+import { LoginProvider } from '../../providers/login-provider';
 
 
 
@@ -22,13 +22,13 @@ export class Agency {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
     public loadingController: LoadingController,
-    public tokenService: AngularTokenService,
+    public loginProvider: LoginProvider,
     public agencyApi: AgencyApi,
     public aumApi: AgencyUserMappingApi,
     public acmApi: AgencyCareHomeMappingApi,
     public respUtility: ResponseUtility) {
 
-    this.currentUser = this.tokenService.currentUserData;
+    this.currentUser = this.loginProvider.currentUser;
 
     this.loadMappings();
 
@@ -37,7 +37,7 @@ export class Agency {
 
 
   ionViewWillEnter() {
-    this.currentUser = this.tokenService.currentUserData;
+    this.currentUser = this.loginProvider.currentUser;
     console.log('ionViewWillEnter mappings ' + this.currentUser);
     this.respUtility.trackView("mappings");
   }

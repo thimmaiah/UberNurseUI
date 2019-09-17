@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { ReferenceApi } from '../../providers/reference-api';
 import { ResponseUtility } from '../../providers/response-utility';
-import { AngularTokenService } from 'angular-token';
+import { LoginProvider } from '../../providers/login-provider';
 
 @IonicPage()
 @Component({
@@ -16,7 +16,7 @@ export class ReferencePage {
 
   constructor(public navCtrl: NavController, 
     public navParams: NavParams,
-    private tokenService: AngularTokenService,
+    private loginProvider: LoginProvider,
     public loadingController: LoadingController,
     public referenceApi: ReferenceApi, 
     public respUtility: ResponseUtility) {
@@ -67,7 +67,7 @@ export class ReferencePage {
   }
 
   newReference() {
-    let reference = {user_id: this.tokenService.currentAuthData["id"]};
+    let reference = {user_id: this.loginProvider.currentUser["id"]};
     this.navCtrl.push('ReferenceForm', reference);
   }
 

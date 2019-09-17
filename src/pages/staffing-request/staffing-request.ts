@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { StaffingRequestApi } from '../../providers/staffing-request-api';
 import { ResponseUtility } from '../../providers/response-utility';
-import { AngularTokenService } from 'angular-token';
+import { LoginProvider } from '../../providers/login-provider';
 import * as moment from 'moment';
 
 
@@ -27,12 +27,12 @@ export class StaffingRequest {
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
-    private tokenService: AngularTokenService,
+    private loginProvider: LoginProvider,
     public loadingController: LoadingController,
     public staffingRequestApi: StaffingRequestApi,
     public respUtility: ResponseUtility) {
 
-    this.current_user = tokenService.currentUserData;
+    this.current_user = loginProvider.currentUser;
     
     if (this.current_user["role"] == "Admin") {
       if (this.current_user["care_home_id"] == null) {

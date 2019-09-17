@@ -20,6 +20,7 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { AdminMenus } from '../pages/home/admin-menus';
 import { TempMenus } from '../pages/home/temp-menus';
+import { AgencyMenus } from '../pages/home/agency-menus';
 import { Login } from '../pages/login/login';
 
 import { IonicStorageModule } from '@ionic/storage';
@@ -63,6 +64,7 @@ import { HelpPage } from '../pages/static/help';
     HomePage,
     AdminMenus,
     TempMenus,
+    AgencyMenus,
     Login,
     ContactPage,
     HelpPage,
@@ -86,6 +88,7 @@ import { HelpPage } from '../pages/static/help';
     HomePage,
     AdminMenus,
     TempMenus,
+    AgencyMenus,
     Login,
     ContactPage,
     HelpPage

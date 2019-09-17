@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { Config } from '../../providers/config';
-import { AngularTokenService } from 'angular-token';
+import { LoginProvider } from '../../providers/login-provider';
 import { UserDocApi } from '../../providers/user-doc-api';
 import { ResponseUtility } from '../../providers/response-utility';
 import { Events } from 'ionic-angular';
@@ -18,7 +18,7 @@ export class UserDoc {
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     private config: Config,
-    private tokenService: AngularTokenService,
+    private loginProvider: LoginProvider,
     private userDocApi: UserDocApi,
     private loadingController: LoadingController,
     private respUtility: ResponseUtility,
@@ -27,7 +27,7 @@ export class UserDoc {
     this.document = this.navParams.data;
     console.log(this.document);
 
-    this.current_user = tokenService.currentUserData;
+    this.current_user = loginProvider.currentUser;
   }
 
   ionViewDidLoad() {

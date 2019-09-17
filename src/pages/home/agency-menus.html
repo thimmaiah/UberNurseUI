@@ -1,0 +1,18 @@
+<div *ngIf="currentUser && currentUser.role == 'Agency'">
+
+    <div>
+      
+
+      <button ion-item (click)="impersonateForm()" >
+        <ion-icon name="people" item-left color="primary"></ion-icon>
+        Impersonate a User
+        <p text-wrap>
+          Impersonate a user to accept / reject shifts on thier behalf
+        </p>
+      </button>
+
+    </div>
+
+
+    
+  </div>

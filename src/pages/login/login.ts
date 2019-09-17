@@ -1,10 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AngularTokenService } from 'angular-token';
+import { LoginProvider } from '../../providers/login-provider';
 import { ResponseUtility } from '../../providers/response-utility';
 import { Config } from '../../providers/config';
-import { LoginProvider } from '../../providers/login-provider';
 import { UserApi } from '../../providers/user-api';
 import { Storage } from '@ionic/storage';
 
@@ -31,7 +30,6 @@ export class Login {
     public formBuilder: FormBuilder,
     public respUtility: ResponseUtility,
     public loadingController: LoadingController,
-    private tokenService: AngularTokenService,
     private config: Config,
     private loginProvider: LoginProvider,
     private userApi: UserApi,

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
-import { AngularTokenService } from 'angular-token';
+import { LoginProvider } from '../../../providers/login-provider';
 import { ActionSheetController, Platform, ActionSheet } from 'ionic-angular';
 
 import * as _ from 'lodash';
@@ -27,13 +27,13 @@ export class StaffingRequestDetails {
     public navParams: NavParams,
     public loadingController: LoadingController,
     public platform: Platform,
-    private tokenService: AngularTokenService,
+    private loginProvider: LoginProvider,
     public staffingRequestApi: StaffingRequestApi,
     public actionSheetCtrl: ActionSheetController,
     public respUtility: ResponseUtility) {
 
     this.staffingRequest = this.navParams.data;
-    this.current_user = this.tokenService.currentUserData;
+    this.current_user = this.loginProvider.currentUser;
 
     // Sometimes we get a shallow req - ie one that has only the id. 
     // We need to fill it up from the server side
@@ -109,7 +109,7 @@ export class StaffingRequestDetails {
 
 
   hasUserResponded() {
-    let current_user = this.tokenService.currentUserData;
+    let current_user = this.loginProvider.currentUser;
     let has_responded = _.find(this.staffingRequest["shifts"], function (response) {
       console.log(`Matching ${response["user_id"]} with ${current_user["id"]}`)
       return parseInt(response["user_id"]) == current_user["id"];

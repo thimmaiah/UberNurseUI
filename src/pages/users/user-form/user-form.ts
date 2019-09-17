@@ -2,12 +2,12 @@ import { IonicPage, NavController, NavParams, AlertController, ToastController, 
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, ViewChild, ElementRef, Renderer } from '@angular/core';
 import { Keyboard } from '@ionic-native/keyboard/ngx';
-import { AngularTokenService } from 'angular-token';
 import { UserApi } from '../../../providers/user-api';
 import { ResponseUtility } from '../../../providers/response-utility';
 import { PostCodeApi } from '../../../providers/postcode-api';
 import { CheckboxValidator } from '../../../providers/checkbox-validator';
 import { PostCodeValidator } from '../postcode-validator';
+import { AngularTokenService } from 'angular-token';
 
 @IonicPage()
 @Component({

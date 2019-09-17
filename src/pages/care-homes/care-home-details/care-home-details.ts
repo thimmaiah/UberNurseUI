@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController, ToastController } from 'ionic-angular';
-import { AngularTokenService } from 'angular-token';
+import { LoginProvider } from '../../../providers/login-provider';
 import { CareHomeApi } from '../../../providers/care-home-api';
 import { ResponseUtility } from '../../../providers/response-utility';
 
@@ -21,14 +21,14 @@ export class CareHomeDetails {
   current_user: {};
 
   constructor(public navCtrl: NavController, public navParams: NavParams,
-    private tokenService: AngularTokenService,
+    private loginProvider: LoginProvider,
     public care_homeApi: CareHomeApi,
     public alertController: AlertController,
     public toastController: ToastController,
     public respUtility: ResponseUtility) {
 
     this.care_home = this.navParams.data;
-    this.current_user = tokenService.currentUserData;  
+    this.current_user = this.loginProvider.currentUser;  
   }
 
 

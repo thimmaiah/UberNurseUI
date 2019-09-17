@@ -1,7 +1,7 @@
 import { IonicPage, NavController, NavParams, AlertController, ToastController, LoadingController } from 'ionic-angular';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Component, ViewChild } from '@angular/core';
-import { AngularTokenService } from 'angular-token';
+import { LoginProvider } from '../../../providers/login-provider';
 import { Events } from 'ionic-angular';
 import { CareHomeApi } from '../../../providers/care-home-api';
 import { ResponseUtility } from '../../../providers/response-utility';
@@ -26,7 +26,7 @@ export class CareHomeBankingDetails {
     public care_homeApi: CareHomeApi,
     public respUtility: ResponseUtility,
     public loadingController: LoadingController,
-    private tokenService: AngularTokenService,
+    private loginProvider: LoginProvider,
     public events: Events) {
 
     this.slideOneForm = formBuilder.group({
@@ -34,7 +34,7 @@ export class CareHomeBankingDetails {
       sort_code: ['', Validators.compose([Validators.minLength(6), Validators.maxLength(6), Validators.required])]
     });
 
-    let current_care_home = this.tokenService.currentUserData["care_home"];
+    let current_care_home = this.loginProvider.currentUser["care_home"];
     // This is a hack. We may need to display accept bank transactions in UI at some point
     // For now banking details are not used so.
     current_care_home.accept_bank_transactions = true;

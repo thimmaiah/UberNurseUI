@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { AngularTokenService } from 'angular-token';
+import { LoginProvider } from '../../providers/login-provider';
 
 
 @Component({
@@ -14,13 +14,13 @@ export class TermsPage {
 
   currentUser: {};
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public tokenService: AngularTokenService) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public loginProvider: LoginProvider) {
     
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad TermsPage');
-    this.currentUser = this.tokenService.currentUserData;
+    this.currentUser = this.loginProvider.currentUser;
   }
 
 }

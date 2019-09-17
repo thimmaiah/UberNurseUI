@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import 'rxjs/add/operator/map';
-import { AngularTokenService } from 'angular-token';
+import { LoginProvider } from './providers/login-provider';
 import { Config } from './config';
 
 @Injectable()

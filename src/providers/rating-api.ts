@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
-import { AngularTokenService } from 'angular-token';
+import { LoginProvider } from './providers/login-provider';
 import { HttpClient } from '@angular/common/http';
 import { Config } from './config';
 
