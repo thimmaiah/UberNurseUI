@@ -29,6 +29,10 @@ export class LoginProvider {
     console.log('Hello LoginProvider Provider');
   }
 
+  setCurrentUser(user) {
+    this.currentUser = user;
+  }
+
   logout() {
     console.log("logout called")
     this.tokenService.signOut().subscribe(

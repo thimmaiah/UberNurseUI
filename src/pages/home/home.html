@@ -55,9 +55,9 @@
 
         <ion-list>
 
-          <admin-menus [initData]="initData"></admin-menus>
-          <temp-menus [initData]="initData"></temp-menus>
-          <agency-menus [initData]="initData"></agency-menus>
+          <admin-menus [initData]="initData" *ngIf="currentUser.role=='Admin'"></admin-menus>
+          <temp-menus [initData]="initData" *ngIf="currentUser.role=='Care Giver' || currentUser.role=='Nurse'"></temp-menus>
+          <agency-menus [initData]="initData" *ngIf="currentUser.role=='Agency'"></agency-menus>
         </ion-list>
 
       </ion-card-content>

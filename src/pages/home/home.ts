@@ -39,8 +39,12 @@ export class HomePage implements Menu {
 
   ionViewWillEnter() {
     console.log('ionViewWillEnter HomePage ');
-    this.currentUser = this.loginProvider.currentUser;
-    this.getInitialData();
+    this.events.subscribe('user:login:success', () => {
+      console.log("AppComponent: user:login:success");
+      this.currentUser = this.loginProvider.currentUser;
+      this.getInitialData();
+    });    
+    
   }
 
   show_payments() {

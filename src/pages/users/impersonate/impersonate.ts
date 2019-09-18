@@ -27,6 +27,7 @@ export class ImpersonatePage {
             user => {
               this.respUtility.showSuccess('User impersonated successfully.');
               // Publish event - so other listners can get the newly logged in user
+              this.loginProvider.setCurrentUser(user); 
               this.events.publish('user:login:success');
               this.navCtrl.pop();
             },
